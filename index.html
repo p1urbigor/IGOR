@@ -1734,92 +1734,136 @@
       opacity: .9
     }
 
-    /* PAYMENT CARDS */
+    /* PAYMENT CARDS - PHOTO FORMAT */
     .pcard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 12px;
-      margin-top: 4px
+      grid-template-columns: repeat(auto-fill, minmax(290px, 340px));
+      gap: 16px;
+      margin-top: 10px;
     }
 
-    .pcard {
-      padding: 16px 18px;
-      background: var(--bg-input);
-      border: 1.5px solid var(--border-light);
+    .payment-card-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
       border-radius: var(--r-lg);
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(10, 22, 41, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all var(--t);
+    }
+
+    .payment-card-box:hover {
+      border-color: var(--border-medium);
+      box-shadow: 0 4px 12px rgba(10, 22, 41, 0.06);
+    }
+
+    .payment-card-box.is-default {
+      border-color: var(--border-medium);
+    }
+
+    .pcard-main-info {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
+    }
+
+    .pcard-brand-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .pcard-text-details {
+      flex: 1;
+    }
+
+    .pcard-masked-num {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .pcard-expiry-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
+    .pcard-badge-default {
+      background: #F1F5F9;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-left: auto;
+      align-self: flex-start;
+    }
+
+    .pcard-btn-set-default {
+      background: transparent;
+      color: var(--brand-primary);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border: 1px solid var(--border-medium);
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: auto;
+      align-self: flex-start;
+      transition: all var(--t);
+    }
+
+    .pcard-btn-set-default:hover {
+      background: var(--bg-active);
+      border-color: var(--brand-primary);
+    }
+
+    .pcard-bottom-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-delete-card {
+      background: #FEE2E2;
+      color: #DC2626;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: none;
       cursor: pointer;
       transition: all var(--t);
-      position: relative
     }
 
-    .pcard:hover {
-      border-color: var(--border-focus);
-      background: var(--bg-active);
-      box-shadow: var(--shadow-sm)
+    .btn-delete-card:hover {
+      background: #FCA5A5;
+      color: #B91C1C;
     }
 
-    .pcard.default {
-      border-color: var(--brand-primary);
-      background: var(--bg-active);
-      box-shadow: 0 4px 16px rgba(0, 87, 184, .12)
-    }
-
-    .pcard.default::after {
-      content: 'Principal';
-      position: absolute;
-      top: 0;
-      right: 14px;
-      transform: translateY(-50%);
-      background: var(--brand-primary);
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 99px
-    }
-
-    .pcard-logo {
-      font-size: 28px;
-      flex-shrink: 0
-    }
-
-    .pcard-name {
+    .btn-add-payment-method {
+      background: #E2E8F0;
+      color: #1E293B;
       font-size: 13.5px;
-      font-weight: 600
-    }
-
-    .pcard-exp {
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-top: 2px
-    }
-
-    .pcard-radio {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid var(--border-medium);
-      display: flex;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-left: auto;
-      transition: all var(--t)
+      gap: 8px;
+      transition: all var(--t);
     }
 
-    .pcard.default .pcard-radio {
-      border-color: var(--brand-primary)
-    }
-
-    .pcard.default .pcard-radio::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--brand-primary)
+    .btn-add-payment-method:hover {
+      background: #CBD5E1;
+      color: #0F172A;
     }
 
     /* AMOUNT SELECTOR */
@@ -3273,7 +3317,11 @@
             </div>
           </div>
 
-        </div>
+        <!-- LucidBot Webchat Widget -->
+        <script src="https://panel.lucidbot.co/webchat/plugin.js?v=6"></script>
+        <script>
+          ktt10.setup({ id: "htQNv1FDk68", accountId: "1108782", color: "#006dff" });
+        </script>
       </section>
 
       <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
@@ -3289,41 +3337,46 @@
 
         <div class="tab-bar">
           <button class="tab-btn active" onclick="showTab(this,'tab-datos')">Datos Cuenta</button>
-          <button class="tab-btn" onclick="showTab(this,'tab-factu')">Facturación</button>
-          <button class="tab-btn" onclick="showTab(this,'tab-pass')">Contraseña</button>
+          <button class="tab-btn" onclick="showTab(this,'tab-factu')">Datos Facturación</button>
         </div>
 
         <!-- Datos -->
         <div id="tab-datos" class="tab-panel active form-section">
-          <div class="banner purple">
-            <i class="fa-solid fa-wand-magic-sparkles bi"></i>
-            <div class="bt"><strong>Demo:</strong> Edita cualquier campo y haz clic en <strong>"Guardar
-                Cambios"</strong> para ver la confirmación. Los datos se actualizan en la sesión actual.</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:16px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg)">
+
+          <div
+            style="display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:16px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg)">
             <div class="avatar" id="profileAvatar" style="width:56px;height:56px;font-size:22px">G</div>
             <div style="flex:1">
               <div id="accountNameDisplayRow" style="display:flex;align-items:center;gap:8px">
                 <div id="profileSummaryName" style="font-size:17px;font-weight:700">Grupo Andino</div>
-                <button class="icon-btn" id="btnEditAccountName" onclick="toggleEditAccountName()" title="Editar nombre de la cuenta" style="width:28px;height:28px;border-radius:50%;background:white;border:1px solid var(--border-medium);color:var(--brand-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t)">
+                <button class="icon-btn" id="btnEditAccountName" onclick="toggleEditAccountName()"
+                  title="Editar nombre de la cuenta"
+                  style="width:28px;height:28px;border-radius:50%;background:white;border:1px solid var(--border-medium);color:var(--brand-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t)">
                   <i class="fa-solid fa-pen" style="font-size:11px"></i>
                 </button>
               </div>
-              <div id="accountNameEditRow" style="display:none;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px">
-                <input type="text" id="inlineAccountNameInput" class="form-input" style="height:36px;padding:4px 10px;font-size:14px;font-weight:600;max-width:260px" value="Grupo Andino">
-                <button class="btn btn-primary btn-sm" onclick="saveInlineAccountName()" style="padding:6px 12px;font-size:12px"><i class="fa-solid fa-check"></i> Guardar</button>
-                <button class="btn btn-ghost btn-sm" onclick="cancelInlineAccountName()" style="padding:6px 10px;font-size:12px">Cancelar</button>
+              <div id="accountNameEditRow"
+                style="display:none;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px">
+                <input type="text" id="inlineAccountNameInput" class="form-input"
+                  style="height:36px;padding:4px 10px;font-size:14px;font-weight:600;max-width:260px"
+                  value="Grupo Andino">
+                <button class="btn btn-primary btn-sm" onclick="saveInlineAccountName()"
+                  style="padding:6px 12px;font-size:12px"><i class="fa-solid fa-check"></i> Guardar</button>
+                <button class="btn btn-ghost btn-sm" onclick="cancelInlineAccountName()"
+                  style="padding:6px 10px;font-size:12px">Cancelar</button>
               </div>
-              <div id="profileSummaryMeta" style="font-size:12px;color:var(--text-secondary);margin-top:2px">Miembro desde Enero 2025 · Plan Estándar</div>
+              <div id="profileSummaryMeta" style="font-size:12px;color:var(--text-secondary);margin-top:2px">Miembro
+                desde Enero 2025 · Plan Estándar</div>
             </div>
           </div>
           <div class="form-grid">
             <div class="form-group fg-full">
-              <label class="form-label">Nombre Completo / Razón Social
+              <label class="form-label">Nombre Completo
                 <div class="help-wrap">
                   <div class="help-icon">?</div>
                   <div class="help-tip">
-                    <div class="ht">Nombre de la Cuenta</div>Nombre de la cuenta o razón social tal como aparecerá en las facturas e historial de transacciones.
+                    <div class="ht">Nombre de la Cuenta</div>Nombre de la cuenta o razón social tal como aparecerá en
+                    las facturas e historial de transacciones.
                   </div>
                 </div>
               </label>
@@ -3342,7 +3395,8 @@
                 <div class="help-wrap">
                   <div class="help-icon">?</div>
                   <div class="help-tip">
-                    <div class="ht">Cédula o RUC</div>Número de identificación requerido para la emisión de facturas electrónicas.
+                    <div class="ht">Cédula o RUC</div>Número de identificación requerido para la emisión de facturas
+                    electrónicas.
                   </div>
                 </div>
               </label>
@@ -3356,9 +3410,62 @@
               <label class="form-label">Teléfono</label>
               <input class="form-input" id="perfil-telefono" type="tel" value="0999999999">
             </div>
+            <div class="form-group">
+              <label class="form-label">País</label>
+              <select class="form-input" id="perfil-pais">
+                <option value="Ecuador" selected>Ecuador</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Perú">Perú</option>
+                <option value="Chile">Chile</option>
+                <option value="Argentina">Argentina</option>
+                <option value="México">México</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Provincia</label>
+              <select class="form-input" id="perfil-provincia" onchange="onProvinceChange()">
+                <option value="">Selecciona una provincia</option>
+                <option value="Azuay">Azuay</option>
+                <option value="Bolívar">Bolívar</option>
+                <option value="Cañar">Cañar</option>
+                <option value="Carchi">Carchi</option>
+                <option value="Chimborazo">Chimborazo</option>
+                <option value="Cotopaxi">Cotopaxi</option>
+                <option value="El Oro">El Oro</option>
+                <option value="Esmeraldas">Esmeraldas</option>
+                <option value="Galápagos">Galápagos</option>
+                <option value="Guayas">Guayas</option>
+                <option value="Imbabura">Imbabura</option>
+                <option value="Loja">Loja</option>
+                <option value="Los Ríos">Los Ríos</option>
+                <option value="Manabí">Manabí</option>
+                <option value="Morona Santiago">Morona Santiago</option>
+                <option value="Napo">Napo</option>
+                <option value="Orellana">Orellana</option>
+                <option value="Pastaza">Pastaza</option>
+                <option value="Pichincha">Pichincha</option>
+                <option value="Santa Elena">Santa Elena</option>
+                <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                <option value="Sucumbíos">Sucumbíos</option>
+                <option value="Tungurahua">Tungurahua</option>
+                <option value="Zamora Chinchipe">Zamora Chinchipe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ciudad</label>
+              <select class="form-input" id="perfil-ciudad">
+                <option value="">Selecciona una ciudad</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Dirección</label>
+              <input class="form-input" id="perfil-direccion" type="text" placeholder="Dirección completa">
+            </div>
           </div>
           <div class="form-actions">
-            <button class="btn btn-ghost">Cancelar</button>
+            <button class="btn btn-ghost" onclick="renderCurrentAccount()">Cancelar</button>
             <button class="btn btn-primary" onclick="saveProfileData()"><i class="fa-solid fa-check"></i> Guardar
               Cambios</button>
           </div>
@@ -3389,81 +3496,12 @@
                 class="form-input" id="fact-razon" type="text" placeholder="Nombre para la factura"></div>
             <div class="form-group fg-full"><label class="form-label">Dirección Fiscal</label><input class="form-input"
                 id="fact-dir" type="text" placeholder="Dirección completa"></div>
-            <div class="form-group fg-full"><label class="form-label">Correo de Facturación</label><input
+            <div class="form-group fg-full"><label class="form-label">Correo Electrónico</label><input
                 class="form-input" id="fact-email" type="email" placeholder="facturacion@empresa.com"></div>
           </div>
           <div class="form-actions">
             <button class="btn btn-primary" onclick="saveBillingData()"><i class="fa-solid fa-check"></i> Actualizar
               Facturación</button>
-          </div>
-        </div>
-
-        <!-- Password -->
-        <div id="tab-pass" class="tab-panel" style="max-width:480px">
-          <div class="banner purple"><i class="fa-solid fa-wand-magic-sparkles bi"></i>
-            <div class="bt"><strong>Demo:</strong> Haz clic en <strong>"Enviar código"</strong> -> el código de 6
-              dígitos aparecerá en pantalla -> ingrésalo para continuar al paso de nueva contraseña.</div>
-          </div>
-          <div class="steps" id="passSteps">
-            <div class="step-dot active" id="sd1">1</div>
-            <div class="step-line" id="sl1"></div>
-            <div class="step-dot" id="sd2">2</div>
-            <div class="step-line" id="sl2"></div>
-            <div class="step-dot" id="sd3">3</div>
-          </div>
-          <div id="ps1">
-            <div class="banner blue"><i class="fa-solid fa-shield-halved bi"></i>
-              <div class="bt">Verificaremos tu identidad enviando un <strong>código de 6 dígitos</strong> a tu correo
-                registrado. En modo demo el código se muestra en pantalla.</div>
-            </div>
-            <button class="btn btn-primary" onclick="sendCode()"><i class="fa-regular fa-paper-plane"></i> Enviar código
-              de verificación</button>
-          </div>
-          <div id="ps2" style="display:none">
-            <div class="banner green"><i class="fa-regular fa-envelope-circle-check bi"></i>
-              <div class="bt">Código enviado a <strong>usu***@ejemplo.com</strong>. Ingrésalo a continuación.</div>
-            </div>
-            <div id="codeHint"
-              style="font-size:13px;color:var(--tour-color);font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:8px;padding:10px 14px;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:var(--r-md)">
-            </div>
-            <div class="otp-inputs" id="otpInputs">
-              <input class="otp-input" id="oi0" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,0)"
-                onkeydown="otpBack(event,0)">
-              <input class="otp-input" id="oi1" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,1)"
-                onkeydown="otpBack(event,1)">
-              <input class="otp-input" id="oi2" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,2)"
-                onkeydown="otpBack(event,2)">
-              <input class="otp-input" id="oi3" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,3)"
-                onkeydown="otpBack(event,3)">
-              <input class="otp-input" id="oi4" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,4)"
-                onkeydown="otpBack(event,4)">
-              <input class="otp-input" id="oi5" maxlength="1" type="text" inputmode="numeric" oninput="otpNext(this,5)"
-                onkeydown="otpBack(event,5)">
-            </div>
-            <div id="err-code" style="display:none;font-size:12px;color:var(--brand-pink);margin-bottom:12px"><i
-                class="fa-solid fa-triangle-exclamation"></i> Código incorrecto. Revisa el recuadro morado con el código
-              demo.</div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <button class="btn btn-primary" onclick="checkCode()"><i class="fa-solid fa-shield-check"></i> Verificar
-                código</button>
-              <button class="btn btn-ghost" onclick="sendCode()">Reenviar código</button>
-            </div>
-          </div>
-          <div id="ps3" style="display:none">
-            <div class="banner green"><i class="fa-solid fa-circle-check bi"></i>
-              <div class="bt"><strong>¡Identidad verificada!</strong> Define tu nueva contraseña de acceso.</div>
-            </div>
-            <div class="form-grid" style="grid-template-columns:1fr">
-              <div class="form-group"><label class="form-label">Nueva Contraseña</label><input class="form-input"
-                  id="new-pass" type="password" placeholder="Mínimo 8 caracteres"></div>
-              <div class="form-group"><label class="form-label">Confirmar Contraseña</label><input class="form-input"
-                  id="conf-pass" type="password" placeholder="Repite la contraseña"></div>
-            </div>
-            <div id="err-pass" style="display:none;font-size:12px;color:var(--brand-pink);margin-top:8px"></div>
-            <div class="form-actions">
-              <button class="btn btn-primary" onclick="savePass()"><i class="fa-solid fa-lock"></i> Cambiar
-                Contraseña</button>
-            </div>
           </div>
         </div>
 
@@ -3491,10 +3529,6 @@
 
         <!-- Metodos de Pago -->
         <div id="tab-metodos" class="tab-panel active">
-          <div class="banner purple"><i class="fa-solid fa-wand-magic-sparkles bi"></i>
-            <div class="bt"><strong>Demo:</strong> Haz clic sobre una tarjeta para establecerla como predeterminada. La
-              etiqueta <em>"Principal"</em> se moverá automáticamente.</div>
-          </div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
             <div style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px">
               Tarjetas Registradas
@@ -3502,159 +3536,55 @@
                 <div class="help-icon">?</div>
                 <div class="help-tip">
                   <div class="ht">Métodos de pago</div>Aquí aparecen todas tus tarjetas vinculadas. La tarjeta
-                  <strong>Principal</strong> se usa automáticamente para recargas y para el cargo de la auto-recarga
+                  <strong>Principal o predeterminada</strong> se usa automáticamente para recargas y para el cargo de la
+                  auto-recarga
                   cuando tu saldo baja de $5.00.
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary btn-sm" onclick="document.getElementById('iNum').focus()"><i
-                class="fa-solid fa-plus"></i> Añadir tarjeta</button>
           </div>
-          <div class="pcard-grid">
-            <div class="pcard default" onclick="setPrimary(this)" data-card-label="Visa •••• 4242"
-              data-card-brand="Visa">
-              <span class="pcard-logo" style="color:#1A56DB"><i class="fa-brands fa-cc-visa"></i></span>
-              <div>
-                <div class="pcard-name">Visa •••• 4242</div>
-                <div class="pcard-exp">Expira 12/28</div>
-              </div>
-              <div class="pcard-radio"></div>
-            </div>
-            <div class="pcard" onclick="setPrimary(this)" data-card-label="Mastercard •••• 1004"
-              data-card-brand="Mastercard">
-              <span class="pcard-logo" style="color:#EB001B"><i class="fa-brands fa-cc-mastercard"></i></span>
-              <div>
-                <div class="pcard-name">Mastercard •••• 1004</div>
-                <div class="pcard-exp">Expira 08/27</div>
-              </div>
-              <div class="pcard-radio"></div>
-            </div>
-            <div class="pcard" onclick="setPrimary(this)" data-card-label="Amex •••• 3005" data-card-brand="Amex">
-              <span class="pcard-logo" style="color:#2557D6"><i class="fa-brands fa-cc-amex"></i></span>
-              <div>
-                <div class="pcard-name">Amex •••• 3005</div>
-                <div class="pcard-exp">Expira 05/29</div>
-              </div>
-              <div class="pcard-radio"></div>
-            </div>
-          </div>
-          <div class="banner blue" style="margin-top:18px"><i class="fa-solid fa-circle-info bi"></i>
-            <div class="bt">Los datos de la tarjeta se registran aquí. Luego, en <strong>Recargar Saldo</strong>, solo
-              eliges una tarjeta guardada para realizar la recarga.</div>
-          </div>
-          <div class="split-layout" style="margin-top:18px">
-            <div>
-              <!-- Card 3D Preview -->
-              <div class="card-flip-wrap" id="cardFlip">
-                <div class="card-flip-inner">
-                  <div class="card-face card-front">
-                    <div class="cc-chip"></div>
-                    <div class="cc-number" id="ccNum">•••• •••• •••• ••••</div>
-                    <div class="cc-row">
-                      <div>
-                        <div class="cc-lbl">Titular</div>
-                        <div class="cc-val" id="ccHolder">NOMBRE APELLIDO</div>
-                      </div>
-                      <div>
-                        <div class="cc-lbl">Expira</div>
-                        <div class="cc-val" id="ccExp">MM/AA</div>
-                      </div>
-                    </div>
-                    <div class="cc-brand" id="ccBrand"><i class="fa-solid fa-credit-card"
-                        style="color:rgba(255,255,255,.2);font-size:28px"></i></div>
-                  </div>
-                  <div class="card-face card-back">
-                    <div class="cb-stripe"></div>
-                    <div class="cb-cvv-row">
-                      <span class="cb-cvv-lbl">CVV</span>
-                      <span class="cb-cvv-val" id="ccCvv">•••</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <!-- Contenedor dinámico de tarjetas registradas -->
+          <div id="registeredCardsContainer" class="pcard-grid"></div>
 
-              <div class="card-form-grid">
-                <div class="form-group cfg-full">
-                  <label class="form-label">Número de Tarjeta
-                    <div class="help-wrap">
-                      <div class="help-icon">?</div>
-                      <div class="help-tip">
-                        <div class="ht">Número de tarjeta</div>Se detecta automáticamente la red (Visa, Mastercard,
-                        Amex). Prueba con: <strong>4111 1111 1111 1111</strong> para Visa.
-                      </div>
-                    </div>
-                  </label>
-                  <input class="form-input" id="iNum" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
-                    oninput="fmtNum(this)" style="font-family:'JetBrains Mono',monospace;letter-spacing:2px">
-                </div>
-                <div class="form-group cfg-full">
-                  <label class="form-label">Nombre del Titular</label>
-                  <input class="form-input" id="iHolder" type="text" placeholder="NOMBRE APELLIDO"
-                    oninput="fmtHolder(this)">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Expiración</label>
-                  <input class="form-input" id="iExp" type="text" maxlength="5" placeholder="MM/AA"
-                    oninput="fmtExp(this)" style="font-family:'JetBrains Mono',monospace">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">CVV
-                    <div class="help-wrap">
-                      <div class="help-icon">?</div>
-                      <div class="help-tip">
-                        <div class="ht">CVV - Código de seguridad</div>Al hacer clic aquí la tarjeta gira
-                        automáticamente para mostrar el reverso. Son 3 dígitos (Visa/MC) o 4 (Amex).
-                      </div>
-                    </div>
-                  </label>
-                  <input class="form-input" id="iCvv" type="text" maxlength="4" placeholder="•••"
-                    onfocus="flipCard(true)" onblur="flipCard(false)" oninput="fmtCvv(this)"
-                    style="font-family:'JetBrains Mono',monospace;letter-spacing:4px">
-                </div>
-              </div>
-            </div>
-            <div class="sticky-breakdown">
-              <div
-                style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">
-                Nuevo Método de Pago</div>
-              <div class="breakdown">
-                <div class="bd-section-label">Tarjeta a registrar</div>
-                <div class="bd-row"><span class="bd-lbl">Estado</span><span class="bd-val">Lista para guardar</span>
-                </div>
-                <div class="bd-row"><span class="bd-lbl">Uso</span><span class="bd-val">Recargas y auto-recarga</span>
-                </div>
-                <div class="bd-row total"><span class="bd-lbl">Tarjeta principal</span><span class="bd-val">La eliges
-                    tocando la tarjeta</span></div>
-              </div>
-              <button class="btn btn-primary btn-lg" style="width:100%"
-                onclick="showToast('Tarjeta lista para vinculación en la demo','success')">
-                <i class="fa-solid fa-credit-card"></i>
-                <span>Guardar método de pago</span>
-              </button>
-            </div>
+          <div style="margin-top:14px;margin-bottom:22px">
+            <button class="btn-add-payment-method" onclick="openAddCardModal()">
+              <i class="fa-solid fa-plus"></i> Agregar Método de Pago
+            </button>
           </div>
         </div>
 
-        
+
         <!-- TAB: TRANSFERIR SALDO -->
         <div id="tab-transferir" class="tab-panel">
-          <div class="banner purple"><i class="fa-solid fa-arrow-right-arrow-left bi" style="color:var(--brand-primary)"></i>
-            <div class="bt"><strong>Transferencia entre Cuentas IGOR:</strong> Transfiere saldo de tu cuenta actual a otra cuenta registrada de forma inmediata y sin comisiones.</div>
+          <div class="banner purple"><i class="fa-solid fa-arrow-right-arrow-left bi"
+              style="color:var(--brand-primary)"></i>
+            <div class="bt"><strong>Transferencia entre Cuentas IGOR:</strong> Transfiere saldo de tu cuenta actual a
+              otra cuenta registrada de forma inmediata y sin comisiones.</div>
           </div>
 
           <div class="split-layout">
             <div>
               <!-- Tarjeta de Info Cuenta Origen -->
-              <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg, rgba(0,87,184,0.04) 0%, rgba(0,194,255,0.08) 100%);border:1px solid rgba(0,87,184,0.15)">
-                <div class="card-body" style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between">
+              <div class="card"
+                style="margin-bottom:20px;background:linear-gradient(135deg, rgba(0,87,184,0.04) 0%, rgba(0,194,255,0.08) 100%);border:1px solid rgba(0,87,184,0.15)">
+                <div class="card-body"
+                  style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between">
                   <div>
-                    <div style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Cuenta Origen</div>
-                    <div id="transferOriginNameDisplay" style="font-size:16px;font-weight:800;color:var(--text-primary)">Grupo Andino</div>
-                    <div id="transferOriginIdDisplay" style="font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px">1b12659f-10be-4320-a619-2b36d5149b68</div>
+                    <div
+                      style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">
+                      Cuenta Origen</div>
+                    <div id="transferOriginNameDisplay"
+                      style="font-size:16px;font-weight:800;color:var(--text-primary)">Grupo Andino</div>
+                    <div id="transferOriginIdDisplay"
+                      style="font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px">
+                      1b12659f-10be-4320-a619-2b36d5149b68</div>
                   </div>
                   <div style="text-align:right">
-                    <div style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Saldo Disponible</div>
-                    <div id="transferOriginBalanceDisplay" style="font-size:20px;font-weight:800;color:var(--green)">$10.00</div>
+                    <div
+                      style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">
+                      Saldo Disponible</div>
+                    <div id="transferOriginBalanceDisplay" style="font-size:20px;font-weight:800;color:var(--green)">
+                      $10.00</div>
                   </div>
                 </div>
               </div>
@@ -3670,22 +3600,26 @@
                   <div class="help-wrap">
                     <div class="help-icon">?</div>
                     <div class="help-tip">
-                      <div class="ht">Cuenta Destino</div>Selecciona la cuenta IGOR a la que deseas transferir los fondos.
+                      <div class="ht">Cuenta Destino</div>Selecciona la cuenta IGOR a la que deseas transferir los
+                      fondos.
                     </div>
                   </div>
                 </label>
-                <select class="form-input" id="transferDestSelect" style="font-weight:600" onchange="updateTransferBreakdown()">
+                <select class="form-input" id="transferDestSelect" style="font-weight:600"
+                  onchange="updateTransferBreakdown()">
                   <option value="">Selecciona una cuenta</option>
                 </select>
               </div>
 
               <!-- Monto a Transferir -->
-              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px">
+              <div
+                style="font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px">
                 Monto a Transferir *
                 <div class="help-wrap">
                   <div class="help-icon">?</div>
                   <div class="help-tip">
-                    <div class="ht">Monto de transferencia</div>Selecciona un monto predefinido o ingresa un valor personalizado.
+                    <div class="ht">Monto de transferencia</div>Selecciona un monto predefinido o ingresa un valor
+                    personalizado.
                   </div>
                 </div>
               </div>
@@ -3703,9 +3637,14 @@
               <div id="transferCustomWrap" style="display:none;margin-bottom:18px;max-width:240px">
                 <div class="form-group">
                   <label class="form-label">Monto personalizado ($)</label>
-                  <div style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
-                    <div style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:700;display:flex;align-items:center;justify-content:center;height:42px">$</div>
-                    <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="1" placeholder="0.00" oninput="updateTransferBreakdown()" style="border:none;height:42px;box-shadow:none;font-family:'JetBrains Mono',monospace">
+                  <div
+                    style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
+                    <div
+                      style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:700;display:flex;align-items:center;justify-content:center;height:42px">
+                      $</div>
+                    <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="1"
+                      placeholder="0.00" oninput="updateTransferBreakdown()"
+                      style="border:none;height:42px;box-shadow:none;font-family:'JetBrains Mono',monospace">
                   </div>
                 </div>
               </div>
@@ -3713,32 +3652,47 @@
               <!-- Concepto -->
               <div class="form-group" style="margin-bottom:24px">
                 <label class="form-label" style="font-weight:700">Concepto o Nota (Opcional)</label>
-                <div style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
-                  <div style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;height:42px"><i class="fa-solid fa-align-left" style="font-size:13px"></i></div>
-                  <input class="form-input" id="transferConceptInput" type="text" placeholder="Ej. Pago de cuota de estacionamiento" oninput="updateTransferBreakdown()" style="border:none;height:42px;box-shadow:none">
+                <div
+                  style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
+                  <div
+                    style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;height:42px">
+                    <i class="fa-solid fa-align-left" style="font-size:13px"></i>
+                  </div>
+                  <input class="form-input" id="transferConceptInput" type="text"
+                    placeholder="Ej. Pago de cuota de estacionamiento" oninput="updateTransferBreakdown()"
+                    style="border:none;height:42px;box-shadow:none">
                 </div>
               </div>
             </div>
 
             <!-- Sticky Breakdown Card -->
             <div class="sticky-breakdown">
-              <div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">Resumen de Transferencia</div>
+              <div
+                style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">
+                Resumen de Transferencia</div>
               <div class="breakdown">
                 <div class="bd-section-label">Detalles de la Cuenta</div>
-                <div class="bd-row"><span class="bd-lbl">Origen</span><span class="bd-val" id="bdTransferOrigin" style="font-weight:700">-</span></div>
-                <div class="bd-row"><span class="bd-lbl">Destino</span><span class="bd-val" id="bdTransferDest" style="font-weight:700;color:var(--brand-primary)">-</span></div>
+                <div class="bd-row"><span class="bd-lbl">Origen</span><span class="bd-val" id="bdTransferOrigin"
+                    style="font-weight:700">-</span></div>
+                <div class="bd-row"><span class="bd-lbl">Destino</span><span class="bd-val" id="bdTransferDest"
+                    style="font-weight:700;color:var(--brand-primary)">-</span></div>
                 <div class="bd-section-label">Valores y Saldo</div>
-                <div class="bd-row"><span class="bd-lbl">Saldo disponible</span><span class="bd-val" id="bdTransferCurrentBalance">$0.00</span></div>
-                <div class="bd-row"><span class="bd-lbl">Monto a transferir</span><span class="bd-val" id="bdTransferAmount" style="color:var(--amber);font-weight:700">$10.00</span></div>
-                <div class="bd-row"><span class="bd-lbl">Comisión de servicio</span><span class="bd-val" style="color:var(--green);font-weight:700">GRATIS</span></div>
-                <div class="bd-row total"><span class="bd-lbl">SALDO RESTANTE</span><span class="bd-val" id="bdTransferRemaining">$0.00</span></div>
+                <div class="bd-row"><span class="bd-lbl">Saldo disponible</span><span class="bd-val"
+                    id="bdTransferCurrentBalance">$0.00</span></div>
+                <div class="bd-row"><span class="bd-lbl">Monto a transferir</span><span class="bd-val"
+                    id="bdTransferAmount" style="color:var(--amber);font-weight:700">$10.00</span></div>
+                <div class="bd-row"><span class="bd-lbl">Comisión de servicio</span><span class="bd-val"
+                    style="color:var(--green);font-weight:700">GRATIS</span></div>
+                <div class="bd-row total"><span class="bd-lbl">SALDO RESTANTE</span><span class="bd-val"
+                    id="bdTransferRemaining">$0.00</span></div>
               </div>
               <button class="btn btn-primary btn-lg" style="width:100%" onclick="openTransferConfirmModal()">
                 <i class="fa-solid fa-arrow-right-arrow-left"></i>
                 <span id="btnTransferTxt">Transferir $10.00</span>
               </button>
               <div style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px">
-                <i class="fa-solid fa-shield-halved" style="font-size:10px"></i> Transacción directa · Confirmación requerida
+                <i class="fa-solid fa-shield-halved" style="font-size:10px"></i> Transacción directa · Confirmación
+                requerida
               </div>
             </div>
           </div>
@@ -3747,12 +3701,7 @@
 
         <!-- Recargar Saldo -->
         <div id="tab-recargar" class="tab-panel">
-          <div class="banner purple"><i class="fa-solid fa-wand-magic-sparkles bi"></i>
-            <div class="bt"><strong>Demo:</strong> Primero registra o revisa tus tarjetas en <strong>Métodos de
-                Pago</strong>. Aquí solo seleccionas la tarjeta desde la cual se hará la recarga; la
-              <strong>Principal</strong> aparece seleccionada por defecto.
-            </div>
-          </div>
+
           <div class="split-layout">
             <div>
               <div class="form-group" style="max-width:420px;margin-bottom:18px">
@@ -3837,7 +3786,7 @@
                 <div class="bd-row total"><span class="bd-lbl">TOTAL A PAGAR</span><span class="bd-val"
                     id="btot">$11.00</span></div>
               </div>
-              <button class="btn btn-primary btn-lg" style="width:100%" id="btnRec" onclick="doRecharge()">
+              <button class="btn btn-primary btn-lg" style="width:100%" id="btnRec" onclick="processRecharge()">
                 <i class="fa-solid fa-bolt"></i>
                 <span id="btnRecTxt">Recargar $10.00</span>
               </button>
@@ -3850,11 +3799,7 @@
 
         <!-- Código Promocional -->
         <div id="tab-promo" class="tab-panel" style="max-width:480px">
-          <div class="banner purple"><i class="fa-solid fa-tag bi" style="color:var(--tour-color)"></i>
-            <div class="bt"><strong>Demo:</strong> Ingresa el código <code
-                style="font-family:'JetBrains Mono',monospace;background:var(--bg-input);padding:1px 6px;border-radius:4px;border:1px solid var(--border-medium)">IGOR50OFF</code>
-              y haz clic en <strong>"Aplicar"</strong> para acreditar $5.00 a tu saldo demo.</div>
-          </div>
+
           <div style="font-size:15px;font-weight:700;margin-bottom:5px">Canjear Código Promocional</div>
           <div style="font-size:13px;color:var(--text-secondary);margin-bottom:20px">Ingresa tu código para obtener
             saldo o beneficios especiales</div>
@@ -4206,44 +4151,57 @@
               <div class="help-wrap">
                 <div class="help-icon">?</div>
                 <div class="help-tip">
-                  <div class="ht">Gestión de Administradores</div>Administra los roles y permisos de acceso para los administradores de esta cuenta.
+                  <div class="ht">Gestión de Administradores</div>Administra los roles y permisos de acceso para los
+                  administradores de esta cuenta.
                 </div>
               </div>
             </div>
-            <p style="font-size:13px;color:var(--text-secondary)">Invita o elimina el acceso de administración a esta cuenta</p>
+            <p style="font-size:13px;color:var(--text-secondary)">Invita o elimina el acceso de administración a esta
+              cuenta</p>
           </div>
 
           <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
             <div class="card-body" style="padding:24px">
-              <div style="font-size:14px;font-weight:800;letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase;color:var(--text-primary)" id="adminAccountTitle">STALIN 2</div>
+              <div
+                style="font-size:14px;font-weight:800;letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase;color:var(--text-primary)"
+                id="adminAccountTitle">STALIN 2</div>
               <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px">
-                Desde aquí un administrador puede quitar a otro (o a sí mismo si no es el único). Si queda un único administrador con rol <strong>A</strong>, el sistema lo asciende a <strong>SA</strong> automáticamente.
+                Desde aquí un administrador puede quitar a otro (o a sí mismo si no es el único). Si queda un único
+                administrador con rol <strong>A</strong>, el sistema lo asciende a <strong>SA</strong> automáticamente.
               </p>
 
               <div id="adminUserList" style="display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);flex-wrap:wrap">
+                <div
+                  style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);flex-wrap:wrap">
                   <div>
                     <div style="font-size:14px;font-weight:700;color:var(--text-primary)">Daysi Achig</div>
-                    <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">daysiachig1998@gmail.com</div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">daysiachig1998@gmail.com
+                    </div>
                   </div>
                   <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-                    <select class="form-input" style="height:36px;padding:4px 12px;font-size:12px;font-weight:600;border-radius:var(--r-md);background:white">
+                    <select class="form-input"
+                      style="height:36px;padding:4px 12px;font-size:12px;font-weight:600;border-radius:var(--r-md);background:white">
                       <option value="SA">Super administrador (SA)</option>
                       <option value="A">Administrador (A)</option>
                     </select>
-                    <button class="btn btn-ghost btn-sm" onclick="showToast('Administrador eliminado en la demo','info')" style="background:white;border-color:var(--border-light);padding:7px 14px;font-size:12px">Eliminar</button>
+                    <button class="btn btn-ghost btn-sm"
+                      onclick="showToast('Administrador eliminado en la demo','info')"
+                      style="background:white;border-color:var(--border-light);padding:7px 14px;font-size:12px">Eliminar</button>
                   </div>
                 </div>
 
                 <div class="acc-item" style="margin-top:4px;margin-bottom:0">
-                  <div class="acc-trigger" onclick="this.parentElement.classList.toggle('open')" style="padding:12px 16px">
+                  <div class="acc-trigger" onclick="this.parentElement.classList.toggle('open')"
+                    style="padding:12px 16px">
                     <div class="acc-info">
-                      <div class="acc-title" style="font-size:12.5px;color:var(--text-secondary);font-weight:600">Permisos actuales (Super administrador)</div>
+                      <div class="acc-title" style="font-size:12.5px;color:var(--text-secondary);font-weight:600">
+                        Permisos actuales (Super administrador)</div>
                     </div>
                     <i class="fa-solid fa-plus acc-chev" style="font-size:12px"></i>
                   </div>
                   <div class="acc-body">
-                    <div class="acc-content" style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding:12px 16px;background:white">
+                    <div class="acc-content"
+                      style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding:12px 16px;background:white">
                       - Acceso total a facturación y recargas.<br>
                       - Gestión completa de vehículos y tarjetas Mifare/NFC.<br>
                       - Invitar, promover o remover administradores.
@@ -4254,7 +4212,8 @@
             </div>
           </div>
 
-          <button class="btn btn-primary" onclick="showToast('Módulo para invitar administrador abierto','info')" style="margin-top:20px;padding:11px 22px;border-radius:var(--r-md);font-size:13.5px">
+          <button class="btn btn-primary" onclick="showToast('Módulo para invitar administrador abierto','info')"
+            style="margin-top:20px;padding:11px 22px;border-radius:var(--r-md);font-size:13.5px">
             <i class="fa-solid fa-user-plus"></i> Invitar administrador
           </button>
         </div>
@@ -4269,18 +4228,31 @@
           <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
             <div class="card-body" style="padding:24px">
               <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-                <div class="lang-opt selected" onclick="pickLang(this,'es')" style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                <div class="lang-opt selected" onclick="pickLang(this,'es')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
                   <span class="lang-flag">ES</span>
-                  <div><div class="lang-nm" style="font-size:13px">Español</div><div class="lang-nat">Spanish</div></div>
-                  <i class="fa-solid fa-check" style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Español</div>
+                    <div class="lang-nat">Spanish</div>
+                  </div>
+                  <i class="fa-solid fa-check"
+                    style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
                 </div>
-                <div class="lang-opt" onclick="pickLang(this,'en')" style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                <div class="lang-opt" onclick="pickLang(this,'en')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
                   <span class="lang-flag">EN</span>
-                  <div><div class="lang-nm" style="font-size:13px">Inglés</div><div class="lang-nat">English</div></div>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Inglés</div>
+                    <div class="lang-nat">English</div>
+                  </div>
                 </div>
-                <div class="lang-opt" onclick="pickLang(this,'fr')" style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                <div class="lang-opt" onclick="pickLang(this,'fr')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
                   <span class="lang-flag">FR</span>
-                  <div><div class="lang-nm" style="font-size:13px">Francés</div><div class="lang-nat">French</div></div>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Francés</div>
+                    <div class="lang-nat">French</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4332,217 +4304,222 @@
 
   <div id="toast-container"></div>
 
-  
-<script>
-const ACCOUNT_DATA = {
-  'AC-001': {
-    id: 'AC-001',
-    label: 'Grupo Andino',
-    profile: { nombre: 'Grupo Andino', tipoDocumento: 'RUC', documento: '1700000000', email: 'usuario@ejemplo.com', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Estandar' },
-    billing: { tipo: 'RUC', numero: '1700000000', razon: 'Grupo Andino', direccion: 'Quito, Ecuador', email: 'facturacion@grupoandino.ec' },
-    balance: 13.50,
-    visitCount: 4,
-    chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
-    promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
-    movements: [
-      { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-08-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
-      { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h 30m 00s' }, amount: -3.50, balance: 13.50 },
-      { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089552', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
-      { id: 104, type: 'parking', title: 'Consumo Estadía Parqueo - Aeropuerto', date: '15-08-2026', detail: { ref: 'Igor-1506-00078120', estado: 'APPROVED', entrada: '15-06-2026 05:20', salida: '15-06-2026 07:05', duracion: '1h 45m 00s' }, amount: -4.00, balance: 7.00 },
-      { id: 105, type: 'promo', title: 'Código Promocional CORP10', date: '12-08-2026', detail: { ref: 'Igor-PROMO-1020', estado: 'APPROVED', code: 'CORP10' }, amount: 10.00, balance: 11.00 }
-    ],
-    vehicles: [
-      { marca: 'Toyota', modelo: 'Hilux', color: 'Negro', placa: 'PCD-9102', icon: 'fa-truck-pickup', meta: 'Marca: Toyota · Camioneta corporativa', plateAccess: true },
-      { marca: 'Hyundai', modelo: 'Tucson', color: 'Azul', placa: 'MBR-4421', icon: 'fa-car-side', meta: 'Marca: Hyundai · SUV de gerencia', plateAccess: false }
-    ],
-    mifare: [
-      { nombre: 'Tarjeta Oficina', uid: '04:C2:8D:11:AF:90', tipo: 'Mifare Classic', estado: 'Activa' },
-      { nombre: 'Tarjeta Recepcion', uid: '04:D4:72:8B:10:44', tipo: 'NFC', estado: 'Pendiente' }
-    ]
-  },
-  'AC-315': {
-    id: 'AC-315',
-    label: 'Edificio Mirador',
-    profile: { nombre: 'Edificio Mirador', tipoDocumento: 'RUC', documento: '1711122233', email: 'residentes@mirador.ec', telefono: '0977001122', miembroDesde: 'Julio 2023', plan: 'Plan Premium' },
-    billing: { tipo: 'RUC', numero: '1711122233', razon: 'Edificio Mirador', direccion: 'Cumbaya, Calle de los Olivos Oe7-19', email: 'administracion@mirador.ec' },
-    balance: 5.75,
-    visitCount: 7,
-    chartData: [0, 1.00, 0, 0.75, 2.10, 0, 1.30],
-    promos: [],
-    movements: [
-      { id: 201, type: 'parking', title: 'Estadia Scala Shopping', date: '2026-06-19', detail: { entrada: '2026-06-19 16:30', salida: '2026-06-19 18:05', duracion: '1h 35m 00s' }, amount: -1.00, balance: 5.75 },
-      { id: 202, type: 'parking', title: 'Estadia Hospital de los Valles', date: '2026-06-16', detail: { entrada: '2026-06-16 09:00', salida: '2026-06-16 11:10', duracion: '2h 10m 00s' }, amount: -2.10, balance: 6.75 },
-      { id: 203, type: 'recharge', title: 'Recarga de Saldo', date: '2026-06-12', detail: { ref: 'Igor-4410-00010220', estado: 'APPROVED' }, amount: +8.00, balance: 8.85 }
-    ],
-    vehicles: [
-      { marca: 'Mazda', modelo: 'CX-5', color: 'Rojo', placa: 'PQA-7788', icon: 'fa-car-side', meta: 'Marca: Mazda · SUV familiar', plateAccess: true }
-    ],
-    mifare: [
-      { nombre: 'Tarjeta Torre A', uid: '04:E1:22:4C:09:71', tipo: 'Mifare DESFire', estado: 'Activa' }
-    ]
-  },
-  'AC-502': {
-    id: 'AC-502',
-    label: 'Plaza Comercial del Sol',
-    profile: { nombre: 'Plaza Comercial del Sol', tipoDocumento: 'RUC', documento: '1792837465001', email: 'administracion@plazasol.ec', telefono: '0984567890', miembroDesde: 'Marzo 2024', plan: 'Plan Corporativo' },
-    billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Plaza Comercial del Sol S.A.', direccion: 'Av. de los Shyris y NNUU, Quito', email: 'facturas@plazasol.ec' },
-    balance: 42.80,
-    visitCount: 12,
-    chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
-    promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
-    movements: [
-      { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-08-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
-      { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-08-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', entrada: '19-08-2026 10:15', salida: '19-08-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
-      { id: 303, type: 'promo', title: 'Código Promocional IGOR50OFF', date: '15-07-2026', detail: { ref: 'Igor-PROMO-5020', estado: 'APPROVED', code: 'IGOR50OFF' }, amount: 5.00, balance: 0.00 }
-    ],
-    vehicles: [
-      { marca: 'Chevrolet', modelo: 'D-Max', color: 'Blanco', placa: 'PBE-3390', icon: 'fa-truck-pickup', meta: 'Marca: Chevrolet · Camioneta de operaciones', plateAccess: true },
-      { marca: 'Kia', modelo: 'Sportage', color: 'Gris', placa: 'PCD-8812', icon: 'fa-car-side', meta: 'Marca: Kia · SUV Administración', plateAccess: true }
-    ],
-    mifare: [
-      { nombre: 'Tarjeta Acceso Principal', uid: '04:F5:33:9A:88:12', tipo: 'Mifare Classic 4K', estado: 'Activa' },
-      { nombre: 'Tarjeta Proveedores', uid: '04:A2:99:11:00:55', tipo: 'NFC Pass', estado: 'Activa' }
-    ]
-  }
-};
 
-const S = {
-  currentAccountId: 'AC-001',
-  profile: null,
-  billing: null,
-  vehicles: [],
-  mifare: [],
-  balance: 0,
-  lot: { name: 'Quicentro Sur', pricing: 'flat', amount: 1, rate: 1.5 },
-  sim: false, simStart: null, simInterval: null, elapsed: 0,
-  rechargeAmt: 10,
-  transferSelectedAmt: 10,
-  verCode: null, passStep: 1,
-  visitCount: 0,
-  chartData: [],
-  promos: [],
-  movements: []
-};
+  <script>
+    const ACCOUNT_DATA = {
+      'AC-001': {
+        id: 'AC-001',
+        label: 'Grupo Andino',
+        profile: { nombre: 'Grupo Andino', tipoDocumento: 'RUC', documento: '1700000000', email: 'usuario@ejemplo.com', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Estandar', pais: 'Ecuador', provincia: '', ciudad: '', direccion: '' },
+        billing: { tipo: 'RUC', numero: '1700000000', razon: 'Grupo Andino', direccion: 'Quito, Ecuador', email: 'facturacion@grupoandino.ec' },
+        balance: 13.50,
+        visitCount: 4,
+        chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
+        promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
+        movements: [
+          { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-08-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
+          { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h 30m 00s' }, amount: -3.50, balance: 13.50 },
+          { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089552', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
+          { id: 104, type: 'parking', title: 'Consumo Estadía Parqueo - Aeropuerto', date: '15-08-2026', detail: { ref: 'Igor-1506-00078120', estado: 'APPROVED', entrada: '15-06-2026 05:20', salida: '15-06-2026 07:05', duracion: '1h 45m 00s' }, amount: -4.00, balance: 7.00 },
+          { id: 105, type: 'promo', title: 'Código Promocional CORP10', date: '12-08-2026', detail: { ref: 'Igor-PROMO-1020', estado: 'APPROVED', code: 'CORP10' }, amount: 10.00, balance: 11.00 }
+        ],
+        vehicles: [
+          { marca: 'Toyota', modelo: 'Hilux', color: 'Negro', placa: 'PCD-9102', icon: 'fa-truck-pickup', meta: 'Marca: Toyota · Camioneta corporativa', plateAccess: true },
+          { marca: 'Hyundai', modelo: 'Tucson', color: 'Azul', placa: 'MBR-4421', icon: 'fa-car-side', meta: 'Marca: Hyundai · SUV de gerencia', plateAccess: false }
+        ],
+        cards: [
+          { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: 'Grupo Andino', default: true },
+          { id: 'c-4242', brand: 'Visa', number: '•••• 4242', last4: '4242', exp: '12/2028', holder: 'Grupo Andino', default: false }
+        ],
+      },
+      'AC-315': {
+        id: 'AC-315',
+        label: 'Edificio Mirador',
+        profile: { nombre: 'Edificio Mirador', tipoDocumento: 'RUC', documento: '1711122233', email: 'residentes@mirador.ec', telefono: '0977001122', miembroDesde: 'Julio 2023', plan: 'Plan Premium', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Calle de los Olivos Oe7-19' },
+        billing: { tipo: 'RUC', numero: '1711122233', razon: 'Edificio Mirador', direccion: 'Cumbaya, Calle de los Olivos Oe7-19', email: 'administracion@mirador.ec' },
+        balance: 5.75,
+        visitCount: 7,
+        chartData: [0, 1.00, 0, 0.75, 2.10, 0, 1.30],
+        promos: [],
+        movements: [
+          { id: 201, type: 'parking', title: 'Estadia Scala Shopping', date: '2026-06-19', detail: { entrada: '2026-06-19 16:30', salida: '2026-06-19 18:05', duracion: '1h 35m 00s' }, amount: -1.00, balance: 5.75 },
+          { id: 202, type: 'parking', title: 'Estadia Hospital de los Valles', date: '2026-06-16', detail: { entrada: '2026-06-16 09:00', salida: '2026-06-16 11:10', duracion: '2h 10m 00s' }, amount: -2.10, balance: 6.75 },
+          { id: 203, type: 'recharge', title: 'Recarga de Saldo', date: '2026-06-12', detail: { ref: 'Igor-4410-00010220', estado: 'APPROVED' }, amount: +8.00, balance: 8.85 }
+        ],
+        vehicles: [
+          { marca: 'Mazda', modelo: 'CX-5', color: 'Rojo', placa: 'PQA-7788', icon: 'fa-car-side', meta: 'Marca: Mazda · SUV familiar', plateAccess: true }
+        ],
+        mifare: [
+          { nombre: 'Tarjeta Torre A', uid: '04:E1:22:4C:09:71', tipo: 'Mifare DESFire', estado: 'Activa' }
+        ]
+      },
+      'AC-502': {
+        id: 'AC-502',
+        label: 'Plaza Comercial del Sol',
+        profile: { nombre: 'Plaza Comercial del Sol', tipoDocumento: 'RUC', documento: '1792837465001', email: 'administracion@plazasol.ec', telefono: '0984567890', miembroDesde: 'Marzo 2024', plan: 'Plan Corporativo', pais: 'Ecuador', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Av. de los Shyris y NNUU' },
+        billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Plaza Comercial del Sol S.A.', direccion: 'Av. de los Shyris y NNUU, Quito', email: 'facturas@plazasol.ec' },
+        balance: 42.80,
+        visitCount: 12,
+        chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
+        promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
+        movements: [
+          { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-08-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
+          { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-08-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', entrada: '19-08-2026 10:15', salida: '19-08-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
+          { id: 303, type: 'promo', title: 'Código Promocional IGOR50OFF', date: '15-07-2026', detail: { ref: 'Igor-PROMO-5020', estado: 'APPROVED', code: 'IGOR50OFF' }, amount: 5.00, balance: 0.00 }
+        ],
+        vehicles: [
+          { marca: 'Chevrolet', modelo: 'D-Max', color: 'Blanco', placa: 'PBE-3390', icon: 'fa-truck-pickup', meta: 'Marca: Chevrolet · Camioneta de operaciones', plateAccess: true },
+          { marca: 'Kia', modelo: 'Sportage', color: 'Gris', placa: 'PCD-8812', icon: 'fa-car-side', meta: 'Marca: Kia · SUV Administración', plateAccess: true }
+        ],
+        mifare: [
+          { nombre: 'Tarjeta Acceso Principal', uid: '04:F5:33:9A:88:12', tipo: 'Mifare Classic 4K', estado: 'Activa' },
+          { nombre: 'Tarjeta Proveedores', uid: '04:A2:99:11:00:55', tipo: 'NFC Pass', estado: 'Activa' }
+        ]
+      }
+    };
 
-/* ============================================================
-   APPLICATION CORE LOGIC
-============================================================ */
+    const S = {
+      currentAccountId: 'AC-001',
+      profile: null,
+      billing: null,
+      vehicles: [],
+      mifare: [],
+      balance: 0,
+      lot: { name: 'Quicentro Sur', pricing: 'flat', amount: 1, rate: 1.5 },
+      sim: false, simStart: null, simInterval: null, elapsed: 0,
+      rechargeAmt: 10,
+      transferSelectedAmt: 10,
+      verCode: null, passStep: 1,
+      visitCount: 0,
+      chartData: [],
+      promos: [],
+      movements: []
+    };
 
-function goTo(name, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  const sec = document.getElementById('sec-' + name);
-  if (sec) {
-    sec.classList.add('active');
-    // Ensure default tab is activated when entering any section with tabs
-    const activeTabBtn = sec.querySelector('.tab-bar .tab-btn.active') || sec.querySelector('.tab-bar .tab-btn');
-    if (activeTabBtn) {
-      activeTabBtn.click();
+    /* ============================================================
+       APPLICATION CORE LOGIC
+    ============================================================ */
+
+    function goTo(name, el) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const sec = document.getElementById('sec-' + name);
+      if (sec) {
+        sec.classList.add('active');
+        // Ensure default tab is activated when entering any section with tabs
+        const activeTabBtn = sec.querySelector('.tab-bar .tab-btn.active') || sec.querySelector('.tab-bar .tab-btn');
+        if (activeTabBtn) {
+          activeTabBtn.click();
+        }
+      }
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      if (el) el.classList.add('active');
+      const titles = { dashboard: 'Dashboard', perfil: 'Cuenta', billetera: 'Billetera', movimientos: 'Mis Movimientos', accesos: 'Medios de Acceso', ajustes: 'Ajustes' };
+      const tTitle = document.getElementById('tbTitle'); if (tTitle) tTitle.textContent = titles[name] || name;
+      const tBread = document.getElementById('tbBread'); if (tBread) tBread.textContent = 'IGOR / ' + (titles[name] || name);
+      const mArea = document.getElementById('mainArea'); if (mArea) mArea.scrollTo(0, 0);
+      closeSidebar();
     }
-  }
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (el) el.classList.add('active');
-  const titles = { dashboard: 'Dashboard', perfil: 'Cuenta', billetera: 'Billetera', movimientos: 'Mis Movimientos', accesos: 'Medios de Acceso', ajustes: 'Ajustes' };
-  const tTitle = document.getElementById('tbTitle'); if (tTitle) tTitle.textContent = titles[name] || name;
-  const tBread = document.getElementById('tbBread'); if (tBread) tBread.textContent = 'IGOR / ' + (titles[name] || name);
-  const mArea = document.getElementById('mainArea'); if (mArea) mArea.scrollTo(0, 0);
-  closeSidebar();
-}
 
-function showTab(btn, panelId) {
-  if ((panelId === 'tab-metodos' || panelId === 'tab-recargar' || panelId === 'tab-transferir') && !isAccountAndBillingComplete()) {
-    showIncompleteDataModal();
-    return;
-  }
-  const bar = btn.closest('.tab-bar'), root = bar ? bar.parentElement : null;
-  if (!root) return;
-  root.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  root.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  const p = document.getElementById(panelId);
-  if (p) p.classList.add('active');
-  if (panelId === 'tab-transferir') {
-    renderTransferTab();
-  }
-}
-
-function toggleSidebar() {
-  const sb = document.getElementById('sidebar'); if (sb) sb.classList.toggle('open');
-  const overlay = document.getElementById('sbOverlay'); if (overlay) overlay.classList.toggle('on');
-}
-function closeSidebar() {
-  const sb = document.getElementById('sidebar'); if (sb) sb.classList.remove('open');
-  const overlay = document.getElementById('sbOverlay'); if (overlay) overlay.classList.remove('on');
-}
-
-function getCurrentAccount() {
-  return ACCOUNT_DATA[S.currentAccountId] || ACCOUNT_DATA['AC-001'];
-}
-
-function fillAccountSelector(force = false) {
-  const select = document.getElementById('accountSelect');
-  if (!select) return;
-  if (!force && select.options.length) return;
-  const currentVal = select.value || S.currentAccountId;
-  select.innerHTML = '';
-  Object.values(ACCOUNT_DATA).forEach(acc => {
-    const opt = document.createElement('option');
-    opt.value = acc.id;
-    opt.textContent = `${acc.label} · ${acc.id}`;
-    select.appendChild(opt);
-  });
-  select.value = currentVal;
-}
-
-function setBillingFieldState(disabled) {
-  ['fact-num', 'fact-razon', 'fact-email'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.disabled = disabled;
-    el.style.opacity = disabled ? '0.5' : '1';
-  });
-}
-
-function persistCurrentAccount() {
-  const acc = getCurrentAccount();
-  if (!acc) return;
-  acc.balance = S.balance;
-  acc.visitCount = S.visitCount;
-  acc.chartData = S.chartData;
-  acc.promos = S.promos;
-  acc.movements = S.movements;
-  acc.vehicles = S.vehicles;
-  acc.mifare = S.mifare;
-  if (document.getElementById('perfil-nombre')) {
-    const newName = document.getElementById('perfil-nombre').value.trim();
-    if (newName) {
-      acc.profile.nombre = newName;
-      acc.label = newName;
+    function showTab(btn, panelId) {
+      if ((panelId === 'tab-metodos' || panelId === 'tab-recargar' || panelId === 'tab-transferir') && !isAccountAndBillingComplete()) {
+        showIncompleteDataModal();
+        return;
+      }
+      const bar = btn.closest('.tab-bar'), root = bar ? bar.parentElement : null;
+      if (!root) return;
+      root.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      root.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const p = document.getElementById(panelId);
+      if (p) p.classList.add('active');
+      if (panelId === 'tab-transferir') {
+        renderTransferTab();
+      }
     }
-    acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
-    acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
-    acc.profile.telefono = document.getElementById('perfil-telefono').value.trim() || acc.profile.telefono;
-  }
-  if (document.getElementById('fact-num')) {
-    acc.billing.tipo = document.getElementById('fact-tipo').value;
-    acc.billing.numero = document.getElementById('fact-num').value.trim();
-    acc.billing.razon = document.getElementById('fact-razon').value.trim();
-    acc.billing.direccion = document.getElementById('fact-dir').value.trim();
-    acc.billing.email = document.getElementById('fact-email').value.trim();
-  }
-}
 
-function renderVehicleList() {
-  const list = document.getElementById('vehicleList');
-  if (!list) return;
-  if (!S.vehicles || S.vehicles.length === 0) {
-    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay vehículos registrados en esta cuenta.</div>';
-    return;
-  }
-  list.innerHTML = S.vehicles.map((veh, idx) => {
-    const photo = veh.photoUrl
-      ? `<img class="vehicle-photo" src="${veh.photoUrl}" alt="Foto de ${veh.modelo}">`
-      : `<div class="vehicle-photo placeholder"><i class="fa-solid ${veh.icon || 'fa-car-side'}"></i></div>`;
-    return `<div class="vehicle-item">
+    function toggleSidebar() {
+      const sb = document.getElementById('sidebar'); if (sb) sb.classList.toggle('open');
+      const overlay = document.getElementById('sbOverlay'); if (overlay) overlay.classList.toggle('on');
+    }
+    function closeSidebar() {
+      const sb = document.getElementById('sidebar'); if (sb) sb.classList.remove('open');
+      const overlay = document.getElementById('sbOverlay'); if (overlay) overlay.classList.remove('on');
+    }
+
+    function getCurrentAccount() {
+      return ACCOUNT_DATA[S.currentAccountId] || ACCOUNT_DATA['AC-001'];
+    }
+
+    function fillAccountSelector(force = false) {
+      const select = document.getElementById('accountSelect');
+      if (!select) return;
+      if (!force && select.options.length) return;
+      const currentVal = select.value || S.currentAccountId;
+      select.innerHTML = '';
+      Object.values(ACCOUNT_DATA).forEach(acc => {
+        const opt = document.createElement('option');
+        opt.value = acc.id;
+        opt.textContent = `${acc.label} · ${acc.id}`;
+        select.appendChild(opt);
+      });
+      select.value = currentVal;
+    }
+
+    function setBillingFieldState(disabled) {
+      ['fact-num', 'fact-razon', 'fact-email'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.disabled = disabled;
+        el.style.opacity = disabled ? '0.5' : '1';
+      });
+    }
+
+    function persistCurrentAccount() {
+      const acc = getCurrentAccount();
+      if (!acc) return;
+      acc.balance = S.balance;
+      acc.visitCount = S.visitCount;
+      acc.chartData = S.chartData;
+      acc.promos = S.promos;
+      acc.movements = S.movements;
+      acc.vehicles = S.vehicles;
+      acc.mifare = S.mifare;
+      acc.cards = S.cards;
+      if (document.getElementById('perfil-nombre')) {
+        const newName = document.getElementById('perfil-nombre').value.trim();
+        if (newName) {
+          acc.profile.nombre = newName;
+          acc.label = newName;
+        }
+        acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
+        acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
+        acc.profile.telefono = document.getElementById('perfil-telefono').value.trim() || acc.profile.telefono;
+        acc.profile.pais = document.getElementById('perfil-pais')?.value || 'Ecuador';
+        acc.profile.provincia = document.getElementById('perfil-provincia')?.value || '';
+        acc.profile.ciudad = document.getElementById('perfil-ciudad')?.value || '';
+        acc.profile.direccion = document.getElementById('perfil-direccion')?.value.trim() || '';
+      }
+      if (document.getElementById('fact-num')) {
+        acc.billing.tipo = document.getElementById('fact-tipo').value;
+        acc.billing.numero = document.getElementById('fact-num').value.trim();
+        acc.billing.razon = document.getElementById('fact-razon').value.trim();
+        acc.billing.direccion = document.getElementById('fact-dir').value.trim();
+        acc.billing.email = document.getElementById('fact-email').value.trim();
+      }
+    }
+
+    function renderVehicleList() {
+      const list = document.getElementById('vehicleList');
+      if (!list) return;
+      if (!S.vehicles || S.vehicles.length === 0) {
+        list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay vehículos registrados en esta cuenta.</div>';
+        return;
+      }
+      list.innerHTML = S.vehicles.map((veh, idx) => {
+        const photo = veh.photoUrl
+          ? `<img class="vehicle-photo" src="${veh.photoUrl}" alt="Foto de ${veh.modelo}">`
+          : `<div class="vehicle-photo placeholder"><i class="fa-solid ${veh.icon || 'fa-car-side'}"></i></div>`;
+        return `<div class="vehicle-item">
       <div class="vehicle-top">
         ${photo}
         <div class="vehicle-main"><div style="font-size:13.5px;font-weight:600">${veh.marca} ${veh.modelo} <span style="color:var(--text-secondary)"> - ${veh.color}</span></div><div class="vehicle-meta">${veh.meta || ('Marca: ' + veh.marca)}</div></div>
@@ -4561,30 +4538,30 @@ function renderVehicleList() {
         <div class="toggle ${veh.plateAccess ? 'on' : ''}" onclick="togglePlateAccess(this,${idx})"></div>
       </div>
     </div>`;
-  }).join('');
-}
+      }).join('');
+    }
 
-function deleteVehicle(index) {
-  if (S.vehicles && S.vehicles[index]) {
-    const v = S.vehicles[index];
-    S.vehicles.splice(index, 1);
-    persistCurrentAccount();
-    renderVehicleList();
-    showToast(`Vehículo ${v.placa} eliminado de la cuenta`, 'info');
-  }
-}
+    function deleteVehicle(index) {
+      if (S.vehicles && S.vehicles[index]) {
+        const v = S.vehicles[index];
+        S.vehicles.splice(index, 1);
+        persistCurrentAccount();
+        renderVehicleList();
+        showToast(`Vehículo ${v.placa} eliminado de la cuenta`, 'info');
+      }
+    }
 
-function renderMifareList() {
-  const list = document.getElementById('mifareList');
-  if (!list) return;
-  if (!S.mifare || S.mifare.length === 0) {
-    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay tarjetas Mifare / NFC registradas en esta cuenta.</div>';
-    return;
-  }
-  list.innerHTML = S.mifare.map((card, idx) => {
-    const badgeClass = card.estado === 'Activa' ? 'badge-active' : 'badge-rec';
-    const badgeIcon = card.estado === 'Activa' ? 'fa-circle' : 'fa-clock';
-    return `<div class="mifare-item">
+    function renderMifareList() {
+      const list = document.getElementById('mifareList');
+      if (!list) return;
+      if (!S.mifare || S.mifare.length === 0) {
+        list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay tarjetas Mifare / NFC registradas en esta cuenta.</div>';
+        return;
+      }
+      list.innerHTML = S.mifare.map((card, idx) => {
+        const badgeClass = card.estado === 'Activa' ? 'badge-active' : 'badge-rec';
+        const badgeIcon = card.estado === 'Activa' ? 'fa-circle' : 'fa-clock';
+        return `<div class="mifare-item">
       <div class="mifare-ico"><i class="fa-solid fa-credit-card"></i></div>
       <div style="flex:1">
         <div style="display:flex;align-items:center;justify-content:space-between">
@@ -4598,431 +4575,770 @@ function renderMifareList() {
         <div style="margin-top:6px"><span class="${badgeClass}"><i class="fa-solid ${badgeIcon}" style="font-size:6px"></i> ${card.estado}</span></div>
       </div>
     </div>`;
-  }).join('');
-}
-
-function deleteMifareCard(index) {
-  if (S.mifare && S.mifare[index]) {
-    const c = S.mifare[index];
-    S.mifare.splice(index, 1);
-    persistCurrentAccount();
-    renderMifareList();
-    showToast(`Tarjeta ${c.nombre} eliminada de la cuenta`, 'info');
-  }
-}
-
-function resetPasswordFlow() {
-  S.passStep = 1;
-  S.verCode = null;
-  if (document.getElementById('new-pass')) document.getElementById('new-pass').value = '';
-  if (document.getElementById('conf-pass')) document.getElementById('conf-pass').value = '';
-  if (document.getElementById('err-pass')) document.getElementById('err-pass').style.display = 'none';
-  if (document.getElementById('err-code')) document.getElementById('err-code').style.display = 'none';
-  if (document.getElementById('codeHint')) document.getElementById('codeHint').textContent = '';
-  if (document.getElementById('otpInputs')) document.querySelectorAll('#otpInputs .otp-input').forEach(el => { el.value = ''; el.classList.remove('filled'); });
-  refreshSteps();
-}
-
-function setSafeText(id, text) {
-  const el = document.getElementById(id);
-  if (el && text !== undefined && text !== null) el.textContent = text;
-}
-
-function setSafeValue(id, val) {
-  const el = document.getElementById(id);
-  if (el && val !== undefined && val !== null) el.value = val;
-}
-
-function renderCurrentAccount() {
-  const acc = getCurrentAccount();
-  if (!acc) return;
-  S.profile = acc.profile || {};
-  S.billing = acc.billing || {};
-  S.balance = acc.balance || 0;
-  S.visitCount = acc.visitCount || 0;
-  S.chartData = acc.chartData || [];
-  S.promos = acc.promos || [];
-  S.movements = acc.movements || [];
-  S.vehicles = acc.vehicles || [];
-  S.mifare = acc.mifare || [];
-  
-  fillAccountSelector(true);
-  setSafeValue('accountSelect', acc.id);
-  setSafeText('profileAccountId', `id_cuenta: ${acc.id}`);
-  setSafeText('profileAccountName', `Cuenta activa: ${acc.label}`);
-  setSafeText('profileHeaderCopy', `Gestiona tu información personal y configuración de seguridad de ${acc.label}.`);
-  setSafeText('profileAvatar', (acc.label || 'C').charAt(0).toUpperCase());
-  setSafeText('profileSummaryName', acc.label);
-  setSafeText('profileSummaryMeta', `Miembro desde ${acc.profile?.miembroDesde || 'Enero 2025'} · ${acc.profile?.plan || 'Plan Estándar'}`);
-  
-  setSafeValue('inlineAccountNameInput', acc.label);
-  setSafeValue('perfil-nombre', acc.profile?.nombre || acc.label);
-  setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'RUC');
-  setSafeValue('perfil-documento', acc.profile?.documento);
-  setSafeValue('perfil-email', acc.profile?.email);
-  setSafeValue('perfil-telefono', acc.profile?.telefono);
-  
-  setSafeValue('fact-tipo', acc.billing?.tipo || 'RUC');
-  setSafeValue('fact-num', acc.billing?.numero || '');
-  setSafeValue('fact-razon', acc.billing?.razon || '');
-  setSafeValue('fact-dir', acc.billing?.direccion || '');
-  setSafeValue('fact-email', acc.billing?.email || '');
-  
-  const ckMism = document.getElementById('ck-mismos');
-  if (ckMism) ckMism.checked = false;
-  setBillingFieldState(false);
-  
-  setSafeText('sidebarAvatar', (acc.profile?.nombre || acc.label || 'U').charAt(0).toUpperCase());
-  setSafeText('sidebarUserName', acc.label);
-  setSafeText('sidebarUserEmail', acc.profile?.email);
-  setSafeText('dashboardAccountLabel', `Resumen de ${acc.label}`);
-  setSafeText('dashWalletUser', (acc.label || '').toUpperCase());
-  setSafeText('adminAccountTitle', (acc.label || '').toUpperCase());
-  setSafeText('visitCount', S.visitCount);
-  setSafeText('movBadge', S.movements.length);
-  
-  syncBalance();
-  renderChart();
-  const total = S.chartData.reduce((a, b) => a + b, 0);
-  setSafeText('chartTotal', '$' + total.toFixed(2));
-  
-  renderMov();
-  renderDashMov();
-  renderVehicleList();
-  renderMifareList();
-  clearFilter();
-  syncRechargeCardOptions();
-  resetPasswordFlow();
-  renderTransferTab();
-}
-
-function switchAccount(accountId) {
-  if (!ACCOUNT_DATA[accountId] || accountId === S.currentAccountId) return;
-  persistCurrentAccount();
-  S.currentAccountId = accountId;
-  renderCurrentAccount();
-  showToast(`Cuenta activa cambiada a ${ACCOUNT_DATA[accountId].label}`, 'info');
-}
-
-function saveProfileData() {
-  persistCurrentAccount();
-  fillAccountSelector(true);
-  renderCurrentAccount();
-  showToast('Datos de la cuenta actualizados correctamente', 'success');
-}
-
-function saveBillingData() {
-  persistCurrentAccount();
-  renderCurrentAccount();
-  showToast('Datos de facturación actualizados correctamente', 'success');
-}
-
-/* BALANCE & TOASTS */
-function syncBalance() {
-  const f = '$' + S.balance.toFixed(2);
-  const topB = document.getElementById('topBalance'); if (topB) topB.textContent = f;
-  const dashB = document.getElementById('dashBalance'); if (dashB) dashB.textContent = f;
-  const trfB = document.getElementById('transferOriginBalanceDisplay'); if (trfB) trfB.textContent = f;
-  updateTransferBreakdown();
-}
-
-function showToast(msg, type = 'success') {
-  const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
-  let c = document.getElementById('toast-container');
-  if (!c) {
-    c = document.createElement('div');
-    c.id = 'toast-container';
-    document.body.appendChild(c);
-  }
-  const t = document.createElement('div');
-  t.className = 'toast ' + type;
-  t.innerHTML = `<i class="fa-solid ${icons[type] || icons.success} toast-icon"></i><span class="toast-msg">${msg}</span>`;
-  c.appendChild(t);
-  setTimeout(() => { t.style.transition = 'opacity .3s,transform .3s'; t.style.opacity = '0'; t.style.transform = 'translateX(60px)'; setTimeout(() => t.remove(), 320); }, 3500);
-}
-
-function showNotifications() {
-  showToast('Tienes 2 notificaciones pendientes: recarga exitosa y estadía cerrada', 'info');
-  const btn = document.querySelector('#notifBtn .dot'); if (btn) btn.remove();
-}
-
-/* SIMULATOR */
-function pickLot(el, lotName, rate) {
-  document.querySelectorAll('.lot-btn').forEach(o => o.classList.remove('selected'));
-  if (el) el.classList.add('selected');
-  S.lot = { name: lotName, rate: rate || 1.5 };
-}
-
-function simEntrar() {
-  if (S.sim) return;
-  S.sim = true; S.simStart = Date.now(); S.elapsed = 0;
-  const btnE = document.getElementById('btnEntrar'); if (btnE) btnE.disabled = true;
-  const btnS = document.getElementById('btnSalir'); if (btnS) btnS.disabled = false;
-  const timer = document.getElementById('simTimer'); if (timer) timer.classList.add('running');
-  const badge = document.getElementById('simBadge');
-  if (badge) {
-    badge.className = 'sim-live running';
-    badge.innerHTML = '<div class="sim-live-dot"></div>EN CURSO';
-  }
-  const dot = document.getElementById('statusDot'); if (dot) dot.classList.add('parked');
-  const val = document.getElementById('statusVal');
-  if (val) {
-    val.textContent = S.lot.name;
-    val.classList.add('parked');
-  }
-  S.simInterval = setInterval(() => {
-    S.elapsed = Math.floor((Date.now() - S.simStart) / 1000);
-    const h = String(Math.floor(S.elapsed / 3600)).padStart(2, '0');
-    const m = String(Math.floor((S.elapsed % 3600) / 60)).padStart(2, '0');
-    const s = String(S.elapsed % 60).padStart(2, '0');
-    if (timer) timer.textContent = `${h}:${m}:${s}`;
-    const rate = S.lot.rate || 1.5;
-    const cost = (S.elapsed / 3600) * rate;
-    const sCost = document.getElementById('simCost'); if (sCost) sCost.textContent = '$' + cost.toFixed(4);
-    const sTime = document.getElementById('statTime'); if (sTime) sTime.textContent = `${h}:${m}`;
-    const sPark = document.getElementById('statParkLabel');
-    if (sPark) {
-      sPark.textContent = S.lot.name;
-      sPark.className = 'sc-badge down';
+      }).join('');
     }
-  }, 1000);
-  showToast(`Vehículo ingresado en ${S.lot.name}`, 'success');
-}
 
-function simSalir() {
-  if (!S.sim) return;
-  clearInterval(S.simInterval); S.sim = false;
-  const rate = S.lot.rate || 1.5;
-  const cost = (S.elapsed / 3600) * rate;
-  S.balance = Math.max(0, S.balance - cost);
-  S.visitCount++;
-  const vCnt = document.getElementById('visitCount'); if (vCnt) vCnt.textContent = S.visitCount;
-  S.chartData[S.chartData.length - 1] += cost;
-  renderChart();
-  const total = S.chartData.reduce((a, b) => a + b, 0);
-  const cTot = document.getElementById('chartTotal'); if (cTot) cTot.textContent = '$' + total.toFixed(2);
-  syncBalance();
-  const now = new Date(); const ds = now.toISOString().split('T')[0];
-  const h = Math.floor(S.elapsed / 3600), m = Math.floor((S.elapsed % 3600) / 60), sec = S.elapsed % 60;
-  S.movements.unshift({
-    id: Date.now(), type: 'parking', title: 'Estadía ' + S.lot.name, date: ds,
-    detail: { entrada: ds, salida: ds, duracion: `${h}h ${String(m).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s` },
-    amount: -cost, balance: S.balance
-  });
-  const mBdg = document.getElementById('movBadge'); if (mBdg) mBdg.textContent = S.movements.length;
-  const btnE = document.getElementById('btnEntrar'); if (btnE) btnE.disabled = false;
-  const btnS = document.getElementById('btnSalir'); if (btnS) btnS.disabled = true;
-  const timer = document.getElementById('simTimer');
-  if (timer) {
-    timer.textContent = '00:00:00';
-    timer.classList.remove('running');
-  }
-  const sCost = document.getElementById('simCost'); if (sCost) sCost.textContent = '$0.00';
-  const badge = document.getElementById('simBadge');
-  if (badge) {
-    badge.className = 'sim-live idle';
-    badge.innerHTML = '<div class="sim-live-dot"></div>INACTIVO';
-  }
-  const dot = document.getElementById('statusDot'); if (dot) dot.classList.remove('parked');
-  const val = document.getElementById('statusVal');
-  if (val) {
-    val.textContent = 'En línea';
-    val.classList.remove('parked');
-  }
-  const sTime = document.getElementById('statTime'); if (sTime) sTime.textContent = '--:--';
-  const sPark = document.getElementById('statParkLabel');
-  if (sPark) {
-    sPark.textContent = 'Libre';
-    sPark.className = 'sc-badge neutral';
-  }
-  persistCurrentAccount();
-  renderMov(); renderDashMov();
-  showToast(`Salida registrada · Cobro: $${cost.toFixed(2)}`, 'info');
-}
+    function deleteMifareCard(index) {
+      if (S.mifare && S.mifare[index]) {
+        const c = S.mifare[index];
+        S.mifare.splice(index, 1);
+        persistCurrentAccount();
+        renderMifareList();
+        showToast(`Tarjeta ${c.nombre} eliminada de la cuenta`, 'info');
+      }
+    }
 
-function calculateSimEstimate() {
-  const min = parseInt(document.getElementById('simEstMinutes')?.value || 0);
-  if (min <= 0) {
-    showToast('Ingresa un tiempo estimado mayor a 0 minutos', 'error');
-    return;
-  }
-  const rate = S.lot.rate || 1.5;
-  const cost = (min / 60) * rate;
-  showToast(`Estimado calculado para ${S.lot.name}: $${cost.toFixed(2)}`, 'info');
-}
+    function resetPasswordFlow() {
+      S.passStep = 1;
+      S.verCode = null;
+      if (document.getElementById('new-pass')) document.getElementById('new-pass').value = '';
+      if (document.getElementById('conf-pass')) document.getElementById('conf-pass').value = '';
+      if (document.getElementById('err-pass')) document.getElementById('err-pass').style.display = 'none';
+      if (document.getElementById('err-code')) document.getElementById('err-code').style.display = 'none';
+      if (document.getElementById('codeHint')) document.getElementById('codeHint').textContent = '';
+      if (document.getElementById('otpInputs')) document.querySelectorAll('#otpInputs .otp-input').forEach(el => { el.value = ''; el.classList.remove('filled'); });
+      refreshSteps();
+    }
 
-function togglePlateAccess(el, index) {
-  if (el) el.classList.toggle('on');
-  if (S.vehicles[index]) {
-    S.vehicles[index].plateAccess = !S.vehicles[index].plateAccess;
-    showToast(S.vehicles[index].plateAccess ? 'Apertura por matrícula habilitada' : 'Apertura por matrícula deshabilitada', 'info');
-  }
-}
+    function setSafeText(id, text) {
+      const el = document.getElementById(id);
+      if (el && text !== undefined && text !== null) el.textContent = text;
+    }
 
-function toggleMifareForm(show) {
-  const form = document.getElementById('mifareForm');
-  if (form) form.classList.toggle('open', show);
-}
+    function setSafeValue(id, val) {
+      const el = document.getElementById(id);
+      if (el && val !== undefined && val !== null) el.value = val;
+    }
 
-function addMifareCard() {
-  const name = document.getElementById('mifNombre')?.value.trim();
-  const uid = document.getElementById('mifUid')?.value.trim();
-  const tipo = document.getElementById('mifTipo')?.value;
-  const estado = document.getElementById('mifEstado')?.value;
-  if (!name || !uid) {
-    showToast('Completa el nombre y el identificador de la tarjeta Mifare', 'error');
-    return;
-  }
-  S.mifare.push({ nombre: name, uid: uid, tipo: tipo, estado: estado });
-  renderMifareList();
-  toggleMifareForm(false);
-  showToast('Tarjeta Mifare registrada correctamente', 'success');
-}
+    function renderCurrentAccount() {
+      const acc = getCurrentAccount();
+      if (!acc) return;
+      S.profile = acc.profile || {};
+      S.billing = acc.billing || {};
+      S.balance = acc.balance || 0;
+      S.visitCount = acc.visitCount || 0;
+      S.chartData = acc.chartData || [];
+      S.promos = acc.promos || [];
+      S.movements = acc.movements || [];
+      S.vehicles = acc.vehicles || [];
+      S.mifare = acc.mifare || [];
+      S.cards = acc.cards || [
+        { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: acc.label, default: true }
+      ];
+      acc.cards = S.cards;
 
-function toggleVehicleForm(show) {
-  const form = document.getElementById('vehicleForm');
-  if (form) form.classList.toggle('open', show);
-}
+      fillAccountSelector(true);
+      setSafeValue('accountSelect', acc.id);
+      setSafeText('profileAccountId', `id_cuenta: ${acc.id}`);
+      setSafeText('profileAccountName', `Cuenta activa: ${acc.label}`);
+      setSafeText('profileHeaderCopy', `Gestiona tu información personal y configuración de seguridad de ${acc.label}.`);
+      setSafeText('profileAvatar', (acc.label || 'C').charAt(0).toUpperCase());
+      setSafeText('profileSummaryName', acc.label);
+      setSafeText('profileSummaryMeta', `Miembro desde ${acc.profile?.miembroDesde || 'Enero 2025'} · ${acc.profile?.plan || 'Plan Estándar'}`);
 
-function addVehicle() {
-  const marca = document.getElementById('vehMarca')?.value.trim();
-  const modelo = document.getElementById('vehModelo')?.value.trim();
-  const placa = document.getElementById('vehPlaca')?.value.trim();
-  const color = document.getElementById('vehColor')?.value.trim();
-  if (!marca || !modelo || !placa || !color) {
-    showToast('Completa marca, modelo, placa y color del vehículo', 'error');
-    return;
-  }
-  S.vehicles.push({ marca: marca, modelo: modelo, placa: placa, color: color, icon: 'fa-car-side', plateAccess: true, meta: `Marca: ${marca}` });
-  renderVehicleList();
-  toggleVehicleForm(false);
-  showToast('Vehículo registrado correctamente', 'success');
-}
+      setSafeValue('inlineAccountNameInput', acc.label);
+      setSafeValue('perfil-nombre', acc.profile?.nombre || acc.label);
+      setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'RUC');
+      setSafeValue('perfil-documento', acc.profile?.documento);
+      setSafeValue('perfil-email', acc.profile?.email);
+      setSafeValue('perfil-telefono', acc.profile?.telefono);
+      setSafeValue('perfil-pais', acc.profile?.pais || 'Ecuador');
+      setSafeValue('perfil-provincia', acc.profile?.provincia || '');
+      onProvinceChange(acc.profile?.ciudad || '');
+      setSafeValue('perfil-direccion', acc.profile?.direccion || '');
 
-function selectRechargeAmt(amt) {
-  S.rechargeAmt = amt;
-  document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
-  const target = event?.currentTarget;
-  if (target) target.classList.add('selected');
-  const rVal = document.getElementById('rechargeAmtVal'); if (rVal) rVal.textContent = '$' + amt.toFixed(2);
-  const rTot = document.getElementById('rechargeTotalVal'); if (rTot) rTot.textContent = '$' + amt.toFixed(2);
-}
+      setSafeValue('fact-tipo', acc.billing?.tipo || 'RUC');
+      setSafeValue('fact-num', acc.billing?.numero || '');
+      setSafeValue('fact-razon', acc.billing?.razon || '');
+      setSafeValue('fact-dir', acc.billing?.direccion || '');
+      setSafeValue('fact-email', acc.billing?.email || '');
 
-function syncRechargeCardOptions() { }
+      const ckMism = document.getElementById('ck-mismos');
+      if (ckMism) ckMism.checked = false;
+      setBillingFieldState(false);
 
-function processRecharge() {
-  if (!isAccountAndBillingComplete()) { showIncompleteDataModal(); return; }
-  const amt = S.rechargeAmt || 10;
-  if (amt < 5) { showToast('El monto mínimo de recarga es $5.00', 'error'); return; }
-  S.balance += amt;
-  syncBalance();
-  const now = new Date(); const ds = now.toISOString().split('T')[0];
-  const ref = 'Igor-' + Math.floor(1000 + Math.random() * 9000) + '-' + Date.now().toString().slice(-8);
-  S.movements.unshift({ id: Date.now(), type: 'recharge', title: 'Recarga de Saldo', date: ds, detail: { ref: ref, estado: 'APPROVED' }, amount: amt, balance: S.balance });
-  persistCurrentAccount();
-  renderMov(); renderDashMov();
-  showToast(`Recarga de $${amt.toFixed(2)} realizada correctamente`, 'success');
-}
+      setSafeText('sidebarAvatar', (acc.profile?.nombre || acc.label || 'U').charAt(0).toUpperCase());
+      setSafeText('sidebarUserName', acc.label);
+      setSafeText('sidebarUserEmail', acc.profile?.email);
+      setSafeText('dashboardAccountLabel', `Resumen de ${acc.label}`);
+      setSafeText('dashWalletUser', (acc.label || '').toUpperCase());
+      setSafeText('adminAccountTitle', (acc.label || '').toUpperCase());
+      setSafeText('visitCount', S.visitCount);
+      setSafeText('movBadge', S.movements.length);
 
-function resendVerificationCode() {
-  S.verCode = '1234';
-  const hint = document.getElementById('codeHint');
-  if (hint) hint.textContent = 'Código demo enviado: 1234';
-  showToast('Código de verificación enviado (Demo: 1234)', 'info');
-}
+      syncBalance();
+      renderChart();
+      const total = S.chartData.reduce((a, b) => a + b, 0);
+      setSafeText('chartTotal', '$' + total.toFixed(2));
 
-function verifyCode() {
-  const inputs = document.querySelectorAll('#otpInputs .otp-input');
-  let entered = '';
-  inputs.forEach(i => entered += i.value);
-  if (entered === '1234' || entered === S.verCode) {
-    S.passStep = 3;
-    refreshSteps();
-    showToast('¡Identidad verificada!', 'success');
-  } else {
-    const err = document.getElementById('err-code'); if (err) err.style.display = 'block';
-    showToast('Código incorrecto. Usa 1234 en el demo', 'error');
-  }
-}
+      renderMov();
+      renderDashMov();
+      renderVehicleList();
+      renderMifareList();
+      renderPaymentCards();
+      clearFilter();
+      syncRechargeCardOptions();
+      resetPasswordFlow();
+      renderTransferTab();
+    }
 
-function updatePassword() {
-  const p1 = document.getElementById('new-pass')?.value;
-  const p2 = document.getElementById('conf-pass')?.value;
-  if (!p1 || p1 !== p2) {
-    const err = document.getElementById('err-pass'); if (err) err.style.display = 'block';
-    showToast('Las contraseñas no coinciden', 'error');
-    return;
-  }
-  showToast('Contraseña actualizada correctamente', 'success');
-  resetPasswordFlow();
-}
+    function switchAccount(accountId) {
+      if (!ACCOUNT_DATA[accountId] || accountId === S.currentAccountId) return;
+      persistCurrentAccount();
+      S.currentAccountId = accountId;
+      renderCurrentAccount();
+      showToast(`Cuenta activa cambiada a ${ACCOUNT_DATA[accountId].label}`, 'info');
+    }
 
-function refreshSteps() {
-  const dots = document.querySelectorAll('.steps .step-dot');
-  const lines = document.querySelectorAll('.steps .step-line');
-  dots.forEach((d, i) => {
-    d.className = 'step-dot ' + (i + 1 < S.passStep ? 'done' : (i + 1 === S.passStep ? 'active' : ''));
-  });
-  lines.forEach((l, i) => {
-    l.className = 'step-line ' + (i + 1 < S.passStep ? 'done' : '');
-  });
-  const panels = document.querySelectorAll('#passFlow .tab-panel');
-  panels.forEach((p, i) => p.classList.toggle('active', i + 1 === S.passStep));
-}
+    function saveProfileData() {
+      persistCurrentAccount();
+      fillAccountSelector(true);
+      renderCurrentAccount();
+      showToast('Datos de la cuenta actualizados correctamente', 'success');
+    }
 
-function applyPromo() {
-  const input = document.getElementById('promoCodeInput');
-  const code = input?.value.trim().toUpperCase();
-  if (!code) { showToast('Ingresa un código válido', 'error'); return; }
-  if (code === 'IGOR50OFF' || code === 'CORP10') {
-    S.balance += 5;
-    syncBalance();
-    const now = new Date(); const ds = now.toISOString().split('T')[0];
-    S.movements.unshift({ id: Date.now(), type: 'promo', title: 'Código Promocional ' + code, date: ds, detail: { code: code }, amount: 5, balance: S.balance });
-    persistCurrentAccount();
-    renderMov(); renderDashMov();
-    showToast('¡Cupón aplicado! Se acreditaron $5.00', 'success');
-  } else {
-    showToast('Código inválido o ya utilizado', 'error');
-  }
-}
+    function saveBillingData() {
+      persistCurrentAccount();
+      renderCurrentAccount();
+      showToast('Datos de facturación actualizados correctamente', 'success');
+    }
 
-function renderMov(list = S.movements) {
-  const container = document.getElementById('movList');
-  const noRes = document.getElementById('noResults');
-  if (!container) return;
+    const CITIES_BY_PROVINCE = {
+      'Azuay': ['Cuenca', 'Gualaceo', 'Paute', 'Santa Isabel', 'Camilo Ponce Enríquez'],
+      'Bolívar': ['Guaranda', 'San Miguel', 'Chimbo'],
+      'Cañar': ['Azogues', 'La Troncal', 'Cañar'],
+      'Carchi': ['Tulcán', 'San Gabriel', 'Mira'],
+      'Chimborazo': ['Riobamba', 'Alausí', 'Guano', 'Colta'],
+      'Cotopaxi': ['Latacunga', 'Pujilí', 'Salcedo', 'La Maná'],
+      'El Oro': ['Machala', 'Pasaje', 'Santa Rosa', 'Huaquillas', 'Arenillas'],
+      'Esmeraldas': ['Esmeraldas', 'Atacames', 'Quinindé', 'Muisne'],
+      'Galápagos': ['Puerto Ayora', 'Puerto Baquerizo Moreno', 'Puerto Villamil'],
+      'Guayas': ['Guayaquil', 'Samborondón', 'Durán', 'Milagro', 'Daule', 'Salitre'],
+      'Imbabura': ['Ibarra', 'Otavalo', 'Cotacachi', 'Atuntaqui'],
+      'Loja': ['Loja', 'Catamayo', 'Saraguro', 'Cariamanga'],
+      'Los Ríos': ['Babahoyo', 'Quevedo', 'Vinces', 'Ventanas'],
+      'Manabí': ['Manta', 'Portoviejo', 'Chone', 'Montecristi', 'Jipijapa'],
+      'Morona Santiago': ['Macas', 'Sucúa', 'Gualaquiza'],
+      'Napo': ['Tena', 'Archidona', 'El Chaco'],
+      'Orellana': ['Puerto Francisco de Orellana (El Coca)', 'Loreto'],
+      'Pastaza': ['Puyo', 'Mera', 'Santa Clara'],
+      'Pichincha': ['Quito', 'Rumiñahui (Sangolquí)', 'Cayambe', 'Mejía (Machachi)'],
+      'Santa Elena': ['Santa Elena', 'Salinas', 'La Libertad'],
+      'Santo Domingo de los Tsáchilas': ['Santo Domingo', 'La Concordia'],
+      'Sucumbíos': ['Nueva Loja (Lago Agrio)', 'Shushufindi'],
+      'Tungurahua': ['Ambato', 'Baños de Agua Santa', 'Pelileo', 'Píllaro'],
+      'Zamora Chinchipe': ['Zamora', 'Yantzaza']
+    };
 
-  if (!list || list.length === 0) {
-    container.innerHTML = '';
-    if (noRes) noRes.style.display = 'block';
-    return;
-  }
-  if (noRes) noRes.style.display = 'none';
+    function onProvinceChange(selectedCity = '') {
+      const provSelect = document.getElementById('perfil-provincia');
+      const citySelect = document.getElementById('perfil-ciudad');
+      if (!provSelect || !citySelect) return;
+      const prov = provSelect.value;
+      citySelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+      if (prov && CITIES_BY_PROVINCE[prov]) {
+        CITIES_BY_PROVINCE[prov].forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c;
+          opt.textContent = c;
+          citySelect.appendChild(opt);
+        });
+      }
+      if (selectedCity) {
+        citySelect.value = selectedCity;
+      }
+    }
 
-  // Group movements by date string
-  const grouped = {};
-  list.forEach(m => {
-    const d = m.date || 'Recientes';
-    if (!grouped[d]) grouped[d] = [];
-    grouped[d].push(m);
-  });
+    function syncFact(checkbox) {
+      if (checkbox && checkbox.checked) {
+        const docType = document.getElementById('perfil-tipo-doc')?.value || 'RUC';
+        const docNum = document.getElementById('perfil-documento')?.value || '';
+        const name = document.getElementById('perfil-nombre')?.value || '';
+        const email = document.getElementById('perfil-email')?.value || '';
+        const dir = document.getElementById('perfil-direccion')?.value || '';
+        const prov = document.getElementById('perfil-provincia')?.value || '';
+        const ciu = document.getElementById('perfil-ciudad')?.value || '';
+        const fullDir = [dir, ciu, prov].filter(Boolean).join(', ');
 
-  const html = Object.keys(grouped).map((dateStr, idx) => {
-    const items = grouped[dateStr];
-    const countText = items.length === 1 ? '1 movimiento' : `${items.length} movimientos`;
-    
-    const itemsHtml = items.map(m => {
-      const isRecharge = m.type === 'recharge' || m.type === 'promo';
-      const iconClass = isRecharge ? 'fa-bolt' : 'fa-car-side';
-      const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : 'rgba(232,0,90,0.10)';
-      const iconColor = isRecharge ? '#F59E0B' : 'var(--brand-pink)';
-      const sign = m.amount > 0 ? '+' : '';
-      const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
-      const refCode = m.detail?.ref || `Igor-${Math.floor(1000 + Math.random()*9000)}-000${m.id || 100}`;
-      const statusStr = m.detail?.estado || 'APPROVED';
-      const detailId = `mov-detail-${m.id || Math.floor(Math.random()*100000)}`;
+        setSafeValue('fact-tipo', docType);
+        setSafeValue('fact-num', docNum);
+        setSafeValue('fact-razon', name);
+        setSafeValue('fact-email', email);
+        if (fullDir) setSafeValue('fact-dir', fullDir);
 
-      return `
+        setBillingFieldState(true);
+      } else {
+        setBillingFieldState(false);
+      }
+    }
+
+    /* BALANCE & TOASTS */
+    function syncBalance() {
+      const f = '$' + S.balance.toFixed(2);
+      const topB = document.getElementById('topBalance'); if (topB) topB.textContent = f;
+      const dashB = document.getElementById('dashBalance'); if (dashB) dashB.textContent = f;
+      const trfB = document.getElementById('transferOriginBalanceDisplay'); if (trfB) trfB.textContent = f;
+      updateTransferBreakdown();
+    }
+
+    function showToast(msg, type = 'success') {
+      const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
+      let c = document.getElementById('toast-container');
+      if (!c) {
+        c = document.createElement('div');
+        c.id = 'toast-container';
+        document.body.appendChild(c);
+      }
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      t.innerHTML = `<i class="fa-solid ${icons[type] || icons.success} toast-icon"></i><span class="toast-msg">${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(() => { t.style.transition = 'opacity .3s,transform .3s'; t.style.opacity = '0'; t.style.transform = 'translateX(60px)'; setTimeout(() => t.remove(), 320); }, 3500);
+    }
+
+    function showNotifications() {
+      showToast('Tienes 2 notificaciones pendientes: recarga exitosa y estadía cerrada', 'info');
+      const btn = document.querySelector('#notifBtn .dot'); if (btn) btn.remove();
+    }
+
+    /* SIMULATOR */
+    function pickLot(el, lotName, rate) {
+      document.querySelectorAll('.lot-btn').forEach(o => o.classList.remove('selected'));
+      if (el) el.classList.add('selected');
+      S.lot = { name: lotName, rate: rate || 1.5 };
+    }
+
+    function simEntrar() {
+      if (S.sim) return;
+      S.sim = true; S.simStart = Date.now(); S.elapsed = 0;
+      const btnE = document.getElementById('btnEntrar'); if (btnE) btnE.disabled = true;
+      const btnS = document.getElementById('btnSalir'); if (btnS) btnS.disabled = false;
+      const timer = document.getElementById('simTimer'); if (timer) timer.classList.add('running');
+      const badge = document.getElementById('simBadge');
+      if (badge) {
+        badge.className = 'sim-live running';
+        badge.innerHTML = '<div class="sim-live-dot"></div>EN CURSO';
+      }
+      const dot = document.getElementById('statusDot'); if (dot) dot.classList.add('parked');
+      const val = document.getElementById('statusVal');
+      if (val) {
+        val.textContent = S.lot.name;
+        val.classList.add('parked');
+      }
+      S.simInterval = setInterval(() => {
+        S.elapsed = Math.floor((Date.now() - S.simStart) / 1000);
+        const h = String(Math.floor(S.elapsed / 3600)).padStart(2, '0');
+        const m = String(Math.floor((S.elapsed % 3600) / 60)).padStart(2, '0');
+        const s = String(S.elapsed % 60).padStart(2, '0');
+        if (timer) timer.textContent = `${h}:${m}:${s}`;
+        const rate = S.lot.rate || 1.5;
+        const cost = (S.elapsed / 3600) * rate;
+        const sCost = document.getElementById('simCost'); if (sCost) sCost.textContent = '$' + cost.toFixed(4);
+        const sTime = document.getElementById('statTime'); if (sTime) sTime.textContent = `${h}:${m}`;
+        const sPark = document.getElementById('statParkLabel');
+        if (sPark) {
+          sPark.textContent = S.lot.name;
+          sPark.className = 'sc-badge down';
+        }
+      }, 1000);
+      showToast(`Vehículo ingresado en ${S.lot.name}`, 'success');
+    }
+
+    function simSalir() {
+      if (!S.sim) return;
+      clearInterval(S.simInterval); S.sim = false;
+      const rate = S.lot.rate || 1.5;
+      const cost = (S.elapsed / 3600) * rate;
+      S.balance = Math.max(0, S.balance - cost);
+      S.visitCount++;
+      const vCnt = document.getElementById('visitCount'); if (vCnt) vCnt.textContent = S.visitCount;
+      S.chartData[S.chartData.length - 1] += cost;
+      renderChart();
+      const total = S.chartData.reduce((a, b) => a + b, 0);
+      const cTot = document.getElementById('chartTotal'); if (cTot) cTot.textContent = '$' + total.toFixed(2);
+      syncBalance();
+      const now = new Date(); const ds = now.toISOString().split('T')[0];
+      const h = Math.floor(S.elapsed / 3600), m = Math.floor((S.elapsed % 3600) / 60), sec = S.elapsed % 60;
+      S.movements.unshift({
+        id: Date.now(), type: 'parking', title: 'Estadía ' + S.lot.name, date: ds,
+        detail: { entrada: ds, salida: ds, duracion: `${h}h ${String(m).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s` },
+        amount: -cost, balance: S.balance
+      });
+      const mBdg = document.getElementById('movBadge'); if (mBdg) mBdg.textContent = S.movements.length;
+      const btnE = document.getElementById('btnEntrar'); if (btnE) btnE.disabled = false;
+      const btnS = document.getElementById('btnSalir'); if (btnS) btnS.disabled = true;
+      const timer = document.getElementById('simTimer');
+      if (timer) {
+        timer.textContent = '00:00:00';
+        timer.classList.remove('running');
+      }
+      const sCost = document.getElementById('simCost'); if (sCost) sCost.textContent = '$0.00';
+      const badge = document.getElementById('simBadge');
+      if (badge) {
+        badge.className = 'sim-live idle';
+        badge.innerHTML = '<div class="sim-live-dot"></div>INACTIVO';
+      }
+      const dot = document.getElementById('statusDot'); if (dot) dot.classList.remove('parked');
+      const val = document.getElementById('statusVal');
+      if (val) {
+        val.textContent = 'En línea';
+        val.classList.remove('parked');
+      }
+      const sTime = document.getElementById('statTime'); if (sTime) sTime.textContent = '--:--';
+      const sPark = document.getElementById('statParkLabel');
+      if (sPark) {
+        sPark.textContent = 'Libre';
+        sPark.className = 'sc-badge neutral';
+      }
+      persistCurrentAccount();
+      renderMov(); renderDashMov();
+      showToast(`Salida registrada · Cobro: $${cost.toFixed(2)}`, 'info');
+    }
+
+    function calculateSimEstimate() {
+      const min = parseInt(document.getElementById('simEstMinutes')?.value || 0);
+      if (min <= 0) {
+        showToast('Ingresa un tiempo estimado mayor a 0 minutos', 'error');
+        return;
+      }
+      const rate = S.lot.rate || 1.5;
+      const cost = (min / 60) * rate;
+      showToast(`Estimado calculado para ${S.lot.name}: $${cost.toFixed(2)}`, 'info');
+    }
+
+    function togglePlateAccess(el, index) {
+      if (el) el.classList.toggle('on');
+      if (S.vehicles[index]) {
+        S.vehicles[index].plateAccess = !S.vehicles[index].plateAccess;
+        showToast(S.vehicles[index].plateAccess ? 'Apertura por matrícula habilitada' : 'Apertura por matrícula deshabilitada', 'info');
+      }
+    }
+
+    function toggleMifareForm(show) {
+      const form = document.getElementById('mifareForm');
+      if (form) form.classList.toggle('open', show);
+    }
+
+    function addMifareCard() {
+      const name = document.getElementById('mifNombre')?.value.trim();
+      const uid = document.getElementById('mifUid')?.value.trim();
+      const tipo = document.getElementById('mifTipo')?.value;
+      const estado = document.getElementById('mifEstado')?.value;
+      if (!name || !uid) {
+        showToast('Completa el nombre y el identificador de la tarjeta Mifare', 'error');
+        return;
+      }
+      S.mifare.push({ nombre: name, uid: uid, tipo: tipo, estado: estado });
+      renderMifareList();
+      toggleMifareForm(false);
+      showToast('Tarjeta Mifare registrada correctamente', 'success');
+    }
+
+    function toggleVehicleForm(show) {
+      const form = document.getElementById('vehicleForm');
+      if (form) form.classList.toggle('open', show);
+    }
+
+    function addVehicle() {
+      const marca = document.getElementById('vehMarca')?.value.trim();
+      const modelo = document.getElementById('vehModelo')?.value.trim();
+      const placa = document.getElementById('vehPlaca')?.value.trim();
+      const color = document.getElementById('vehColor')?.value.trim();
+      if (!marca || !modelo || !placa || !color) {
+        showToast('Completa marca, modelo, placa y color del vehículo', 'error');
+        return;
+      }
+      S.vehicles.push({ marca: marca, modelo: modelo, placa: placa, color: color, icon: 'fa-car-side', plateAccess: true, meta: `Marca: ${marca}` });
+      renderVehicleList();
+      toggleVehicleForm(false);
+      showToast('Vehículo registrado correctamente', 'success');
+    }
+
+    function selectRechargeAmt(amt) {
+      S.rechargeAmt = amt;
+      document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+      const target = event?.currentTarget;
+      if (target) target.classList.add('selected');
+      const rVal = document.getElementById('rechargeAmtVal'); if (rVal) rVal.textContent = '$' + amt.toFixed(2);
+      const rTot = document.getElementById('rechargeTotalVal'); if (rTot) rTot.textContent = '$' + amt.toFixed(2);
+    }
+
+    function getBrandLogoHtml(brand) {
+      const b = (brand || '').toLowerCase();
+      if (b.includes('master') || b.includes('mc')) {
+        return `<div style="width:42px;height:28px;border-radius:5px;background:#0A1C36;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.15)">
+          <div style="width:16px;height:16px;border-radius:50%;background:#EB001B;position:absolute;left:8px"></div>
+          <div style="width:16px;height:16px;border-radius:50%;background:#F79E1B;position:absolute;right:8px;opacity:0.9"></div>
+        </div>`;
+      } else if (b.includes('visa')) {
+        return `<div style="width:42px;height:28px;border-radius:5px;background:#1A1F71;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-style:italic;font-size:13px;letter-spacing:1px;box-shadow:0 1px 3px rgba(0,0,0,0.15)">
+          VISA
+        </div>`;
+      } else {
+        return `<div style="width:42px;height:28px;border-radius:5px;background:#006FCF;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:10px;letter-spacing:0.5px;box-shadow:0 1px 3px rgba(0,0,0,0.15)">
+          AMEX
+        </div>`;
+      }
+    }
+
+    function renderPaymentCards() {
+      const container = document.getElementById('registeredCardsContainer');
+      if (!container) return;
+      if (!S.cards || S.cards.length === 0) {
+        container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-secondary);font-size:13.5px;grid-column:1/-1">No hay tarjetas registradas. Haz clic en <strong>+ Add payment method</strong> para agregar una.</div>';
+        return;
+      }
+      container.innerHTML = S.cards.map(card => {
+        const isDef = Boolean(card.default);
+        const badgeHtml = isDef
+          ? `<span class="pcard-badge-default">Principal o predeterminada</span>`
+          : `<button class="pcard-btn-set-default" onclick="setPrimaryCard('${card.id}')">Establecer como principal</button>`;
+
+        return `<div class="payment-card-box ${isDef ? 'is-default' : ''}">
+          <div class="pcard-main-info">
+            <div class="pcard-brand-icon">
+              ${getBrandLogoHtml(card.brand)}
+            </div>
+            <div class="pcard-text-details">
+              <div class="pcard-masked-num">•••• ${card.last4}</div>
+              <div class="pcard-expiry-text">Expires ${card.exp || '07/2027'}</div>
+            </div>
+            ${badgeHtml}
+          </div>
+          <div class="pcard-bottom-actions">
+            <button class="btn-delete-card" onclick="deletePaymentCard('${card.id}')">Delete</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function setPrimaryCard(cardId) {
+      if (!S.cards) return;
+      S.cards.forEach(c => {
+        c.default = (c.id === cardId);
+      });
+      persistCurrentAccount();
+      renderPaymentCards();
+      syncRechargeCardOptions();
+      showToast('Tarjeta predeterminada actualizada', 'success');
+    }
+
+    function deletePaymentCard(cardId) {
+      if (!S.cards) return;
+      if (S.cards.length <= 1) {
+        showToast('Debes mantener al menos una tarjeta registrada', 'warning');
+        return;
+      }
+      const idx = S.cards.findIndex(c => c.id === cardId);
+      if (idx !== -1) {
+        const deleted = S.cards.splice(idx, 1)[0];
+        if (deleted.default && S.cards.length > 0) {
+          S.cards[0].default = true;
+        }
+        persistCurrentAccount();
+        renderPaymentCards();
+        syncRechargeCardOptions();
+        showToast(`Tarjeta ${deleted.brand} •••• ${deleted.last4} eliminada`, 'info');
+      }
+    }
+
+    function openAddCardModal() {
+      const m = document.getElementById('addCardModal');
+      if (m) m.style.display = 'flex';
+      const numInput = document.getElementById('mCardNum');
+      if (numInput) numInput.focus();
+    }
+
+    function closeAddCardModal() {
+      const m = document.getElementById('addCardModal');
+      if (m) m.style.display = 'none';
+    }
+
+    function saveCardFromModal() {
+      const numInput = document.getElementById('mCardNum');
+      const holderInput = document.getElementById('mCardHolder');
+      const expInput = document.getElementById('mCardExp');
+      const cvvInput = document.getElementById('mCardCvv');
+
+      const rawNum = numInput ? numInput.value.replace(/\s+/g, '') : '';
+      const holder = holderInput ? holderInput.value.trim() : '';
+      const exp = expInput ? expInput.value.trim() : '';
+
+      if (!rawNum || rawNum.length < 12) {
+        showToast('Ingresa un número de tarjeta válido', 'error');
+        if (numInput) numInput.focus();
+        return;
+      }
+      if (!holder) {
+        showToast('Ingresa el nombre del titular', 'error');
+        if (holderInput) holderInput.focus();
+        return;
+      }
+      if (!exp || exp.length < 5) {
+        showToast('Ingresa la fecha de expiración (MM/AA)', 'error');
+        if (expInput) expInput.focus();
+        return;
+      }
+
+      const last4 = rawNum.slice(-4);
+      let brand = 'Visa';
+      if (rawNum.startsWith('5') || rawNum.startsWith('2')) brand = 'Mastercard';
+      else if (rawNum.startsWith('3')) brand = 'Amex';
+
+      const isFirst = (!S.cards || S.cards.length === 0);
+      const newCard = {
+        id: 'c-' + Date.now().toString().slice(-6),
+        brand: brand,
+        number: `•••• ${last4}`,
+        last4: last4,
+        exp: exp.includes('/') ? `07/20${exp.split('/')[1]}` : exp,
+        holder: holder.toUpperCase(),
+        default: isFirst
+      };
+
+      if (!S.cards) S.cards = [];
+      S.cards.push(newCard);
+
+      if (numInput) numInput.value = '';
+      if (holderInput) holderInput.value = '';
+      if (expInput) expInput.value = '';
+      if (cvvInput) cvvInput.value = '';
+
+      closeAddCardModal();
+      persistCurrentAccount();
+      renderPaymentCards();
+      syncRechargeCardOptions();
+      showToast(`Tarjeta ${brand} •••• ${last4} guardada exitosamente`, 'success');
+    }
+
+    function scrollToCardForm() {
+      const formEl = document.getElementById('iNum');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        formEl.focus();
+      }
+    }
+
+    function saveNewCard() {
+      const numInput = document.getElementById('iNum');
+      const holderInput = document.getElementById('iHolder');
+      const expInput = document.getElementById('iExp');
+      const cvvInput = document.getElementById('iCvv');
+
+      const rawNum = numInput ? numInput.value.replace(/\s+/g, '') : '';
+      const holder = holderInput ? holderInput.value.trim() : '';
+      const exp = expInput ? expInput.value.trim() : '';
+      const cvv = cvvInput ? cvvInput.value.trim() : '';
+
+      if (!rawNum || rawNum.length < 12) {
+        showToast('Ingresa un número de tarjeta válido', 'error');
+        if (numInput) numInput.focus();
+        return;
+      }
+      if (!holder) {
+        showToast('Ingresa el nombre del titular', 'error');
+        if (holderInput) holderInput.focus();
+        return;
+      }
+      if (!exp || exp.length < 5) {
+        showToast('Ingresa la fecha de expiración (MM/AA)', 'error');
+        if (expInput) expInput.focus();
+        return;
+      }
+      if (!cvv || cvv.length < 3) {
+        showToast('Ingresa el código CVV', 'error');
+        if (cvvInput) cvvInput.focus();
+        return;
+      }
+
+      const last4 = rawNum.slice(-4);
+      let brand = 'Visa';
+      if (rawNum.startsWith('5') || rawNum.startsWith('2')) brand = 'Mastercard';
+      else if (rawNum.startsWith('3')) brand = 'Amex';
+
+      const isFirst = (!S.cards || S.cards.length === 0);
+      const newCard = {
+        id: 'c-' + Date.now().toString().slice(-6),
+        brand: brand,
+        number: `•••• ${last4}`,
+        last4: last4,
+        exp: exp.includes('/') ? `07/20${exp.split('/')[1]}` : exp,
+        holder: holder.toUpperCase(),
+        default: isFirst
+      };
+
+      if (!S.cards) S.cards = [];
+      S.cards.push(newCard);
+      if (isFirst) {
+        S.cards.forEach(c => c.default = (c.id === newCard.id));
+      }
+
+      if (numInput) numInput.value = '';
+      if (holderInput) holderInput.value = '';
+      if (expInput) expInput.value = '';
+      if (cvvInput) cvvInput.value = '';
+
+      persistCurrentAccount();
+      renderPaymentCards();
+      syncRechargeCardOptions();
+      showToast(`Tarjeta ${brand} •••• ${last4} guardada exitosamente`, 'success');
+    }
+
+    function syncRechargeCardOptions() {
+      const select = document.getElementById('rechargeCardSelect');
+      if (!select) return;
+      select.innerHTML = '';
+      if (!S.cards || S.cards.length === 0) {
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = 'No hay tarjetas registradas';
+        select.appendChild(opt);
+        return;
+      }
+      let defaultCardId = '';
+      S.cards.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = `${c.brand} •••• ${c.last4}${c.default ? ' (Predeterminada)' : ''}`;
+        if (c.default) {
+          opt.selected = true;
+          defaultCardId = c.id;
+        }
+        select.appendChild(opt);
+      });
+      if (!select.value && S.cards.length > 0) {
+        select.value = defaultCardId || S.cards[0].id;
+      }
+    }
+
+    function processRecharge() {
+      if (!isAccountAndBillingComplete()) { showIncompleteDataModal(); return; }
+      const cardSelect = document.getElementById('rechargeCardSelect');
+      if (!cardSelect || !cardSelect.value || !S.cards || S.cards.length === 0) {
+        showToast('Por favor registra una tarjeta de crédito/débito en Métodos de Pago antes de recargar', 'error');
+        return;
+      }
+      const selectedCard = S.cards.find(c => c.id === cardSelect.value) || S.cards[0];
+      const amt = S.rechargeAmt || 10;
+      if (amt < 5) { showToast('El monto mínimo de recarga es $5.00', 'error'); return; }
+
+      S.balance += amt;
+      syncBalance();
+      const now = new Date(); const ds = now.toISOString().split('T')[0];
+      const ref = 'Igor-' + Math.floor(1000 + Math.random() * 9000) + '-' + Date.now().toString().slice(-8);
+      S.movements.unshift({
+        id: Date.now(),
+        type: 'recharge',
+        title: `Recarga de Saldo (${selectedCard.brand} •••• ${selectedCard.last4})`,
+        date: ds,
+        detail: { ref: ref, estado: 'APPROVED', tarjeta: `${selectedCard.brand} •••• ${selectedCard.last4}` },
+        amount: amt,
+        balance: S.balance
+      });
+      persistCurrentAccount();
+      renderMov(); renderDashMov();
+      showToast(`Recarga de $${amt.toFixed(2)} procesada exitosamente con ${selectedCard.brand} •••• ${selectedCard.last4}`, 'success');
+    }
+
+    function resendVerificationCode() {
+      S.verCode = '1234';
+      const hint = document.getElementById('codeHint');
+      if (hint) hint.textContent = 'Código demo enviado: 1234';
+      showToast('Código de verificación enviado (Demo: 1234)', 'info');
+    }
+
+    function verifyCode() {
+      const inputs = document.querySelectorAll('#otpInputs .otp-input');
+      let entered = '';
+      inputs.forEach(i => entered += i.value);
+      if (entered === '1234' || entered === S.verCode) {
+        S.passStep = 3;
+        refreshSteps();
+        showToast('¡Identidad verificada!', 'success');
+      } else {
+        const err = document.getElementById('err-code'); if (err) err.style.display = 'block';
+        showToast('Código incorrecto. Usa 1234 en el demo', 'error');
+      }
+    }
+
+    function updatePassword() {
+      const p1 = document.getElementById('new-pass')?.value;
+      const p2 = document.getElementById('conf-pass')?.value;
+      if (!p1 || p1 !== p2) {
+        const err = document.getElementById('err-pass'); if (err) err.style.display = 'block';
+        showToast('Las contraseñas no coinciden', 'error');
+        return;
+      }
+      showToast('Contraseña actualizada correctamente', 'success');
+      resetPasswordFlow();
+    }
+
+    function refreshSteps() {
+      const dots = document.querySelectorAll('.steps .step-dot');
+      const lines = document.querySelectorAll('.steps .step-line');
+      dots.forEach((d, i) => {
+        d.className = 'step-dot ' + (i + 1 < S.passStep ? 'done' : (i + 1 === S.passStep ? 'active' : ''));
+      });
+      lines.forEach((l, i) => {
+        l.className = 'step-line ' + (i + 1 < S.passStep ? 'done' : '');
+      });
+      const panels = document.querySelectorAll('#passFlow .tab-panel');
+      panels.forEach((p, i) => p.classList.toggle('active', i + 1 === S.passStep));
+    }
+
+    function applyPromo() {
+      const input = document.getElementById('promoCodeInput');
+      const code = input?.value.trim().toUpperCase();
+      if (!code) { showToast('Ingresa un código válido', 'error'); return; }
+      if (code === 'IGOR50OFF' || code === 'CORP10') {
+        S.balance += 5;
+        syncBalance();
+        const now = new Date(); const ds = now.toISOString().split('T')[0];
+        S.movements.unshift({ id: Date.now(), type: 'promo', title: 'Código Promocional ' + code, date: ds, detail: { code: code }, amount: 5, balance: S.balance });
+        persistCurrentAccount();
+        renderMov(); renderDashMov();
+        showToast('¡Cupón aplicado! Se acreditaron $5.00', 'success');
+      } else {
+        showToast('Código inválido o ya utilizado', 'error');
+      }
+    }
+
+    function renderMov(list = S.movements) {
+      const container = document.getElementById('movList');
+      const noRes = document.getElementById('noResults');
+      if (!container) return;
+
+      if (!list || list.length === 0) {
+        container.innerHTML = '';
+        if (noRes) noRes.style.display = 'block';
+        return;
+      }
+      if (noRes) noRes.style.display = 'none';
+
+      // Group movements by date string
+      const grouped = {};
+      list.forEach(m => {
+        const d = m.date || 'Recientes';
+        if (!grouped[d]) grouped[d] = [];
+        grouped[d].push(m);
+      });
+
+      const html = Object.keys(grouped).map((dateStr, idx) => {
+        const items = grouped[dateStr];
+        const countText = items.length === 1 ? '1 movimiento' : `${items.length} movimientos`;
+
+        const itemsHtml = items.map(m => {
+          const isRecharge = m.type === 'recharge' || m.type === 'promo';
+          const iconClass = isRecharge ? 'fa-bolt' : 'fa-car-side';
+          const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : 'rgba(232,0,90,0.10)';
+          const iconColor = isRecharge ? '#F59E0B' : 'var(--brand-pink)';
+          const sign = m.amount > 0 ? '+' : '';
+          const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
+          const refCode = m.detail?.ref || `Igor-${Math.floor(1000 + Math.random() * 9000)}-000${m.id || 100}`;
+          const statusStr = m.detail?.estado || 'APPROVED';
+          const detailId = `mov-detail-${m.id || Math.floor(Math.random() * 100000)}`;
+
+          return `
         <div style="border-top: 1px solid var(--border-light)">
           <div onclick="toggleMovDetail('${detailId}')" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;transition:background .2s">
             <div style="display:flex;align-items:center;gap:14px">
@@ -5066,9 +5382,9 @@ function renderMov(list = S.movements) {
           </div>
         </div>
       `;
-    }).join('');
+        }).join('');
 
-    return `
+        return `
       <div class="card" style="margin-bottom:14px;border-radius:var(--r-xl);overflow:hidden">
         <div onclick="toggleDateCard('date-card-${idx}')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:white;cursor:pointer;user-select:none">
           <div>
@@ -5085,29 +5401,29 @@ function renderMov(list = S.movements) {
         </div>
       </div>
     `;
-  }).join('');
+      }).join('');
 
-  container.innerHTML = html;
-}
+      container.innerHTML = html;
+    }
 
-function renderDashMov() {
-  const container = document.getElementById('dashMov');
-  if (!container) return;
-  const list = S.movements || [];
-  if (!list || list.length === 0) {
-    container.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Sin movimientos recientes</div>';
-    return;
-  }
-  const slice = list.slice(0, 5);
-  container.innerHTML = slice.map(m => {
-    const isRecharge = m.type === 'recharge' || m.type === 'promo';
-    const isTransfer = (m.title || '').includes('Transferencia');
-    const iconClass = isRecharge ? 'fa-bolt' : (isTransfer ? 'fa-arrow-right-arrow-left' : 'fa-car-side');
-    const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : (isTransfer ? 'rgba(0,87,184,0.10)' : 'rgba(232,0,90,0.10)');
-    const iconColor = isRecharge ? '#F59E0B' : (isTransfer ? 'var(--brand-primary)' : 'var(--brand-pink)');
-    const sign = m.amount > 0 ? '+' : '';
-    const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
-    return `
+    function renderDashMov() {
+      const container = document.getElementById('dashMov');
+      if (!container) return;
+      const list = S.movements || [];
+      if (!list || list.length === 0) {
+        container.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Sin movimientos recientes</div>';
+        return;
+      }
+      const slice = list.slice(0, 5);
+      container.innerHTML = slice.map(m => {
+        const isRecharge = m.type === 'recharge' || m.type === 'promo';
+        const isTransfer = (m.title || '').includes('Transferencia');
+        const iconClass = isRecharge ? 'fa-bolt' : (isTransfer ? 'fa-arrow-right-arrow-left' : 'fa-car-side');
+        const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : (isTransfer ? 'rgba(0,87,184,0.10)' : 'rgba(232,0,90,0.10)');
+        const iconColor = isRecharge ? '#F59E0B' : (isTransfer ? 'var(--brand-primary)' : 'var(--brand-pink)');
+        const sign = m.amount > 0 ? '+' : '';
+        const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
+        return `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border-light)">
         <div style="display:flex;align-items:center;gap:12px">
           <div style="width:36px;height:36px;border-radius:50%;background:${iconBg};color:${iconColor};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">
@@ -5121,573 +5437,636 @@ function renderDashMov() {
         <div style="font-weight:800;font-size:14px;color:${amtColor}">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
       </div>
     `;
-  }).join('');
-}
-
-function toggleMovDetail(id) {
-  const el = document.getElementById(id);
-  const chev = document.getElementById(id + '-chev');
-  if (!el) return;
-  if (el.style.display === 'none' || !el.style.display) {
-    el.style.display = 'block';
-    if (chev) chev.style.transform = 'rotate(90deg)';
-  } else {
-    el.style.display = 'none';
-    if (chev) chev.style.transform = 'rotate(0deg)';
-  }
-}
-
-function toggleDateCard(id) {
-  const el = document.getElementById(id);
-  const chev = document.getElementById(id + '-chev');
-  if (!el) return;
-  if (el.style.display === 'none') {
-    el.style.display = 'block';
-    if (chev) chev.style.transform = 'rotate(0deg)';
-  } else {
-    el.style.display = 'none';
-    if (chev) chev.style.transform = 'rotate(180deg)';
-  }
-}
-
-function filterMov() {
-  const desde = document.getElementById('fDesde')?.value;
-  const hasta = document.getElementById('fHasta')?.value;
-  const errFiltro = document.getElementById('errFiltro');
-  
-  if (desde && hasta && desde > hasta) {
-    if (errFiltro) errFiltro.style.display = 'block';
-    return;
-  }
-  if (errFiltro) errFiltro.style.display = 'none';
-
-  let filtered = S.movements;
-  if (desde) {
-    filtered = filtered.filter(m => {
-      const parts = (m.date || '').split('-');
-      const formattedDate = parts[0].length === 4 ? m.date : `${parts[2]}-${parts[1]}-${parts[0]}`;
-      return formattedDate >= desde;
-    });
-  }
-  if (hasta) {
-    filtered = filtered.filter(m => {
-      const parts = (m.date || '').split('-');
-      const formattedDate = parts[0].length === 4 ? m.date : `${parts[2]}-${parts[1]}-${parts[0]}`;
-      return formattedDate <= hasta;
-    });
-  }
-
-  renderMov(filtered);
-}
-
-function clearFilter() {
-  const fD = document.getElementById('fDesde'); if (fD) fD.value = '';
-  const fH = document.getElementById('fHasta'); if (fH) fH.value = '';
-  const errFiltro = document.getElementById('errFiltro'); if (errFiltro) errFiltro.style.display = 'none';
-  renderMov(S.movements);
-}
-function renderChart() { }
-
-function pickLang(el, lang) {
-  document.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('selected'));
-  if (el) el.classList.add('selected');
-  showToast('Idioma actualizado a ' + lang.toUpperCase(), 'success');
-}
-
-function openHelp() { const hp = document.getElementById('helpPanel'); if (hp) hp.classList.add('on'); }
-function closeHelp() { const hp = document.getElementById('helpPanel'); if (hp) hp.classList.remove('on'); }
-
-/* INTERACTIVE TOUR */
-const TOUR_STEPS = [
-  { target: 'accountSelect', title: '1. Selección de Cuenta', desc: 'Permite alternar entre tus cuentas activas (ej. Grupo Andino, Edificio Mirador o Plaza Comercial del Sol).' },
-  { target: 'topBalance', title: '2. Billetera y Saldo', desc: 'Muestra tu saldo disponible actualizado en tiempo real.' },
-  { target: 'sec-dashboard', title: '3. Dashboard Principal', desc: 'Vista unificada con simulador de estacionamiento y movimientos recientes.' },
-  { target: 'btnEntrar', title: '4. Simulador de Estacionamiento', desc: 'Simula el ingreso y salida a parqueaderos para calcular costos de estadía.' },
-  { target: 'notifBtn', title: '5. Notificaciones', desc: 'Recibe alertas sobre tu cuenta, recargas e ingresos.' }
-];
-let currentTourIndex = 0;
-
-function startTour() {
-  currentTourIndex = 0;
-  const overlay = document.getElementById('tourOverlay');
-  if (overlay) overlay.classList.add('on');
-  renderTourStep();
-}
-
-function renderTourStep() {
-  const step = TOUR_STEPS[currentTourIndex];
-  if (!step) { endTour(); return; }
-  const title = document.getElementById('tourTitle'); if (title) title.textContent = step.title;
-  const desc = document.getElementById('tourDesc'); if (desc) desc.textContent = step.desc;
-  const counter = document.getElementById('tourCounter'); if (counter) counter.textContent = `${currentTourIndex + 1} / ${TOUR_STEPS.length}`;
-  const card = document.getElementById('tourCard');
-  if (card) {
-    card.style.top = '120px';
-    card.style.left = '50%';
-    card.style.transform = 'translateX(-50%)';
-  }
-}
-
-function nextTourStep() {
-  currentTourIndex++;
-  if (currentTourIndex >= TOUR_STEPS.length) {
-    endTour();
-    showToast('¡Tour completado! Explora el portal IGOR', 'success');
-  } else {
-    renderTourStep();
-  }
-}
-
-function endTour() {
-  const overlay = document.getElementById('tourOverlay');
-  if (overlay) overlay.classList.remove('on');
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-  renderCurrentAccount();
-});
-renderCurrentAccount();
-
-
-/* Function aliases matching HTML onclick attributes */
-function simCalcular() { calculateSimEstimate(); }
-function sendCode() { resendVerificationCode(); }
-function checkCode() { verifyCode(); }
-function savePass() { updatePassword(); }
-function pickAmt(el, val) { selectRechargeAmt(val); }
-function pickCustom(el) { selectRechargeAmt(20); }
-function doRecargar() { processRecharge(); }
-function setPrimary(el) {
-  document.querySelectorAll('.pcard').forEach(c => c.classList.remove('default'));
-  if (el) el.classList.add('default');
-  showToast('Tarjeta predeterminada actualizada', 'success');
-}
-
-
-
-/* Inline Account Name Editing with Pencil Icon */
-function toggleEditAccountName() {
-  const acc = getCurrentAccount();
-  const row = document.getElementById('accountNameEditRow');
-  const displayRow = document.getElementById('accountNameDisplayRow');
-  const input = document.getElementById('inlineAccountNameInput');
-  if (!row || !displayRow || !input) return;
-  
-  if (row.style.display === 'none' || !row.style.display) {
-    input.value = acc.label;
-    row.style.display = 'flex';
-    displayRow.style.display = 'none';
-    input.focus();
-  } else {
-    row.style.display = 'none';
-    displayRow.style.display = 'flex';
-  }
-}
-
-function saveInlineAccountName() {
-  const acc = getCurrentAccount();
-  const input = document.getElementById('inlineAccountNameInput');
-  if (!input) return;
-  const newName = input.value.trim();
-  if (!newName) {
-    showToast('Ingresa un nombre válido para la cuenta', 'error');
-    return;
-  }
-  acc.label = newName;
-  acc.profile.nombre = newName;
-  fillAccountSelector(true);
-  renderCurrentAccount();
-  cancelInlineAccountName();
-  showToast('Nombre de la cuenta actualizado correctamente', 'success');
-}
-
-function cancelInlineAccountName() {
-  const row = document.getElementById('accountNameEditRow');
-  const displayRow = document.getElementById('accountNameDisplayRow');
-  if (row) row.style.display = 'none';
-  if (displayRow) displayRow.style.display = 'flex';
-}
-
-
-
-/* Validation functions for incomplete account and billing data */
-function isAccountAndBillingComplete() {
-  const acc = getCurrentAccount();
-  if (!acc) return false;
-  
-  const p = acc.profile || {};
-  const b = acc.billing || {};
-
-  const profileValid = Boolean(p.nombre && p.documento && p.email && p.telefono);
-  const billingValid = Boolean(b.numero && b.razon && b.direccion && b.email);
-
-  return profileValid && billingValid;
-}
-
-function showIncompleteDataModal() {
-  const m = document.getElementById('incompleteDataModal');
-  if (m) m.style.display = 'flex';
-}
-
-function closeIncompleteDataModalAndRedirect() {
-  const m = document.getElementById('incompleteDataModal');
-  if (m) m.style.display = 'none';
-  goTo('perfil', document.getElementById('nav-perfil'));
-}
-
-
-
-/* Transferencia entre Cuentas Logic */
-
-function pickTransferAmt(el, amt) {
-  S.transferSelectedAmt = amt;
-  const grid = el.parentElement;
-  if (grid) {
-    grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
-  }
-  el.classList.add('selected');
-  const customWrap = document.getElementById('transferCustomWrap');
-  if (customWrap) customWrap.style.display = 'none';
-  updateTransferBreakdown();
-}
-
-function pickTransferCustom(el) {
-  const grid = el.parentElement;
-  if (grid) {
-    grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
-  }
-  el.classList.add('selected');
-  const customWrap = document.getElementById('transferCustomWrap');
-  if (customWrap) customWrap.style.display = 'block';
-  const customInput = document.getElementById('transferAmountInput');
-  if (customInput) customInput.focus();
-  updateTransferBreakdown();
-}
-
-function getTransferSelectedAmount() {
-  const customWrap = document.getElementById('transferCustomWrap');
-  if (customWrap && customWrap.style.display !== 'none') {
-    const customInput = document.getElementById('transferAmountInput');
-    return parseFloat(customInput?.value || 0);
-  }
-  return S.transferSelectedAmt || 10;
-}
-
-function updateTransferBreakdown() {
-  const acc = getCurrentAccount();
-  if (!acc) return;
-
-  const destSelect = document.getElementById('transferDestSelect');
-  const destId = destSelect?.value;
-  const destAcc = destId ? ACCOUNT_DATA[destId] : null;
-
-  const amt = getTransferSelectedAmount();
-
-  setSafeText('bdTransferOrigin', acc.label);
-  setSafeText('bdTransferDest', destAcc ? destAcc.label : (destId || 'Seleccionar'));
-  setSafeText('bdTransferCurrentBalance', '$' + S.balance.toFixed(2));
-  setSafeText('bdTransferAmount', '$' + (isNaN(amt) ? '0.00' : amt.toFixed(2)));
-
-  const remaining = S.balance - (isNaN(amt) ? 0 : amt);
-  const remEl = document.getElementById('bdTransferRemaining');
-  if (remEl) {
-    remEl.textContent = '$' + remaining.toFixed(2);
-    remEl.style.color = remaining < 0 ? 'var(--red)' : 'var(--text-primary)';
-  }
-
-  const btnTxt = document.getElementById('btnTransferTxt');
-  if (btnTxt) {
-    btnTxt.textContent = `Transferir $${(isNaN(amt) ? 0 : amt).toFixed(2)}`;
-  }
-}
-
-function renderTransferTab() {
-  const acc = getCurrentAccount();
-  if (!acc) return;
-
-  const originId = acc.id === 'AC-001' ? '1b12659f-10be-4320-a619-2b36d5149b68' : acc.id;
-  setSafeValue('transferOriginId', originId);
-  setSafeValue('transferOriginName', acc.label);
-  setSafeText('transferOriginNameDisplay', acc.label);
-  setSafeText('transferOriginIdDisplay', originId);
-  setSafeText('transferOriginBalanceDisplay', '$' + S.balance.toFixed(2));
-
-  const select = document.getElementById('transferDestSelect');
-  if (select) {
-    const currentVal = select.value;
-    select.innerHTML = '<option value="">Selecciona una cuenta</option>';
-    Object.values(ACCOUNT_DATA).forEach(a => {
-      if (a.id !== acc.id) {
-        const opt = document.createElement('option');
-        opt.value = a.id;
-        opt.textContent = `${a.label} (${a.id})`;
-        select.appendChild(opt);
-      }
-    });
-    if (currentVal && select.querySelector(`option[value="${currentVal}"]`)) {
-      select.value = currentVal;
+      }).join('');
     }
-  }
 
-  updateTransferBreakdown();
-}
+    function toggleMovDetail(id) {
+      const el = document.getElementById(id);
+      const chev = document.getElementById(id + '-chev');
+      if (!el) return;
+      if (el.style.display === 'none' || !el.style.display) {
+        el.style.display = 'block';
+        if (chev) chev.style.transform = 'rotate(90deg)';
+      } else {
+        el.style.display = 'none';
+        if (chev) chev.style.transform = 'rotate(0deg)';
+      }
+    }
 
-function openTransferConfirmModal() {
-  if (!isAccountAndBillingComplete()) {
-    showIncompleteDataModal();
-    return;
-  }
+    function toggleDateCard(id) {
+      const el = document.getElementById(id);
+      const chev = document.getElementById(id + '-chev');
+      if (!el) return;
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+        if (chev) chev.style.transform = 'rotate(0deg)';
+      } else {
+        el.style.display = 'none';
+        if (chev) chev.style.transform = 'rotate(180deg)';
+      }
+    }
 
-  const destSelect = document.getElementById('transferDestSelect');
-  const conceptInput = document.getElementById('transferConceptInput');
+    function filterMov() {
+      const desde = document.getElementById('fDesde')?.value;
+      const hasta = document.getElementById('fHasta')?.value;
+      const errFiltro = document.getElementById('errFiltro');
 
-  if (!destSelect || !destSelect.value) {
-    showToast('Por favor selecciona una cuenta destino', 'error');
-    return;
-  }
+      if (desde && hasta && desde > hasta) {
+        if (errFiltro) errFiltro.style.display = 'block';
+        return;
+      }
+      if (errFiltro) errFiltro.style.display = 'none';
 
-  const amt = getTransferSelectedAmount();
-  if (isNaN(amt) || amt <= 0) {
-    showToast('Ingresa un monto válido para transferir', 'error');
-    return;
-  }
+      let filtered = S.movements;
+      if (desde) {
+        filtered = filtered.filter(m => {
+          const parts = (m.date || '').split('-');
+          const formattedDate = parts[0].length === 4 ? m.date : `${parts[2]}-${parts[1]}-${parts[0]}`;
+          return formattedDate >= desde;
+        });
+      }
+      if (hasta) {
+        filtered = filtered.filter(m => {
+          const parts = (m.date || '').split('-');
+          const formattedDate = parts[0].length === 4 ? m.date : `${parts[2]}-${parts[1]}-${parts[0]}`;
+          return formattedDate <= hasta;
+        });
+      }
 
-  if (amt > S.balance) {
-    showToast(`Saldo insuficiente. Tu saldo disponible es $${S.balance.toFixed(2)}`, 'error');
-    return;
-  }
+      renderMov(filtered);
+    }
 
-  const originAcc = getCurrentAccount();
-  const destAcc = ACCOUNT_DATA[destSelect.value];
-  const concept = conceptInput?.value.trim() || 'Transferencia entre cuentas';
+    function clearFilter() {
+      const fD = document.getElementById('fDesde'); if (fD) fD.value = '';
+      const fH = document.getElementById('fHasta'); if (fH) fH.value = '';
+      const errFiltro = document.getElementById('errFiltro'); if (errFiltro) errFiltro.style.display = 'none';
+      renderMov(S.movements);
+    }
+    function renderChart() { }
 
-  setSafeText('modalSummaryOrigin', originAcc ? originAcc.label : 'Cuenta Origen');
-  setSafeText('modalSummaryDest', destAcc ? destAcc.label : destSelect.value);
-  setSafeText('modalSummaryConcept', concept);
-  setSafeText('modalSummaryAmount', `$${amt.toFixed(2)}`);
-  setSafeText('modalSummaryRemaining', `$${(S.balance - amt).toFixed(2)}`);
+    function pickLang(el, lang) {
+      document.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('selected'));
+      if (el) el.classList.add('selected');
+      showToast('Idioma actualizado a ' + lang.toUpperCase(), 'success');
+    }
 
-  const modal = document.getElementById('transferConfirmModal');
-  if (modal) modal.style.display = 'flex';
-}
+    function openHelp() { const hp = document.getElementById('helpPanel'); if (hp) hp.classList.add('on'); }
+    function closeHelp() { const hp = document.getElementById('helpPanel'); if (hp) hp.classList.remove('on'); }
 
-function closeTransferConfirmModal() {
-  const modal = document.getElementById('transferConfirmModal');
-  if (modal) modal.style.display = 'none';
-}
+    /* INTERACTIVE TOUR */
+    const TOUR_STEPS = [
+      { target: 'accountSelect', title: '1. Selección de Cuenta', desc: 'Permite alternar entre tus cuentas activas (ej. Grupo Andino, Edificio Mirador o Plaza Comercial del Sol).' },
+      { target: 'topBalance', title: '2. Billetera y Saldo', desc: 'Muestra tu saldo disponible actualizado en tiempo real.' },
+      { target: 'sec-dashboard', title: '3. Dashboard Principal', desc: 'Vista unificada con simulador de estacionamiento y movimientos recientes.' },
+      { target: 'btnEntrar', title: '4. Simulador de Estacionamiento', desc: 'Simula el ingreso y salida a parqueaderos para calcular costos de estadía.' },
+      { target: 'notifBtn', title: '5. Notificaciones', desc: 'Recibe alertas sobre tu cuenta, recargas e ingresos.' }
+    ];
+    let currentTourIndex = 0;
 
-function closeTransferSuccessModal() {
-  const modal = document.getElementById('transferSuccessModal');
-  if (modal) modal.style.display = 'none';
-}
+    function startTour() {
+      currentTourIndex = 0;
+      const overlay = document.getElementById('tourOverlay');
+      if (overlay) overlay.classList.add('on');
+      renderTourStep();
+    }
 
-function resetTransferForm() {
-  setSafeValue('transferAmountInput', '');
-  setSafeValue('transferConceptInput', '');
-  const destSelect = document.getElementById('transferDestSelect');
-  if (destSelect) destSelect.value = '';
+    function renderTourStep() {
+      const step = TOUR_STEPS[currentTourIndex];
+      if (!step) { endTour(); return; }
+      const title = document.getElementById('tourTitle'); if (title) title.textContent = step.title;
+      const desc = document.getElementById('tourDesc'); if (desc) desc.textContent = step.desc;
+      const counter = document.getElementById('tourCounter'); if (counter) counter.textContent = `${currentTourIndex + 1} / ${TOUR_STEPS.length}`;
+      const card = document.getElementById('tourCard');
+      if (card) {
+        card.style.top = '120px';
+        card.style.left = '50%';
+        card.style.transform = 'translateX(-50%)';
+      }
+    }
 
-  S.transferSelectedAmt = 10;
-  const grid = document.querySelector('#tab-transferir .amount-grid');
-  if (grid) {
-    grid.querySelectorAll('.amt-btn').forEach((b, idx) => {
-      if (idx === 1) b.classList.add('selected');
-      else b.classList.remove('selected');
+    function nextTourStep() {
+      currentTourIndex++;
+      if (currentTourIndex >= TOUR_STEPS.length) {
+        endTour();
+        showToast('¡Tour completado! Explora el portal IGOR', 'success');
+      } else {
+        renderTourStep();
+      }
+    }
+
+    function endTour() {
+      const overlay = document.getElementById('tourOverlay');
+      if (overlay) overlay.classList.remove('on');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCurrentAccount();
     });
-  }
-  const customWrap = document.getElementById('transferCustomWrap');
-  if (customWrap) customWrap.style.display = 'none';
-
-  renderTransferTab();
-}
-
-function executeTransfer() {
-  const destSelect = document.getElementById('transferDestSelect');
-  const conceptInput = document.getElementById('transferConceptInput');
-
-  const destId = destSelect?.value;
-  const amount = getTransferSelectedAmount();
-  const concept = conceptInput?.value.trim() || 'Transferencia de saldo';
-
-  if (!destId || isNaN(amount) || amount <= 0 || amount > S.balance) return;
-
-  const originAcc = getCurrentAccount();
-  const destAcc = ACCOUNT_DATA[destId];
-  const refCode = `TRF-${Math.floor(100000 + Math.random() * 900000)}`;
-
-  // 1. Deduct from origin
-  S.balance -= amount;
-  originAcc.balance = S.balance;
-  const now = new Date();
-  const dateStr = `${String(now.getDate()).padStart(2, '0')}-08-2026`;
-  const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-  originAcc.movements.unshift({
-    id: Date.now(),
-    type: 'parking',
-    title: `Transferencia a ${destAcc ? destAcc.label : destId}`,
-    date: dateStr,
-    detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
-    amount: -amount,
-    balance: S.balance
-  });
-
-  // 2. Add to destination
-  if (destAcc) {
-    destAcc.balance = (destAcc.balance || 0) + amount;
-    if (!destAcc.movements) destAcc.movements = [];
-    destAcc.movements.unshift({
-      id: Date.now() + 1,
-      type: 'recharge',
-      title: `Transferencia recibida de ${originAcc.label}`,
-      date: dateStr,
-      detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
-      amount: amount,
-      balance: destAcc.balance
-    });
-  }
-
-  // 3. Update global UI balance
-  syncBalance();
-  persistCurrentAccount();
-  renderMov();
-  renderDashMov();
-
-  // Close confirm modal
-  closeTransferConfirmModal();
-
-  // 4. Send notification with explicit post-transfer balance
-  showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc ? destAcc.label : destId} realizada satisfactoriamente! Tu saldo actual es $${S.balance.toFixed(2)}.`, 'success');
-
-  // Add system notification dot indicator if present
-  const notifBtn = document.getElementById('notifBtn');
-  if (notifBtn && !notifBtn.querySelector('.dot')) {
-    const dot = document.createElement('span');
-    dot.className = 'dot';
-    notifBtn.appendChild(dot);
-  }
-
-  // 5. Populate and show Success Modal with updated actual balance
-  setSafeText('successModalCurrentBalance', `$${S.balance.toFixed(2)}`);
-  setSafeText('successModalAmount', `$${amount.toFixed(2)}`);
-  setSafeText('successModalDest', destAcc ? destAcc.label : destId);
-  setSafeText('successModalRef', refCode);
-  setSafeText('successModalDate', `${dateStr} ${timeStr}`);
-
-  const successModal = document.getElementById('transferSuccessModal');
-  if (successModal) successModal.style.display = 'flex';
-
-  // 6. Refresh form and transfer tab state
-  resetTransferForm();
-}
-
-</script>
+    renderCurrentAccount();
 
 
-<!-- Modal Datos Incompletos -->
-<div id="incompleteDataModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.6);z-index:99999;align-items:center;justify-content:center;padding:20px">
-  <div class="card" style="max-width:380px;width:100%;border-radius:20px;padding:32px 24px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .2s ease">
-    <div style="width:64px;height:64px;border-radius:50%;background:#FEF3C7;color:#F59E0B;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px auto">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-    </div>
-    <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Datos incompletos</h3>
-    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:24px">
-      Por favor ingresa todos los datos de la cuenta y facturación antes de continuar.
-    </p>
-    <button class="btn btn-primary" onclick="closeIncompleteDataModalAndRedirect()" style="width:100%;padding:12px;font-size:14px;border-radius:10px;justify-content:center">
-      Entendido
-    </button>
-  </div>
-</div>
+    /* Function aliases matching HTML onclick attributes */
+    function simCalcular() { calculateSimEstimate(); }
+    function sendCode() { resendVerificationCode(); }
+    function checkCode() { verifyCode(); }
+    function savePass() { updatePassword(); }
+    function pickAmt(el, val) { selectRechargeAmt(val); }
+    function pickCustom(el) { selectRechargeAmt(20); }
+    function doRecargar() { processRecharge(); }
+    function doRecharge() { processRecharge(); }
+    function setPrimary(el) {
+      showToast('Tarjeta predeterminada actualizada', 'success');
+    }
 
-<!-- Modal Confirmar Transferencia -->
-<div id="transferConfirmModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
-  <div class="card" style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
-    <div style="width:56px;height:56px;border-radius:50%;background:rgba(0,87,184,0.1);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
-      <i class="fa-solid fa-arrow-right-arrow-left"></i>
-    </div>
-    <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">¿Confirmar Transferencia?</h3>
-    <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
-      Revisa atentamente los datos antes de realizar la transacción entre cuentas.
-    </p>
 
-    <div style="background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:16px;margin-bottom:20px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
-        <span style="color:var(--text-secondary)">Cuenta Origen:</span>
-        <strong id="modalSummaryOrigin" style="color:var(--text-primary)">-</strong>
+
+    /* Inline Account Name Editing with Pencil Icon */
+    function toggleEditAccountName() {
+      const acc = getCurrentAccount();
+      const row = document.getElementById('accountNameEditRow');
+      const displayRow = document.getElementById('accountNameDisplayRow');
+      const input = document.getElementById('inlineAccountNameInput');
+      if (!row || !displayRow || !input) return;
+
+      if (row.style.display === 'none' || !row.style.display) {
+        input.value = acc.label;
+        row.style.display = 'flex';
+        displayRow.style.display = 'none';
+        input.focus();
+      } else {
+        row.style.display = 'none';
+        displayRow.style.display = 'flex';
+      }
+    }
+
+    function saveInlineAccountName() {
+      const acc = getCurrentAccount();
+      const input = document.getElementById('inlineAccountNameInput');
+      if (!input) return;
+      const newName = input.value.trim();
+      if (!newName) {
+        showToast('Ingresa un nombre válido para la cuenta', 'error');
+        return;
+      }
+      acc.label = newName;
+      acc.profile.nombre = newName;
+      fillAccountSelector(true);
+      renderCurrentAccount();
+      cancelInlineAccountName();
+      showToast('Nombre de la cuenta actualizado correctamente', 'success');
+    }
+
+    function cancelInlineAccountName() {
+      const row = document.getElementById('accountNameEditRow');
+      const displayRow = document.getElementById('accountNameDisplayRow');
+      if (row) row.style.display = 'none';
+      if (displayRow) displayRow.style.display = 'flex';
+    }
+
+
+
+    /* Validation functions for incomplete account and billing data */
+    function isAccountAndBillingComplete() {
+      const acc = getCurrentAccount();
+      if (!acc) return false;
+
+      const p = acc.profile || {};
+      const b = acc.billing || {};
+
+      const profileValid = Boolean(p.nombre && p.documento && p.email && p.telefono);
+      const billingValid = Boolean(b.numero && b.razon && b.direccion && b.email);
+
+      return profileValid && billingValid;
+    }
+
+    function showIncompleteDataModal() {
+      const m = document.getElementById('incompleteDataModal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeIncompleteDataModalAndRedirect() {
+      const m = document.getElementById('incompleteDataModal');
+      if (m) m.style.display = 'none';
+      goTo('perfil', document.getElementById('nav-perfil'));
+    }
+
+
+
+    /* Transferencia entre Cuentas Logic */
+
+    function pickTransferAmt(el, amt) {
+      S.transferSelectedAmt = amt;
+      const grid = el.parentElement;
+      if (grid) {
+        grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+      }
+      el.classList.add('selected');
+      const customWrap = document.getElementById('transferCustomWrap');
+      if (customWrap) customWrap.style.display = 'none';
+      updateTransferBreakdown();
+    }
+
+    function pickTransferCustom(el) {
+      const grid = el.parentElement;
+      if (grid) {
+        grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+      }
+      el.classList.add('selected');
+      const customWrap = document.getElementById('transferCustomWrap');
+      if (customWrap) customWrap.style.display = 'block';
+      const customInput = document.getElementById('transferAmountInput');
+      if (customInput) customInput.focus();
+      updateTransferBreakdown();
+    }
+
+    function getTransferSelectedAmount() {
+      const customWrap = document.getElementById('transferCustomWrap');
+      if (customWrap && customWrap.style.display !== 'none') {
+        const customInput = document.getElementById('transferAmountInput');
+        return parseFloat(customInput?.value || 0);
+      }
+      return S.transferSelectedAmt || 10;
+    }
+
+    function updateTransferBreakdown() {
+      const acc = getCurrentAccount();
+      if (!acc) return;
+
+      const destSelect = document.getElementById('transferDestSelect');
+      const destId = destSelect?.value;
+      const destAcc = destId ? ACCOUNT_DATA[destId] : null;
+
+      const amt = getTransferSelectedAmount();
+
+      setSafeText('bdTransferOrigin', acc.label);
+      setSafeText('bdTransferDest', destAcc ? destAcc.label : (destId || 'Seleccionar'));
+      setSafeText('bdTransferCurrentBalance', '$' + S.balance.toFixed(2));
+      setSafeText('bdTransferAmount', '$' + (isNaN(amt) ? '0.00' : amt.toFixed(2)));
+
+      const remaining = S.balance - (isNaN(amt) ? 0 : amt);
+      const remEl = document.getElementById('bdTransferRemaining');
+      if (remEl) {
+        remEl.textContent = '$' + remaining.toFixed(2);
+        remEl.style.color = remaining < 0 ? 'var(--red)' : 'var(--text-primary)';
+      }
+
+      const btnTxt = document.getElementById('btnTransferTxt');
+      if (btnTxt) {
+        btnTxt.textContent = `Transferir $${(isNaN(amt) ? 0 : amt).toFixed(2)}`;
+      }
+    }
+
+    function renderTransferTab() {
+      const acc = getCurrentAccount();
+      if (!acc) return;
+
+      const originId = acc.id === 'AC-001' ? '1b12659f-10be-4320-a619-2b36d5149b68' : acc.id;
+      setSafeValue('transferOriginId', originId);
+      setSafeValue('transferOriginName', acc.label);
+      setSafeText('transferOriginNameDisplay', acc.label);
+      setSafeText('transferOriginIdDisplay', originId);
+      setSafeText('transferOriginBalanceDisplay', '$' + S.balance.toFixed(2));
+
+      const select = document.getElementById('transferDestSelect');
+      if (select) {
+        const currentVal = select.value;
+        select.innerHTML = '<option value="">Selecciona una cuenta</option>';
+        Object.values(ACCOUNT_DATA).forEach(a => {
+          if (a.id !== acc.id) {
+            const opt = document.createElement('option');
+            opt.value = a.id;
+            opt.textContent = `${a.label} (${a.id})`;
+            select.appendChild(opt);
+          }
+        });
+        if (currentVal && select.querySelector(`option[value="${currentVal}"]`)) {
+          select.value = currentVal;
+        }
+      }
+
+      updateTransferBreakdown();
+    }
+
+    function openTransferConfirmModal() {
+      if (!isAccountAndBillingComplete()) {
+        showIncompleteDataModal();
+        return;
+      }
+
+      const destSelect = document.getElementById('transferDestSelect');
+      const conceptInput = document.getElementById('transferConceptInput');
+
+      if (!destSelect || !destSelect.value) {
+        showToast('Por favor selecciona una cuenta destino', 'error');
+        return;
+      }
+
+      const amt = getTransferSelectedAmount();
+      if (isNaN(amt) || amt <= 0) {
+        showToast('Ingresa un monto válido para transferir', 'error');
+        return;
+      }
+
+      if (amt > S.balance) {
+        showToast(`Saldo insuficiente. Tu saldo disponible es $${S.balance.toFixed(2)}`, 'error');
+        return;
+      }
+
+      const originAcc = getCurrentAccount();
+      const destAcc = ACCOUNT_DATA[destSelect.value];
+      const concept = conceptInput?.value.trim() || 'Transferencia entre cuentas';
+
+      setSafeText('modalSummaryOrigin', originAcc ? originAcc.label : 'Cuenta Origen');
+      setSafeText('modalSummaryDest', destAcc ? destAcc.label : destSelect.value);
+      setSafeText('modalSummaryConcept', concept);
+      setSafeText('modalSummaryAmount', `$${amt.toFixed(2)}`);
+      setSafeText('modalSummaryRemaining', `$${(S.balance - amt).toFixed(2)}`);
+
+      const modal = document.getElementById('transferConfirmModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeTransferConfirmModal() {
+      const modal = document.getElementById('transferConfirmModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function closeTransferSuccessModal() {
+      const modal = document.getElementById('transferSuccessModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function resetTransferForm() {
+      setSafeValue('transferAmountInput', '');
+      setSafeValue('transferConceptInput', '');
+      const destSelect = document.getElementById('transferDestSelect');
+      if (destSelect) destSelect.value = '';
+
+      S.transferSelectedAmt = 10;
+      const grid = document.querySelector('#tab-transferir .amount-grid');
+      if (grid) {
+        grid.querySelectorAll('.amt-btn').forEach((b, idx) => {
+          if (idx === 1) b.classList.add('selected');
+          else b.classList.remove('selected');
+        });
+      }
+      const customWrap = document.getElementById('transferCustomWrap');
+      if (customWrap) customWrap.style.display = 'none';
+
+      renderTransferTab();
+    }
+
+    function executeTransfer() {
+      const destSelect = document.getElementById('transferDestSelect');
+      const conceptInput = document.getElementById('transferConceptInput');
+
+      const destId = destSelect?.value;
+      const amount = getTransferSelectedAmount();
+      const concept = conceptInput?.value.trim() || 'Transferencia de saldo';
+
+      if (!destId || isNaN(amount) || amount <= 0 || amount > S.balance) return;
+
+      const originAcc = getCurrentAccount();
+      const destAcc = ACCOUNT_DATA[destId];
+      const refCode = `TRF-${Math.floor(100000 + Math.random() * 900000)}`;
+
+      // 1. Deduct from origin
+      S.balance -= amount;
+      originAcc.balance = S.balance;
+      const now = new Date();
+      const dateStr = `${String(now.getDate()).padStart(2, '0')}-08-2026`;
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      originAcc.movements.unshift({
+        id: Date.now(),
+        type: 'parking',
+        title: `Transferencia a ${destAcc ? destAcc.label : destId}`,
+        date: dateStr,
+        detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
+        amount: -amount,
+        balance: S.balance
+      });
+
+      // 2. Add to destination
+      if (destAcc) {
+        destAcc.balance = (destAcc.balance || 0) + amount;
+        if (!destAcc.movements) destAcc.movements = [];
+        destAcc.movements.unshift({
+          id: Date.now() + 1,
+          type: 'recharge',
+          title: `Transferencia recibida de ${originAcc.label}`,
+          date: dateStr,
+          detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
+          amount: amount,
+          balance: destAcc.balance
+        });
+      }
+
+      // 3. Update global UI balance
+      syncBalance();
+      persistCurrentAccount();
+      renderMov();
+      renderDashMov();
+
+      // Close confirm modal
+      closeTransferConfirmModal();
+
+      // 4. Send notification with explicit post-transfer balance
+      showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc ? destAcc.label : destId} realizada satisfactoriamente! Tu saldo actual es $${S.balance.toFixed(2)}.`, 'success');
+
+      // Add system notification dot indicator if present
+      const notifBtn = document.getElementById('notifBtn');
+      if (notifBtn && !notifBtn.querySelector('.dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        notifBtn.appendChild(dot);
+      }
+
+      // 5. Populate and show Success Modal with updated actual balance
+      setSafeText('successModalCurrentBalance', `$${S.balance.toFixed(2)}`);
+      setSafeText('successModalAmount', `$${amount.toFixed(2)}`);
+      setSafeText('successModalDest', destAcc ? destAcc.label : destId);
+      setSafeText('successModalRef', refCode);
+      setSafeText('successModalDate', `${dateStr} ${timeStr}`);
+
+      const successModal = document.getElementById('transferSuccessModal');
+      if (successModal) successModal.style.display = 'flex';
+
+      // 6. Refresh form and transfer tab state
+      resetTransferForm();
+    }
+
+  </script>
+
+
+  <!-- Modal Datos Incompletos -->
+  <div id="incompleteDataModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.6);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:380px;width:100%;border-radius:20px;padding:32px 24px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .2s ease">
+      <div
+        style="width:64px;height:64px;border-radius:50%;background:#FEF3C7;color:#F59E0B;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px auto">
+        <i class="fa-solid fa-triangle-exclamation"></i>
       </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
-        <span style="color:var(--text-secondary)">Cuenta Destino:</span>
-        <strong id="modalSummaryDest" style="color:var(--brand-primary)">-</strong>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
-        <span style="color:var(--text-secondary)">Concepto:</span>
-        <span id="modalSummaryConcept" style="font-weight:600;color:var(--text-primary)">-</span>
-      </div>
-      <div style="border-bottom:1px dashed var(--border-medium);margin:10px 0"></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
-        <span style="color:var(--text-secondary)">Monto a Transferir:</span>
-        <strong id="modalSummaryAmount" style="color:var(--amber);font-size:16px">$0.00</strong>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:13px">
-        <span style="color:var(--text-secondary)">Nuevo Saldo Restante:</span>
-        <strong id="modalSummaryRemaining" style="color:var(--green);font-size:14px">$0.00</strong>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:12px">
-      <button class="btn btn-ghost" onclick="closeTransferConfirmModal()" style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
-      <button class="btn btn-primary" onclick="executeTransfer()" style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
-        <i class="fa-solid fa-check"></i> Confirmar
+      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Datos incompletos</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:24px">
+        Por favor ingresa todos los datos de la cuenta y facturación antes de continuar.
+      </p>
+      <button class="btn btn-primary" onclick="closeIncompleteDataModalAndRedirect()"
+        style="width:100%;padding:12px;font-size:14px;border-radius:10px;justify-content:center">
+        Entendido
       </button>
     </div>
   </div>
-</div>
 
-<!-- Modal Éxito de Transferencia -->
-<div id="transferSuccessModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
-  <div class="card" style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
-    <div style="width:64px;height:64px;border-radius:50%;background:rgba(22,163,74,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px auto">
-      <i class="fa-solid fa-circle-check"></i>
+  <!-- Modal Confirmar Transferencia -->
+  <div id="transferConfirmModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+      <div
+        style="width:56px;height:56px;border-radius:50%;background:rgba(0,87,184,0.1);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">
+        ¿Confirmar Transferencia?</h3>
+      <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
+        Revisa atentamente los datos antes de realizar la transacción entre cuentas.
+      </p>
+
+      <div
+        style="background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:16px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+          <span style="color:var(--text-secondary)">Cuenta Origen:</span>
+          <strong id="modalSummaryOrigin" style="color:var(--text-primary)">-</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+          <span style="color:var(--text-secondary)">Cuenta Destino:</span>
+          <strong id="modalSummaryDest" style="color:var(--brand-primary)">-</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+          <span style="color:var(--text-secondary)">Concepto:</span>
+          <span id="modalSummaryConcept" style="font-weight:600;color:var(--text-primary)">-</span>
+        </div>
+        <div style="border-bottom:1px dashed var(--border-medium);margin:10px 0"></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+          <span style="color:var(--text-secondary)">Monto a Transferir:</span>
+          <strong id="modalSummaryAmount" style="color:var(--amber);font-size:16px">$0.00</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px">
+          <span style="color:var(--text-secondary)">Nuevo Saldo Restante:</span>
+          <strong id="modalSummaryRemaining" style="color:var(--green);font-size:14px">$0.00</strong>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-ghost" onclick="closeTransferConfirmModal()"
+          style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+        <button class="btn btn-primary" onclick="executeTransfer()"
+          style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          <i class="fa-solid fa-check"></i> Confirmar
+        </button>
+      </div>
     </div>
-    <h3 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:6px">¡Transferencia Exitosa!</h3>
-    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px">
-      La transferencia entre cuentas se ha realizado satisfactoriamente.
-    </p>
-
-    <!-- Destacado del Saldo Actual -->
-    <div style="background:linear-gradient(135deg, rgba(22,163,74,0.06) 0%, rgba(22,163,74,0.14) 100%);border:1px solid rgba(22,163,74,0.25);border-radius:var(--r-lg);padding:18px 16px;margin-bottom:20px">
-      <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Tu Saldo Actual de la Cuenta</div>
-      <div id="successModalCurrentBalance" style="font-size:28px;font-weight:800;color:var(--green)">$0.00</div>
-      <div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px"><i class="fa-solid fa-circle-info" style="margin-right:4px"></i>Actualizado en tiempo real</div>
-    </div>
-
-    <!-- Detalle de transacción -->
-    <div style="background:var(--bg-input);border-radius:var(--r-md);padding:14px 16px;margin-bottom:24px;text-align:left;font-size:13px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-        <span style="color:var(--text-secondary)">Monto Transferido:</span>
-        <strong id="successModalAmount" style="color:var(--text-primary)">$0.00</strong>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-        <span style="color:var(--text-secondary)">Cuenta Destino:</span>
-        <strong id="successModalDest" style="color:var(--brand-primary)">-</strong>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-        <span style="color:var(--text-secondary)">Referencia:</span>
-        <span id="successModalRef" style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-muted)">TRF-000000</span>
-      </div>
-      <div style="display:flex;justify-content:space-between">
-        <span style="color:var(--text-secondary)">Fecha:</span>
-        <span id="successModalDate" style="color:var(--text-secondary)">-</span>
-      </div>
-    </div>
-
-    <button class="btn btn-primary" onclick="closeTransferSuccessModal()" style="width:100%;padding:13px;font-size:14px;border-radius:var(--r-md);justify-content:center;font-weight:700">
-      Entendido / Aceptar
-    </button>
   </div>
-</div>
+
+  <!-- Modal Éxito de Transferencia -->
+  <div id="transferSuccessModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+      <div
+        style="width:64px;height:64px;border-radius:50%;background:rgba(22,163,74,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px auto">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h3 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:6px">¡Transferencia Exitosa!
+      </h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px">
+        La transferencia entre cuentas se ha realizado satisfactoriamente.
+      </p>
+
+      <!-- Destacado del Saldo Actual -->
+      <div
+        style="background:linear-gradient(135deg, rgba(22,163,74,0.06) 0%, rgba(22,163,74,0.14) 100%);border:1px solid rgba(22,163,74,0.25);border-radius:var(--r-lg);padding:18px 16px;margin-bottom:20px">
+        <div
+          style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">
+          Tu Saldo Actual de la Cuenta</div>
+        <div id="successModalCurrentBalance" style="font-size:28px;font-weight:800;color:var(--green)">$0.00</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px"><i class="fa-solid fa-circle-info"
+            style="margin-right:4px"></i>Actualizado en tiempo real</div>
+      </div>
+
+      <!-- Detalle de transacción -->
+      <div
+        style="background:var(--bg-input);border-radius:var(--r-md);padding:14px 16px;margin-bottom:24px;text-align:left;font-size:13px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:var(--text-secondary)">Monto Transferido:</span>
+          <strong id="successModalAmount" style="color:var(--text-primary)">$0.00</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:var(--text-secondary)">Cuenta Destino:</span>
+          <strong id="successModalDest" style="color:var(--brand-primary)">-</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:var(--text-secondary)">Referencia:</span>
+          <span id="successModalRef"
+            style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-muted)">TRF-000000</span>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="color:var(--text-secondary)">Fecha:</span>
+          <span id="successModalDate" style="color:var(--text-secondary)">-</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="closeTransferSuccessModal()"
+        style="width:100%;padding:13px;font-size:14px;border-radius:var(--r-md);justify-content:center;font-weight:700">
+        Entendido / Aceptar
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Agregar Método de Pago -->
+  <div id="addCardModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:440px;width:100%;border-radius:20px;padding:28px 24px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s ease">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <h3 style="font-size:18px;font-weight:800;color:var(--text-primary)"><i class="fa-solid fa-credit-card"
+            style="color:var(--brand-primary);margin-right:8px"></i>Agregar método de pago</h3>
+        <button onclick="closeAddCardModal()"
+          style="background:none;border:none;font-size:20px;color:var(--text-muted);cursor:pointer">&times;</button>
+      </div>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group fg-full">
+          <label class="form-label">Número de Tarjeta</label>
+          <input class="form-input" id="mCardNum" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
+            style="font-family:'JetBrains Mono',monospace">
+        </div>
+        <div class="form-group fg-full">
+          <label class="form-label">Nombre del Titular</label>
+          <input class="form-input" id="mCardHolder" type="text" placeholder="NOMBRE APELLIDO">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Expiración</label>
+          <input class="form-input" id="mCardExp" type="text" maxlength="5" placeholder="MM/AA"
+            style="font-family:'JetBrains Mono',monospace">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CVV</label>
+          <input class="form-input" id="mCardCvv" type="text" maxlength="4" placeholder="•••"
+            style="font-family:'JetBrains Mono',monospace">
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:22px">
+        <button class="btn btn-ghost" onclick="closeAddCardModal()"
+          style="flex:1;justify-content:center">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveCardFromModal()" style="flex:1.4;justify-content:center"><i
+            class="fa-solid fa-check"></i> Guardar Tarjeta</button>
+      </div>
+    </div>
+  </div>
 
 </body>
+
 </html>
