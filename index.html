@@ -1451,23 +1451,29 @@
 
     /* FORMS */
     .form-section {
-      max-width: 660px
+      max-width: 880px;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px
+      gap: 16px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     .fg-full {
-      grid-column: span 2
+      grid-column: 1 / -1;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 5px
+      gap: 6px;
     }
 
     .form-label {
@@ -1477,7 +1483,8 @@
       letter-spacing: .3px;
       display: flex;
       align-items: center;
-      gap: 6px
+      gap: 6px;
+      min-height: 20px;
     }
 
     .form-input {
@@ -1488,28 +1495,30 @@
       color: var(--text-primary);
       font-size: 13.5px;
       outline: none;
-      transition: all var(--t)
+      transition: all var(--t);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .form-input:focus {
       border-color: var(--border-focus);
       background: white;
-      box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.10)
+      box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.10);
     }
 
     .form-input::placeholder {
-      color: var(--text-muted)
+      color: var(--text-muted);
     }
 
     .form-input option {
-      background: white
+      background: white;
     }
 
     .form-actions {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      margin-top: 22px
+      margin-top: 22px;
     }
 
     /* BUTTONS */
@@ -3317,21 +3326,59 @@
             </div>
           </div>
 
-        <!-- LucidBot Webchat Widget -->
-        <script src="https://panel.lucidbot.co/webchat/plugin.js?v=6"></script>
-        <script>
-          ktt10.setup({ id: "htQNv1FDk68", accountId: "1108782", color: "#006dff" });
-        </script>
+          <!-- LucidBot Webchat Widget -->
+          <script src="https://panel.lucidbot.co/webchat/plugin.js?v=6"></script>
+          <script>
+            ktt10.setup({ id: "sa0iSmvm6omds", accountId: "1108782", color: "#006dff" });
+          </script>
       </section>
 
-      <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+      <!-- ─────────────────────────────────────────────────────────────
      PERFIL
-�.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
+───────────────────────────────────────────────────────────── -->
       <section id="sec-perfil" class="section">
-        <div class="sec-header">
+        <div class="sec-header" style="margin-bottom:14px">
           <div>
-            <h2>Cuenta <span class="sec-account-id" id="profileAccountId">id_cuenta: AC-001</span></h2>
-            <p id="profileHeaderCopy">Gestiona tu información personal y configuración de seguridad</p>
+            <h2>Cuenta</h2>
+            <p id="profileHeaderCopy">Gestiona tu información personal y configuración de seguridad de Grupo Andino.</p>
+          </div>
+        </div>
+
+        <div
+          style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px 20px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);box-shadow:var(--shadow-xs);max-width:880px">
+          <div class="avatar" id="profileAvatar" style="width:56px;height:56px;font-size:22px">G</div>
+          <div style="flex:1">
+            <div id="accountNameDisplayRow" style="display:flex;align-items:center;gap:8px">
+              <div id="profileSummaryName" style="font-size:17px;font-weight:700">Grupo Andino</div>
+              <button class="icon-btn" id="btnEditAccountName" onclick="toggleEditAccountName()"
+                title="Editar nombre de la cuenta"
+                style="width:28px;height:28px;border-radius:50%;background:white;border:1px solid var(--border-medium);color:var(--brand-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t)">
+                <i class="fa-solid fa-pen" style="font-size:11px"></i>
+              </button>
+            </div>
+            <div id="accountNameEditRow"
+              style="display:none;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px">
+              <input type="text" id="inlineAccountNameInput" class="form-input"
+                style="height:36px;padding:4px 10px;font-size:14px;font-weight:600;max-width:260px"
+                value="Grupo Andino">
+              <button class="btn btn-primary btn-sm" onclick="saveInlineAccountName()"
+                style="padding:6px 12px;font-size:12px"><i class="fa-solid fa-check"></i> Guardar</button>
+              <button class="btn btn-ghost btn-sm" onclick="cancelInlineAccountName()"
+                style="padding:6px 10px;font-size:12px">Cancelar</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:4px;margin-bottom:2px">
+              <span class="sec-account-id" id="profileAccountId"
+                style="display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;padding:2px 8px;background:rgba(0,109,255,0.08);color:var(--brand-primary);border-radius:6px;border:1px solid rgba(0,109,255,0.2)">
+                <span id="profileAccountIdText">id_cuenta: AC-001</span>
+                <button type="button" class="btn-copy-id" onclick="copyCurrentAccountId(this)"
+                  title="Copiar ID de la cuenta"
+                  style="background:none;border:none;cursor:pointer;color:inherit;opacity:0.85;padding:0 2px;display:inline-flex;align-items:center;font-size:12px;transition:all var(--t)">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </span>
+            </div>
+            <div id="profileSummaryMeta" style="font-size:12px;color:var(--text-secondary);margin-top:4px">Miembro
+              desde Enero 2025 · Plan Estándar</div>
           </div>
         </div>
 
@@ -3342,166 +3389,168 @@
 
         <!-- Datos -->
         <div id="tab-datos" class="tab-panel active form-section">
+          <div class="card card-body" style="border-radius:var(--r-lg);padding:24px 28px;background:white">
+            <div
+              style="font-size:14.5px;font-weight:700;color:var(--text-primary);margin-bottom:18px;display:flex;align-items:center;gap:8px">
+              <i class="fa-regular fa-user" style="color:var(--brand-primary)"></i> Datos del Titular
+            </div>
+            <div class="form-grid" style="margin-bottom:20px">
+              <div class="form-group fg-full">
+                <label class="form-label">Nombre Completo
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Nombre Completo</div>Nombre completo del titular responsable de la cuenta.
+                    </div>
+                  </div>
+                </label>
+                <input class="form-input" id="perfil-nombre" type="text" value="Daysi Achig"
+                  placeholder="Nombre completo">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tipo de Documento</label>
+                <select class="form-input" id="perfil-tipo-doc">
+                  <option value="RUC">RUC</option>
+                  <option value="Cédula">Cédula</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Documento de Identidad
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Cédula o RUC</div>Número de identificación del titular.
+                    </div>
+                  </div>
+                </label>
+                <input class="form-input" id="perfil-documento" type="text" value="1790011223001"
+                  placeholder="Ej. 1790011223001">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Correo Electrónico</label>
+                <input class="form-input" id="perfil-email" type="email" value="usuario@grupoandino.ec"
+                  placeholder="correo@ejemplo.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Teléfono</label>
+                <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999">
+              </div>
+            </div>
 
-          <div
-            style="display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:16px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg)">
-            <div class="avatar" id="profileAvatar" style="width:56px;height:56px;font-size:22px">G</div>
-            <div style="flex:1">
-              <div id="accountNameDisplayRow" style="display:flex;align-items:center;gap:8px">
-                <div id="profileSummaryName" style="font-size:17px;font-weight:700">Grupo Andino</div>
-                <button class="icon-btn" id="btnEditAccountName" onclick="toggleEditAccountName()"
-                  title="Editar nombre de la cuenta"
-                  style="width:28px;height:28px;border-radius:50%;background:white;border:1px solid var(--border-medium);color:var(--brand-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t)">
-                  <i class="fa-solid fa-pen" style="font-size:11px"></i>
-                </button>
+            <div
+              style="font-size:14.5px;font-weight:700;color:var(--text-primary);margin-top:24px;margin-bottom:18px;display:flex;align-items:center;gap:8px;border-top:1px solid var(--border-light);padding-top:20px">
+              <i class="fa-solid fa-location-dot" style="color:var(--brand-primary)"></i> Ubicación y Dirección
+            </div>
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label class="form-label">País</label>
+                <select class="form-input" id="perfil-pais">
+                  <option value="Ecuador" selected>Ecuador</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="México">México</option>
+                  <option value="Estados Unidos">Estados Unidos</option>
+                  <option value="Otro">Otro</option>
+                </select>
               </div>
-              <div id="accountNameEditRow"
-                style="display:none;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px">
-                <input type="text" id="inlineAccountNameInput" class="form-input"
-                  style="height:36px;padding:4px 10px;font-size:14px;font-weight:600;max-width:260px"
-                  value="Grupo Andino">
-                <button class="btn btn-primary btn-sm" onclick="saveInlineAccountName()"
-                  style="padding:6px 12px;font-size:12px"><i class="fa-solid fa-check"></i> Guardar</button>
-                <button class="btn btn-ghost btn-sm" onclick="cancelInlineAccountName()"
-                  style="padding:6px 10px;font-size:12px">Cancelar</button>
+              <div class="form-group">
+                <label class="form-label">Provincia</label>
+                <select class="form-input" id="perfil-provincia" onchange="onProvinceChange()">
+                  <option value="">Selecciona una provincia</option>
+                  <option value="Azuay">Azuay</option>
+                  <option value="Bolívar">Bolívar</option>
+                  <option value="Cañar">Cañar</option>
+                  <option value="Carchi">Carchi</option>
+                  <option value="Chimborazo">Chimborazo</option>
+                  <option value="Cotopaxi">Cotopaxi</option>
+                  <option value="El Oro">El Oro</option>
+                  <option value="Esmeraldas">Esmeraldas</option>
+                  <option value="Galápagos">Galápagos</option>
+                  <option value="Guayas">Guayas</option>
+                  <option value="Imbabura">Imbabura</option>
+                  <option value="Loja">Loja</option>
+                  <option value="Los Ríos">Los Ríos</option>
+                  <option value="Manabí">Manabí</option>
+                  <option value="Morona Santiago">Morona Santiago</option>
+                  <option value="Napo">Napo</option>
+                  <option value="Orellana">Orellana</option>
+                  <option value="Pastaza">Pastaza</option>
+                  <option value="Pichincha">Pichincha</option>
+                  <option value="Santa Elena">Santa Elena</option>
+                  <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                  <option value="Sucumbíos">Sucumbíos</option>
+                  <option value="Tungurahua">Tungurahua</option>
+                  <option value="Zamora Chinchipe">Zamora Chinchipe</option>
+                </select>
               </div>
-              <div id="profileSummaryMeta" style="font-size:12px;color:var(--text-secondary);margin-top:2px">Miembro
-                desde Enero 2025 · Plan Estándar</div>
+              <div class="form-group">
+                <label class="form-label">Ciudad</label>
+                <select class="form-input" id="perfil-ciudad">
+                  <option value="">Selecciona una ciudad</option>
+                </select>
+              </div>
+              <div class="form-group fg-full">
+                <label class="form-label">Dirección</label>
+                <input class="form-input" id="perfil-direccion" type="text"
+                  placeholder="Calle principal, número y calle secundaria">
+              </div>
             </div>
-          </div>
-          <div class="form-grid">
-            <div class="form-group fg-full">
-              <label class="form-label">Nombre Completo
-                <div class="help-wrap">
-                  <div class="help-icon">?</div>
-                  <div class="help-tip">
-                    <div class="ht">Nombre de la Cuenta</div>Nombre de la cuenta o razón social tal como aparecerá en
-                    las facturas e historial de transacciones.
-                  </div>
-                </div>
-              </label>
-              <input class="form-input" id="perfil-nombre" type="text" value="Grupo Andino">
+
+            <div class="form-actions" style="margin-top:28px;padding-top:16px;border-top:1px solid var(--border-light)">
+              <button class="btn btn-ghost" onclick="renderCurrentAccount()">Cancelar</button>
+              <button class="btn btn-primary" onclick="saveProfileData()"><i class="fa-solid fa-check"></i> Guardar
+                Cambios</button>
             </div>
-            <div class="form-group">
-              <label class="form-label">Tipo de Documento</label>
-              <select class="form-input" id="perfil-tipo-doc">
-                <option value="RUC">RUC</option>
-                <option value="Cédula">Cédula</option>
-                <option value="Pasaporte">Pasaporte</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Documento de Identidad
-                <div class="help-wrap">
-                  <div class="help-icon">?</div>
-                  <div class="help-tip">
-                    <div class="ht">Cédula o RUC</div>Número de identificación requerido para la emisión de facturas
-                    electrónicas.
-                  </div>
-                </div>
-              </label>
-              <input class="form-input" id="perfil-documento" type="text" value="1700000000">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Correo Electrónico</label>
-              <input class="form-input" id="perfil-email" type="email" value="usuario@ejemplo.com">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Teléfono</label>
-              <input class="form-input" id="perfil-telefono" type="tel" value="0999999999">
-            </div>
-            <div class="form-group">
-              <label class="form-label">País</label>
-              <select class="form-input" id="perfil-pais">
-                <option value="Ecuador" selected>Ecuador</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Perú">Perú</option>
-                <option value="Chile">Chile</option>
-                <option value="Argentina">Argentina</option>
-                <option value="México">México</option>
-                <option value="Estados Unidos">Estados Unidos</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Provincia</label>
-              <select class="form-input" id="perfil-provincia" onchange="onProvinceChange()">
-                <option value="">Selecciona una provincia</option>
-                <option value="Azuay">Azuay</option>
-                <option value="Bolívar">Bolívar</option>
-                <option value="Cañar">Cañar</option>
-                <option value="Carchi">Carchi</option>
-                <option value="Chimborazo">Chimborazo</option>
-                <option value="Cotopaxi">Cotopaxi</option>
-                <option value="El Oro">El Oro</option>
-                <option value="Esmeraldas">Esmeraldas</option>
-                <option value="Galápagos">Galápagos</option>
-                <option value="Guayas">Guayas</option>
-                <option value="Imbabura">Imbabura</option>
-                <option value="Loja">Loja</option>
-                <option value="Los Ríos">Los Ríos</option>
-                <option value="Manabí">Manabí</option>
-                <option value="Morona Santiago">Morona Santiago</option>
-                <option value="Napo">Napo</option>
-                <option value="Orellana">Orellana</option>
-                <option value="Pastaza">Pastaza</option>
-                <option value="Pichincha">Pichincha</option>
-                <option value="Santa Elena">Santa Elena</option>
-                <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
-                <option value="Sucumbíos">Sucumbíos</option>
-                <option value="Tungurahua">Tungurahua</option>
-                <option value="Zamora Chinchipe">Zamora Chinchipe</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Ciudad</label>
-              <select class="form-input" id="perfil-ciudad">
-                <option value="">Selecciona una ciudad</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Dirección</label>
-              <input class="form-input" id="perfil-direccion" type="text" placeholder="Dirección completa">
-            </div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-ghost" onclick="renderCurrentAccount()">Cancelar</button>
-            <button class="btn btn-primary" onclick="saveProfileData()"><i class="fa-solid fa-check"></i> Guardar
-              Cambios</button>
           </div>
         </div>
 
         <!-- Facturación -->
         <div id="tab-factu" class="tab-panel form-section">
-          <div class="banner blue"><i class="fa-solid fa-circle-info bi"></i>
-            <div class="bt">Estos datos se usarán para emitir tus <strong>facturas electrónicas</strong>. Activa el
-              checkbox para copiar automáticamente los datos de tu perfil personal.</div>
-          </div>
-          <label
-            style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-md);cursor:pointer;margin-bottom:16px">
-            <input type="checkbox" id="ck-mismos" onchange="syncFact(this)"
-              style="width:15px;height:15px;accent-color:var(--brand-primary)">
-            <span style="font-size:13px;font-weight:500">Usar los mismos datos de mi perfil personal</span>
-          </label>
-          <div class="form-grid">
-            <div class="form-group"><label class="form-label">Tipo de Documento</label><select class="form-input"
-                id="fact-tipo">
-                <option>Cédula</option>
-                <option>RUC</option>
-                <option>Pasaporte</option>
-              </select></div>
-            <div class="form-group"><label class="form-label">Número de Documento</label><input class="form-input"
-                id="fact-num" type="text" placeholder="Número"></div>
-            <div class="form-group fg-full"><label class="form-label">Razón Social / Nombre</label><input
-                class="form-input" id="fact-razon" type="text" placeholder="Nombre para la factura"></div>
-            <div class="form-group fg-full"><label class="form-label">Dirección Fiscal</label><input class="form-input"
-                id="fact-dir" type="text" placeholder="Dirección completa"></div>
-            <div class="form-group fg-full"><label class="form-label">Correo Electrónico</label><input
-                class="form-input" id="fact-email" type="email" placeholder="facturacion@empresa.com"></div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-primary" onclick="saveBillingData()"><i class="fa-solid fa-check"></i> Actualizar
-              Facturación</button>
+          <div class="card card-body" style="border-radius:var(--r-lg);padding:24px 28px;background:white">
+            <div class="banner blue" style="margin-bottom:16px"><i class="fa-solid fa-circle-info bi"></i>
+              <div class="bt">Estos datos se usarán para emitir tus <strong>facturas electrónicas</strong>. Activa el
+                checkbox para copiar automáticamente los datos de tu perfil personal.</div>
+            </div>
+            <label
+              style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-md);cursor:pointer;margin-bottom:18px">
+              <input type="checkbox" id="ck-mismos" onchange="syncFact(this)"
+                style="width:15px;height:15px;accent-color:var(--brand-primary)">
+              <span style="font-size:13px;font-weight:500">Usar los mismos datos de mi perfil personal</span>
+            </label>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Tipo de Documento</label>
+                <select class="form-input" id="fact-tipo">
+                  <option>Cédula</option>
+                  <option>RUC</option>
+                  <option>Pasaporte</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Número de Documento</label>
+                <input class="form-input" id="fact-num" type="text" placeholder="Número de identificación">
+              </div>
+              <div class="form-group fg-full">
+                <label class="form-label">Razón Social / Nombre</label>
+                <input class="form-input" id="fact-razon" type="text"
+                  placeholder="Nombre o Razón Social para la factura">
+              </div>
+              <div class="form-group fg-full">
+                <label class="form-label">Dirección Fiscal</label>
+                <input class="form-input" id="fact-dir" type="text" placeholder="Dirección fiscal completa">
+              </div>
+              <div class="form-group fg-full">
+                <label class="form-label">Correo Electrónico de Facturación</label>
+                <input class="form-input" id="fact-email" type="email" placeholder="facturacion@empresa.com">
+              </div>
+            </div>
+            <div class="form-actions" style="margin-top:28px;padding-top:16px;border-top:1px solid var(--border-light)">
+              <button class="btn btn-primary" onclick="saveBillingData()"><i class="fa-solid fa-check"></i> Actualizar
+                Facturación</button>
+            </div>
           </div>
         </div>
 
@@ -3524,7 +3573,7 @@
           <button class="tab-btn" onclick="showTab(this,'tab-transferir')">Transferir Saldo</button>
           <button class="tab-btn" onclick="showTab(this,'tab-promo')">Codigo Promocional</button>
           <button class="tab-btn" onclick="showTab(this,'tab-facturas')">Historial Facturas</button>
-          <button class="tab-btn" onclick="showTab(this,'tab-hist-promo')">Historial Promos</button>
+          <button class="tab-btn" onclick="showTab(this,'tab-hist-promo')">Historial Códigos Promocionales</button>
         </div>
 
         <!-- Metodos de Pago -->
@@ -3547,7 +3596,7 @@
           <div id="registeredCardsContainer" class="pcard-grid"></div>
 
           <div style="margin-top:14px;margin-bottom:22px">
-            <button class="btn-add-payment-method" onclick="openAddCardModal()">
+            <button class="btn-add-payment-method" onclick="openPlacetopayGateway()">
               <i class="fa-solid fa-plus"></i> Agregar Método de Pago
             </button>
           </div>
@@ -3593,67 +3642,98 @@
               <input type="hidden" id="transferOriginId">
               <input type="hidden" id="transferOriginName">
 
-              <!-- Selector Cuenta Destino -->
-              <div class="form-group" style="margin-bottom:20px">
+              <!-- Input ID Cuenta Destino -->
+              <div class="form-group" style="margin-bottom:16px">
                 <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
-                  Cuenta Destino *
+                  ID de la Cuenta Destino *
                   <div class="help-wrap">
                     <div class="help-icon">?</div>
                     <div class="help-tip">
-                      <div class="ht">Cuenta Destino</div>Selecciona la cuenta IGOR a la que deseas transferir los
-                      fondos.
+                      <div class="ht">ID de Cuenta</div>Ingresa el identificador único de la cuenta IGOR destino (ej.
+                      <strong>AC-315</strong>, <strong>AC-502</strong>).
                     </div>
                   </div>
                 </label>
-                <select class="form-input" id="transferDestSelect" style="font-weight:600"
-                  onchange="updateTransferBreakdown()">
-                  <option value="">Selecciona una cuenta</option>
-                </select>
+                <div style="display:flex;gap:8px">
+                  <div style="position:relative;flex:1">
+                    <input class="form-input" id="transferDestIdInput" type="text" placeholder="Ej. AC-315"
+                      oninput="onTransferDestIdChange()"
+                      style="font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.5px">
+                  </div>
+                  <button type="button" class="btn btn-ghost" onclick="validateTransferDestAccount()"
+                    style="white-space:nowrap;padding:0 14px">
+                    <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                  </button>
+                </div>
+                <div id="transferDestHelpMsg" style="font-size:11.5px;color:var(--text-muted);margin-top:5px">
+                  Ingresa el ID de la cuenta receptora (ej. AC-315, AC-502) para visualizar sus datos.
+                </div>
               </div>
 
-              <!-- Monto a Transferir -->
-              <div
-                style="font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px">
-                Monto a Transferir *
-                <div class="help-wrap">
-                  <div class="help-icon">?</div>
-                  <div class="help-tip">
-                    <div class="ht">Monto de transferencia</div>Selecciona un monto predefinido o ingresa un valor
-                    personalizado.
+              <!-- Tarjeta de Info Cuenta Destino Detectada -->
+              <div id="transferDestCard"
+                style="display:none;margin-bottom:20px;background:#ffffff;border:1.5px solid var(--border-medium);border-radius:var(--r-lg);padding:14px 18px;box-shadow:var(--shadow-sm);animation:fadeUp .2s ease">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div id="transferDestAvatar"
+                      style="width:40px;height:40px;border-radius:50%;background:rgba(0,87,184,0.1);color:var(--brand-primary);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px">
+                      EM</div>
+                    <div>
+                      <div id="transferDestName" style="font-size:14.5px;font-weight:800;color:var(--text-primary)">
+                        Edificio Mirador</div>
+                      <div style="display:flex;align-items:center;gap:8px;margin-top:2px">
+                        <span id="transferDestIdBadge"
+                          style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);background:var(--bg-input);padding:1px 6px;border-radius:4px">AC-315</span>
+                        <span style="font-size:10.5px;color:var(--green);font-weight:700"><i
+                            class="fa-solid fa-circle-check"></i> Cuenta verificada</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;font-weight:700">
+                      Titular / RUC</div>
+                    <div id="transferDestDoc" style="font-size:12px;font-weight:600;color:var(--text-secondary)">
+                      1711122233</div>
                   </div>
                 </div>
               </div>
 
-              <!-- Botones de Montos Rápidos -->
-              <div class="amount-grid" style="margin-bottom:14px">
-                <div class="amt-btn" onclick="pickTransferAmt(this, 5)">$5</div>
-                <div class="amt-btn selected" onclick="pickTransferAmt(this, 10)">$10</div>
-                <div class="amt-btn" onclick="pickTransferAmt(this, 25)">$25</div>
-                <div class="amt-btn" onclick="pickTransferAmt(this, 50)">$50</div>
-                <div class="amt-btn" onclick="pickTransferCustom(this)" style="grid-column:span 2">Otro monto</div>
-              </div>
-
-              <!-- Monto personalizado wrap -->
-              <div id="transferCustomWrap" style="display:none;margin-bottom:18px;max-width:240px">
-                <div class="form-group">
-                  <label class="form-label">Monto personalizado ($)</label>
-                  <div
-                    style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
-                    <div
-                      style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:700;display:flex;align-items:center;justify-content:center;height:42px">
-                      $</div>
-                    <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="1"
-                      placeholder="0.00" oninput="updateTransferBreakdown()"
-                      style="border:none;height:42px;box-shadow:none;font-family:'JetBrains Mono',monospace">
+              <!-- Monto a Transferir (Solo input cuadrado) -->
+              <div class="form-group" style="margin-bottom:20px">
+                <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
+                  Monto a Transferir ($) *
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Monto de transferencia</div>Ingresa el monto numérico que deseas transferir.
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <!-- Concepto -->
-              <div class="form-group" style="margin-bottom:24px">
-                <label class="form-label" style="font-weight:700">Concepto o Nota (Opcional)</label>
+                </label>
                 <div
-                  style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
+                  style="display:flex;align-items:center;border:1.5px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white;max-width:280px">
+                  <div
+                    style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:800;display:flex;align-items:center;justify-content:center;height:44px;font-size:16px">
+                    $</div>
+                  <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="0.01"
+                    placeholder="0.00" oninput="updateTransferBreakdown()"
+                    style="border:none;height:44px;box-shadow:none;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700">
+                </div>
+              </div>
+
+              <!-- Motivo (Obligatorio) -->
+              <div class="form-group" style="margin-bottom:24px">
+                <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
+                  Motivo *
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Motivo de la transferencia</div>Especifica el motivo obligatorio de la transacción
+                      (ej. Pago de cuota de estacionamiento).
+                    </div>
+                  </div>
+                </label>
+                <div
+                  style="display:flex;align-items:center;border:1.5px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
                   <div
                     style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;height:42px">
                     <i class="fa-solid fa-align-left" style="font-size:13px"></i>
@@ -4310,8 +4390,8 @@
       'AC-001': {
         id: 'AC-001',
         label: 'Grupo Andino',
-        profile: { nombre: 'Grupo Andino', tipoDocumento: 'RUC', documento: '1700000000', email: 'usuario@ejemplo.com', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Estandar', pais: 'Ecuador', provincia: '', ciudad: '', direccion: '' },
-        billing: { tipo: 'RUC', numero: '1700000000', razon: 'Grupo Andino', direccion: 'Quito, Ecuador', email: 'facturacion@grupoandino.ec' },
+        profile: { nombre: 'Daysi Achig', tipoDocumento: 'RUC', documento: '1790011223001', email: 'usuario@grupoandino.ec', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Estandar', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. 6 de Diciembre y Orellana' },
+        billing: { tipo: 'RUC', numero: '1790011223001', razon: 'Grupo Andino S.A.', direccion: 'Av. 6 de Diciembre y Orellana', email: 'facturacion@grupoandino.ec' },
         balance: 13.50,
         visitCount: 4,
         chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
@@ -4489,7 +4569,6 @@
         const newName = document.getElementById('perfil-nombre').value.trim();
         if (newName) {
           acc.profile.nombre = newName;
-          acc.label = newName;
         }
         acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
         acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
@@ -4629,7 +4708,7 @@
 
       fillAccountSelector(true);
       setSafeValue('accountSelect', acc.id);
-      setSafeText('profileAccountId', `id_cuenta: ${acc.id}`);
+      setSafeText('profileAccountIdText', `id_cuenta: ${acc.id}`);
       setSafeText('profileAccountName', `Cuenta activa: ${acc.label}`);
       setSafeText('profileHeaderCopy', `Gestiona tu información personal y configuración de seguridad de ${acc.label}.`);
       setSafeText('profileAvatar', (acc.label || 'C').charAt(0).toUpperCase());
@@ -4680,6 +4759,7 @@
       syncRechargeCardOptions();
       resetPasswordFlow();
       renderTransferTab();
+      renderPromosList();
     }
 
     function switchAccount(accountId) {
@@ -4954,13 +5034,82 @@
       showToast('Vehículo registrado correctamente', 'success');
     }
 
-    function selectRechargeAmt(amt) {
+    function selectRechargeAmt(amt, isCustom = false) {
       S.rechargeAmt = amt;
-      document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
-      const target = event?.currentTarget;
-      if (target) target.classList.add('selected');
+
+      if (!isCustom) {
+        document.querySelectorAll('#tab-recargar .amount-grid .amt-btn').forEach(b => b.classList.remove('selected'));
+        if (event?.currentTarget) event.currentTarget.classList.add('selected');
+        const customWrap = document.getElementById('customWrap');
+        if (customWrap) customWrap.style.display = 'none';
+      }
+
+      const btnRec = document.getElementById('btnRec');
+      if (btnRec) btnRec.disabled = false;
+
+      const sub = amt / 1.12;
+      const iva = amt - sub;
+      const servTot = 1.00;
+      const total = amt + servTot;
+
+      setSafeText('brs', '$' + sub.toFixed(2));
+      setSafeText('bri', '$' + iva.toFixed(2));
+      setSafeText('brt', '$' + amt.toFixed(2));
+      setSafeText('btot', '$' + total.toFixed(2));
+      setSafeText('btnRecTxt', 'Recargar $' + amt.toFixed(2));
       const rVal = document.getElementById('rechargeAmtVal'); if (rVal) rVal.textContent = '$' + amt.toFixed(2);
       const rTot = document.getElementById('rechargeTotalVal'); if (rTot) rTot.textContent = '$' + amt.toFixed(2);
+    }
+
+    function pickAmt(el, val) {
+      document.querySelectorAll('#tab-recargar .amount-grid .amt-btn').forEach(b => b.classList.remove('selected'));
+      if (el) el.classList.add('selected');
+      const customWrap = document.getElementById('customWrap');
+      if (customWrap) customWrap.style.display = 'none';
+      const customInput = document.getElementById('iCustom');
+      if (customInput) customInput.value = '';
+      const err = document.getElementById('err-custom');
+      if (err) err.style.display = 'none';
+      selectRechargeAmt(val, false);
+    }
+
+    function pickCustom(el) {
+      document.querySelectorAll('#tab-recargar .amount-grid .amt-btn').forEach(b => b.classList.remove('selected'));
+      if (el) el.classList.add('selected');
+      const customWrap = document.getElementById('customWrap');
+      if (customWrap) customWrap.style.display = 'block';
+      const customInput = document.getElementById('iCustom');
+      if (customInput) {
+        if (!customInput.value || parseFloat(customInput.value) <= 0) {
+          customInput.value = '20.00';
+        }
+        customInput.focus();
+        customInput.select();
+      }
+      calcBd();
+    }
+
+    function calcBd() {
+      const customInput = document.getElementById('iCustom');
+      const val = parseFloat(customInput?.value || '0');
+      const err = document.getElementById('err-custom');
+      const btnRec = document.getElementById('btnRec');
+
+      if (isNaN(val) || val < 5) {
+        if (err) err.style.display = 'block';
+        if (btnRec) btnRec.disabled = true;
+        setSafeText('brs', '$0.00');
+        setSafeText('bri', '$0.00');
+        setSafeText('brt', '$0.00');
+        setSafeText('btot', '$0.00');
+        setSafeText('btnRecTxt', 'Monto mínimo $5.00');
+        S.rechargeAmt = 0;
+        return;
+      }
+
+      if (err) err.style.display = 'none';
+      if (btnRec) btnRec.disabled = false;
+      selectRechargeAmt(val, true);
     }
 
     function getBrandLogoHtml(brand) {
@@ -5042,73 +5191,99 @@
       }
     }
 
-    function openAddCardModal() {
-      const m = document.getElementById('addCardModal');
-      if (m) m.style.display = 'flex';
-      const numInput = document.getElementById('mCardNum');
-      if (numInput) numInput.focus();
+    function openPlacetopayGateway() {
+      const acc = getCurrentAccount();
+      const m = document.getElementById('placetopayGatewayModal');
+      if (!m) return;
+
+      const now = new Date();
+      const ref = '1727263434_' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
+      const dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');
+
+      setSafeText('p2pUserEmail', acc.profile?.email || 'p1urbigor@gmail.com');
+      setSafeText('p2pRefCode', ref);
+      setSafeText('p2pDetailRef', ref);
+      setSafeText('p2pDetailDate', dateStr);
+
+      setSafeValue('p2pCardNum', '');
+      setSafeValue('p2pCardExp', '');
+      setSafeValue('p2pCardCvv', '');
+      setSafeValue('p2pFirstName', acc.profile?.nombre ? acc.profile.nombre.split(' ')[0] : 'DAYSI DAYSI');
+      setSafeValue('p2pLastName', acc.profile?.nombre ? acc.profile.nombre.split(' ').slice(1).join(' ') : 'ACHIG ACHIG');
+      setSafeValue('p2pDocNum', acc.profile?.documento || '1727263434');
+      setSafeValue('p2pPhone', acc.profile?.telefono || '+593 99 751 1292');
+
+      const btn = document.getElementById('p2pSubmitBtn');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = 'Continuar';
+      }
+
+      m.style.display = 'flex';
     }
 
-    function closeAddCardModal() {
-      const m = document.getElementById('addCardModal');
+    function closePlacetopayGateway() {
+      const m = document.getElementById('placetopayGatewayModal');
       if (m) m.style.display = 'none';
     }
 
-    function saveCardFromModal() {
-      const numInput = document.getElementById('mCardNum');
-      const holderInput = document.getElementById('mCardHolder');
-      const expInput = document.getElementById('mCardExp');
-      const cvvInput = document.getElementById('mCardCvv');
+    function fmtP2pCardNum(input) {
+      let v = input.value.replace(/\D/g, '').slice(0, 16);
+      v = v.replace(/(.{4})/g, '$1 ').trim();
+      input.value = v;
+    }
+
+    function processPlacetopayTokenization() {
+      const numInput = document.getElementById('p2pCardNum');
+      const expInput = document.getElementById('p2pCardExp');
+      const btn = document.getElementById('p2pSubmitBtn');
 
       const rawNum = numInput ? numInput.value.replace(/\s+/g, '') : '';
-      const holder = holderInput ? holderInput.value.trim() : '';
       const exp = expInput ? expInput.value.trim() : '';
 
       if (!rawNum || rawNum.length < 12) {
-        showToast('Ingresa un número de tarjeta válido', 'error');
+        showToast('Ingresa un número de tarjeta válido para tokenizar', 'error');
         if (numInput) numInput.focus();
         return;
       }
-      if (!holder) {
-        showToast('Ingresa el nombre del titular', 'error');
-        if (holderInput) holderInput.focus();
-        return;
-      }
       if (!exp || exp.length < 5) {
-        showToast('Ingresa la fecha de expiración (MM/AA)', 'error');
+        showToast('Ingresa la fecha de expiración (Mes / Año)', 'error');
         if (expInput) expInput.focus();
         return;
       }
 
-      const last4 = rawNum.slice(-4);
-      let brand = 'Visa';
-      if (rawNum.startsWith('5') || rawNum.startsWith('2')) brand = 'Mastercard';
-      else if (rawNum.startsWith('3')) brand = 'Amex';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Tokenizando medio de pago...';
+      }
 
-      const isFirst = (!S.cards || S.cards.length === 0);
-      const newCard = {
-        id: 'c-' + Date.now().toString().slice(-6),
-        brand: brand,
-        number: `•••• ${last4}`,
-        last4: last4,
-        exp: exp.includes('/') ? `07/20${exp.split('/')[1]}` : exp,
-        holder: holder.toUpperCase(),
-        default: isFirst
-      };
+      setTimeout(() => {
+        const last4 = rawNum.slice(-4);
+        let brand = 'Mastercard';
+        if (rawNum.startsWith('4')) brand = 'Visa';
+        else if (rawNum.startsWith('3')) brand = 'Amex';
+        else if (rawNum.startsWith('6')) brand = 'Discover';
 
-      if (!S.cards) S.cards = [];
-      S.cards.push(newCard);
+        const isFirst = (!S.cards || S.cards.length === 0);
+        const newCard = {
+          id: 'c-' + Date.now().toString().slice(-6),
+          brand: brand,
+          number: `•••• ${last4}`,
+          last4: last4,
+          exp: exp.includes('/') ? `07/20${exp.split('/')[1]}` : exp,
+          holder: ((document.getElementById('p2pFirstName')?.value || 'DAYSI') + ' ' + (document.getElementById('p2pLastName')?.value || 'ACHIG')).toUpperCase(),
+          default: isFirst
+        };
 
-      if (numInput) numInput.value = '';
-      if (holderInput) holderInput.value = '';
-      if (expInput) expInput.value = '';
-      if (cvvInput) cvvInput.value = '';
+        if (!S.cards) S.cards = [];
+        S.cards.push(newCard);
 
-      closeAddCardModal();
-      persistCurrentAccount();
-      renderPaymentCards();
-      syncRechargeCardOptions();
-      showToast(`Tarjeta ${brand} •••• ${last4} guardada exitosamente`, 'success');
+        closePlacetopayGateway();
+        persistCurrentAccount();
+        renderPaymentCards();
+        syncRechargeCardOptions();
+        showToast(`¡Tarjeta ${brand} •••• ${last4} tokenizada y guardada exitosamente!`, 'success');
+      }, 1200);
     }
 
     function scrollToCardForm() {
@@ -5219,8 +5394,17 @@
         return;
       }
       const selectedCard = S.cards.find(c => c.id === cardSelect.value) || S.cards[0];
-      const amt = S.rechargeAmt || 10;
-      if (amt < 5) { showToast('El monto mínimo de recarga es $5.00', 'error'); return; }
+
+      const customWrap = document.getElementById('customWrap');
+      let amt = S.rechargeAmt;
+      if (customWrap && customWrap.style.display !== 'none') {
+        amt = parseFloat(document.getElementById('iCustom')?.value || '0');
+      }
+      if (isNaN(amt) || amt < 5) {
+        showToast('El monto mínimo de recarga es $5.00', 'error');
+        document.getElementById('iCustom')?.focus();
+        return;
+      }
 
       S.balance += amt;
       syncBalance();
@@ -5286,21 +5470,86 @@
       panels.forEach((p, i) => p.classList.toggle('active', i + 1 === S.passStep));
     }
 
-    function applyPromo() {
-      const input = document.getElementById('promoCodeInput');
-      const code = input?.value.trim().toUpperCase();
-      if (!code) { showToast('Ingresa un código válido', 'error'); return; }
-      if (code === 'IGOR50OFF' || code === 'CORP10') {
-        S.balance += 5;
-        syncBalance();
-        const now = new Date(); const ds = now.toISOString().split('T')[0];
-        S.movements.unshift({ id: Date.now(), type: 'promo', title: 'Código Promocional ' + code, date: ds, detail: { code: code }, amount: 5, balance: S.balance });
-        persistCurrentAccount();
-        renderMov(); renderDashMov();
-        showToast('¡Cupón aplicado! Se acreditaron $5.00', 'success');
-      } else {
-        showToast('Código inválido o ya utilizado', 'error');
+    function renderPromosList() {
+      const tbody = document.getElementById('promosTbody');
+      const emptyState = document.getElementById('promosUsed');
+      const table = document.getElementById('promosTable');
+      if (!tbody) return;
+
+      const promos = S.promos || [];
+      if (promos.length === 0) {
+        if (emptyState) emptyState.style.display = 'block';
+        if (table) table.style.display = 'none';
+        tbody.innerHTML = '';
+        return;
       }
+
+      if (emptyState) emptyState.style.display = 'none';
+      if (table) table.style.display = 'block';
+
+      tbody.innerHTML = promos.map(p => `
+        <tr>
+          <td>${p.date || 'Hoy'}</td>
+          <td style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--brand-primary)">${p.code}</td>
+          <td style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green)">+$${(p.amount || 5).toFixed(2)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function applyPromo() {
+      const input = document.getElementById('iPromo') || document.getElementById('promoCodeInput');
+      const code = input?.value.trim().toUpperCase();
+      if (!code) {
+        showToast('Ingresa un código promocional válido', 'error');
+        if (input) input.focus();
+        return;
+      }
+
+      if (!S.promos) S.promos = [];
+      const alreadyUsed = S.promos.some(p => p.code === code);
+      if (alreadyUsed) {
+        showToast(`El código "${code}" ya ha sido canjeado en esta cuenta`, 'warning');
+        return;
+      }
+
+      let promoAmt = 5.00;
+      if (code === 'IGOR50OFF' || code === 'IGOR5') promoAmt = 5.00;
+      else if (code === 'CORP10' || code === 'IGOR10') promoAmt = 10.00;
+      else if (code === 'BIENVENIDO' || code === 'PROMO20') promoAmt = 20.00;
+      else {
+        if (code.startsWith('IGOR') || code.startsWith('PROMO') || code.length >= 4) {
+          promoAmt = 5.00;
+        } else {
+          showToast('Código inválido o expirado', 'error');
+          return;
+        }
+      }
+
+      S.balance += promoAmt;
+      syncBalance();
+
+      const now = new Date();
+      const ds = `${String(now.getDate()).padStart(2, '0')}-08-2026`;
+      const promoRecord = { code: code, amount: promoAmt, date: ds };
+      S.promos.unshift(promoRecord);
+
+      S.movements.unshift({
+        id: Date.now(),
+        type: 'promo',
+        title: `Código Promocional ${code}`,
+        date: ds,
+        detail: { ref: `PROMO-${code}`, code: code, estado: 'APPROVED' },
+        amount: promoAmt,
+        balance: S.balance
+      });
+
+      persistCurrentAccount();
+      renderMov();
+      renderDashMov();
+      renderPromosList();
+
+      if (input) input.value = '';
+      showToast(`¡Cupón "${code}" canjeado con éxito! Se acreditaron +$${promoAmt.toFixed(2)} a tu saldo.`, 'success');
     }
 
     function renderMov(list = S.movements) {
@@ -5571,8 +5820,6 @@
     function sendCode() { resendVerificationCode(); }
     function checkCode() { verifyCode(); }
     function savePass() { updatePassword(); }
-    function pickAmt(el, val) { selectRechargeAmt(val); }
-    function pickCustom(el) { selectRechargeAmt(20); }
     function doRecargar() { processRecharge(); }
     function doRecharge() { processRecharge(); }
     function setPrimary(el) {
@@ -5610,7 +5857,6 @@
         return;
       }
       acc.label = newName;
-      acc.profile.nombre = newName;
       fillAccountSelector(true);
       renderCurrentAccount();
       cancelInlineAccountName();
@@ -5629,13 +5875,13 @@
     /* Validation functions for incomplete account and billing data */
     function isAccountAndBillingComplete() {
       const acc = getCurrentAccount();
-      if (!acc) return false;
+      if (!acc) return true;
 
       const p = acc.profile || {};
       const b = acc.billing || {};
 
-      const profileValid = Boolean(p.nombre && p.documento && p.email && p.telefono);
-      const billingValid = Boolean(b.numero && b.razon && b.direccion && b.email);
+      const profileValid = Boolean(p.nombre && p.documento && p.email);
+      const billingValid = Boolean(b.numero && b.razon);
 
       return profileValid && billingValid;
     }
@@ -5653,54 +5899,114 @@
 
 
 
-    /* Transferencia entre Cuentas Logic */
+    /* Copy Account ID */
+    function copyCurrentAccountId(btn) {
+      const acc = getCurrentAccount();
+      const idToCopy = acc?.id || S.currentAccountId || 'AC-001';
+      navigator.clipboard.writeText(idToCopy).then(() => {
+        showToast(`ID de cuenta copiado: ${idToCopy}`, 'success');
+        if (btn) {
+          const icon = btn.querySelector('i');
+          if (icon) {
+            icon.className = 'fa-solid fa-check';
+            setTimeout(() => { icon.className = 'fa-regular fa-copy'; }, 2000);
+          }
+        }
+      }).catch(() => {
+        showToast(`ID de cuenta copiado: ${idToCopy}`, 'success');
+      });
+    }
 
-    function pickTransferAmt(el, amt) {
-      S.transferSelectedAmt = amt;
-      const grid = el.parentElement;
-      if (grid) {
-        grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+
+
+    /* Transferencia entre Cuentas Logic */
+    function onTransferDestIdChange() {
+      const input = document.getElementById('transferDestIdInput');
+      const card = document.getElementById('transferDestCard');
+      const helpMsg = document.getElementById('transferDestHelpMsg');
+      if (!input) return;
+
+      const rawVal = input.value.trim().toUpperCase();
+      const originAcc = getCurrentAccount();
+
+      if (!rawVal) {
+        if (card) card.style.display = 'none';
+        if (helpMsg) {
+          helpMsg.textContent = 'Ingresa el ID de la cuenta receptora (ej. AC-315, AC-502) para visualizar sus datos.';
+          helpMsg.style.color = 'var(--text-muted)';
+        }
+        updateTransferBreakdown();
+        return;
       }
-      el.classList.add('selected');
-      const customWrap = document.getElementById('transferCustomWrap');
-      if (customWrap) customWrap.style.display = 'none';
+
+      if (originAcc && rawVal === originAcc.id) {
+        if (card) card.style.display = 'none';
+        if (helpMsg) {
+          helpMsg.textContent = 'No puedes transferir saldo a tu propia cuenta activa.';
+          helpMsg.style.color = 'var(--brand-pink)';
+        }
+        updateTransferBreakdown();
+        return;
+      }
+
+      const destAcc = ACCOUNT_DATA[rawVal];
+      if (destAcc) {
+        if (card) card.style.display = 'block';
+        if (helpMsg) {
+          helpMsg.textContent = 'Cuenta encontrada y verificada en el sistema.';
+          helpMsg.style.color = 'var(--green)';
+        }
+        setSafeText('transferDestName', destAcc.label);
+        setSafeText('transferDestAvatar', (destAcc.label || 'C').substring(0, 2).toUpperCase());
+        setSafeText('transferDestIdBadge', destAcc.id);
+        setSafeText('transferDestDoc', destAcc.profile?.documento || destAcc.billing?.numero || 'RUC Verificado');
+      } else {
+        if (card) card.style.display = 'none';
+        if (helpMsg) {
+          helpMsg.textContent = 'Buscando cuenta... Si no aparece, verifica el ID ingresado (ej. AC-315, AC-502).';
+          helpMsg.style.color = 'var(--text-muted)';
+        }
+      }
       updateTransferBreakdown();
     }
 
-    function pickTransferCustom(el) {
-      const grid = el.parentElement;
-      if (grid) {
-        grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+    function validateTransferDestAccount() {
+      const input = document.getElementById('transferDestIdInput');
+      if (!input || !input.value.trim()) {
+        showToast('Ingresa el ID de la cuenta destino', 'warning');
+        if (input) input.focus();
+        return;
       }
-      el.classList.add('selected');
-      const customWrap = document.getElementById('transferCustomWrap');
-      if (customWrap) customWrap.style.display = 'block';
-      const customInput = document.getElementById('transferAmountInput');
-      if (customInput) customInput.focus();
-      updateTransferBreakdown();
+      onTransferDestIdChange();
+      const rawVal = input.value.trim().toUpperCase();
+      const destAcc = ACCOUNT_DATA[rawVal];
+      if (destAcc && destAcc.id !== S.currentAccountId) {
+        showToast(`Cuenta verificada: ${destAcc.label}`, 'success');
+      } else if (rawVal === S.currentAccountId) {
+        showToast('No puedes transferir saldo a tu propia cuenta', 'error');
+      } else {
+        showToast(`No se encontró una cuenta con el ID "${rawVal}"`, 'error');
+      }
     }
 
     function getTransferSelectedAmount() {
-      const customWrap = document.getElementById('transferCustomWrap');
-      if (customWrap && customWrap.style.display !== 'none') {
-        const customInput = document.getElementById('transferAmountInput');
-        return parseFloat(customInput?.value || 0);
-      }
-      return S.transferSelectedAmt || 10;
+      const input = document.getElementById('transferAmountInput');
+      const amt = parseFloat(input?.value || '0');
+      return isNaN(amt) ? 0 : amt;
     }
 
     function updateTransferBreakdown() {
       const acc = getCurrentAccount();
       if (!acc) return;
 
-      const destSelect = document.getElementById('transferDestSelect');
-      const destId = destSelect?.value;
+      const destInput = document.getElementById('transferDestIdInput');
+      const destId = destInput ? destInput.value.trim().toUpperCase() : '';
       const destAcc = destId ? ACCOUNT_DATA[destId] : null;
 
       const amt = getTransferSelectedAmount();
 
       setSafeText('bdTransferOrigin', acc.label);
-      setSafeText('bdTransferDest', destAcc ? destAcc.label : (destId || 'Seleccionar'));
+      setSafeText('bdTransferDest', (destAcc && destAcc.id !== acc.id) ? `${destAcc.label} (${destAcc.id})` : '-');
       setSafeText('bdTransferCurrentBalance', '$' + S.balance.toFixed(2));
       setSafeText('bdTransferAmount', '$' + (isNaN(amt) ? '0.00' : amt.toFixed(2)));
 
@@ -5708,12 +6014,12 @@
       const remEl = document.getElementById('bdTransferRemaining');
       if (remEl) {
         remEl.textContent = '$' + remaining.toFixed(2);
-        remEl.style.color = remaining < 0 ? 'var(--red)' : 'var(--text-primary)';
+        remEl.style.color = remaining < 0 ? 'var(--brand-pink)' : 'var(--text-primary)';
       }
 
       const btnTxt = document.getElementById('btnTransferTxt');
       if (btnTxt) {
-        btnTxt.textContent = `Transferir $${(isNaN(amt) ? 0 : amt).toFixed(2)}`;
+        btnTxt.textContent = `Transferir $${(isNaN(amt) || amt <= 0 ? 0 : amt).toFixed(2)}`;
       }
     }
 
@@ -5728,23 +6034,7 @@
       setSafeText('transferOriginIdDisplay', originId);
       setSafeText('transferOriginBalanceDisplay', '$' + S.balance.toFixed(2));
 
-      const select = document.getElementById('transferDestSelect');
-      if (select) {
-        const currentVal = select.value;
-        select.innerHTML = '<option value="">Selecciona una cuenta</option>';
-        Object.values(ACCOUNT_DATA).forEach(a => {
-          if (a.id !== acc.id) {
-            const opt = document.createElement('option');
-            opt.value = a.id;
-            opt.textContent = `${a.label} (${a.id})`;
-            select.appendChild(opt);
-          }
-        });
-        if (currentVal && select.querySelector(`option[value="${currentVal}"]`)) {
-          select.value = currentVal;
-        }
-      }
-
+      onTransferDestIdChange();
       updateTransferBreakdown();
     }
 
@@ -5754,17 +6044,34 @@
         return;
       }
 
-      const destSelect = document.getElementById('transferDestSelect');
+      const destInput = document.getElementById('transferDestIdInput');
+      const destId = destInput ? destInput.value.trim().toUpperCase() : '';
       const conceptInput = document.getElementById('transferConceptInput');
 
-      if (!destSelect || !destSelect.value) {
-        showToast('Por favor selecciona una cuenta destino', 'error');
+      if (!destId) {
+        showToast('Por favor ingresa el ID de la cuenta destino', 'error');
+        if (destInput) destInput.focus();
+        return;
+      }
+
+      const originAcc = getCurrentAccount();
+      if (originAcc && destId === originAcc.id) {
+        showToast('No puedes transferir saldo a tu propia cuenta actual', 'error');
+        if (destInput) destInput.focus();
+        return;
+      }
+
+      const destAcc = ACCOUNT_DATA[destId];
+      if (!destAcc) {
+        showToast(`No existe una cuenta registrada con el ID "${destId}"`, 'error');
+        if (destInput) destInput.focus();
         return;
       }
 
       const amt = getTransferSelectedAmount();
       if (isNaN(amt) || amt <= 0) {
-        showToast('Ingresa un monto válido para transferir', 'error');
+        showToast('Por favor ingresa un monto válido a transferir', 'error');
+        document.getElementById('transferAmountInput')?.focus();
         return;
       }
 
@@ -5773,13 +6080,16 @@
         return;
       }
 
-      const originAcc = getCurrentAccount();
-      const destAcc = ACCOUNT_DATA[destSelect.value];
-      const concept = conceptInput?.value.trim() || 'Transferencia entre cuentas';
+      const motivo = conceptInput?.value.trim();
+      if (!motivo) {
+        showToast('El campo Motivo es obligatorio. Por favor ingresa un motivo para la transferencia.', 'error');
+        if (conceptInput) conceptInput.focus();
+        return;
+      }
 
-      setSafeText('modalSummaryOrigin', originAcc ? originAcc.label : 'Cuenta Origen');
-      setSafeText('modalSummaryDest', destAcc ? destAcc.label : destSelect.value);
-      setSafeText('modalSummaryConcept', concept);
+      setSafeText('modalSummaryOrigin', originAcc ? `${originAcc.label} (${originAcc.id})` : 'Cuenta Origen');
+      setSafeText('modalSummaryDest', `${destAcc.label} (${destAcc.id})`);
+      setSafeText('modalSummaryConcept', motivo);
       setSafeText('modalSummaryAmount', `$${amt.toFixed(2)}`);
       setSafeText('modalSummaryRemaining', `$${(S.balance - amt).toFixed(2)}`);
 
@@ -5800,35 +6110,25 @@
     function resetTransferForm() {
       setSafeValue('transferAmountInput', '');
       setSafeValue('transferConceptInput', '');
-      const destSelect = document.getElementById('transferDestSelect');
-      if (destSelect) destSelect.value = '';
-
-      S.transferSelectedAmt = 10;
-      const grid = document.querySelector('#tab-transferir .amount-grid');
-      if (grid) {
-        grid.querySelectorAll('.amt-btn').forEach((b, idx) => {
-          if (idx === 1) b.classList.add('selected');
-          else b.classList.remove('selected');
-        });
-      }
-      const customWrap = document.getElementById('transferCustomWrap');
-      if (customWrap) customWrap.style.display = 'none';
-
+      setSafeValue('transferDestIdInput', '');
+      onTransferDestIdChange();
       renderTransferTab();
     }
 
     function executeTransfer() {
-      const destSelect = document.getElementById('transferDestSelect');
+      const destInput = document.getElementById('transferDestIdInput');
       const conceptInput = document.getElementById('transferConceptInput');
 
-      const destId = destSelect?.value;
+      const destId = destInput ? destInput.value.trim().toUpperCase() : '';
       const amount = getTransferSelectedAmount();
-      const concept = conceptInput?.value.trim() || 'Transferencia de saldo';
+      const motivo = conceptInput?.value.trim();
 
-      if (!destId || isNaN(amount) || amount <= 0 || amount > S.balance) return;
+      if (!destId || !motivo || isNaN(amount) || amount <= 0 || amount > S.balance) return;
 
       const originAcc = getCurrentAccount();
       const destAcc = ACCOUNT_DATA[destId];
+      if (!destAcc) return;
+
       const refCode = `TRF-${Math.floor(100000 + Math.random() * 900000)}`;
 
       // 1. Deduct from origin
@@ -5841,27 +6141,25 @@
       originAcc.movements.unshift({
         id: Date.now(),
         type: 'parking',
-        title: `Transferencia a ${destAcc ? destAcc.label : destId}`,
+        title: `Transferencia a ${destAcc.label} (${destAcc.id})`,
         date: dateStr,
-        detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
+        detail: { ref: refCode, estado: 'APPROVED', motivo: motivo },
         amount: -amount,
         balance: S.balance
       });
 
       // 2. Add to destination
-      if (destAcc) {
-        destAcc.balance = (destAcc.balance || 0) + amount;
-        if (!destAcc.movements) destAcc.movements = [];
-        destAcc.movements.unshift({
-          id: Date.now() + 1,
-          type: 'recharge',
-          title: `Transferencia recibida de ${originAcc.label}`,
-          date: dateStr,
-          detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
-          amount: amount,
-          balance: destAcc.balance
-        });
-      }
+      destAcc.balance = (destAcc.balance || 0) + amount;
+      if (!destAcc.movements) destAcc.movements = [];
+      destAcc.movements.unshift({
+        id: Date.now() + 1,
+        type: 'recharge',
+        title: `Transferencia recibida de ${originAcc.label} (${originAcc.id})`,
+        date: dateStr,
+        detail: { ref: refCode, estado: 'APPROVED', motivo: motivo },
+        amount: amount,
+        balance: destAcc.balance
+      });
 
       // 3. Update global UI balance
       syncBalance();
@@ -5872,29 +6170,23 @@
       // Close confirm modal
       closeTransferConfirmModal();
 
-      // 4. Send notification with explicit post-transfer balance
-      showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc ? destAcc.label : destId} realizada satisfactoriamente! Tu saldo actual es $${S.balance.toFixed(2)}.`, 'success');
-
-      // Add system notification dot indicator if present
-      const notifBtn = document.getElementById('notifBtn');
-      if (notifBtn && !notifBtn.querySelector('.dot')) {
-        const dot = document.createElement('span');
-        dot.className = 'dot';
-        notifBtn.appendChild(dot);
-      }
-
-      // 5. Populate and show Success Modal with updated actual balance
+      // Show success modal
       setSafeText('successModalCurrentBalance', `$${S.balance.toFixed(2)}`);
       setSafeText('successModalAmount', `$${amount.toFixed(2)}`);
-      setSafeText('successModalDest', destAcc ? destAcc.label : destId);
+      setSafeText('successModalDest', `${destAcc.label} (${destAcc.id})`);
       setSafeText('successModalRef', refCode);
       setSafeText('successModalDate', `${dateStr} ${timeStr}`);
 
-      const successModal = document.getElementById('transferSuccessModal');
-      if (successModal) successModal.style.display = 'flex';
+      const succModal = document.getElementById('transferSuccessModal');
+      if (succModal) succModal.style.display = 'flex';
 
-      // 6. Refresh form and transfer tab state
-      resetTransferForm();
+      // Reset form
+      setSafeValue('transferAmountInput', '');
+      setSafeValue('transferConceptInput', '');
+      setSafeValue('transferDestIdInput', '');
+      onTransferDestIdChange();
+
+      showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc.label} realizada con éxito!`, 'success');
     }
 
   </script>
@@ -5946,7 +6238,7 @@
           <strong id="modalSummaryDest" style="color:var(--brand-primary)">-</strong>
         </div>
         <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
-          <span style="color:var(--text-secondary)">Concepto:</span>
+          <span style="color:var(--text-secondary)">Motivo:</span>
           <span id="modalSummaryConcept" style="font-weight:600;color:var(--text-primary)">-</span>
         </div>
         <div style="border-bottom:1px dashed var(--border-medium);margin:10px 0"></div>
@@ -6026,44 +6318,191 @@
     </div>
   </div>
 
-  <!-- Modal Agregar Método de Pago -->
-  <div id="addCardModal" class="modal-backdrop"
-    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
-    <div class="card"
-      style="max-width:440px;width:100%;border-radius:20px;padding:28px 24px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s ease">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-        <h3 style="font-size:18px;font-weight:800;color:var(--text-primary)"><i class="fa-solid fa-credit-card"
-            style="color:var(--brand-primary);margin-right:8px"></i>Agregar método de pago</h3>
-        <button onclick="closeAddCardModal()"
-          style="background:none;border:none;font-size:20px;color:var(--text-muted);cursor:pointer">&times;</button>
+  <!-- Modal / Page Gateway Placetopay UrbaPark PASS Tokenización -->
+  <div id="placetopayGatewayModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.75);z-index:99999;align-items:center;justify-content:center;padding:15px;overflow-y:auto">
+    <div
+      style="max-width:980px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.35);display:flex;flex-wrap:wrap;min-height:580px;position:relative;animation:fadeUp .24s ease">
+
+      <!-- Botón Cerrar -->
+      <button onclick="closePlacetopayGateway()"
+        style="position:absolute;top:14px;right:14px;z-index:10;background:rgba(255,255,255,0.2);border:none;width:32px;height:32px;border-radius:50%;color:#ffffff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">&times;</button>
+
+      <!-- COLUMNA IZQUIERDA (Formulario Blanco) -->
+      <div
+        style="flex:1.2;min-width:320px;padding:32px 36px;background:#ffffff;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <!-- Logo UrbaPark PASS -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+            <div
+              style="width:38px;height:38px;border-radius:50%;background:#ea5420;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;box-shadow:0 4px 10px rgba(234,84,32,0.35)">
+              U</div>
+            <div style="font-size:22px;font-weight:800;color:#334155;letter-spacing:-0.5px">UrbaPark <span
+                style="color:#0284c7;font-weight:700">PASS</span></div>
+          </div>
+
+          <!-- User Email Bar -->
+          <div
+            style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:20px">
+            <div
+              style="width:32px;height:32px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;color:#64748b">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div style="flex:1">
+              <div id="p2pUserEmail" style="font-size:13px;font-weight:700;color:#1e293b">usuario@ejemplo.com</div>
+              <a href="javascript:void(0)" style="font-size:11px;color:#64748b;text-decoration:underline">Cambiar de
+                cuenta</a>
+            </div>
+          </div>
+
+          <!-- Seccion Tarjeta -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <h4 style="font-size:15px;font-weight:700;color:#1e293b">Tarjeta de Crédito / Débito</h4>
+            <div
+              style="width:32px;height:20px;background:#1e293b;border-radius:4px;display:flex;align-items:center;justify-content:center;color:white;font-size:10px">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+          </div>
+
+          <!-- Formulario Datos de la tarjeta -->
+          <div style="margin-bottom:16px">
+            <label style="font-size:12px;font-weight:600;color:#475569;display:block;margin-bottom:5px">Datos de la
+              tarjeta</label>
+            <div style="position:relative;margin-bottom:8px">
+              <input id="p2pCardNum" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
+                style="width:100%;height:42px;padding:0 120px 0 12px;border:1px solid #cbd5e1;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13.5px;outline:none"
+                oninput="fmtP2pCardNum(this)">
+              <div
+                style="position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;gap:3px;align-items:center">
+                <span
+                  style="font-size:9px;font-weight:800;color:#00457C;background:#E6F0F8;padding:2px 4px;border-radius:3px">DC</span>
+                <span
+                  style="font-size:9px;font-weight:800;color:#FF6000;background:#FFF0E6;padding:2px 4px;border-radius:3px">DISC</span>
+                <span
+                  style="font-size:9px;font-weight:900;color:#1A1F71;background:#EBF0FF;padding:2px 4px;border-radius:3px">VISA</span>
+                <span
+                  style="font-size:9px;font-weight:900;color:#EB001B;background:#FFEBEB;padding:2px 4px;border-radius:3px">MC</span>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px">
+              <div style="flex:1;position:relative">
+                <input id="p2pCardExp" type="text" maxlength="5" placeholder="Mes / Año"
+                  style="width:100%;height:42px;padding:0 30px 0 12px;border:1px solid #cbd5e1;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none">
+                <i class="fa-regular fa-calendar"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px"></i>
+              </div>
+              <div style="flex:1;position:relative">
+                <input id="p2pCardCvv" type="text" maxlength="4" placeholder="CVV"
+                  style="width:100%;height:42px;padding:0 30px 0 12px;border:1px solid #cbd5e1;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none">
+                <i class="fa-solid fa-circle-info"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario Datos del propietario -->
+          <div style="margin-bottom:18px">
+            <label style="font-size:12px;font-weight:600;color:#475569;display:block;margin-bottom:5px">Datos del
+              propietario</label>
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <input id="p2pFirstName" type="text" placeholder="DAYSI DAYSI"
+                style="flex:1;height:40px;padding:0 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:12.5px;outline:none">
+              <input id="p2pLastName" type="text" placeholder="ACHIG ACHIG"
+                style="flex:1;height:40px;padding:0 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:12.5px;outline:none">
+            </div>
+            <div style="display:flex;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden;margin-bottom:8px">
+              <select id="p2pDocType"
+                style="width:65px;background:#f8fafc;border:none;border-right:1px solid #cbd5e1;padding:0 6px;font-size:12px;font-weight:600;color:#334155;outline:none">
+                <option>CI</option>
+                <option>RUC</option>
+                <option>PAS</option>
+              </select>
+              <input id="p2pDocNum" type="text" placeholder="1727263434"
+                style="flex:1;height:40px;padding:0 10px;border:none;font-size:12.5px;outline:none">
+            </div>
+            <div style="display:flex;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden">
+              <div
+                style="width:65px;background:#f8fafc;border-right:1px solid #cbd5e1;display:flex;align-items:center;justify-content:center;gap:3px;font-size:13px">
+                🇪🇨 <i class="fa-solid fa-chevron-down" style="font-size:8px;color:#64748b"></i>
+              </div>
+              <input id="p2pPhone" type="text" placeholder="+593 99 751 1292"
+                style="flex:1;height:40px;padding:0 10px;border:none;font-size:12.5px;outline:none">
+            </div>
+          </div>
+
+          <!-- Boton Continuar -->
+          <button id="p2pSubmitBtn" onclick="processPlacetopayTokenization()"
+            style="width:100%;height:46px;background:#ea5420;color:white;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center;gap:8px">
+            Continuar
+          </button>
+        </div>
+
+        <!-- Legal notice -->
+        <div style="font-size:10px;color:#94a3b8;line-height:1.35;margin-top:16px">
+          Al continuar acepto las políticas aplicables para el tratamiento de mis datos personales según la
+          jurisdicción local del responsable y de <strong>Evertec PlacetoPay</strong> en su calidad de encargado.
+        </div>
       </div>
-      <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
-        <div class="form-group fg-full">
-          <label class="form-label">Número de Tarjeta</label>
-          <input class="form-input" id="mCardNum" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
-            style="font-family:'JetBrains Mono',monospace">
+
+      <!-- COLUMNA DERECHA (Panel Azul Placetopay) -->
+      <div
+        style="flex:0.8;min-width:270px;background:#3897d3;color:#ffffff;padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <!-- Top header info -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+            <div style="font-size:14.5px;font-weight:700">Tokenizar medio de pago</div>
+            <div style="font-size:10.5px;opacity:0.85;font-family:'JetBrains Mono',monospace">S76464055-T100</div>
+          </div>
+          <div id="p2pRefCode"
+            style="font-size:11.5px;opacity:0.8;font-family:'JetBrains Mono',monospace;margin-bottom:24px">
+            1727263434_202608121217</div>
+
+          <!-- Detalle del pago accordion -->
+          <div
+            style="border-top:1px solid rgba(255,255,255,0.25);border-bottom:1px solid rgba(255,255,255,0.25);padding:14px 0;margin-bottom:26px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700">
+              <span><i class="fa-regular fa-clipboard" style="margin-right:6px"></i> Detalle del pago</span>
+              <i class="fa-solid fa-chevron-up" style="font-size:10px"></i>
+            </div>
+            <div style="margin-top:12px;font-size:12px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between">
+                <span style="opacity:0.85">Referencia</span>
+                <span id="p2pDetailRef"
+                  style="font-weight:600;font-family:'JetBrains Mono',monospace">1727263434_202608121217</span>
+              </div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="opacity:0.85">Fecha de solicitud</span>
+                <span id="p2pDetailDate" style="font-weight:500">2026-08-12 12:17:51</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expiration timer info -->
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:14px">
+            <i class="fa-regular fa-clock" style="font-size:14px"></i>
+            <span>Tu proceso expirará en 20 minutos</span>
+          </div>
+
+          <!-- Support email -->
+          <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;opacity:0.9">
+            <i class="fa-regular fa-life-ring" style="font-size:14px"></i>
+            <span>Obtén ayuda en <a href="mailto:servicioalcliente@urba-park.com"
+                style="color:white;text-decoration:underline">servicioalcliente@urba-park.com</a></span>
+          </div>
         </div>
-        <div class="form-group fg-full">
-          <label class="form-label">Nombre del Titular</label>
-          <input class="form-input" id="mCardHolder" type="text" placeholder="NOMBRE APELLIDO">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Expiración</label>
-          <input class="form-input" id="mCardExp" type="text" maxlength="5" placeholder="MM/AA"
-            style="font-family:'JetBrains Mono',monospace">
-        </div>
-        <div class="form-group">
-          <label class="form-label">CVV</label>
-          <input class="form-input" id="mCardCvv" type="text" maxlength="4" placeholder="•••"
-            style="font-family:'JetBrains Mono',monospace">
+
+        <!-- Footer branding -->
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;font-size:11px;opacity:0.9;border-top:1px solid rgba(255,255,255,0.2);padding-top:14px;margin-top:20px">
+          <div>Hecho por <strong>placetopay</strong> <span style="font-size:9px">by evertec</span></div>
+          <div style="display:flex;align-items:center;gap:4px;cursor:pointer">
+            <i class="fa-solid fa-globe" style="font-size:10px"></i> Español <i class="fa-solid fa-chevron-down"
+              style="font-size:8px"></i>
+          </div>
         </div>
       </div>
-      <div style="display:flex;gap:12px;margin-top:22px">
-        <button class="btn btn-ghost" onclick="closeAddCardModal()"
-          style="flex:1;justify-content:center">Cancelar</button>
-        <button class="btn btn-primary" onclick="saveCardFromModal()" style="flex:1.4;justify-content:center"><i
-            class="fa-solid fa-check"></i> Guardar Tarjeta</button>
-      </div>
+
     </div>
   </div>
 
