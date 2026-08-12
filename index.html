@@ -2450,58 +2450,118 @@
       background: var(--bg-hover)
     }
 
-    /* VEHICLE & MIFARE */
+    /* VEHICLE */
     .vehicle-item {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      padding: 16px 18px;
-      background: var(--bg-input);
-      border: 1px solid var(--border-light);
-      border-radius: var(--r-lg);
-      transition: all var(--t)
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      background: white;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-xs);
+      transition: all var(--t);
     }
 
     .vehicle-item:hover {
       border-color: var(--border-focus);
-      box-shadow: var(--shadow-sm)
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
     }
 
     .vehicle-top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 14px;
-      width: 100%
+      width: 100%;
+    }
+
+    .vehicle-info-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
     }
 
     .vehicle-main {
       flex: 1;
-      min-width: 0
+      min-width: 0;
+    }
+
+    .vehicle-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .vehicle-meta {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-top: 4px
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .vehicle-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 4px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
     }
 
     .vehicle-photo {
-      width: 58px;
-      height: 58px;
-      border-radius: var(--r-md);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       object-fit: cover;
       border: 1px solid var(--border-light);
       background: white;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
     .vehicle-photo.placeholder {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 22px;
-      background: var(--bg-card)
+      color: var(--brand-primary);
+      font-size: 20px;
+      background: rgba(0, 109, 255, 0.06);
+      border: 1px solid rgba(0, 109, 255, 0.14);
+    }
+
+    .plate {
+      background: #0f172a;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: 6px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vehicle-actions-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .vehicle-access {
@@ -2510,25 +2570,30 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 14px;
-      background: white;
+      padding: 11px 14px;
+      background: var(--bg-input);
       border: 1px solid var(--border-light);
-      border-radius: var(--r-md)
+      border-radius: var(--r-md);
+      box-sizing: border-box;
     }
 
     .vehicle-access-copy {
       display: flex;
       flex-direction: column;
-      gap: 4px
+      gap: 2px;
     }
 
     .vehicle-access-copy strong {
-      font-size: 12px
+      font-size: 12px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .vehicle-access-copy span {
       font-size: 11px;
-      color: var(--text-secondary)
+      color: var(--text-secondary);
     }
 
     .badge-rec {
@@ -2541,19 +2606,7 @@
       border-radius: 99px;
       background: rgba(0, 87, 184, 0.08);
       color: var(--brand-primary);
-      border: 1px solid rgba(0, 87, 184, 0.18)
-    }
-
-    .plate {
-      background: var(--text-primary);
-      color: white;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 800;
-      padding: 4px 11px;
-      border-radius: 5px;
-      letter-spacing: 2px;
-      white-space: nowrap
+      border: 1px solid rgba(0, 87, 184, 0.18);
     }
 
     .mifare-item {
@@ -2984,7 +3037,7 @@
         <span class="nav-badge" id="movBadge">8</span>
       </div>
       <div class="nav-item" id="nav-accesos" onclick="goTo('accesos',this)">
-        <span class="nav-icon"><i class="fa-solid fa-key"></i></span>Medios de Acceso
+        <span class="nav-icon"><i class="fa-solid fa-car-side"></i></span>Vehículos
       </div>
       <div class="nav-group">Demo</div>
       <div class="nav-item" onclick="startTour()">
@@ -4000,14 +4053,14 @@
         </div>
       </section>
 
-      <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
-     ACCESOS
-�.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
+      <!-- ─────────────────────────────────────────────────────────────
+     VEHÍCULOS
+───────────────────────────────────────────────────────────── -->
       <section id="sec-accesos" class="section">
         <div class="sec-header">
           <div>
-            <h2>Mis Medios de Acceso</h2>
-            <p>Vehículos, tarjetas Mifare y código QR</p>
+            <h2>Vehículos</h2>
+            <p>Vehículos registrados y apertura por lectura de placas</p>
           </div>
         </div>
 
@@ -4028,7 +4081,7 @@
             <button class="btn btn-primary btn-sm" onclick="toggleVehicleForm(true)"><i class="fa-solid fa-plus"></i>
               Añadir vehículo</button>
           </div>
-          <div id="vehicleList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:12px">
+          <div id="vehicleList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px">
             <div class="vehicle-item">
               <div class="vehicle-top">
                 <div class="vehicle-photo placeholder"><i class="fa-solid fa-car"></i></div>
@@ -4095,113 +4148,6 @@
               <button class="btn btn-ghost" onclick="toggleVehicleForm(false)">Cancelar</button>
               <button class="btn btn-primary" onclick="addVehicle()"><i class="fa-solid fa-check"></i> Guardar
                 vehículo</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mifare -->
-        <div class="card card-body" style="margin-bottom:18px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <div style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px">
-              Tarjetas Mifare / NFC
-              <div class="help-wrap">
-                <div class="help-icon">?</div>
-                <div class="help-tip">
-                  <div class="ht">Tarjetas de proximidad</div>Las tarjetas Mifare usan tecnología NFC (sin contacto).
-                  Solo acércalas al lector de la barrera para acceder al parqueadero. Son una alternativa al QR para
-                  usuarios frecuentes.
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-primary btn-sm" onclick="toggleMifareForm(true)"><i class="fa-solid fa-plus"></i>
-              Añadir tarjeta Mifare</button>
-          </div>
-          <div id="mifareList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:12px">
-            <div class="mifare-item">
-              <div class="mifare-ico"><i class="fa-solid fa-credit-card"></i></div>
-              <div style="flex:1">
-                <div style="font-size:13.5px;font-weight:600">Tarjeta Principal</div>
-                <div
-                  style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);margin-top:2px">
-                  04:A3:9F:1C:7B:21</div>
-                <div style="margin-top:6px"><span class="badge-active"><i class="fa-solid fa-circle"
-                      style="font-size:6px"></i> Activa</span></div>
-              </div>
-            </div>
-            <div class="mifare-item">
-              <div class="mifare-ico"><i class="fa-solid fa-credit-card"></i></div>
-              <div style="flex:1">
-                <div style="font-size:13.5px;font-weight:600">Tarjeta Adicional</div>
-                <div
-                  style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);margin-top:2px">
-                  04:B7:6E:42:1A:09</div>
-                <div style="margin-top:6px"><span class="badge-active"><i class="fa-solid fa-circle"
-                      style="font-size:6px"></i> Activa</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="access-form" id="mifareFormWrap">
-            <div style="font-size:14px;font-weight:700;margin-bottom:14px">Añadir tarjeta Mifare / NFC</div>
-            <div class="access-grid">
-              <div class="form-group">
-                <label class="form-label">Nombre de la tarjeta</label>
-                <input class="form-input" id="mifNombre" type="text" placeholder="Tarjeta Oficina">
-              </div>
-              <div class="form-group">
-                <label class="form-label">UID / Identificador NFC</label>
-                <input class="form-input" id="mifUid" type="text" placeholder="04:C2:8D:11:AF:90">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Tipo</label>
-                <select class="form-input" id="mifTipo">
-                  <option value="Mifare Classic">Mifare Classic</option>
-                  <option value="Mifare DESFire">Mifare DESFire</option>
-                  <option value="NFC">NFC</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Estado inicial</label>
-                <select class="form-input" id="mifEstado">
-                  <option value="Activa">Activa</option>
-                  <option value="Pendiente">Pendiente</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button class="btn btn-ghost" onclick="toggleMifareForm(false)">Cancelar</button>
-              <button class="btn btn-primary" onclick="addMifareCard()"><i class="fa-solid fa-check"></i> Guardar
-                tarjeta</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- QR -->
-        <div class="card card-body">
-          <div style="font-size:14px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px">
-            Código QR de Acceso
-            <div class="help-wrap">
-              <div class="help-icon">?</div>
-              <div class="help-tip">
-                <div class="ht">¿Cómo usar el QR?</div>Muestra este código en la cámara lectora de la entrada del
-                parqueadero. La línea azul animada simula el proceso de escaneo. El QR es único por usuario y se
-                regenera automáticamente cada 24h.
-              </div>
-            </div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:28px">
-            <div class="qr-wrap">
-              <div class="qr-scan"></div><img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=IGOR-USER-00012345&color=0A1629&bgcolor=ffffff"
-                alt="QR de acceso" width="180" height="180" style="display:block;border-radius:6px">
-            </div>
-            <div style="max-width:320px">
-              <div style="font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:7px">
-                IGOR-USER-00012345</div>
-              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:18px">Presenta este
-                código en cualquier acceso IGOR para identificarte de forma rápida y segura. Vigente las 24h del día.
-              </div>
-              <button class="btn btn-primary" onclick="showToast('Código QR descargado correctamente','success')"><i
-                  class="fa-solid fa-download"></i> Descargar QR</button>
             </div>
           </div>
         </div>
@@ -4397,11 +4343,11 @@
         chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
         promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
         movements: [
-          { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-08-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
-          { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h 30m 00s' }, amount: -3.50, balance: 13.50 },
-          { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-08-2026', detail: { ref: 'Igor-2911-00089552', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
-          { id: 104, type: 'parking', title: 'Consumo Estadía Parqueo - Aeropuerto', date: '15-08-2026', detail: { ref: 'Igor-1506-00078120', estado: 'APPROVED', entrada: '15-06-2026 05:20', salida: '15-06-2026 07:05', duracion: '1h 45m 00s' }, amount: -4.00, balance: 7.00 },
-          { id: 105, type: 'promo', title: 'Código Promocional CORP10', date: '12-08-2026', detail: { ref: 'Igor-PROMO-1020', estado: 'APPROVED', code: 'CORP10' }, amount: 10.00, balance: 11.00 }
+          { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-06-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
+          { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', placa: 'PCD-9102', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h 30m 00s' }, amount: -3.50, balance: 13.50 },
+          { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089955', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
+          { id: 104, type: 'parking', title: 'Consumo Estadía Parqueo - Aeropuerto', date: '15-06-2026', detail: { ref: 'Igor-1506-00078120', estado: 'APPROVED', placa: 'MBR-4421', entrada: '15-06-2026 05:20', salida: '15-06-2026 07:05', duracion: '1h 45m 00s' }, amount: -4.00, balance: 7.00 },
+          { id: 105, type: 'promo', title: 'Código Promocional CORP10', date: '12-06-2026', detail: { ref: 'Igor-PROMO-1020', estado: 'APPROVED', code: 'CORP10' }, amount: 10.00, balance: 11.00 }
         ],
         vehicles: [
           { marca: 'Toyota', modelo: 'Hilux', color: 'Negro', placa: 'PCD-9102', icon: 'fa-truck-pickup', meta: 'Marca: Toyota · Camioneta corporativa', plateAccess: true },
@@ -4422,9 +4368,9 @@
         chartData: [0, 1.00, 0, 0.75, 2.10, 0, 1.30],
         promos: [],
         movements: [
-          { id: 201, type: 'parking', title: 'Estadia Scala Shopping', date: '2026-06-19', detail: { entrada: '2026-06-19 16:30', salida: '2026-06-19 18:05', duracion: '1h 35m 00s' }, amount: -1.00, balance: 5.75 },
-          { id: 202, type: 'parking', title: 'Estadia Hospital de los Valles', date: '2026-06-16', detail: { entrada: '2026-06-16 09:00', salida: '2026-06-16 11:10', duracion: '2h 10m 00s' }, amount: -2.10, balance: 6.75 },
-          { id: 203, type: 'recharge', title: 'Recarga de Saldo', date: '2026-06-12', detail: { ref: 'Igor-4410-00010220', estado: 'APPROVED' }, amount: +8.00, balance: 8.85 }
+          { id: 201, type: 'parking', title: 'Estadía Scala Shopping', date: '19-06-2026', detail: { ref: 'Igor-3150-00065410', estado: 'APPROVED', placa: 'PQA-7788', entrada: '19-06-2026 16:30', salida: '19-06-2026 18:05', duracion: '1h 35m 00s' }, amount: -1.00, balance: 5.75 },
+          { id: 202, type: 'parking', title: 'Estadía Hospital de los Valles', date: '16-06-2026', detail: { ref: 'Igor-3150-00065200', estado: 'APPROVED', placa: 'PQA-7788', entrada: '16-06-2026 09:00', salida: '16-06-2026 11:10', duracion: '2h 10m 00s' }, amount: -2.10, balance: 6.75 },
+          { id: 203, type: 'recharge', title: 'Recarga de Saldo', date: '12-06-2026', detail: { ref: 'Igor-4410-00010220', estado: 'APPROVED' }, amount: 8.00, balance: 8.85 }
         ],
         vehicles: [
           { marca: 'Mazda', modelo: 'CX-5', color: 'Rojo', placa: 'PQA-7788', icon: 'fa-car-side', meta: 'Marca: Mazda · SUV familiar', plateAccess: true }
@@ -4443,8 +4389,8 @@
         chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
         promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
         movements: [
-          { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-08-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
-          { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-08-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', entrada: '19-08-2026 10:15', salida: '19-08-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
+          { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-07-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
+          { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-07-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', placa: 'PBE-3390', entrada: '19-07-2026 10:15', salida: '19-07-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
           { id: 303, type: 'promo', title: 'Código Promocional IGOR50OFF', date: '15-07-2026', detail: { ref: 'Igor-PROMO-5020', estado: 'APPROVED', code: 'IGOR50OFF' }, amount: 5.00, balance: 0.00 }
         ],
         vehicles: [
@@ -4493,7 +4439,7 @@
       }
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       if (el) el.classList.add('active');
-      const titles = { dashboard: 'Dashboard', perfil: 'Cuenta', billetera: 'Billetera', movimientos: 'Mis Movimientos', accesos: 'Medios de Acceso', ajustes: 'Ajustes' };
+      const titles = { dashboard: 'Dashboard', perfil: 'Cuenta', billetera: 'Billetera', movimientos: 'Mis Movimientos', accesos: 'Vehículos', ajustes: 'Ajustes' };
       const tTitle = document.getElementById('tbTitle'); if (tTitle) tTitle.textContent = titles[name] || name;
       const tBread = document.getElementById('tbBread'); if (tBread) tBread.textContent = 'IGOR / ' + (titles[name] || name);
       const mArea = document.getElementById('mainArea'); if (mArea) mArea.scrollTo(0, 0);
@@ -4591,7 +4537,7 @@
       const list = document.getElementById('vehicleList');
       if (!list) return;
       if (!S.vehicles || S.vehicles.length === 0) {
-        list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay vehículos registrados en esta cuenta.</div>';
+        list.innerHTML = '<div style="padding:28px;text-align:center;color:var(--text-secondary);font-size:13px;grid-column:1/-1;background:var(--bg-input);border-radius:var(--r-lg);border:1px dashed var(--border-light)"><i class="fa-solid fa-car" style="font-size:24px;color:var(--text-muted);margin-bottom:8px;display:block"></i>No hay vehículos registrados en esta cuenta.</div>';
         return;
       }
       list.innerHTML = S.vehicles.map((veh, idx) => {
@@ -4600,19 +4546,27 @@
           : `<div class="vehicle-photo placeholder"><i class="fa-solid ${veh.icon || 'fa-car-side'}"></i></div>`;
         return `<div class="vehicle-item">
       <div class="vehicle-top">
-        ${photo}
-        <div class="vehicle-main"><div style="font-size:13.5px;font-weight:600">${veh.marca} ${veh.modelo} <span style="color:var(--text-secondary)"> - ${veh.color}</span></div><div class="vehicle-meta">${veh.meta || ('Marca: ' + veh.marca)}</div></div>
-        <div style="display:flex;align-items:center;gap:8px">
+        <div class="vehicle-info-wrap">
+          ${photo}
+          <div class="vehicle-main">
+            <div class="vehicle-title">${veh.marca} ${veh.modelo}</div>
+            <div class="vehicle-meta">
+              <span class="vehicle-tag">${veh.color || 'Color no esp.'}</span>
+              <span>${veh.meta || ('Marca: ' + veh.marca)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="vehicle-actions-top">
           <div class="plate">${veh.placa}</div>
-          <button class="icon-btn" onclick="deleteVehicle(${idx})" title="Eliminar vehículo" style="color:var(--brand-pink);background:rgba(232,0,90,0.08);width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all var(--t)">
+          <button class="icon-btn" onclick="deleteVehicle(${idx})" title="Eliminar vehículo" style="color:var(--brand-pink);background:rgba(232,0,90,0.08);width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all var(--t)">
             <i class="fa-solid fa-trash-can" style="font-size:12px"></i>
           </button>
         </div>
       </div>
       <div class="vehicle-access">
         <div class="vehicle-access-copy">
-          <strong>Habilitar por apertura de matrícula <span class="badge-rec">(Recomendado)</span></strong>
-          <span>Permite ingreso automático mediante lectura OCR de placa.</span>
+          <strong><i class="fa-solid fa-camera" style="color:var(--brand-primary);font-size:12px"></i> Apertura por matrícula <span class="badge-rec">(OCR)</span></strong>
+          <span>Ingreso automático sin contacto al detectar la placa</span>
         </div>
         <div class="toggle ${veh.plateAccess ? 'on' : ''}" onclick="togglePlateAccess(this,${idx})"></div>
       </div>
@@ -5015,23 +4969,41 @@
     }
 
     function toggleVehicleForm(show) {
-      const form = document.getElementById('vehicleForm');
+      const form = document.getElementById('vehicleFormWrap') || document.getElementById('vehicleForm');
       if (form) form.classList.toggle('open', show);
     }
 
     function addVehicle() {
       const marca = document.getElementById('vehMarca')?.value.trim();
       const modelo = document.getElementById('vehModelo')?.value.trim();
-      const placa = document.getElementById('vehPlaca')?.value.trim();
+      const placa = document.getElementById('vehPlaca')?.value.trim().toUpperCase();
       const color = document.getElementById('vehColor')?.value.trim();
       if (!marca || !modelo || !placa || !color) {
         showToast('Completa marca, modelo, placa y color del vehículo', 'error');
         return;
       }
-      S.vehicles.push({ marca: marca, modelo: modelo, placa: placa, color: color, icon: 'fa-car-side', plateAccess: true, meta: `Marca: ${marca}` });
+      if (!S.vehicles) S.vehicles = [];
+      S.vehicles.push({
+        marca: marca,
+        modelo: modelo,
+        placa: placa,
+        color: color,
+        icon: 'fa-car-side',
+        plateAccess: true,
+        meta: `Marca: ${marca} · ${modelo}`
+      });
+      persistCurrentAccount();
       renderVehicleList();
       toggleVehicleForm(false);
-      showToast('Vehículo registrado correctamente', 'success');
+
+      // Reset fields
+      setSafeValue('vehMarca', '');
+      setSafeValue('vehModelo', '');
+      setSafeValue('vehPlaca', '');
+      setSafeValue('vehColor', '');
+      setSafeValue('vehFoto', '');
+
+      showToast(`Vehículo ${marca} ${modelo} (${placa}) registrado correctamente`, 'success');
     }
 
     function selectRechargeAmt(amt, isCustom = false) {
@@ -5576,57 +5548,86 @@
         const items = grouped[dateStr];
         const countText = items.length === 1 ? '1 movimiento' : `${items.length} movimientos`;
 
-        const itemsHtml = items.map(m => {
+        const itemsHtml = items.map((m, mIdx) => {
           const isRecharge = m.type === 'recharge' || m.type === 'promo';
-          const iconClass = isRecharge ? 'fa-bolt' : 'fa-car-side';
-          const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : 'rgba(232,0,90,0.10)';
-          const iconColor = isRecharge ? '#F59E0B' : 'var(--brand-pink)';
-          const sign = m.amount > 0 ? '+' : '';
-          const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
+          const isTransfer = (m.title || '').includes('Transferencia');
+          const isParking = m.type === 'parking' || m.title.toLowerCase().includes('estadía') || m.title.toLowerCase().includes('estadia');
+
+          let iconClass = 'fa-car-side';
+          let iconBg = '#f1f5f9';
+          let iconColor = '#e02424';
+
+          if (isRecharge) {
+            iconClass = 'fa-bolt';
+            iconBg = '#fff7ed';
+            iconColor = '#f59e0b';
+          } else if (isTransfer) {
+            iconClass = 'fa-arrow-right-arrow-left';
+            iconBg = 'rgba(99,102,241,0.08)';
+            iconColor = '#6366f1';
+          } else if (isParking) {
+            iconClass = 'fa-car';
+            iconBg = '#f1f5f9';
+            iconColor = '#e02424';
+          }
+
+          const sign = m.amount > 0 ? '+' : (m.amount < 0 ? '-' : '');
+          const amtColor = m.amount > 0 ? '#10b981' : '#e02424';
           const refCode = m.detail?.ref || `Igor-${Math.floor(1000 + Math.random() * 9000)}-000${m.id || 100}`;
           const statusStr = m.detail?.estado || 'APPROVED';
-          const detailId = `mov-detail-${m.id || Math.floor(Math.random() * 100000)}`;
+          const detailId = `mov-detail-${idx}-${mIdx}-${m.id || Math.floor(Math.random() * 10000)}`;
+
+          // Placa para consumos de estadía de parqueo
+          let placaRow = '';
+          if (isParking) {
+            const placa = m.detail?.placa || (S.vehicles && S.vehicles.length > 0 ? S.vehicles[0].placa : 'PCD-9102');
+            placaRow = `
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px dashed #e2e8f0">
+                <div style="color:#64748b;font-size:13.5px;font-weight:500">Placa del vehículo</div>
+                <div style="font-weight:700;font-family:'JetBrains Mono',monospace;color:#0f172a;font-size:13.5px">${placa}</div>
+              </div>
+            `;
+          }
 
           return `
-        <div style="border-top: 1px solid var(--border-light)">
-          <div onclick="toggleMovDetail('${detailId}')" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;transition:background .2s">
+        <div style="border-top: 1px solid #f1f5f9">
+          <div onclick="toggleMovDetail('${detailId}')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;cursor:pointer;background:white;transition:background .15s">
             <div style="display:flex;align-items:center;gap:14px">
-              <div style="width:40px;height:40px;border-radius:50%;background:${iconBg};color:${iconColor};display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">
+              <div style="width:42px;height:42px;border-radius:50%;background:${iconBg};color:${iconColor};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">
                 <i class="fa-solid ${iconClass}"></i>
               </div>
               <div>
-                <div style="font-size:14px;font-weight:700;color:var(--text-primary)">${m.title}</div>
-                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${m.date}</div>
+                <div style="font-size:14.5px;font-weight:700;color:#0f172a">${m.title}</div>
+                <div style="font-size:12.5px;color:#64748b;margin-top:2px">${m.date}</div>
               </div>
             </div>
-            <div style="display:flex;align-items:center;gap:12px;text-align:right">
+            <div style="display:flex;align-items:center;gap:14px;text-align:right">
               <div>
-                <div style="font-size:14px;font-weight:800;color:${amtColor}">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
-                <div style="font-size:11.5px;color:var(--text-secondary);margin-top:1px">$${(m.balance || 0).toFixed(2)}</div>
+                <div style="font-size:15px;font-weight:700;color:${amtColor}">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:1px">$${(m.balance || 0).toFixed(2)}</div>
               </div>
-              <i class="fa-solid fa-chevron-right" id="${detailId}-chev" style="font-size:11px;color:var(--text-muted);transition:transform .2s"></i>
+              <i class="fa-solid fa-chevron-down" id="${detailId}-chev" style="font-size:12px;color:#94a3b8;transition:transform .2s"></i>
             </div>
           </div>
 
           <!-- Expandable Detail Card -->
-          <div id="${detailId}" style="display:none;padding:16px 20px;background:rgba(248,250,255,0.7);border-top:1px dashed var(--border-light)">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;font-size:12px">
-              <div>
-                <div style="color:var(--text-secondary);margin-bottom:3px">Referencia</div>
-                <div style="font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text-primary)">${refCode}</div>
-              </div>
-              <div>
-                <div style="color:var(--text-secondary);margin-bottom:3px">Estado</div>
-                <div><span style="display:inline-block;padding:2px 8px;border-radius:12px;background:rgba(16,185,129,0.12);color:var(--green);font-size:11px;font-weight:700">✓ ${statusStr}</span></div>
-              </div>
-              <div>
-                <div style="color:var(--text-secondary);margin-bottom:3px">${m.amount > 0 ? 'Monto acreditado' : 'Monto debitado'}</div>
-                <div style="font-weight:800;color:${amtColor}">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
-              </div>
-              <div>
-                <div style="color:var(--text-secondary);margin-bottom:3px">Saldo resultante</div>
-                <div style="font-weight:800;color:var(--text-primary)">$${(m.balance || 0).toFixed(2)}</div>
-              </div>
+          <div id="${detailId}" style="display:none;padding:6px 24px 16px 24px;background:#ffffff;border-top:1px dashed rgba(226,232,240,0.8)">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px dashed #e2e8f0">
+              <div style="color:#64748b;font-size:13.5px;font-weight:500">Referencia</div>
+              <div style="font-weight:700;font-family:'JetBrains Mono',monospace;color:#0f172a;font-size:13.5px">${refCode}</div>
+            </div>
+            ${placaRow}
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px dashed #e2e8f0">
+              <div style="color:#64748b;font-size:13.5px;font-weight:500">Estado</div>
+              <div><span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:12px;background:#ecfdf5;color:#059669;font-size:11.5px;font-weight:700">✓ ${statusStr}</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px dashed #e2e8f0">
+              <div style="color:#64748b;font-size:13.5px;font-weight:500">${m.amount > 0 ? 'Monto acreditado' : 'Monto debitado'}</div>
+              <div style="font-weight:700;color:#0f172a;font-size:13.5px">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0">
+              <div style="color:#64748b;font-size:13.5px;font-weight:500">Saldo resultante</div>
+              <div style="font-weight:700;color:#0f172a;font-size:13.5px">$${(m.balance || 0).toFixed(2)}</div>
             </div>
           </div>
         </div>
@@ -5634,18 +5635,18 @@
         }).join('');
 
         return `
-      <div class="card" style="margin-bottom:14px;border-radius:var(--r-xl);overflow:hidden">
-        <div onclick="toggleDateCard('date-card-${idx}')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:white;cursor:pointer;user-select:none">
+      <div class="card" style="margin-bottom:16px;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--border-light);box-shadow:var(--shadow-xs)">
+        <div onclick="toggleDateCard('date-card-${idx}')" style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:white;cursor:pointer;user-select:none">
           <div>
-            <div style="font-size:15px;font-weight:800;color:var(--text-primary);letter-spacing:0.2px">${dateStr}</div>
-            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Haz clic para ver los movimientos de este día</div>
+            <div style="font-size:16px;font-weight:700;color:#0f172a">${dateStr}</div>
+            <div style="font-size:12.5px;color:#64748b;margin-top:2px">Haz clic para ver los movimientos de este día</div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="padding:4px 12px;border-radius:16px;background:rgba(59,130,246,0.1);color:var(--brand-primary);font-size:12px;font-weight:700">${countText}</span>
-            <i class="fa-solid fa-chevron-up" id="date-card-${idx}-chev" style="font-size:12px;color:var(--text-muted);transition:transform .2s"></i>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="padding:4px 14px;border-radius:99px;background:rgba(59,130,246,0.10);color:var(--brand-primary);font-size:12px;font-weight:700">${countText}</span>
+            <i class="fa-solid fa-chevron-down" id="date-card-${idx}-chev" style="font-size:12px;color:#94a3b8;transition:transform .2s"></i>
           </div>
         </div>
-        <div id="date-card-${idx}">
+        <div id="date-card-${idx}" style="display:none">
           ${itemsHtml}
         </div>
       </div>
@@ -5667,11 +5668,12 @@
       container.innerHTML = slice.map(m => {
         const isRecharge = m.type === 'recharge' || m.type === 'promo';
         const isTransfer = (m.title || '').includes('Transferencia');
-        const iconClass = isRecharge ? 'fa-bolt' : (isTransfer ? 'fa-arrow-right-arrow-left' : 'fa-car-side');
-        const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : (isTransfer ? 'rgba(0,87,184,0.10)' : 'rgba(232,0,90,0.10)');
-        const iconColor = isRecharge ? '#F59E0B' : (isTransfer ? 'var(--brand-primary)' : 'var(--brand-pink)');
+        const isParking = m.type === 'parking' || m.title.toLowerCase().includes('estadía') || m.title.toLowerCase().includes('estadia');
+        let iconClass = isRecharge ? 'fa-bolt' : (isTransfer ? 'fa-arrow-right-arrow-left' : 'fa-car');
+        let iconBg = isRecharge ? '#fff7ed' : (isTransfer ? 'rgba(0,87,184,0.10)' : '#f1f5f9');
+        let iconColor = isRecharge ? '#F59E0B' : (isTransfer ? 'var(--brand-primary)' : '#e02424');
         const sign = m.amount > 0 ? '+' : '';
-        const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
+        const amtColor = m.amount > 0 ? 'var(--green)' : '#e02424';
         return `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border-light)">
         <div style="display:flex;align-items:center;gap:12px">
@@ -5695,7 +5697,7 @@
       if (!el) return;
       if (el.style.display === 'none' || !el.style.display) {
         el.style.display = 'block';
-        if (chev) chev.style.transform = 'rotate(90deg)';
+        if (chev) chev.style.transform = 'rotate(180deg)';
       } else {
         el.style.display = 'none';
         if (chev) chev.style.transform = 'rotate(0deg)';
@@ -5706,12 +5708,12 @@
       const el = document.getElementById(id);
       const chev = document.getElementById(id + '-chev');
       if (!el) return;
-      if (el.style.display === 'none') {
+      if (el.style.display === 'none' || !el.style.display) {
         el.style.display = 'block';
-        if (chev) chev.style.transform = 'rotate(0deg)';
+        if (chev) chev.style.transform = 'rotate(180deg)';
       } else {
         el.style.display = 'none';
-        if (chev) chev.style.transform = 'rotate(180deg)';
+        if (chev) chev.style.transform = 'rotate(0deg)';
       }
     }
 
