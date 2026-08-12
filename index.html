@@ -3637,101 +3637,109 @@
 
         
         <!-- TAB: TRANSFERIR SALDO -->
-        <div id="tab-transferir" class="tab-panel" style="max-width:540px">
-          <div class="card" style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md)">
-            <div class="card-body" style="padding:28px 24px">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-                <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin:0">Transferencia entre Cuentas</h3>
+        <div id="tab-transferir" class="tab-panel">
+          <div class="banner purple"><i class="fa-solid fa-arrow-right-arrow-left bi" style="color:var(--brand-primary)"></i>
+            <div class="bt"><strong>Transferencia entre Cuentas IGOR:</strong> Transfiere saldo de tu cuenta actual a otra cuenta registrada de forma inmediata y sin comisiones.</div>
+          </div>
+
+          <div class="split-layout">
+            <div>
+              <!-- Tarjeta de Info Cuenta Origen -->
+              <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg, rgba(0,87,184,0.04) 0%, rgba(0,194,255,0.08) 100%);border:1px solid rgba(0,87,184,0.15)">
+                <div class="card-body" style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Cuenta Origen</div>
+                    <div id="transferOriginNameDisplay" style="font-size:16px;font-weight:800;color:var(--text-primary)">Grupo Andino</div>
+                    <div id="transferOriginIdDisplay" style="font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-top:2px">1b12659f-10be-4320-a619-2b36d5149b68</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Saldo Disponible</div>
+                    <div id="transferOriginBalanceDisplay" style="font-size:20px;font-weight:800;color:var(--green)">$10.00</div>
+                  </div>
+                </div>
               </div>
 
-              <!-- Banner obligatorio -->
-              <div style="padding:12px 16px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:var(--r-md);color:var(--brand-primary);font-size:13px;margin-bottom:20px">
-                Los campos con asterisco(*) son obligatorios
+              <!-- Inputs ocultos para compatibilidad -->
+              <input type="hidden" id="transferOriginId">
+              <input type="hidden" id="transferOriginName">
+
+              <!-- Selector Cuenta Destino -->
+              <div class="form-group" style="margin-bottom:20px">
+                <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
+                  Cuenta Destino *
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Cuenta Destino</div>Selecciona la cuenta IGOR a la que deseas transferir los fondos.
+                    </div>
+                  </div>
+                </label>
+                <select class="form-input" id="transferDestSelect" style="font-weight:600" onchange="updateTransferBreakdown()">
+                  <option value="">Selecciona una cuenta</option>
+                </select>
               </div>
 
-              <div id="transferStep1">
-                <!-- Identificador de origen -->
-                <div class="form-group" style="margin-bottom:16px">
-                  <label class="form-label" style="font-weight:700">Identificador de la cuenta de origen</label>
-                  <input class="form-input" id="transferOriginId" type="text" readonly style="background:var(--bg-input);color:var(--text-secondary);font-family:'JetBrains Mono',monospace;cursor:not-allowed">
+              <!-- Monto a Transferir -->
+              <div style="font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px">
+                Monto a Transferir *
+                <div class="help-wrap">
+                  <div class="help-icon">?</div>
+                  <div class="help-tip">
+                    <div class="ht">Monto de transferencia</div>Selecciona un monto predefinido o ingresa un valor personalizado.
+                  </div>
                 </div>
+              </div>
 
-                <!-- Nombre de la cuenta -->
-                <div class="form-group" style="margin-bottom:20px">
-                  <label class="form-label" style="font-weight:700">Nombre de la cuenta</label>
-                  <input class="form-input" id="transferOriginName" type="text" readonly style="background:var(--bg-input);color:var(--text-secondary);cursor:not-allowed">
-                </div>
+              <!-- Botones de Montos Rápidos -->
+              <div class="amount-grid" style="margin-bottom:14px">
+                <div class="amt-btn" onclick="pickTransferAmt(this, 5)">$5</div>
+                <div class="amt-btn selected" onclick="pickTransferAmt(this, 10)">$10</div>
+                <div class="amt-btn" onclick="pickTransferAmt(this, 25)">$25</div>
+                <div class="amt-btn" onclick="pickTransferAmt(this, 50)">$50</div>
+                <div class="amt-btn" onclick="pickTransferCustom(this)" style="grid-column:span 2">Otro monto</div>
+              </div>
 
-                <div style="border-bottom:1px dashed var(--border-light);margin-bottom:20px"></div>
-
-                <!-- Identificador cuenta destino -->
-                <div class="form-group" style="margin-bottom:16px">
-                  <label class="form-label" style="font-weight:700">Identificador de la cuenta destino*</label>
-                  <select class="form-input" id="transferDestSelect" style="font-weight:600">
-                    <option value="">Selecciona una cuenta</option>
-                  </select>
-                </div>
-
-                <!-- Monto -->
-                <div class="form-group" style="margin-bottom:16px">
-                  <label class="form-label" style="font-weight:700">Monto*</label>
+              <!-- Monto personalizado wrap -->
+              <div id="transferCustomWrap" style="display:none;margin-bottom:18px;max-width:240px">
+                <div class="form-group">
+                  <label class="form-label">Monto personalizado ($)</label>
                   <div style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
-                    <div style="padding:0 16px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:700;display:flex;align-items:center;justify-content:center;height:42px">$</div>
-                    <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="1" placeholder="24" style="border:none;height:42px;box-shadow:none">
-                  </div>
-                </div>
-
-                <!-- Concepto -->
-                <div class="form-group" style="margin-bottom:24px">
-                  <label class="form-label" style="font-weight:700">Concepto</label>
-                  <div style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
-                    <div style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;height:42px"><i class="fa-solid fa-align-left" style="font-size:13px"></i></div>
-                    <input class="form-input" id="transferConceptInput" type="text" placeholder="Concepto de la transferencia" style="border:none;height:42px;box-shadow:none">
-                  </div>
-                </div>
-
-                <!-- Footer Step 1 -->
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
-                  <span style="font-size:13px;color:var(--text-secondary)">Paso 1 de 2</span>
-                  <div style="display:flex;gap:10px">
-                    <button class="btn btn-ghost" onclick="resetTransferForm()">Cancelar</button>
-                    <button class="btn" onclick="nextTransferStep()" style="background:#F59E0B;color:white;font-weight:700;padding:10px 24px;border-radius:var(--r-md);box-shadow:0 2px 8px rgba(245,158,11,0.3)">Siguiente</button>
+                    <div style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);font-weight:700;display:flex;align-items:center;justify-content:center;height:42px">$</div>
+                    <input class="form-input" id="transferAmountInput" type="number" step="0.01" min="1" placeholder="0.00" oninput="updateTransferBreakdown()" style="border:none;height:42px;box-shadow:none;font-family:'JetBrains Mono',monospace">
                   </div>
                 </div>
               </div>
 
-              <!-- Step 2: Confirmación -->
-              <div id="transferStep2" style="display:none">
-                <div style="padding:16px;background:var(--bg-input);border-radius:var(--r-lg);margin-bottom:20px">
-                  <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Resumen de la Transferencia</div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13.5px">
-                    <span style="color:var(--text-secondary)">Cuenta Origen:</span>
-                    <strong id="summaryOrigin">Grupo Andino</strong>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13.5px">
-                    <span style="color:var(--text-secondary)">Cuenta Destino:</span>
-                    <strong id="summaryDest">Edificio Mirador</strong>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13.5px">
-                    <span style="color:var(--text-secondary)">Monto a Transferir:</span>
-                    <strong id="summaryAmount" style="color:#F59E0B;font-size:16px">$24.00</strong>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;font-size:13.5px">
-                    <span style="color:var(--text-secondary)">Concepto:</span>
-                    <span id="summaryConcept" style="font-weight:600">Transferencia entre cuentas</span>
-                  </div>
-                </div>
-
-                <!-- Footer Step 2 -->
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
-                  <span style="font-size:13px;color:var(--text-secondary)">Paso 2 de 2</span>
-                  <div style="display:flex;gap:10px">
-                    <button class="btn btn-ghost" onclick="backTransferStep()">Volver</button>
-                    <button class="btn" onclick="executeTransfer()" style="background:var(--brand-primary);color:white;font-weight:700;padding:10px 24px;border-radius:var(--r-md)">Confirmar Transferencia</button>
-                  </div>
+              <!-- Concepto -->
+              <div class="form-group" style="margin-bottom:24px">
+                <label class="form-label" style="font-weight:700">Concepto o Nota (Opcional)</label>
+                <div style="display:flex;align-items:center;border:1px solid var(--border-medium);border-radius:var(--r-md);overflow:hidden;background:white">
+                  <div style="padding:0 14px;background:var(--bg-input);border-right:1px solid var(--border-light);color:var(--text-secondary);display:flex;align-items:center;justify-content:center;height:42px"><i class="fa-solid fa-align-left" style="font-size:13px"></i></div>
+                  <input class="form-input" id="transferConceptInput" type="text" placeholder="Ej. Pago de cuota de estacionamiento" oninput="updateTransferBreakdown()" style="border:none;height:42px;box-shadow:none">
                 </div>
               </div>
+            </div>
 
+            <!-- Sticky Breakdown Card -->
+            <div class="sticky-breakdown">
+              <div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">Resumen de Transferencia</div>
+              <div class="breakdown">
+                <div class="bd-section-label">Detalles de la Cuenta</div>
+                <div class="bd-row"><span class="bd-lbl">Origen</span><span class="bd-val" id="bdTransferOrigin" style="font-weight:700">-</span></div>
+                <div class="bd-row"><span class="bd-lbl">Destino</span><span class="bd-val" id="bdTransferDest" style="font-weight:700;color:var(--brand-primary)">-</span></div>
+                <div class="bd-section-label">Valores y Saldo</div>
+                <div class="bd-row"><span class="bd-lbl">Saldo disponible</span><span class="bd-val" id="bdTransferCurrentBalance">$0.00</span></div>
+                <div class="bd-row"><span class="bd-lbl">Monto a transferir</span><span class="bd-val" id="bdTransferAmount" style="color:var(--amber);font-weight:700">$10.00</span></div>
+                <div class="bd-row"><span class="bd-lbl">Comisión de servicio</span><span class="bd-val" style="color:var(--green);font-weight:700">GRATIS</span></div>
+                <div class="bd-row total"><span class="bd-lbl">SALDO RESTANTE</span><span class="bd-val" id="bdTransferRemaining">$0.00</span></div>
+              </div>
+              <button class="btn btn-primary btn-lg" style="width:100%" onclick="openTransferConfirmModal()">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <span id="btnTransferTxt">Transferir $10.00</span>
+              </button>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px">
+                <i class="fa-solid fa-shield-halved" style="font-size:10px"></i> Transacción directa · Confirmación requerida
+              </div>
             </div>
           </div>
         </div>
@@ -4372,6 +4380,29 @@ const ACCOUNT_DATA = {
     mifare: [
       { nombre: 'Tarjeta Torre A', uid: '04:E1:22:4C:09:71', tipo: 'Mifare DESFire', estado: 'Activa' }
     ]
+  },
+  'AC-502': {
+    id: 'AC-502',
+    label: 'Plaza Comercial del Sol',
+    profile: { nombre: 'Plaza Comercial del Sol', tipoDocumento: 'RUC', documento: '1792837465001', email: 'administracion@plazasol.ec', telefono: '0984567890', miembroDesde: 'Marzo 2024', plan: 'Plan Corporativo' },
+    billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Plaza Comercial del Sol S.A.', direccion: 'Av. de los Shyris y NNUU, Quito', email: 'facturas@plazasol.ec' },
+    balance: 42.80,
+    visitCount: 12,
+    chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
+    promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
+    movements: [
+      { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-08-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
+      { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-08-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', entrada: '19-08-2026 10:15', salida: '19-08-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
+      { id: 303, type: 'promo', title: 'Código Promocional IGOR50OFF', date: '15-07-2026', detail: { ref: 'Igor-PROMO-5020', estado: 'APPROVED', code: 'IGOR50OFF' }, amount: 5.00, balance: 0.00 }
+    ],
+    vehicles: [
+      { marca: 'Chevrolet', modelo: 'D-Max', color: 'Blanco', placa: 'PBE-3390', icon: 'fa-truck-pickup', meta: 'Marca: Chevrolet · Camioneta de operaciones', plateAccess: true },
+      { marca: 'Kia', modelo: 'Sportage', color: 'Gris', placa: 'PCD-8812', icon: 'fa-car-side', meta: 'Marca: Kia · SUV Administración', plateAccess: true }
+    ],
+    mifare: [
+      { nombre: 'Tarjeta Acceso Principal', uid: '04:F5:33:9A:88:12', tipo: 'Mifare Classic 4K', estado: 'Activa' },
+      { nombre: 'Tarjeta Proveedores', uid: '04:A2:99:11:00:55', tipo: 'NFC Pass', estado: 'Activa' }
+    ]
   }
 };
 
@@ -4385,6 +4416,7 @@ const S = {
   lot: { name: 'Quicentro Sur', pricing: 'flat', amount: 1, rate: 1.5 },
   sim: false, simStart: null, simInterval: null, elapsed: 0,
   rechargeAmt: 10,
+  transferSelectedAmt: 10,
   verCode: null, passStep: 1,
   visitCount: 0,
   chartData: [],
@@ -4481,7 +4513,11 @@ function persistCurrentAccount() {
   acc.vehicles = S.vehicles;
   acc.mifare = S.mifare;
   if (document.getElementById('perfil-nombre')) {
-    acc.profile.nombre = document.getElementById('perfil-nombre').value.trim() || acc.profile.nombre;
+    const newName = document.getElementById('perfil-nombre').value.trim();
+    if (newName) {
+      acc.profile.nombre = newName;
+      acc.label = newName;
+    }
     acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
     acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
     acc.profile.telefono = document.getElementById('perfil-telefono').value.trim() || acc.profile.telefono;
@@ -4498,6 +4534,10 @@ function persistCurrentAccount() {
 function renderVehicleList() {
   const list = document.getElementById('vehicleList');
   if (!list) return;
+  if (!S.vehicles || S.vehicles.length === 0) {
+    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay vehículos registrados en esta cuenta.</div>';
+    return;
+  }
   list.innerHTML = S.vehicles.map((veh, idx) => {
     const photo = veh.photoUrl
       ? `<img class="vehicle-photo" src="${veh.photoUrl}" alt="Foto de ${veh.modelo}">`
@@ -4506,7 +4546,12 @@ function renderVehicleList() {
       <div class="vehicle-top">
         ${photo}
         <div class="vehicle-main"><div style="font-size:13.5px;font-weight:600">${veh.marca} ${veh.modelo} <span style="color:var(--text-secondary)"> - ${veh.color}</span></div><div class="vehicle-meta">${veh.meta || ('Marca: ' + veh.marca)}</div></div>
-        <div class="plate">${veh.placa}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="plate">${veh.placa}</div>
+          <button class="icon-btn" onclick="deleteVehicle(${idx})" title="Eliminar vehículo" style="color:var(--brand-pink);background:rgba(232,0,90,0.08);width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all var(--t)">
+            <i class="fa-solid fa-trash-can" style="font-size:12px"></i>
+          </button>
+        </div>
       </div>
       <div class="vehicle-access">
         <div class="vehicle-access-copy">
@@ -4519,14 +4564,51 @@ function renderVehicleList() {
   }).join('');
 }
 
+function deleteVehicle(index) {
+  if (S.vehicles && S.vehicles[index]) {
+    const v = S.vehicles[index];
+    S.vehicles.splice(index, 1);
+    persistCurrentAccount();
+    renderVehicleList();
+    showToast(`Vehículo ${v.placa} eliminado de la cuenta`, 'info');
+  }
+}
+
 function renderMifareList() {
   const list = document.getElementById('mifareList');
   if (!list) return;
-  list.innerHTML = S.mifare.map(card => {
+  if (!S.mifare || S.mifare.length === 0) {
+    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-secondary);font-size:13px">No hay tarjetas Mifare / NFC registradas en esta cuenta.</div>';
+    return;
+  }
+  list.innerHTML = S.mifare.map((card, idx) => {
     const badgeClass = card.estado === 'Activa' ? 'badge-active' : 'badge-rec';
     const badgeIcon = card.estado === 'Activa' ? 'fa-circle' : 'fa-clock';
-    return `<div class="mifare-item"><div class="mifare-ico"><i class="fa-solid fa-credit-card"></i></div><div style="flex:1"><div style="font-size:13.5px;font-weight:600">${card.nombre}</div><div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);margin-top:2px">${card.uid}</div><div style="font-size:11px;color:var(--text-secondary);margin-top:4px">${card.tipo}</div><div style="margin-top:6px"><span class="${badgeClass}"><i class="fa-solid ${badgeIcon}" style="font-size:6px"></i> ${card.estado}</span></div></div></div>`;
+    return `<div class="mifare-item">
+      <div class="mifare-ico"><i class="fa-solid fa-credit-card"></i></div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:13.5px;font-weight:600">${card.nombre}</div>
+          <button class="icon-btn" onclick="deleteMifareCard(${idx})" title="Eliminar tarjeta" style="color:var(--brand-pink);background:rgba(232,0,90,0.08);width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all var(--t)">
+            <i class="fa-solid fa-trash-can" style="font-size:11px"></i>
+          </button>
+        </div>
+        <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);margin-top:2px">${card.uid}</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px">${card.tipo}</div>
+        <div style="margin-top:6px"><span class="${badgeClass}"><i class="fa-solid ${badgeIcon}" style="font-size:6px"></i> ${card.estado}</span></div>
+      </div>
+    </div>`;
   }).join('');
+}
+
+function deleteMifareCard(index) {
+  if (S.mifare && S.mifare[index]) {
+    const c = S.mifare[index];
+    S.mifare.splice(index, 1);
+    persistCurrentAccount();
+    renderMifareList();
+    showToast(`Tarjeta ${c.nombre} eliminada de la cuenta`, 'info');
+  }
 }
 
 function resetPasswordFlow() {
@@ -4541,7 +4623,6 @@ function resetPasswordFlow() {
   refreshSteps();
 }
 
-
 function setSafeText(id, text) {
   const el = document.getElementById(id);
   if (el && text !== undefined && text !== null) el.textContent = text;
@@ -4550,26 +4631,6 @@ function setSafeText(id, text) {
 function setSafeValue(id, val) {
   const el = document.getElementById(id);
   if (el && val !== undefined && val !== null) el.value = val;
-}
-
-function showToast(msg, type = 'success') {
-  const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
-  let c = document.getElementById('toast-container');
-  if (!c) {
-    c = document.createElement('div');
-    c.id = 'toast-container';
-    document.body.appendChild(c);
-  }
-  const t = document.createElement('div');
-  t.className = 'toast ' + type;
-  t.innerHTML = `<i class="fa-solid ${icons[type] || icons.success} toast-icon"></i><span class="toast-msg">${msg}</span>`;
-  c.appendChild(t);
-  setTimeout(() => {
-    t.style.transition = 'opacity .3s,transform .3s';
-    t.style.opacity = '0';
-    t.style.transform = 'translateX(60px)';
-    setTimeout(() => t.remove(), 320);
-  }, 3500);
 }
 
 function renderCurrentAccount() {
@@ -4585,32 +4646,33 @@ function renderCurrentAccount() {
   S.vehicles = acc.vehicles || [];
   S.mifare = acc.mifare || [];
   
-  fillAccountSelector();
+  fillAccountSelector(true);
   setSafeValue('accountSelect', acc.id);
   setSafeText('profileAccountId', `id_cuenta: ${acc.id}`);
   setSafeText('profileAccountName', `Cuenta activa: ${acc.label}`);
   setSafeText('profileHeaderCopy', `Gestiona tu información personal y configuración de seguridad de ${acc.label}.`);
   setSafeText('profileAvatar', (acc.label || 'C').charAt(0).toUpperCase());
   setSafeText('profileSummaryName', acc.label);
-  setSafeText('profileSummaryMeta', `Miembro desde ${acc.profile?.miembroDesde} · ${acc.profile?.plan}`);
+  setSafeText('profileSummaryMeta', `Miembro desde ${acc.profile?.miembroDesde || 'Enero 2025'} · ${acc.profile?.plan || 'Plan Estándar'}`);
   
+  setSafeValue('inlineAccountNameInput', acc.label);
   setSafeValue('perfil-nombre', acc.profile?.nombre || acc.label);
   setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'RUC');
   setSafeValue('perfil-documento', acc.profile?.documento);
   setSafeValue('perfil-email', acc.profile?.email);
   setSafeValue('perfil-telefono', acc.profile?.telefono);
   
-  setSafeValue('fact-tipo', acc.billing?.tipo);
-  setSafeValue('fact-num', acc.billing?.numero);
-  setSafeValue('fact-razon', acc.billing?.razon);
-  setSafeValue('fact-dir', acc.billing?.direccion);
-  setSafeValue('fact-email', acc.billing?.email);
+  setSafeValue('fact-tipo', acc.billing?.tipo || 'RUC');
+  setSafeValue('fact-num', acc.billing?.numero || '');
+  setSafeValue('fact-razon', acc.billing?.razon || '');
+  setSafeValue('fact-dir', acc.billing?.direccion || '');
+  setSafeValue('fact-email', acc.billing?.email || '');
   
   const ckMism = document.getElementById('ck-mismos');
   if (ckMism) ckMism.checked = false;
   setBillingFieldState(false);
   
-  setSafeText('sidebarAvatar', (acc.profile?.nombre || 'U').charAt(0).toUpperCase());
+  setSafeText('sidebarAvatar', (acc.profile?.nombre || acc.label || 'U').charAt(0).toUpperCase());
   setSafeText('sidebarUserName', acc.label);
   setSafeText('sidebarUserEmail', acc.profile?.email);
   setSafeText('dashboardAccountLabel', `Resumen de ${acc.label}`);
@@ -4631,8 +4693,8 @@ function renderCurrentAccount() {
   clearFilter();
   syncRechargeCardOptions();
   resetPasswordFlow();
+  renderTransferTab();
 }
-
 
 function switchAccount(accountId) {
   if (!ACCOUNT_DATA[accountId] || accountId === S.currentAccountId) return;
@@ -4644,6 +4706,7 @@ function switchAccount(accountId) {
 
 function saveProfileData() {
   persistCurrentAccount();
+  fillAccountSelector(true);
   renderCurrentAccount();
   showToast('Datos de la cuenta actualizados correctamente', 'success');
 }
@@ -4659,6 +4722,8 @@ function syncBalance() {
   const f = '$' + S.balance.toFixed(2);
   const topB = document.getElementById('topBalance'); if (topB) topB.textContent = f;
   const dashB = document.getElementById('dashBalance'); if (dashB) dashB.textContent = f;
+  const trfB = document.getElementById('transferOriginBalanceDisplay'); if (trfB) trfB.textContent = f;
+  updateTransferBreakdown();
 }
 
 function showToast(msg, type = 'success') {
@@ -5025,6 +5090,40 @@ function renderMov(list = S.movements) {
   container.innerHTML = html;
 }
 
+function renderDashMov() {
+  const container = document.getElementById('dashMov');
+  if (!container) return;
+  const list = S.movements || [];
+  if (!list || list.length === 0) {
+    container.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:13px">Sin movimientos recientes</div>';
+    return;
+  }
+  const slice = list.slice(0, 5);
+  container.innerHTML = slice.map(m => {
+    const isRecharge = m.type === 'recharge' || m.type === 'promo';
+    const isTransfer = (m.title || '').includes('Transferencia');
+    const iconClass = isRecharge ? 'fa-bolt' : (isTransfer ? 'fa-arrow-right-arrow-left' : 'fa-car-side');
+    const iconBg = isRecharge ? 'rgba(245,158,11,0.12)' : (isTransfer ? 'rgba(0,87,184,0.10)' : 'rgba(232,0,90,0.10)');
+    const iconColor = isRecharge ? '#F59E0B' : (isTransfer ? 'var(--brand-primary)' : 'var(--brand-pink)');
+    const sign = m.amount > 0 ? '+' : '';
+    const amtColor = m.amount > 0 ? 'var(--green)' : 'var(--brand-pink)';
+    return `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border-light)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;border-radius:50%;background:${iconBg};color:${iconColor};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">
+            <i class="fa-solid ${iconClass}"></i>
+          </div>
+          <div>
+            <div style="font-size:13.5px;font-weight:700;color:var(--text-primary)">${m.title}</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin-top:2px">${m.date}</div>
+          </div>
+        </div>
+        <div style="font-weight:800;font-size:14px;color:${amtColor}">${sign}$${Math.abs(m.amount).toFixed(2)}</div>
+      </div>
+    `;
+  }).join('');
+}
+
 function toggleMovDetail(id) {
   const el = document.getElementById(id);
   const chev = document.getElementById(id + '-chev');
@@ -5100,7 +5199,7 @@ function closeHelp() { const hp = document.getElementById('helpPanel'); if (hp) 
 
 /* INTERACTIVE TOUR */
 const TOUR_STEPS = [
-  { target: 'accountSelect', title: '1. Selección de Cuenta', desc: 'Permite alternar entre tus cuentas activas (ej. Grupo Andino o Edificio Mirador).' },
+  { target: 'accountSelect', title: '1. Selección de Cuenta', desc: 'Permite alternar entre tus cuentas activas (ej. Grupo Andino, Edificio Mirador o Plaza Comercial del Sol).' },
   { target: 'topBalance', title: '2. Billetera y Saldo', desc: 'Muestra tu saldo disponible actualizado en tiempo real.' },
   { target: 'sec-dashboard', title: '3. Dashboard Principal', desc: 'Vista unificada con simulador de estacionamiento y movimientos recientes.' },
   { target: 'btnEntrar', title: '4. Simulador de Estacionamiento', desc: 'Simula el ingreso y salida a parqueaderos para calcular costos de estadía.' },
@@ -5240,15 +5339,83 @@ function closeIncompleteDataModalAndRedirect() {
 
 
 /* Transferencia entre Cuentas Logic */
+
+function pickTransferAmt(el, amt) {
+  S.transferSelectedAmt = amt;
+  const grid = el.parentElement;
+  if (grid) {
+    grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+  }
+  el.classList.add('selected');
+  const customWrap = document.getElementById('transferCustomWrap');
+  if (customWrap) customWrap.style.display = 'none';
+  updateTransferBreakdown();
+}
+
+function pickTransferCustom(el) {
+  const grid = el.parentElement;
+  if (grid) {
+    grid.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+  }
+  el.classList.add('selected');
+  const customWrap = document.getElementById('transferCustomWrap');
+  if (customWrap) customWrap.style.display = 'block';
+  const customInput = document.getElementById('transferAmountInput');
+  if (customInput) customInput.focus();
+  updateTransferBreakdown();
+}
+
+function getTransferSelectedAmount() {
+  const customWrap = document.getElementById('transferCustomWrap');
+  if (customWrap && customWrap.style.display !== 'none') {
+    const customInput = document.getElementById('transferAmountInput');
+    return parseFloat(customInput?.value || 0);
+  }
+  return S.transferSelectedAmt || 10;
+}
+
+function updateTransferBreakdown() {
+  const acc = getCurrentAccount();
+  if (!acc) return;
+
+  const destSelect = document.getElementById('transferDestSelect');
+  const destId = destSelect?.value;
+  const destAcc = destId ? ACCOUNT_DATA[destId] : null;
+
+  const amt = getTransferSelectedAmount();
+
+  setSafeText('bdTransferOrigin', acc.label);
+  setSafeText('bdTransferDest', destAcc ? destAcc.label : (destId || 'Seleccionar'));
+  setSafeText('bdTransferCurrentBalance', '$' + S.balance.toFixed(2));
+  setSafeText('bdTransferAmount', '$' + (isNaN(amt) ? '0.00' : amt.toFixed(2)));
+
+  const remaining = S.balance - (isNaN(amt) ? 0 : amt);
+  const remEl = document.getElementById('bdTransferRemaining');
+  if (remEl) {
+    remEl.textContent = '$' + remaining.toFixed(2);
+    remEl.style.color = remaining < 0 ? 'var(--red)' : 'var(--text-primary)';
+  }
+
+  const btnTxt = document.getElementById('btnTransferTxt');
+  if (btnTxt) {
+    btnTxt.textContent = `Transferir $${(isNaN(amt) ? 0 : amt).toFixed(2)}`;
+  }
+}
+
 function renderTransferTab() {
   const acc = getCurrentAccount();
   if (!acc) return;
 
-  setSafeValue('transferOriginId', acc.id === 'AC-001' ? '1b12659f-10be-4320-a619-2b36d5149b68' : acc.id);
+  const originId = acc.id === 'AC-001' ? '1b12659f-10be-4320-a619-2b36d5149b68' : acc.id;
+  setSafeValue('transferOriginId', originId);
   setSafeValue('transferOriginName', acc.label);
+  setSafeText('transferOriginNameDisplay', acc.label);
+  setSafeText('transferOriginIdDisplay', originId);
+  setSafeText('transferOriginBalanceDisplay', '$' + S.balance.toFixed(2));
 
   const select = document.getElementById('transferDestSelect');
   if (select) {
+    const currentVal = select.value;
     select.innerHTML = '<option value="">Selecciona una cuenta</option>';
     Object.values(ACCOUNT_DATA).forEach(a => {
       if (a.id !== acc.id) {
@@ -5258,17 +5425,21 @@ function renderTransferTab() {
         select.appendChild(opt);
       }
     });
+    if (currentVal && select.querySelector(`option[value="${currentVal}"]`)) {
+      select.value = currentVal;
+    }
   }
+
+  updateTransferBreakdown();
 }
 
-function nextTransferStep() {
+function openTransferConfirmModal() {
   if (!isAccountAndBillingComplete()) {
     showIncompleteDataModal();
     return;
   }
 
   const destSelect = document.getElementById('transferDestSelect');
-  const amountInput = document.getElementById('transferAmountInput');
   const conceptInput = document.getElementById('transferConceptInput');
 
   if (!destSelect || !destSelect.value) {
@@ -5276,32 +5447,39 @@ function nextTransferStep() {
     return;
   }
 
-  const amount = parseFloat(amountInput?.value || 0);
-  if (isNaN(amount) || amount <= 0) {
+  const amt = getTransferSelectedAmount();
+  if (isNaN(amt) || amt <= 0) {
     showToast('Ingresa un monto válido para transferir', 'error');
     return;
   }
 
-  if (amount > S.balance) {
+  if (amt > S.balance) {
     showToast(`Saldo insuficiente. Tu saldo disponible es $${S.balance.toFixed(2)}`, 'error');
     return;
   }
 
-  const destAccount = ACCOUNT_DATA[destSelect.value];
-  const acc = getCurrentAccount();
+  const originAcc = getCurrentAccount();
+  const destAcc = ACCOUNT_DATA[destSelect.value];
+  const concept = conceptInput?.value.trim() || 'Transferencia entre cuentas';
 
-  setSafeText('summaryOrigin', acc.label);
-  setSafeText('summaryDest', destAccount ? destAccount.label : destSelect.value);
-  setSafeText('summaryAmount', `$${amount.toFixed(2)}`);
-  setSafeText('summaryConcept', conceptInput?.value.trim() || 'Transferencia de saldo');
+  setSafeText('modalSummaryOrigin', originAcc ? originAcc.label : 'Cuenta Origen');
+  setSafeText('modalSummaryDest', destAcc ? destAcc.label : destSelect.value);
+  setSafeText('modalSummaryConcept', concept);
+  setSafeText('modalSummaryAmount', `$${amt.toFixed(2)}`);
+  setSafeText('modalSummaryRemaining', `$${(S.balance - amt).toFixed(2)}`);
 
-  document.getElementById('transferStep1').style.display = 'none';
-  document.getElementById('transferStep2').style.display = 'block';
+  const modal = document.getElementById('transferConfirmModal');
+  if (modal) modal.style.display = 'flex';
 }
 
-function backTransferStep() {
-  document.getElementById('transferStep1').style.display = 'block';
-  document.getElementById('transferStep2').style.display = 'none';
+function closeTransferConfirmModal() {
+  const modal = document.getElementById('transferConfirmModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function closeTransferSuccessModal() {
+  const modal = document.getElementById('transferSuccessModal');
+  if (modal) modal.style.display = 'none';
 }
 
 function resetTransferForm() {
@@ -5309,35 +5487,48 @@ function resetTransferForm() {
   setSafeValue('transferConceptInput', '');
   const destSelect = document.getElementById('transferDestSelect');
   if (destSelect) destSelect.value = '';
-  backTransferStep();
+
+  S.transferSelectedAmt = 10;
+  const grid = document.querySelector('#tab-transferir .amount-grid');
+  if (grid) {
+    grid.querySelectorAll('.amt-btn').forEach((b, idx) => {
+      if (idx === 1) b.classList.add('selected');
+      else b.classList.remove('selected');
+    });
+  }
+  const customWrap = document.getElementById('transferCustomWrap');
+  if (customWrap) customWrap.style.display = 'none';
+
+  renderTransferTab();
 }
 
 function executeTransfer() {
   const destSelect = document.getElementById('transferDestSelect');
-  const amountInput = document.getElementById('transferAmountInput');
   const conceptInput = document.getElementById('transferConceptInput');
 
   const destId = destSelect?.value;
-  const amount = parseFloat(amountInput?.value || 0);
+  const amount = getTransferSelectedAmount();
   const concept = conceptInput?.value.trim() || 'Transferencia de saldo';
 
-  if (!destId || isNaN(amount) || amount <= 0) return;
+  if (!destId || isNaN(amount) || amount <= 0 || amount > S.balance) return;
 
   const originAcc = getCurrentAccount();
   const destAcc = ACCOUNT_DATA[destId];
+  const refCode = `TRF-${Math.floor(100000 + Math.random() * 900000)}`;
 
   // 1. Deduct from origin
   S.balance -= amount;
   originAcc.balance = S.balance;
   const now = new Date();
   const dateStr = `${String(now.getDate()).padStart(2, '0')}-08-2026`;
-  
+  const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
   originAcc.movements.unshift({
     id: Date.now(),
     type: 'parking',
     title: `Transferencia a ${destAcc ? destAcc.label : destId}`,
     date: dateStr,
-    detail: { ref: `TRF-${Math.floor(100000+Math.random()*900000)}`, estado: 'APPROVED', concepto: concept },
+    detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
     amount: -amount,
     balance: S.balance
   });
@@ -5351,19 +5542,44 @@ function executeTransfer() {
       type: 'recharge',
       title: `Transferencia recibida de ${originAcc.label}`,
       date: dateStr,
-      detail: { ref: `TRF-${Math.floor(100000+Math.random()*900000)}`, estado: 'APPROVED', concepto: concept },
+      detail: { ref: refCode, estado: 'APPROVED', concepto: concept },
       amount: amount,
       balance: destAcc.balance
     });
   }
 
+  // 3. Update global UI balance
   syncBalance();
   persistCurrentAccount();
   renderMov();
   renderDashMov();
-  resetTransferForm();
 
-  showToast(`Transferencia de $${amount.toFixed(2)} enviada correctamente`, 'success');
+  // Close confirm modal
+  closeTransferConfirmModal();
+
+  // 4. Send notification with explicit post-transfer balance
+  showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc ? destAcc.label : destId} realizada satisfactoriamente! Tu saldo actual es $${S.balance.toFixed(2)}.`, 'success');
+
+  // Add system notification dot indicator if present
+  const notifBtn = document.getElementById('notifBtn');
+  if (notifBtn && !notifBtn.querySelector('.dot')) {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    notifBtn.appendChild(dot);
+  }
+
+  // 5. Populate and show Success Modal with updated actual balance
+  setSafeText('successModalCurrentBalance', `$${S.balance.toFixed(2)}`);
+  setSafeText('successModalAmount', `$${amount.toFixed(2)}`);
+  setSafeText('successModalDest', destAcc ? destAcc.label : destId);
+  setSafeText('successModalRef', refCode);
+  setSafeText('successModalDate', `${dateStr} ${timeStr}`);
+
+  const successModal = document.getElementById('transferSuccessModal');
+  if (successModal) successModal.style.display = 'flex';
+
+  // 6. Refresh form and transfer tab state
+  resetTransferForm();
 }
 
 </script>
@@ -5381,6 +5597,94 @@ function executeTransfer() {
     </p>
     <button class="btn btn-primary" onclick="closeIncompleteDataModalAndRedirect()" style="width:100%;padding:12px;font-size:14px;border-radius:10px;justify-content:center">
       Entendido
+    </button>
+  </div>
+</div>
+
+<!-- Modal Confirmar Transferencia -->
+<div id="transferConfirmModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+  <div class="card" style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+    <div style="width:56px;height:56px;border-radius:50%;background:rgba(0,87,184,0.1);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+    </div>
+    <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">¿Confirmar Transferencia?</h3>
+    <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
+      Revisa atentamente los datos antes de realizar la transacción entre cuentas.
+    </p>
+
+    <div style="background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:16px;margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+        <span style="color:var(--text-secondary)">Cuenta Origen:</span>
+        <strong id="modalSummaryOrigin" style="color:var(--text-primary)">-</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+        <span style="color:var(--text-secondary)">Cuenta Destino:</span>
+        <strong id="modalSummaryDest" style="color:var(--brand-primary)">-</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px">
+        <span style="color:var(--text-secondary)">Concepto:</span>
+        <span id="modalSummaryConcept" style="font-weight:600;color:var(--text-primary)">-</span>
+      </div>
+      <div style="border-bottom:1px dashed var(--border-medium);margin:10px 0"></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+        <span style="color:var(--text-secondary)">Monto a Transferir:</span>
+        <strong id="modalSummaryAmount" style="color:var(--amber);font-size:16px">$0.00</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px">
+        <span style="color:var(--text-secondary)">Nuevo Saldo Restante:</span>
+        <strong id="modalSummaryRemaining" style="color:var(--green);font-size:14px">$0.00</strong>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px">
+      <button class="btn btn-ghost" onclick="closeTransferConfirmModal()" style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+      <button class="btn btn-primary" onclick="executeTransfer()" style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+        <i class="fa-solid fa-check"></i> Confirmar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Éxito de Transferencia -->
+<div id="transferSuccessModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+  <div class="card" style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+    <div style="width:64px;height:64px;border-radius:50%;background:rgba(22,163,74,0.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px auto">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <h3 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:6px">¡Transferencia Exitosa!</h3>
+    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px">
+      La transferencia entre cuentas se ha realizado satisfactoriamente.
+    </p>
+
+    <!-- Destacado del Saldo Actual -->
+    <div style="background:linear-gradient(135deg, rgba(22,163,74,0.06) 0%, rgba(22,163,74,0.14) 100%);border:1px solid rgba(22,163,74,0.25);border-radius:var(--r-lg);padding:18px 16px;margin-bottom:20px">
+      <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Tu Saldo Actual de la Cuenta</div>
+      <div id="successModalCurrentBalance" style="font-size:28px;font-weight:800;color:var(--green)">$0.00</div>
+      <div style="font-size:11.5px;color:var(--text-secondary);margin-top:4px"><i class="fa-solid fa-circle-info" style="margin-right:4px"></i>Actualizado en tiempo real</div>
+    </div>
+
+    <!-- Detalle de transacción -->
+    <div style="background:var(--bg-input);border-radius:var(--r-md);padding:14px 16px;margin-bottom:24px;text-align:left;font-size:13px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span style="color:var(--text-secondary)">Monto Transferido:</span>
+        <strong id="successModalAmount" style="color:var(--text-primary)">$0.00</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span style="color:var(--text-secondary)">Cuenta Destino:</span>
+        <strong id="successModalDest" style="color:var(--brand-primary)">-</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span style="color:var(--text-secondary)">Referencia:</span>
+        <span id="successModalRef" style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-muted)">TRF-000000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <span style="color:var(--text-secondary)">Fecha:</span>
+        <span id="successModalDate" style="color:var(--text-secondary)">-</span>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="closeTransferSuccessModal()" style="width:100%;padding:13px;font-size:14px;border-radius:var(--r-md);justify-content:center;font-weight:700">
+      Entendido / Aceptar
     </button>
   </div>
 </div>
