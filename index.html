@@ -16,19 +16,19 @@
    DESIGN TOKENS  -  LIGHT CORPORATE THEME
 ============================================================ */
     :root {
-      --brand-primary: #0057B8;
-      --brand-accent: #00C2FF;
-      --brand-pink: #E8005A;
-      --brand-gradient: linear-gradient(135deg, #0057B8 0%, #0085E8 100%);
-      --bg-app: #F0F4FA;
+      --brand-primary: #E84889;
+      --brand-accent: #E84889;
+      --brand-pink: #E84889;
+      --brand-gradient: linear-gradient(135deg, #E84889 0%, #C82B6B 100%);
+      --bg-app: #F0F5F8;
       --bg-sidebar: #FFFFFF;
       --bg-card: #FFFFFF;
-      --bg-input: #F5F8FF;
-      --bg-hover: #EEF3FB;
-      --bg-active: #E8F0FE;
-      --border-light: #E4EAF4;
-      --border-medium: #C9D5E8;
-      --border-focus: #0057B8;
+      --bg-input: #F0F5F8;
+      --bg-hover: #E4EDF3;
+      --bg-active: #FCE7F0;
+      --border-light: #E2E8F0;
+      --border-medium: #CBD5E1;
+      --border-focus: #E84889;
       --text-primary: #0A1629;
       --text-secondary: #5A6A85;
       --text-muted: #96A3B8;
@@ -42,8 +42,8 @@
       --shadow-sm: 0 4px 12px rgba(10, 22, 41, 0.08), 0 2px 4px rgba(10, 22, 41, 0.04);
       --shadow-md: 0 8px 28px rgba(10, 22, 41, 0.10), 0 4px 8px rgba(10, 22, 41, 0.04);
       --shadow-lg: 0 20px 60px rgba(10, 22, 41, 0.12), 0 8px 20px rgba(10, 22, 41, 0.06);
-      --shadow-blue: 0 8px 24px rgba(0, 87, 184, 0.20);
-      --shadow-pink: 0 8px 24px rgba(232, 0, 90, 0.20);
+      --shadow-blue: 0 8px 24px rgba(232, 72, 137, 0.20);
+      --shadow-pink: 0 8px 24px rgba(232, 72, 137, 0.20);
       --r-sm: 6px;
       --r-md: 10px;
       --r-lg: 14px;
@@ -51,7 +51,7 @@
       --r-2xl: 28px;
       --t: 200ms cubic-bezier(0.4, 0, 0.2, 1);
       --t-slow: 380ms cubic-bezier(0.4, 0, 0.2, 1);
-      --tour-color: #7C3AED;
+      --tour-color: #E84889;
     }
 
     *,
@@ -649,8 +649,8 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: rgba(0, 87, 184, 0.10);
-      border: 1.5px solid rgba(0, 87, 184, 0.25);
+      background: rgba(232, 72, 137, 0.10);
+      border: 1.5px solid rgba(232, 72, 137, 0.25);
       color: var(--brand-primary);
       font-size: 10px;
       font-weight: 800;
@@ -1071,9 +1071,9 @@
       font-weight: 700;
       padding: 3px 9px;
       border-radius: 99px;
-      background: rgba(0, 87, 184, 0.08);
+      background: rgba(232, 72, 137, 0.08);
       color: var(--brand-primary);
-      border: 1px solid rgba(0, 87, 184, 0.18);
+      border: 1px solid rgba(232, 72, 137, 0.18);
       font-family: 'JetBrains Mono', monospace;
       vertical-align: middle
     }
@@ -1084,7 +1084,7 @@
       justify-content: space-between;
       gap: 16px;
       padding: 16px 18px;
-      background: linear-gradient(135deg, #F7FAFF, #EEF5FF);
+      background: linear-gradient(135deg, #F0F5F8, #FCE7F0);
       border: 1px solid var(--border-medium);
       border-radius: var(--r-lg);
       margin-bottom: 18px
@@ -1218,7 +1218,7 @@
     }
 
     .sim-timer {
-      background: linear-gradient(135deg, #F0F4FA, #E8F0FE);
+      background: linear-gradient(135deg, #F0F5F8, #FCE7F0);
       border: 1.5px solid var(--border-medium);
       border-radius: var(--r-lg);
       padding: 14px;
@@ -1233,9 +1233,9 @@
     }
 
     .sim-timer.running {
-      background: linear-gradient(135deg, #EEF5FF, #DDEEFF);
+      background: linear-gradient(135deg, #FCE7F0, #F8D0E3);
       border-color: var(--brand-primary);
-      box-shadow: inset 0 2px 8px rgba(0, 87, 184, 0.06)
+      box-shadow: inset 0 2px 8px rgba(232, 72, 137, 0.06)
     }
 
     .sim-btns {
@@ -1521,6 +1521,51 @@
       margin-top: 22px;
     }
 
+    .btn-doc-search {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 16px;
+      height: 42px;
+      background: var(--brand-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--r-md);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--t);
+      box-shadow: 0 2px 8px rgba(0, 87, 184, 0.22);
+    }
+
+    .btn-doc-search:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-blue);
+      filter: brightness(1.05);
+    }
+
+    .btn-doc-search:active {
+      transform: translateY(0);
+    }
+
+    .btn-doc-search:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    @keyframes fieldHighlightPulse {
+      0% { background-color: rgba(0, 109, 255, 0.22); border-color: var(--brand-primary); transform: scale(1.01); }
+      50% { background-color: rgba(30, 201, 151, 0.20); border-color: var(--color-success); }
+      100% { background-color: var(--bg-input); border-color: var(--border-light); transform: scale(1); }
+    }
+
+    .field-autofill-highlight {
+      animation: fieldHighlightPulse 1.3s ease-out;
+    }
+
     /* BUTTONS */
     .btn {
       display: inline-flex;
@@ -1635,7 +1680,7 @@
     }
 
     .card-front {
-      background: linear-gradient(135deg, #0A2157 0%, #0057B8 60%, #0085E8 100%);
+      background: linear-gradient(135deg, #9B1C56 0%, #E84889 60%, #F572A4 100%);
       box-shadow: var(--shadow-lg)
     }
 
@@ -1651,7 +1696,7 @@
     }
 
     .card-back {
-      background: linear-gradient(135deg, #0A2157, #0057B8);
+      background: linear-gradient(135deg, #9B1C56, #E84889);
       transform: rotateY(180deg);
       box-shadow: var(--shadow-lg)
     }
@@ -2550,8 +2595,8 @@
       border-radius: 6px;
       letter-spacing: 2px;
       white-space: nowrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -3101,9 +3146,44 @@
         </div>
       </div>
       <div class="topbar-right">
-        <div class="topbar-account">
-          <label class="form-label" for="accountSelect">Elegir cuenta</label>
-          <select class="form-input" id="accountSelect" onchange="switchAccount(this.value)" style="flex:1"></select>
+        <div class="topbar-account-custom" id="topbarAccountCustomWrap" style="position:relative">
+          <!-- Trigger Pill Button (Matches Image 2) -->
+          <button type="button" class="account-pill-btn" onclick="toggleAccountDropdown(event)" id="accountPillBtn"
+            style="display:flex;align-items:center;gap:10px;padding:5px 14px 5px 6px;background:white;border:1.5px solid var(--border-medium);border-radius:99px;cursor:pointer;transition:all var(--t);box-shadow:var(--shadow-xs)">
+            <div
+              style="width:34px;height:34px;border-radius:50%;background:#FCE7F0;color:#E84889;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <span id="accountPillText"
+              style="font-size:14.5px;font-weight:800;color:var(--text-primary);letter-spacing:-0.2px">Grupo
+              Andino</span>
+            <i class="fa-solid fa-chevron-down" style="font-size:11px;color:var(--text-secondary);margin-left:2px"></i>
+          </button>
+
+          <!-- Hidden native select for backward compatibility -->
+          <select class="form-input" id="accountSelect" onchange="switchAccount(this.value)"
+            style="display:none"></select>
+
+          <!-- Dropdown Menu (Matches Image 2) -->
+          <div class="account-dropdown-menu" id="accountDropdownMenu"
+            style="display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:260px;background:white;border:1px solid var(--border-light);border-radius:18px;box-shadow:0 12px 36px rgba(10,22,41,0.16);z-index:99;padding:16px;animation:fadeUp .18s ease">
+
+            <div style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;padding:0 4px">Tus
+              cuentas</div>
+
+            <!-- Dynamic account items container -->
+            <div id="accountDropdownList" style="display:flex;flex-direction:column;gap:4px"></div>
+
+            <div style="height:1px;background:var(--border-light);margin:12px 0 8px 0"></div>
+
+            <!-- Bottom Action: + Crear cuenta (Matches Image 2) -->
+            <div onclick="openCreateAccountModal()"
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;cursor:pointer;transition:background var(--t)"
+              onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='transparent'">
+              <i class="fa-solid fa-plus" style="color:var(--brand-pink);font-size:16px"></i>
+              <span style="color:var(--brand-pink);font-weight:700;font-size:14.5px">Crear cuenta</span>
+            </div>
+          </div>
         </div>
         <div class="balance-pill" onclick="goTo('billetera',document.getElementById('nav-billetera'))">
           <span class="balance-label">Saldo disponible</span>
@@ -3443,13 +3523,44 @@
         <!-- Datos -->
         <div id="tab-datos" class="tab-panel active form-section">
           <div class="card card-body" style="border-radius:var(--r-lg);padding:24px 28px;background:white">
-            <div
-              style="font-size:14.5px;font-weight:700;color:var(--text-primary);margin-bottom:18px;display:flex;align-items:center;gap:8px">
-              <i class="fa-regular fa-user" style="color:var(--brand-primary)"></i> Datos del Titular
-            </div>
             <div class="form-grid" style="margin-bottom:20px">
+              <!-- 1. Tipo de Documento -->
+              <div class="form-group">
+                <label class="form-label" for="perfil-tipo-doc">Tipo de Documento *</label>
+                <select class="form-input" id="perfil-tipo-doc" onchange="onTipoDocChange()">
+                  <option value="Cédula" selected>Cédula</option>
+                  <option value="RUC">RUC</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                </select>
+              </div>
+
+              <!-- 2. Documento de Identidad con Botón de Consulta API -->
+              <div class="form-group">
+                <label class="form-label" for="perfil-documento" style="display:flex;justify-content:space-between;align-items:center">
+                  <span>Documento de Identidad *</span>
+                  <span id="docLengthHint" style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">10 dígitos</span>
+                </label>
+                <div style="display:flex;gap:8px">
+                  <div style="position:relative;flex:1">
+                    <input class="form-input" id="perfil-documento" type="text"
+                      placeholder="Ej. 1727263434"
+                      maxlength="10"
+                      value="1790011223001"
+                      oninput="onDocumentoInput(this)"
+                      onkeydown="if(event.key==='Enter'){event.preventDefault();consultarDocumentoAPI();}"
+                      style="font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:0.5px">
+                  </div>
+                  <button type="button" class="btn-doc-search" id="btnConsultarDoc" onclick="consultarDocumentoAPI()"
+                    title="Consultar datos vía API (Registro Civil / SRI)">
+                    <i class="fa-solid fa-magnifying-glass" id="iconConsultarDoc"></i>
+                    <span id="textConsultarDoc">Consultar</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. Nombre Completo -->
               <div class="form-group fg-full">
-                <label class="form-label">Nombre Completo
+                <label class="form-label" for="perfil-nombre">Nombre Completo / Razón Social *
                   <div class="help-wrap">
                     <div class="help-icon">?</div>
                     <div class="help-tip">
@@ -3458,35 +3569,17 @@
                   </div>
                 </label>
                 <input class="form-input" id="perfil-nombre" type="text" value="Daysi Achig"
-                  placeholder="Nombre completo">
+                  placeholder="Nombre y apellidos completos">
               </div>
+
+              <!-- 4. Correo y Teléfono -->
               <div class="form-group">
-                <label class="form-label">Tipo de Documento</label>
-                <select class="form-input" id="perfil-tipo-doc">
-                  <option value="RUC">RUC</option>
-                  <option value="Cédula">Cédula</option>
-                  <option value="Pasaporte">Pasaporte</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Documento de Identidad
-                  <div class="help-wrap">
-                    <div class="help-icon">?</div>
-                    <div class="help-tip">
-                      <div class="ht">Cédula o RUC</div>Número de identificación del titular.
-                    </div>
-                  </div>
-                </label>
-                <input class="form-input" id="perfil-documento" type="text" value="1790011223001"
-                  placeholder="Ej. 1790011223001">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Correo Electrónico</label>
+                <label class="form-label" for="perfil-email">Correo Electrónico *</label>
                 <input class="form-input" id="perfil-email" type="email" value="usuario@grupoandino.ec"
                   placeholder="correo@ejemplo.com">
               </div>
               <div class="form-group">
-                <label class="form-label">Teléfono</label>
+                <label class="form-label" for="perfil-telefono">Teléfono / Celular *</label>
                 <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999">
               </div>
             </div>
@@ -3574,29 +3667,55 @@
               <span style="font-size:13px;font-weight:500">Usar los mismos datos de mi perfil personal</span>
             </label>
             <div class="form-grid">
+              <!-- 1. Tipo de Documento Facturación -->
               <div class="form-group">
-                <label class="form-label">Tipo de Documento</label>
-                <select class="form-input" id="fact-tipo">
-                  <option>Cédula</option>
-                  <option>RUC</option>
-                  <option>Pasaporte</option>
+                <label class="form-label" for="fact-tipo">Tipo de Documento *</label>
+                <select class="form-input" id="fact-tipo" onchange="onFactTipoDocChange()">
+                  <option value="Cédula">Cédula</option>
+                  <option value="RUC" selected>RUC</option>
+                  <option value="Pasaporte">Pasaporte</option>
                 </select>
               </div>
+
+              <!-- 2. Número de Documento Facturación con Botón de Consulta API -->
               <div class="form-group">
-                <label class="form-label">Número de Documento</label>
-                <input class="form-input" id="fact-num" type="text" placeholder="Número de identificación">
+                <label class="form-label" for="fact-num" style="display:flex;justify-content:space-between;align-items:center">
+                  <span>Número de Documento *</span>
+                  <span id="factDocLengthHint" style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">13 dígitos</span>
+                </label>
+                <div style="display:flex;gap:8px">
+                  <div style="position:relative;flex:1">
+                    <input class="form-input" id="fact-num" type="text"
+                      placeholder="Ej. 1790011223001"
+                      maxlength="13"
+                      oninput="onFactDocumentoInput(this)"
+                      onkeydown="if(event.key==='Enter'){event.preventDefault();consultarFactDocumentoAPI();}"
+                      style="font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:0.5px">
+                  </div>
+                  <button type="button" class="btn-doc-search" id="btnConsultarFactDoc" onclick="consultarFactDocumentoAPI()"
+                    title="Consultar datos de facturación vía API (SRI)">
+                    <i class="fa-solid fa-magnifying-glass" id="iconConsultarFactDoc"></i>
+                    <span id="textConsultarFactDoc">Consultar</span>
+                  </button>
+                </div>
               </div>
+
+              <!-- 3. Razón Social / Nombre -->
               <div class="form-group fg-full">
-                <label class="form-label">Razón Social / Nombre</label>
+                <label class="form-label" for="fact-razon">Razón Social / Nombre Completo *</label>
                 <input class="form-input" id="fact-razon" type="text"
                   placeholder="Nombre o Razón Social para la factura">
               </div>
+
+              <!-- 4. Dirección Fiscal -->
               <div class="form-group fg-full">
-                <label class="form-label">Dirección Fiscal</label>
+                <label class="form-label" for="fact-dir">Dirección Fiscal *</label>
                 <input class="form-input" id="fact-dir" type="text" placeholder="Dirección fiscal completa">
               </div>
+
+              <!-- 5. Correo de Facturación -->
               <div class="form-group fg-full">
-                <label class="form-label">Correo Electrónico de Facturación</label>
+                <label class="form-label" for="fact-email">Correo Electrónico de Facturación *</label>
                 <input class="form-input" id="fact-email" type="email" placeholder="facturacion@empresa.com">
               </div>
             </div>
@@ -3856,7 +3975,6 @@
                 </div>
               </div>
               <div class="amount-grid">
-                <div class="amt-btn" onclick="pickAmt(this,5)">$5</div>
                 <div class="amt-btn selected" onclick="pickAmt(this,10)">$10</div>
                 <div class="amt-btn" onclick="pickAmt(this,15)">$15</div>
                 <div class="amt-btn" onclick="pickAmt(this,25)">$25</div>
@@ -4171,119 +4289,87 @@
 
         <!-- TAB: ADMINISTRADORES -->
         <div id="tab-admins" class="tab-panel active">
-          <div style="margin-bottom:18px">
-            <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:4px">
-              Administradores
-              <div class="help-wrap">
-                <div class="help-icon">?</div>
-                <div class="help-tip">
-                  <div class="ht">Gestión de Administradores</div>Administra los roles y permisos de acceso para los
-                  administradores de esta cuenta.
+          <div
+            style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                Administradores
+                <div class="help-wrap">
+                  <div class="help-icon">?</div>
+                  <div class="help-tip">
+                    <div class="ht">Gestión de Administradores</div>Administra los roles y permisos de acceso para los
+                    administradores de esta cuenta.
+                  </div>
                 </div>
               </div>
+              <p style="font-size:13px;color:var(--text-secondary)">Invita o elimina el acceso de administración a esta
+                cuenta</p>
             </div>
-            <p style="font-size:13px;color:var(--text-secondary)">Invita o elimina el acceso de administración a esta
-              cuenta</p>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="openInviteAdminModal()">
+                <i class="fa-solid fa-user-plus"></i> Invitar administrador
+              </button>
+            </div>
           </div>
 
-          <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
+          <div class="card" style="max-width:760px;border-radius:var(--r-xl)">
             <div class="card-body" style="padding:24px">
-              <div
-                style="font-size:14px;font-weight:800;letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase;color:var(--text-primary)"
-                id="adminAccountTitle">STALIN 2</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+                <div
+                  style="font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--text-primary)"
+                  id="adminAccountTitle">GRUPO ANDINO</div>
+                <span class="badge-ok" id="adminCountBadge"><i class="fa-solid fa-users" style="font-size:10px"></i> 3
+                  Administradores</span>
+              </div>
               <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px">
-                Desde aquí un administrador puede quitar a otro (o a sí mismo si no es el único). Si queda un único
+                Desde aquí un administrador puede asignar roles o quitar el acceso a otros usuarios. Si queda un único
                 administrador con rol <strong>A</strong>, el sistema lo asciende a <strong>SA</strong> automáticamente.
               </p>
 
-              <div id="adminUserList" style="display:flex;flex-direction:column;gap:12px">
-                <div
-                  style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-lg);flex-wrap:wrap">
-                  <div>
-                    <div style="font-size:14px;font-weight:700;color:var(--text-primary)">Daysi Achig</div>
-                    <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">daysiachig1998@gmail.com
-                    </div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-                    <select class="form-input"
-                      style="height:36px;padding:4px 12px;font-size:12px;font-weight:600;border-radius:var(--r-md);background:white">
-                      <option value="SA">Super administrador (SA)</option>
-                      <option value="A">Administrador (A)</option>
-                    </select>
-                    <button class="btn btn-ghost btn-sm"
-                      onclick="showToast('Administrador eliminado en la demo','info')"
-                      style="background:white;border-color:var(--border-light);padding:7px 14px;font-size:12px">Eliminar</button>
-                  </div>
-                </div>
+              <div id="adminUserList" style="display:flex;flex-direction:column;gap:14px"></div>
+            </div>
+          </div>
 
-                <div class="acc-item" style="margin-top:4px;margin-bottom:0">
-                  <div class="acc-trigger" onclick="this.parentElement.classList.toggle('open')"
-                    style="padding:12px 16px">
-                    <div class="acc-info">
-                      <div class="acc-title" style="font-size:12.5px;color:var(--text-secondary);font-weight:600">
-                        Permisos actuales (Super administrador)</div>
+          <!-- TAB: IDIOMA -->
+          <div id="tab-idioma" class="tab-panel">
+            <div style="margin-bottom:18px">
+              <div style="font-size:16px;font-weight:700;margin-bottom:4px">Idioma</div>
+              <p style="font-size:13px;color:var(--text-secondary)">Configuración de idioma del portal</p>
+            </div>
+
+            <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
+              <div class="card-body" style="padding:24px">
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+                  <div class="lang-opt selected" onclick="pickLang(this,'es')"
+                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                    <span class="lang-flag">ES</span>
+                    <div>
+                      <div class="lang-nm" style="font-size:13px">Español</div>
+                      <div class="lang-nat">Spanish</div>
                     </div>
-                    <i class="fa-solid fa-plus acc-chev" style="font-size:12px"></i>
+                    <i class="fa-solid fa-check"
+                      style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
                   </div>
-                  <div class="acc-body">
-                    <div class="acc-content"
-                      style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding:12px 16px;background:white">
-                      - Acceso total a facturación y recargas.<br>
-                      - Gestión completa de vehículos y tarjetas Mifare/NFC.<br>
-                      - Invitar, promover o remover administradores.
+                  <div class="lang-opt" onclick="pickLang(this,'en')"
+                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                    <span class="lang-flag">EN</span>
+                    <div>
+                      <div class="lang-nm" style="font-size:13px">Inglés</div>
+                      <div class="lang-nat">English</div>
+                    </div>
+                  </div>
+                  <div class="lang-opt" onclick="pickLang(this,'fr')"
+                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                    <span class="lang-flag">FR</span>
+                    <div>
+                      <div class="lang-nm" style="font-size:13px">Francés</div>
+                      <div class="lang-nat">French</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <button class="btn btn-primary" onclick="showToast('Módulo para invitar administrador abierto','info')"
-            style="margin-top:20px;padding:11px 22px;border-radius:var(--r-md);font-size:13.5px">
-            <i class="fa-solid fa-user-plus"></i> Invitar administrador
-          </button>
-        </div>
-
-        <!-- TAB: IDIOMA -->
-        <div id="tab-idioma" class="tab-panel">
-          <div style="margin-bottom:18px">
-            <div style="font-size:16px;font-weight:700;margin-bottom:4px">Idioma</div>
-            <p style="font-size:13px;color:var(--text-secondary)">Configuración de idioma del portal</p>
-          </div>
-
-          <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
-            <div class="card-body" style="padding:24px">
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-                <div class="lang-opt selected" onclick="pickLang(this,'es')"
-                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                  <span class="lang-flag">ES</span>
-                  <div>
-                    <div class="lang-nm" style="font-size:13px">Español</div>
-                    <div class="lang-nat">Spanish</div>
-                  </div>
-                  <i class="fa-solid fa-check"
-                    style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
-                </div>
-                <div class="lang-opt" onclick="pickLang(this,'en')"
-                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                  <span class="lang-flag">EN</span>
-                  <div>
-                    <div class="lang-nm" style="font-size:13px">Inglés</div>
-                    <div class="lang-nat">English</div>
-                  </div>
-                </div>
-                <div class="lang-opt" onclick="pickLang(this,'fr')"
-                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                  <span class="lang-flag">FR</span>
-                  <div>
-                    <div class="lang-nm" style="font-size:13px">Francés</div>
-                    <div class="lang-nat">French</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
     </div><!-- /.page-content -->
@@ -4357,6 +4443,11 @@
           { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: 'Grupo Andino', default: true },
           { id: 'c-4242', brand: 'Visa', number: '•••• 4242', last4: '4242', exp: '12/2028', holder: 'Grupo Andino', default: false }
         ],
+        admins: [
+          { id: 'adm-101', nombre: 'Daysi Achig', email: 'daysiachig1998@gmail.com', role: 'SA' },
+          { id: 'adm-102', nombre: 'Stalin Pérez', email: 'stalin.perez@grupoandino.ec', role: 'A' },
+          { id: 'adm-103', nombre: 'Carlos Mendoza', email: 'carlos.mendoza@grupoandino.ec', role: 'A' }
+        ]
       },
       'AC-315': {
         id: 'AC-315',
@@ -4377,6 +4468,11 @@
         ],
         mifare: [
           { nombre: 'Tarjeta Torre A', uid: '04:E1:22:4C:09:71', tipo: 'Mifare DESFire', estado: 'Activa' }
+        ],
+        admins: [
+          { id: 'adm-301', nombre: 'Roberto Mirador', email: 'roberto@mirador.ec', role: 'SA' },
+          { id: 'adm-302', nombre: 'Ana Lucía Silva', email: 'ana.silva@mirador.ec', role: 'A' },
+          { id: 'adm-303', nombre: 'Fernando Vaca', email: 'fernando.vaca@mirador.ec', role: 'A' }
         ]
       },
       'AC-502': {
@@ -4400,6 +4496,11 @@
         mifare: [
           { nombre: 'Tarjeta Acceso Principal', uid: '04:F5:33:9A:88:12', tipo: 'Mifare Classic 4K', estado: 'Activa' },
           { nombre: 'Tarjeta Proveedores', uid: '04:A2:99:11:00:55', tipo: 'NFC Pass', estado: 'Activa' }
+        ],
+        admins: [
+          { id: 'adm-501', nombre: 'María Solís', email: 'msolis@plazasol.ec', role: 'SA' },
+          { id: 'adm-502', nombre: 'Javier Córdova', email: 'jcordova@plazasol.ec', role: 'A' },
+          { id: 'adm-503', nombre: 'Diego Andrade', email: 'dandrade@plazasol.ec', role: 'A' }
         ]
       }
     };
@@ -4410,6 +4511,7 @@
       billing: null,
       vehicles: [],
       mifare: [],
+      admins: [],
       balance: 0,
       lot: { name: 'Quicentro Sur', pricing: 'flat', amount: 1, rate: 1.5 },
       sim: false, simStart: null, simInterval: null, elapsed: 0,
@@ -4478,25 +4580,152 @@
 
     function fillAccountSelector(force = false) {
       const select = document.getElementById('accountSelect');
-      if (!select) return;
-      if (!force && select.options.length) return;
-      const currentVal = select.value || S.currentAccountId;
-      select.innerHTML = '';
-      Object.values(ACCOUNT_DATA).forEach(acc => {
-        const opt = document.createElement('option');
-        opt.value = acc.id;
-        opt.textContent = `${acc.label} · ${acc.id}`;
-        select.appendChild(opt);
-      });
-      select.value = currentVal;
+      if (select) {
+        select.innerHTML = '';
+        Object.values(ACCOUNT_DATA).forEach(acc => {
+          const opt = document.createElement('option');
+          opt.value = acc.id;
+          opt.textContent = `${acc.label} · ${acc.id}`;
+          select.appendChild(opt);
+        });
+        select.value = S.currentAccountId;
+      }
+      renderCustomAccountSelector();
+    }
+
+    function renderCustomAccountSelector() {
+      const currentAcc = getCurrentAccount();
+      const pillText = document.getElementById('accountPillText');
+      if (pillText && currentAcc) {
+        pillText.textContent = currentAcc.label;
+      }
+
+      const listContainer = document.getElementById('accountDropdownList');
+      if (!listContainer) return;
+
+      listContainer.innerHTML = Object.values(ACCOUNT_DATA).map(acc => {
+        const isSelected = (acc.id === S.currentAccountId);
+        const checkmarkHtml = isSelected
+          ? `<i class="fa-solid fa-check" style="color:var(--brand-pink);font-size:16px;flex-shrink:0;margin-right:2px"></i>`
+          : `<div style="width:18px"></div>`;
+
+        return `
+          <div onclick="selectAccountFromDropdown('${acc.id}')"
+            style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;cursor:pointer;transition:all var(--t);background:${isSelected ? 'var(--bg-input)' : 'transparent'}"
+            onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='${isSelected ? 'var(--bg-input)' : 'transparent'}'">
+            ${checkmarkHtml}
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14.5px;font-weight:700;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                ${acc.label}
+              </div>
+              <div style="font-size:12px;color:var(--text-secondary);margin-top:1px">
+                Super administrador
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleAccountDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('accountDropdownMenu');
+      if (!menu) return;
+      const isVisible = menu.style.display === 'block';
+      menu.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) renderCustomAccountSelector();
+    }
+
+    function closeAccountDropdown() {
+      const menu = document.getElementById('accountDropdownMenu');
+      if (menu) menu.style.display = 'none';
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.getElementById('topbarAccountCustomWrap');
+      if (wrap && !wrap.contains(e.target)) {
+        closeAccountDropdown();
+      }
+    });
+
+    function selectAccountFromDropdown(accId) {
+      closeAccountDropdown();
+      switchAccount(accId);
+    }
+
+    function openCreateAccountModal() {
+      closeAccountDropdown();
+      setSafeValue('newAccLabel', '');
+      const err = document.getElementById('createAccountError');
+      if (err) err.style.display = 'none';
+
+      const modal = document.getElementById('createAccountModal');
+      if (modal) modal.style.display = 'flex';
+      setTimeout(() => {
+        const input = document.getElementById('newAccLabel');
+        if (input) input.focus();
+      }, 60);
+    }
+
+    function closeCreateAccountModal() {
+      const modal = document.getElementById('createAccountModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function createNewAccount() {
+      const labelInput = document.getElementById('newAccLabel');
+      const err = document.getElementById('createAccountError');
+
+      const label = labelInput ? labelInput.value.trim() : '';
+
+      if (!label) {
+        if (err) { err.textContent = 'Por favor ingresa un nombre para la cuenta.'; err.style.display = 'block'; }
+        if (labelInput) labelInput.focus();
+        return;
+      }
+
+      if (err) err.style.display = 'none';
+
+      const slug = label.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const newEmail = `${slug || 'cuenta'}@grupoandino.ec`;
+      const newId = 'AC-' + Math.floor(100 + Math.random() * 900);
+
+      ACCOUNT_DATA[newId] = {
+        id: newId,
+        label: label,
+        profile: { nombre: label, tipoDocumento: 'RUC', documento: '1790011223001', email: newEmail, telefono: '0999999999', miembroDesde: 'Agosto 2026', plan: 'Plan Estándar', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. Principal 123' },
+        billing: { tipo: 'RUC', numero: '1790011223001', razon: label, direccion: 'Av. Principal 123', email: newEmail },
+        balance: 10.00,
+        visitCount: 0,
+        chartData: [0, 0, 0, 0, 0, 0, 0],
+        promos: [],
+        movements: [
+          { id: Date.now(), type: 'recharge', title: 'Saldo Inicial de Bienvenida', date: '13-08-2026', detail: { ref: `Igor-INIT-${newId}`, estado: 'APPROVED' }, amount: 10.00, balance: 10.00 }
+        ],
+        vehicles: [],
+        cards: [
+          { id: 'c-' + Date.now().toString().slice(-4), brand: 'Visa', number: '•••• 4242', last4: '4242', exp: '12/2028', holder: label, default: true }
+        ],
+        admins: [
+          { id: 'adm-' + Date.now(), nombre: label, email: newEmail, role: 'SA' },
+          { id: 'adm-' + (Date.now() + 1), nombre: 'Stalin Pérez', email: 'stalin.perez@' + (slug || 'empresa') + '.ec', role: 'A' },
+          { id: 'adm-' + (Date.now() + 2), nombre: 'Carlos Mendoza', email: 'carlos.mendoza@' + (slug || 'empresa') + '.ec', role: 'A' }
+        ]
+      };
+
+      closeCreateAccountModal();
+      S.currentAccountId = newId;
+      fillAccountSelector(true);
+      renderCurrentAccount();
+      showToast(`¡Cuenta "${label}" creada exitosamente!`, 'success');
     }
 
     function setBillingFieldState(disabled) {
-      ['fact-num', 'fact-razon', 'fact-email'].forEach(id => {
+      ['fact-tipo', 'fact-num', 'fact-razon', 'fact-dir', 'fact-email', 'btnConsultarFactDoc'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         el.disabled = disabled;
-        el.style.opacity = disabled ? '0.5' : '1';
+        el.style.opacity = disabled ? '0.55' : '1';
       });
     }
 
@@ -4511,11 +4740,13 @@
       acc.vehicles = S.vehicles;
       acc.mifare = S.mifare;
       acc.cards = S.cards;
+      acc.admins = S.admins;
       if (document.getElementById('perfil-nombre')) {
         const newName = document.getElementById('perfil-nombre').value.trim();
         if (newName) {
           acc.profile.nombre = newName;
         }
+        acc.profile.tipoDocumento = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
         acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
         acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
         acc.profile.telefono = document.getElementById('perfil-telefono').value.trim() || acc.profile.telefono;
@@ -4531,6 +4762,225 @@
         acc.billing.direccion = document.getElementById('fact-dir').value.trim();
         acc.billing.email = document.getElementById('fact-email').value.trim();
       }
+    }
+
+    function renderAdminList() {
+      const container = document.getElementById('adminUserList');
+      const countBadge = document.getElementById('adminCountBadge');
+      if (!container) return;
+
+      if (!S.admins) S.admins = [];
+
+      if (countBadge) {
+        countBadge.innerHTML = `<i class="fa-solid fa-users" style="font-size:10px"></i> ${S.admins.length} Administrador${S.admins.length !== 1 ? 'es' : ''}`;
+      }
+
+      if (S.admins.length === 0) {
+        container.innerHTML = `
+          <div style="padding:24px;text-align:center;color:var(--text-secondary);font-size:13px;background:var(--bg-input);border-radius:var(--r-lg);border:1px dashed var(--border-light)">
+            <i class="fa-solid fa-user-shield" style="font-size:24px;color:var(--text-muted);margin-bottom:8px;display:block"></i>
+            No hay administradores registrados en esta cuenta.
+          </div>`;
+        return;
+      }
+
+      const currentAcc = getCurrentAccount();
+      const currentHolderName = (currentAcc?.profile?.nombre || 'Daysi Achig').toLowerCase();
+
+      container.innerHTML = S.admins.map((adm, idx) => {
+        const isSA = adm.role === 'SA';
+        const roleLabel = isSA ? 'Super administrador (SA)' : 'Administrador (A)';
+        const initials = (adm.nombre || 'A').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+        const permContent = isSA
+          ? `- Acceso total a facturación y recargas.<br>- Gestión completa de vehículos y tarjetas Mifare/NFC.<br>- Invitar, promover o remover administradores.`
+          : `- Gestión de vehículos y tarjetas Mifare/NFC.<br>- Consulta de consumos y movimientos.<br>- Invitar nuevos administradores (requiere validación).`;
+
+        // Check if this admin is the active logged-in user (Daysi Achig or account holder)
+        const admNameLower = adm.nombre.toLowerCase();
+        const isSelf = (admNameLower.includes('daysi') || admNameLower === currentHolderName || (idx === 0 && (currentHolderName.includes('daysi') || currentHolderName === admNameLower)));
+
+        const actionButtonHtml = isSelf
+          ? `<button class="btn btn-ghost btn-sm" onclick="confirmLogoutAccount()" title="Salir de esta cuenta"
+              style="background:white;border-color:rgba(220,38,38,0.3);color:var(--red);padding:7px 12px;font-size:12px">
+              <i class="fa-solid fa-arrow-right-from-bracket" style="font-size:11px"></i> Salir de esta cuenta
+            </button>`
+          : `<button class="btn btn-ghost btn-sm" onclick="deleteAdmin(${idx})" title="Eliminar administrador"
+              style="background:white;border-color:var(--border-medium);color:var(--red);padding:7px 12px;font-size:12px">
+              <i class="fa-solid fa-trash-can" style="font-size:11px"></i> Eliminar
+            </button>`;
+
+        return `
+          <div style="background:white;border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xs);transition:all var(--t)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:var(--bg-input);flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1">
+                <div style="width:40px;height:40px;border-radius:50%;background:${isSA ? 'var(--brand-gradient)' : 'linear-gradient(135deg, #475569, #334155)'};color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;box-shadow:${isSA ? 'var(--shadow-blue)' : 'none'}">
+                  ${initials}
+                </div>
+                <div style="min-width:0">
+                  <div style="font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px">
+                    ${adm.nombre}
+                    <span class="${isSA ? 'badge-ok' : 'badge-rec'}" style="font-size:10px;padding:1px 8px">
+                      ${isSA ? 'SA' : 'A'}
+                    </span>
+                  </div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                    ${adm.email}
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
+                <select class="form-input" onchange="changeAdminRole(${idx}, this.value)"
+                  style="height:36px;padding:4px 10px;font-size:12px;font-weight:600;border-radius:var(--r-md);background:white;min-width:180px">
+                  <option value="SA" ${isSA ? 'selected' : ''}>Super administrador (SA)</option>
+                  <option value="A" ${!isSA ? 'selected' : ''}>Administrador (A)</option>
+                </select>
+                ${actionButtonHtml}
+              </div>
+            </div>
+
+            <div class="acc-item" style="margin:0;border:none;border-top:1px solid var(--border-light)">
+              <div class="acc-trigger" onclick="this.parentElement.classList.toggle('open')" style="padding:10px 18px;background:white">
+                <div class="acc-info">
+                  <div class="acc-title" style="font-size:12px;color:var(--text-secondary);font-weight:600">
+                    <i class="fa-solid fa-shield-halved" style="color:var(--brand-primary);margin-right:6px"></i> Permisos actuales (${roleLabel})
+                  </div>
+                </div>
+                <i class="fa-solid fa-plus acc-chev" style="font-size:11px"></i>
+              </div>
+              <div class="acc-body">
+                <div class="acc-content" style="font-size:12px;color:var(--text-secondary);line-height:1.6;padding:12px 18px;background:#FAF9FE">
+                  ${permContent}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function changeAdminRole(idx, newRole) {
+      if (!S.admins || !S.admins[idx]) return;
+
+      if (newRole === 'A' && S.admins[idx].role === 'SA') {
+        const saCount = S.admins.filter(a => a.role === 'SA').length;
+        if (saCount <= 1) {
+          showToast('La cuenta debe tener al menos un Super Administrador (SA)', 'warning');
+          renderAdminList();
+          return;
+        }
+      }
+
+      S.admins[idx].role = newRole;
+      const roleName = newRole === 'SA' ? 'Super administrador (SA)' : 'Administrador (A)';
+      persistCurrentAccount();
+      renderAdminList();
+      showToast(`Rol de ${S.admins[idx].nombre} actualizado a ${roleName}`, 'success');
+    }
+
+    function deleteAdmin(idx) {
+      if (!S.admins || !S.admins[idx]) return;
+      const deleted = S.admins[idx];
+
+      if (S.admins.length <= 1) {
+        showToast('No puedes eliminar el único administrador de la cuenta', 'warning');
+        return;
+      }
+
+      S.admins.splice(idx, 1);
+
+      // Rule: Si queda un único administrador con rol A, el sistema lo asciende a SA automáticamente.
+      if (S.admins.length === 1 && S.admins[0].role === 'A') {
+        S.admins[0].role = 'SA';
+        showToast(`Único administrador restante (${S.admins[0].nombre}) ascendido a Super Administrador (SA) automáticamente`, 'info');
+      } else {
+        showToast(`Administrador ${deleted.nombre} eliminado de la cuenta`, 'info');
+      }
+
+      persistCurrentAccount();
+      renderAdminList();
+    }
+
+    function openInviteAdminModal() {
+      setSafeValue('inviteAdminName', '');
+      setSafeValue('inviteAdminEmail', '');
+      setSafeValue('inviteAdminRole', 'A');
+      const err = document.getElementById('inviteAdminError');
+      if (err) err.style.display = 'none';
+
+      const modal = document.getElementById('inviteAdminModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeInviteAdminModal() {
+      const modal = document.getElementById('inviteAdminModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function sendAdminInvite() {
+      const nameInput = document.getElementById('inviteAdminName');
+      const emailInput = document.getElementById('inviteAdminEmail');
+      const roleInput = document.getElementById('inviteAdminRole');
+      const err = document.getElementById('inviteAdminError');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+      const role = roleInput ? roleInput.value : 'A';
+
+      if (!name) {
+        if (err) { err.textContent = 'Por favor ingresa el nombre completo del administrador.'; err.style.display = 'block'; }
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        if (err) { err.textContent = 'Por favor ingresa un correo electrónico válido.'; err.style.display = 'block'; }
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      if (!S.admins) S.admins = [];
+      const exists = S.admins.some(a => a.email.toLowerCase() === email);
+      if (exists) {
+        if (err) { err.textContent = `El correo ${email} ya está registrado como administrador en esta cuenta.`; err.style.display = 'block'; }
+        return;
+      }
+
+      if (err) err.style.display = 'none';
+
+      const newAdmin = {
+        id: 'adm-' + Date.now(),
+        nombre: name,
+        email: email,
+        role: role
+      };
+
+      S.admins.push(newAdmin);
+      persistCurrentAccount();
+      renderAdminList();
+      closeInviteAdminModal();
+
+      const roleText = role === 'SA' ? 'Super administrador (SA)' : 'Administrador (A)';
+      showToast(`Invitación enviada a ${email} como ${roleText}`, 'success');
+    }
+
+    function confirmLogoutAccount() {
+      const acc = getCurrentAccount();
+      setSafeText('logoutAccountName', acc ? acc.label : 'Grupo Andino');
+      const modal = document.getElementById('logoutAccountModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeLogoutAccountModal() {
+      const modal = document.getElementById('logoutAccountModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function logoutAccount() {
+      const acc = getCurrentAccount();
+      closeLogoutAccountModal();
+      showToast(`Has salido de la cuenta ${acc ? acc.label : ''} correctamente`, 'info');
     }
 
     function renderVehicleList() {
@@ -4655,6 +5105,12 @@
       S.movements = acc.movements || [];
       S.vehicles = acc.vehicles || [];
       S.mifare = acc.mifare || [];
+      S.admins = acc.admins || [
+        { id: 'adm-101', nombre: acc.profile?.nombre || 'Daysi Achig', email: acc.profile?.email || 'daysiachig1998@gmail.com', role: 'SA' },
+        { id: 'adm-102', nombre: 'Stalin Pérez', email: 'stalin.perez@grupoandino.ec', role: 'A' },
+        { id: 'adm-103', nombre: 'Carlos Mendoza', email: 'carlos.mendoza@grupoandino.ec', role: 'A' }
+      ];
+      acc.admins = S.admins;
       S.cards = acc.cards || [
         { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: acc.label, default: true }
       ];
@@ -4671,8 +5127,9 @@
 
       setSafeValue('inlineAccountNameInput', acc.label);
       setSafeValue('perfil-nombre', acc.profile?.nombre || acc.label);
-      setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'RUC');
-      setSafeValue('perfil-documento', acc.profile?.documento);
+      setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'Cédula');
+      onTipoDocChange();
+      setSafeValue('perfil-documento', acc.profile?.documento || '');
       setSafeValue('perfil-email', acc.profile?.email);
       setSafeValue('perfil-telefono', acc.profile?.telefono);
       setSafeValue('perfil-pais', acc.profile?.pais || 'Ecuador');
@@ -4681,6 +5138,7 @@
       setSafeValue('perfil-direccion', acc.profile?.direccion || '');
 
       setSafeValue('fact-tipo', acc.billing?.tipo || 'RUC');
+      onFactTipoDocChange();
       setSafeValue('fact-num', acc.billing?.numero || '');
       setSafeValue('fact-razon', acc.billing?.razon || '');
       setSafeValue('fact-dir', acc.billing?.direccion || '');
@@ -4708,6 +5166,7 @@
       renderDashMov();
       renderVehicleList();
       renderMifareList();
+      renderAdminList();
       renderPaymentCards();
       clearFilter();
       syncRechargeCardOptions();
@@ -4783,9 +5242,399 @@
       }
     }
 
+    const NOT_FOUND_DOCUMENTS = [
+      '9999999999', '0000000000', '1111111111', '1700000000', '0900000000',
+      '9999999999001', '0000000000001', '1700000000001', '1799999999001',
+      'PAS999999', 'PAS000000', 'X00000000', 'Z99999999'
+    ];
+
+    function isDocumentNotFound(docVal) {
+      if (!docVal) return false;
+      const clean = docVal.trim();
+      if (NOT_FOUND_DOCUMENTS.includes(clean)) return true;
+      if (/^(\d)\1+$/.test(clean)) return true; // all repeating digits (e.g. 2222222222, 0000000000)
+      if (clean.startsWith('000') || clean.startsWith('999')) return true;
+      if (clean.includes('404')) return true;
+      return false;
+    }
+
+    function onTipoDocChange() {
+      const tipo = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
+      const docInput = document.getElementById('perfil-documento');
+      const hintEl = document.getElementById('docLengthHint');
+      if (!docInput) return;
+
+      if (tipo === 'Cédula') {
+        docInput.maxLength = 10;
+        docInput.placeholder = 'Ej. 1727263434 (10 dígitos)';
+        if (hintEl) hintEl.textContent = '10 dígitos';
+        docInput.value = docInput.value.replace(/\D/g, '').slice(0, 10);
+      } else if (tipo === 'RUC') {
+        docInput.maxLength = 13;
+        docInput.placeholder = 'Ej. 1790011223001 (13 dígitos)';
+        if (hintEl) hintEl.textContent = '13 dígitos';
+        docInput.value = docInput.value.replace(/\D/g, '').slice(0, 13);
+      } else if (tipo === 'Pasaporte') {
+        docInput.maxLength = 16;
+        docInput.placeholder = 'Ej. A12345678 (2-16 car.)';
+        if (hintEl) hintEl.textContent = '2-16 car.';
+        docInput.value = docInput.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 16).toUpperCase();
+      }
+    }
+
+    function onDocumentoInput(input) {
+      if (!input) return;
+      const tipo = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
+      if (tipo === 'Cédula') {
+        input.value = input.value.replace(/\D/g, '').slice(0, 10);
+      } else if (tipo === 'RUC') {
+        input.value = input.value.replace(/\D/g, '').slice(0, 13);
+      } else if (tipo === 'Pasaporte') {
+        input.value = input.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 16).toUpperCase();
+      }
+    }
+
+    function onFactTipoDocChange() {
+      const tipo = document.getElementById('fact-tipo')?.value || 'RUC';
+      const docInput = document.getElementById('fact-num');
+      const hintEl = document.getElementById('factDocLengthHint');
+      if (!docInput) return;
+
+      if (tipo === 'Cédula') {
+        docInput.maxLength = 10;
+        docInput.placeholder = 'Ej. 1727263434 (10 dígitos)';
+        if (hintEl) hintEl.textContent = '10 dígitos';
+        docInput.value = docInput.value.replace(/\D/g, '').slice(0, 10);
+      } else if (tipo === 'RUC') {
+        docInput.maxLength = 13;
+        docInput.placeholder = 'Ej. 1790011223001 (13 dígitos)';
+        if (hintEl) hintEl.textContent = '13 dígitos';
+        docInput.value = docInput.value.replace(/\D/g, '').slice(0, 13);
+      } else if (tipo === 'Pasaporte') {
+        docInput.maxLength = 16;
+        docInput.placeholder = 'Ej. A12345678 (2-16 car.)';
+        if (hintEl) hintEl.textContent = '2-16 car.';
+        docInput.value = docInput.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 16).toUpperCase();
+      }
+    }
+
+    function onFactDocumentoInput(input) {
+      if (!input) return;
+      const tipo = document.getElementById('fact-tipo')?.value || 'RUC';
+      if (tipo === 'Cédula') {
+        input.value = input.value.replace(/\D/g, '').slice(0, 10);
+      } else if (tipo === 'RUC') {
+        input.value = input.value.replace(/\D/g, '').slice(0, 13);
+      } else if (tipo === 'Pasaporte') {
+        input.value = input.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 16).toUpperCase();
+      }
+    }
+
+    function flashField(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('field-autofill-highlight');
+      void el.offsetWidth;
+      el.classList.add('field-autofill-highlight');
+      setTimeout(() => el.classList.remove('field-autofill-highlight'), 1400);
+    }
+
+    function consultarDocumentoAPI() {
+      const tipo = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
+      const docInput = document.getElementById('perfil-documento');
+      const btn = document.getElementById('btnConsultarDoc');
+      const icon = document.getElementById('iconConsultarDoc');
+      const text = document.getElementById('textConsultarDoc');
+      if (!docInput) return;
+
+      const docVal = docInput.value.trim();
+
+      if (!docVal) {
+        showToast(`Por favor ingresa un número de ${tipo.toLowerCase()} para consultar`, 'error');
+        docInput.focus();
+        docInput.style.borderColor = 'var(--color-danger)';
+        setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+        return;
+      }
+
+      // Validations
+      if (tipo === 'Cédula') {
+        if (docVal.length !== 10 || !/^\d{10}$/.test(docVal)) {
+          showToast('La cédula debe contener exactamente 10 dígitos numéricos', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      } else if (tipo === 'RUC') {
+        if (docVal.length !== 13 || !/^\d{13}$/.test(docVal)) {
+          showToast('El RUC debe contener exactamente 13 dígitos numéricos', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      } else if (tipo === 'Pasaporte') {
+        if (docVal.length < 2 || docVal.length > 16) {
+          showToast('El pasaporte debe tener entre 2 y 16 caracteres', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+        if (!/[A-Za-z]/.test(docVal)) {
+          showToast('El pasaporte debe contener al menos una letra', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      }
+
+      // Start API simulation state
+      if (btn) btn.disabled = true;
+      if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+      if (text) text.textContent = 'Consultando...';
+
+      setTimeout(() => {
+        // Reset button
+        if (btn) btn.disabled = false;
+        if (icon) icon.className = 'fa-solid fa-magnifying-glass';
+        if (text) text.textContent = 'Consultar';
+
+        // Check if document is NOT found
+        if (isDocumentNotFound(docVal)) {
+          showToast(`No se encontraron datos para el documento ${docVal}. Debes ingresar los datos manualmente.`, 'error');
+          const nameInput = document.getElementById('perfil-nombre');
+          if (nameInput) {
+            nameInput.focus();
+            nameInput.style.borderColor = 'var(--brand-primary)';
+            setTimeout(() => { nameInput.style.borderColor = ''; }, 2500);
+          }
+          return;
+        }
+
+        let nombre = '';
+        let email = '';
+        let telefono = '';
+        let pais = 'Ecuador';
+        let provincia = 'Pichincha';
+        let ciudad = 'Quito';
+        let direccion = '';
+
+        if (docVal === '1727263434') {
+          nombre = 'Daysi Juliana Achig Condolo';
+          email = 'daysi.achig@grupoandino.ec';
+          telefono = '0987654321';
+          pais = 'Ecuador';
+          provincia = 'Pichincha';
+          ciudad = 'Quito';
+          direccion = 'Av. 6 de Diciembre N33-42 y Bosmediano';
+          showToast('¡Consulta API exitosa! Datos de Daysi Juliana Achig Condolo cargados correctamente', 'success');
+        } else {
+          // Realistic Ecuadorian random mock data
+          const FIRST_NAMES = [
+            'Carlos Eduardo', 'María Belén', 'Juan Diego', 'Doménica Sofía',
+            'Esteban Andrés', 'Gabriela Monserrath', 'David Alejandro', 'Paola Cristina',
+            'Mateo Sebastián', 'Andrea Carolina', 'Jorge Luis', 'Valeria Nicole',
+            'Santiago Javier', 'Camila Alejandra', 'Luis Fernando', 'Diana Elizabeth'
+          ];
+          const LAST_NAMES = [
+            'Mendoza Viteri', 'Morales Torres', 'Castillo Espinosa', 'Salazar Benítez',
+            'Cárdenas Romero', 'Guevara Paredes', 'Andrade Jaramillo', 'López Cevallos',
+            'Pérez Proaño', 'Guerrero Noboa', 'Vega Villacís', 'Ortiz Cisneros'
+          ];
+          const PROVINCES_LIST = ['Pichincha', 'Guayas', 'Azuay', 'Tungurahua', 'Manabí', 'El Oro', 'Imbabura', 'Loja'];
+          const STREETS = [
+            'Av. Amazonas N24-196 y Luis Cordero',
+            'Av. 9 de Octubre 1200 y Malecón Simón Bolívar',
+            'Calle Larga 5-32 y Huayna Cápac',
+            'Av. Cevallos 845 y Montalvo',
+            'Av. República de El Salvador N36-140 y Naciones Unidas',
+            'Av. Francisco de Orellana y Plaza Dañín',
+            'Av. 12 de Octubre y Lincoln',
+            'Av. Victor Emilio Estrada 412 y Ébanos'
+          ];
+
+          const randFirst = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+          const randLast = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
+
+          if (tipo === 'RUC' && Math.random() > 0.4) {
+            const COMPANIES = [
+              `Comercializadora ${randLast.split(' ')[0]} & Asociados Cía. Ltda.`,
+              `Distribuidora Andina de Servicios S.A.`,
+              `Soluciones Logísticas e Industriales del Ecuador S.A.`,
+              `Corporación Mercantil ${randLast.split(' ')[0]} S.A.`
+            ];
+            nombre = COMPANIES[Math.floor(Math.random() * COMPANIES.length)];
+            const slug = nombre.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 10);
+            email = `contacto@${slug}.ec`;
+          } else {
+            nombre = `${randFirst} ${randLast}`;
+            const firstSlug = randFirst.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+            const lastSlug = randLast.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+            email = `${firstSlug}.${lastSlug}${Math.floor(Math.random()*90 + 10)}@gmail.com`;
+          }
+
+          telefono = '09' + Math.floor(10000000 + Math.random() * 90000000);
+          provincia = PROVINCES_LIST[Math.floor(Math.random() * PROVINCES_LIST.length)];
+          const cityList = CITIES_BY_PROVINCE[provincia] || ['Quito'];
+          ciudad = cityList[Math.floor(Math.random() * cityList.length)];
+          direccion = STREETS[Math.floor(Math.random() * STREETS.length)];
+
+          showToast(`¡Consulta API exitosa! Se autocompletaron los datos para ${tipo} ${docVal}`, 'success');
+        }
+
+        // Populate fields
+        setSafeValue('perfil-nombre', nombre);
+        setSafeValue('perfil-email', email);
+        setSafeValue('perfil-telefono', telefono);
+        setSafeValue('perfil-pais', pais);
+        setSafeValue('perfil-provincia', provincia);
+        onProvinceChange(ciudad);
+        setSafeValue('perfil-direccion', direccion);
+
+        // Visual flash effect on populated inputs
+        flashField('perfil-nombre');
+        flashField('perfil-email');
+        flashField('perfil-telefono');
+        flashField('perfil-pais');
+        flashField('perfil-provincia');
+        flashField('perfil-ciudad');
+        flashField('perfil-direccion');
+      }, 700);
+    }
+
+    function consultarFactDocumentoAPI() {
+      const tipo = document.getElementById('fact-tipo')?.value || 'RUC';
+      const docInput = document.getElementById('fact-num');
+      const btn = document.getElementById('btnConsultarFactDoc');
+      const icon = document.getElementById('iconConsultarFactDoc');
+      const text = document.getElementById('textConsultarFactDoc');
+      if (!docInput) return;
+
+      const docVal = docInput.value.trim();
+
+      if (!docVal) {
+        showToast(`Por favor ingresa un número de ${tipo.toLowerCase()} para consultar`, 'error');
+        docInput.focus();
+        docInput.style.borderColor = 'var(--color-danger)';
+        setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+        return;
+      }
+
+      // Validations
+      if (tipo === 'Cédula') {
+        if (docVal.length !== 10 || !/^\d{10}$/.test(docVal)) {
+          showToast('La cédula debe contener exactamente 10 dígitos numéricos', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      } else if (tipo === 'RUC') {
+        if (docVal.length !== 13 || !/^\d{13}$/.test(docVal)) {
+          showToast('El RUC debe contener exactamente 13 dígitos numéricos', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      } else if (tipo === 'Pasaporte') {
+        if (docVal.length < 2 || docVal.length > 16) {
+          showToast('El pasaporte debe tener entre 2 y 16 caracteres', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+        if (!/[A-Za-z]/.test(docVal)) {
+          showToast('El pasaporte debe contener al menos una letra', 'error');
+          docInput.focus();
+          docInput.style.borderColor = 'var(--color-danger)';
+          setTimeout(() => { docInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+      }
+
+      // Start API simulation state
+      if (btn) btn.disabled = true;
+      if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+      if (text) text.textContent = 'Consultando...';
+
+      setTimeout(() => {
+        // Reset button
+        if (btn) btn.disabled = false;
+        if (icon) icon.className = 'fa-solid fa-magnifying-glass';
+        if (text) text.textContent = 'Consultar';
+
+        // Check if document is NOT found
+        if (isDocumentNotFound(docVal)) {
+          showToast(`No se encontraron datos de facturación para el documento ${docVal}. Debes ingresar los datos manualmente.`, 'error');
+          const razonInput = document.getElementById('fact-razon');
+          if (razonInput) {
+            razonInput.focus();
+            razonInput.style.borderColor = 'var(--brand-primary)';
+            setTimeout(() => { razonInput.style.borderColor = ''; }, 2500);
+          }
+          return;
+        }
+
+        let razon = '';
+        let email = '';
+        let direccion = '';
+
+        if (docVal === '1727263434') {
+          razon = 'Daysi Juliana Achig Condolo';
+          email = 'daysi.achig@grupoandino.ec';
+          direccion = 'Av. 6 de Diciembre N33-42 y Bosmediano, Quito';
+          showToast('¡Consulta SRI exitosa! Datos fiscales de Daysi Juliana Achig Condolo cargados correctamente', 'success');
+        } else {
+          const FIRST_NAMES = ['Carlos Eduardo', 'María Belén', 'Juan Diego', 'Doménica Sofía', 'Esteban Andrés', 'Gabriela Monserrath', 'David Alejandro', 'Paola Cristina'];
+          const LAST_NAMES = ['Mendoza Viteri', 'Morales Torres', 'Castillo Espinosa', 'Salazar Benítez', 'Cárdenas Romero', 'Guevara Paredes', 'Andrade Jaramillo'];
+          const STREETS = [
+            'Av. Amazonas N24-196 y Luis Cordero, Quito',
+            'Av. 9 de Octubre 1200 y Malecón, Guayaquil',
+            'Calle Larga 5-32 y Huayna Cápac, Cuenca',
+            'Av. Cevallos 845 y Montalvo, Ambato',
+            'Av. República de El Salvador N36-140 y NNUU, Quito'
+          ];
+          const randFirst = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+          const randLast = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
+
+          if (tipo === 'RUC') {
+            const COMPANIES = [
+              `Corporación ${randLast.split(' ')[0]} & Asociados S.A.`,
+              `Comercial Andina del Ecuador Cía. Ltda.`,
+              `Servicios Integrales ${randLast.split(' ')[0]} S.A.`,
+              `Soluciones Logísticas del Austro S.A.`
+            ];
+            razon = COMPANIES[Math.floor(Math.random() * COMPANIES.length)];
+            const slug = razon.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 10);
+            email = `facturas@${slug}.ec`;
+          } else {
+            razon = `${randFirst} ${randLast}`;
+            const firstSlug = randFirst.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+            const lastSlug = randLast.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+            email = `facturas.${firstSlug}.${lastSlug}@gmail.com`;
+          }
+          direccion = STREETS[Math.floor(Math.random() * STREETS.length)];
+          showToast(`¡Consulta SRI exitosa! Datos fiscales cargados para ${tipo} ${docVal}`, 'success');
+        }
+
+        setSafeValue('fact-razon', razon);
+        setSafeValue('fact-email', email);
+        setSafeValue('fact-dir', direccion);
+
+        flashField('fact-razon');
+        flashField('fact-dir');
+        flashField('fact-email');
+      }, 700);
+    }
+
     function syncFact(checkbox) {
       if (checkbox && checkbox.checked) {
-        const docType = document.getElementById('perfil-tipo-doc')?.value || 'RUC';
+        const docType = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
         const docNum = document.getElementById('perfil-documento')?.value || '';
         const name = document.getElementById('perfil-nombre')?.value || '';
         const email = document.getElementById('perfil-email')?.value || '';
@@ -4795,6 +5644,7 @@
         const fullDir = [dir, ciu, prov].filter(Boolean).join(', ');
 
         setSafeValue('fact-tipo', docType);
+        onFactTipoDocChange();
         setSafeValue('fact-num', docNum);
         setSafeValue('fact-razon', name);
         setSafeValue('fact-email', email);
@@ -6508,6 +7358,151 @@
     </div>
   </div>
 
+  <!-- Modal Invitar Administrador / Superadministrador -->
+  <div id="inviteAdminModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:460px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+      <div
+        style="width:56px;height:56px;border-radius:50%;background:rgba(0,87,184,0.1);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">
+        Invitar Administrador</h3>
+      <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
+        Asigna el tipo de rol y envía una invitación por correo electrónico para otorgar acceso.
+      </p>
+
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Nombre Completo</label>
+        <input class="form-input" id="inviteAdminName" type="text" placeholder="Ej. Carlos Mendoza">
+      </div>
+
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Correo Electrónico</label>
+        <input class="form-input" id="inviteAdminEmail" type="email" placeholder="correo@ejemplo.com">
+      </div>
+
+      <div class="form-group" style="margin-bottom:18px">
+        <label class="form-label">Rol y Permisos de Acceso</label>
+        <select class="form-input" id="inviteAdminRole" style="height:42px;font-weight:600">
+          <option value="A" selected>Administrador (A) - Acceso Estándar</option>
+          <option value="SA">Super administrador (SA) - Acceso Total</option>
+        </select>
+      </div>
+
+      <div id="inviteAdminError"
+        style="display:none;font-size:12px;color:var(--brand-pink);margin-bottom:14px;padding:8px 12px;background:rgba(232,0,90,0.06);border-radius:var(--r-md);border:1px solid rgba(232,0,90,0.15)">
+        <i class="fa-solid fa-circle-exclamation"></i> Por favor revisa los datos ingresados.
+      </div>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-ghost" onclick="closeInviteAdminModal()"
+          style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+        <button class="btn btn-primary" onclick="sendAdminInvite()"
+          style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          <i class="fa-solid fa-paper-plane"></i> Enviar invitación
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Salir de la Cuenta -->
+  <div id="logoutAccountModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    <div class="card"
+      style="max-width:420px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+      <div
+        style="width:56px;height:56px;border-radius:50%;background:rgba(220,38,38,0.1);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:6px">
+        ¿Salir de esta cuenta?</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px">
+        Estás por cerrar la sesión activa de la cuenta <strong id="logoutAccountName"
+          style="color:var(--text-primary)">Grupo Andino</strong>.
+      </p>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-ghost" onclick="closeLogoutAccountModal()"
+          style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+        <button class="btn btn-danger" onclick="logoutAccount()"
+          style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Salir de la cuenta
+        </button>
+      </div>
+    </div>
+    <!-- Modal Crear Nueva Cuenta (Matches Image 2) -->
+    <div id="createAccountModal" class="modal-backdrop"
+      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+      <div class="card"
+        style="max-width:420px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+        <div
+          style="width:56px;height:56px;border-radius:50%;background:rgba(232,0,90,0.1);color:var(--brand-pink);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">
+          Crear cuenta</h3>
+        <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
+          Ingresa el nombre para tu nueva cuenta.
+        </p>
+
+        <div class="form-group" style="margin-bottom:18px">
+          <label class="form-label">Nombre de la cuenta</label>
+          <input class="form-input" id="newAccLabel" type="text" placeholder="Ej. STALIN 2"
+            style="font-size:14px;padding:11px 14px">
+        </div>
+
+        <div id="createAccountError"
+          style="display:none;font-size:12px;color:var(--brand-pink);margin-bottom:14px;padding:8px 12px;background:rgba(232,0,90,0.06);border-radius:var(--r-md);border:1px solid rgba(232,0,90,0.15)">
+          <i class="fa-solid fa-circle-exclamation"></i> Por favor ingresa un nombre para la cuenta.
+        </div>
+
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-ghost" onclick="closeCreateAccountModal()"
+            style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+          <button class="btn btn-primary" onclick="createNewAccount()"
+            style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700;background:linear-gradient(135deg, var(--brand-pink), #C0004A)">
+            <i class="fa-solid fa-plus"></i> Crear cuenta
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Supabase JS Client Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = "https://odtcvsmcgoqwjfoqklia.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_0Kj8iEAVrB3zhGTp46P7ZQ_eXVcJWJ6";
+
+      // Inicializar cliente global de Supabase
+      if (window.supabase) {
+        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log("⚡ Supabase Client conectado exitosamente:", SUPABASE_URL);
+      } else {
+        console.error("❌ No se pudo cargar el SDK de Supabase.");
+      }
+
+      // Función helper para probar o cargar datos desde Supabase
+      async function cargarProductos() {
+        if (!window.supabaseClient) return;
+        try {
+          const { data, error } = await window.supabaseClient
+            .from("productos")
+            .select("*");
+
+          if (error) {
+            console.warn("⚠️ Supabase (productos):", error.message || error);
+            return;
+          }
+
+          console.log("📦 Datos recibidos de Supabase (productos):", data);
+        } catch (err) {
+          console.error("❌ Error de red / conexión a Supabase:", err);
+        }
+      }
+
+      cargarProductos();
+    </script>
 </body>
 
 </html>
