@@ -1440,6 +1440,15 @@
       border-bottom-color: var(--brand-primary)
     }
 
+    .tab-btn.tab-btn-danger:hover {
+      color: var(--red, #dc2626);
+    }
+
+    .tab-btn.tab-btn-danger.active {
+      color: var(--red, #dc2626);
+      border-bottom-color: var(--red, #dc2626);
+    }
+
     .tab-panel {
       display: none
     }
@@ -1557,9 +1566,22 @@
     }
 
     @keyframes fieldHighlightPulse {
-      0% { background-color: rgba(0, 109, 255, 0.22); border-color: var(--brand-primary); transform: scale(1.01); }
-      50% { background-color: rgba(30, 201, 151, 0.20); border-color: var(--color-success); }
-      100% { background-color: var(--bg-input); border-color: var(--border-light); transform: scale(1); }
+      0% {
+        background-color: rgba(0, 109, 255, 0.22);
+        border-color: var(--brand-primary);
+        transform: scale(1.01);
+      }
+
+      50% {
+        background-color: rgba(30, 201, 151, 0.20);
+        border-color: var(--color-success);
+      }
+
+      100% {
+        background-color: var(--bg-input);
+        border-color: var(--border-light);
+        transform: scale(1);
+      }
     }
 
     .field-autofill-highlight {
@@ -3100,14 +3122,16 @@
     </nav>
 
     <div class="sidebar-footer">
-      <div class="user-card">
+      <div class="user-card" onclick="toggleAccountDropdown(event)" style="cursor:pointer"
+        title="Cambiar o crear cuenta">
         <div class="avatar" id="sidebarAvatar">U</div>
         <div style="flex:1;min-width:0">
           <div class="user-name" id="sidebarUserName">Grupo Andino</div>
           <div class="user-email" id="sidebarUserEmail">usuario@ejemplo.com</div>
         </div>
-        <button class="logout-btn" onclick="showToast('Sesión cerrada correctamente','info')">
-          <i class="fa-solid fa-arrow-right-from-bracket" style="font-size:13px"></i>
+        <button type="button" class="logout-btn" onclick="event.stopPropagation();openCreateAccountModal()"
+          title="Crear nueva cuenta">
+          <i class="fa-solid fa-plus" style="font-size:13px"></i>
         </button>
       </div>
     </div>
@@ -3151,7 +3175,7 @@
           <button type="button" class="account-pill-btn" onclick="toggleAccountDropdown(event)" id="accountPillBtn"
             style="display:flex;align-items:center;gap:10px;padding:5px 14px 5px 6px;background:white;border:1.5px solid var(--border-medium);border-radius:99px;cursor:pointer;transition:all var(--t);box-shadow:var(--shadow-xs)">
             <div
-              style="width:34px;height:34px;border-radius:50%;background:#FCE7F0;color:#E84889;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">
+              style="width:34px;height:34px;border-radius:50%;background:rgba(0,102,235,0.1);color:#0066eb;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">
               <i class="fa-solid fa-building"></i>
             </div>
             <span id="accountPillText"
@@ -3166,7 +3190,7 @@
 
           <!-- Dropdown Menu (Matches Image 2) -->
           <div class="account-dropdown-menu" id="accountDropdownMenu"
-            style="display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:260px;background:white;border:1px solid var(--border-light);border-radius:18px;box-shadow:0 12px 36px rgba(10,22,41,0.16);z-index:99;padding:16px;animation:fadeUp .18s ease">
+            style="display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:260px;background:white;border:1px solid var(--border-light);border-radius:18px;box-shadow:0 12px 36px rgba(10,22,41,0.16);z-index:99999;padding:16px;animation:fadeUp .18s ease">
 
             <div style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:12px;padding:0 4px">Tus
               cuentas</div>
@@ -3180,8 +3204,8 @@
             <div onclick="openCreateAccountModal()"
               style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;cursor:pointer;transition:background var(--t)"
               onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='transparent'">
-              <i class="fa-solid fa-plus" style="color:var(--brand-pink);font-size:16px"></i>
-              <span style="color:var(--brand-pink);font-weight:700;font-size:14.5px">Crear cuenta</span>
+              <i class="fa-solid fa-plus" style="color:#0066eb;font-size:16px"></i>
+              <span style="color:#0066eb;font-weight:700;font-size:14.5px">Crear nueva cuenta</span>
             </div>
           </div>
         </div>
@@ -3219,7 +3243,7 @@
             <button class="btn btn-tour" onclick="startTour()">
               <i class="fa-solid fa-wand-magic-sparkles"></i> Tour Guiado
             </button>
-            <button class="btn btn-primary" onclick="goTo('billetera',document.getElementById('nav-billetera'))">
+            <button class="btn btn-primary" onclick="handleDashboardRechargeClick()">
               <i class="fa-solid fa-plus"></i> Recargar saldo
             </button>
           </div>
@@ -3536,17 +3560,26 @@
 
               <!-- 2. Documento de Identidad con Botón de Consulta API -->
               <div class="form-group">
-                <label class="form-label" for="perfil-documento" style="display:flex;justify-content:space-between;align-items:center">
-                  <span>Documento de Identidad *</span>
-                  <span id="docLengthHint" style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">10 dígitos</span>
+                <label class="form-label" for="perfil-documento"
+                  style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="display:inline-flex;align-items:center;gap:6px">
+                    Documento de Identidad *
+                    <div class="help-wrap">
+                      <div class="help-icon">?</div>
+                      <div class="help-tip">
+                        <div class="ht">Documento de Identidad</div>Número de identificación para validación y consulta
+                        de datos en el sistema.
+                      </div>
+                    </div>
+                  </span>
+                  <span id="docLengthHint"
+                    style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">10
+                    dígitos</span>
                 </label>
                 <div style="display:flex;gap:8px">
                   <div style="position:relative;flex:1">
-                    <input class="form-input" id="perfil-documento" type="text"
-                      placeholder="Ej. 1727263434"
-                      maxlength="10"
-                      value="1790011223001"
-                      oninput="onDocumentoInput(this)"
+                    <input class="form-input" id="perfil-documento" type="text" placeholder="Ej. 1727263434"
+                      maxlength="10" value="1790011223001" oninput="onDocumentoInput(this)"
                       onkeydown="if(event.key==='Enter'){event.preventDefault();consultarDocumentoAPI();}"
                       style="font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:0.5px">
                   </div>
@@ -3579,7 +3612,15 @@
                   placeholder="correo@ejemplo.com">
               </div>
               <div class="form-group">
-                <label class="form-label" for="perfil-telefono">Teléfono / Celular *</label>
+                <label class="form-label" for="perfil-telefono">Teléfono / Celular *
+                  <div class="help-wrap right">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Teléfono de Contacto</div>Número de teléfono celular para alertas de seguridad y
+                      contacto de soporte.
+                    </div>
+                  </div>
+                </label>
                 <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999">
               </div>
             </div>
@@ -3590,7 +3631,7 @@
             </div>
             <div class="form-grid-3">
               <div class="form-group">
-                <label class="form-label">País</label>
+                <label class="form-label" for="perfil-pais">País</label>
                 <select class="form-input" id="perfil-pais">
                   <option value="Ecuador" selected>Ecuador</option>
                   <option value="Colombia">Colombia</option>
@@ -3603,7 +3644,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Provincia</label>
+                <label class="form-label" for="perfil-provincia">Provincia</label>
                 <select class="form-input" id="perfil-provincia" onchange="onProvinceChange()">
                   <option value="">Selecciona una provincia</option>
                   <option value="Azuay">Azuay</option>
@@ -3633,13 +3674,21 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Ciudad</label>
+                <label class="form-label" for="perfil-ciudad">Ciudad</label>
                 <select class="form-input" id="perfil-ciudad">
                   <option value="">Selecciona una ciudad</option>
                 </select>
               </div>
               <div class="form-group fg-full">
-                <label class="form-label">Dirección</label>
+                <label class="form-label" for="perfil-direccion">Dirección
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Dirección Domiciliaria</div>Dirección física completa (calle principal, número de
+                      inmueble y calle secundaria).
+                    </div>
+                  </div>
+                </label>
                 <input class="form-input" id="perfil-direccion" type="text"
                   placeholder="Calle principal, número y calle secundaria">
               </div>
@@ -3664,7 +3713,16 @@
               style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg-input);border:1px solid var(--border-light);border-radius:var(--r-md);cursor:pointer;margin-bottom:18px">
               <input type="checkbox" id="ck-mismos" onchange="syncFact(this)"
                 style="width:15px;height:15px;accent-color:var(--brand-primary)">
-              <span style="font-size:13px;font-weight:500">Usar los mismos datos de mi perfil personal</span>
+              <span style="font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px">
+                Usar los mismos datos de mi perfil personal
+                <div class="help-wrap">
+                  <div class="help-icon">?</div>
+                  <div class="help-tip">
+                    <div class="ht">Sincronización Automática</div>Copia automáticamente tu tipo de documento, número,
+                    nombre, dirección y correo desde tu perfil de cuenta.
+                  </div>
+                </div>
+              </span>
             </label>
             <div class="form-grid">
               <!-- 1. Tipo de Documento Facturación -->
@@ -3679,21 +3737,31 @@
 
               <!-- 2. Número de Documento Facturación con Botón de Consulta API -->
               <div class="form-group">
-                <label class="form-label" for="fact-num" style="display:flex;justify-content:space-between;align-items:center">
-                  <span>Número de Documento *</span>
-                  <span id="factDocLengthHint" style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">13 dígitos</span>
+                <label class="form-label" for="fact-num"
+                  style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="display:inline-flex;align-items:center;gap:6px">
+                    Número de Documento *
+                    <div class="help-wrap">
+                      <div class="help-icon">?</div>
+                      <div class="help-tip">
+                        <div class="ht">Número de Documento</div>RUC, cédula o pasaporte que constará en las facturas
+                        electrónicas (SRI).
+                      </div>
+                    </div>
+                  </span>
+                  <span id="factDocLengthHint"
+                    style="font-size:11px;font-weight:600;color:var(--brand-primary);background:rgba(0,109,255,0.08);padding:1px 7px;border-radius:4px">13
+                    dígitos</span>
                 </label>
                 <div style="display:flex;gap:8px">
                   <div style="position:relative;flex:1">
-                    <input class="form-input" id="fact-num" type="text"
-                      placeholder="Ej. 1790011223001"
-                      maxlength="13"
+                    <input class="form-input" id="fact-num" type="text" placeholder="Ej. 1790011223001" maxlength="13"
                       oninput="onFactDocumentoInput(this)"
                       onkeydown="if(event.key==='Enter'){event.preventDefault();consultarFactDocumentoAPI();}"
                       style="font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:0.5px">
                   </div>
-                  <button type="button" class="btn-doc-search" id="btnConsultarFactDoc" onclick="consultarFactDocumentoAPI()"
-                    title="Consultar datos de facturación vía API (SRI)">
+                  <button type="button" class="btn-doc-search" id="btnConsultarFactDoc"
+                    onclick="consultarFactDocumentoAPI()" title="Consultar datos de facturación vía API (SRI)">
                     <i class="fa-solid fa-magnifying-glass" id="iconConsultarFactDoc"></i>
                     <span id="textConsultarFactDoc">Consultar</span>
                   </button>
@@ -3715,7 +3783,15 @@
 
               <!-- 5. Correo de Facturación -->
               <div class="form-group fg-full">
-                <label class="form-label" for="fact-email">Correo Electrónico de Facturación *</label>
+                <label class="form-label" for="fact-email">Correo Electrónico de Facturación *
+                  <div class="help-wrap">
+                    <div class="help-icon">?</div>
+                    <div class="help-tip">
+                      <div class="ht">Correo de Facturación</div>Dirección donde el SRI y el sistema enviarán los
+                      comprobantes de venta electrónicos (RIDE y XML).
+                    </div>
+                  </div>
+                </label>
                 <input class="form-input" id="fact-email" type="email" placeholder="facturacion@empresa.com">
               </div>
             </div>
@@ -3769,7 +3845,7 @@
 
           <div style="margin-top:14px;margin-bottom:22px">
             <button class="btn-add-payment-method" onclick="openPlacetopayGateway()">
-              <i class="fa-solid fa-plus"></i> Agregar Método de Pago
+              <i class="fa-solid fa-plus"></i> Añadir tarjeta
             </button>
           </div>
         </div>
@@ -4285,6 +4361,8 @@
         <div class="tab-bar">
           <button class="tab-btn active" onclick="showTab(this,'tab-admins')">Administradores</button>
           <button class="tab-btn" onclick="showTab(this,'tab-idioma')">Idioma</button>
+          <button class="tab-btn tab-btn-danger" onclick="showTab(this,'tab-eliminar-cuenta')"><i
+              class="fa-solid fa-trash-can" style="font-size:12px;margin-right:4px"></i>Eliminar Cuenta</button>
         </div>
 
         <!-- TAB: ADMINISTRADORES -->
@@ -4329,43 +4407,105 @@
               <div id="adminUserList" style="display:flex;flex-direction:column;gap:14px"></div>
             </div>
           </div>
+        </div>
 
-          <!-- TAB: IDIOMA -->
-          <div id="tab-idioma" class="tab-panel">
-            <div style="margin-bottom:18px">
-              <div style="font-size:16px;font-weight:700;margin-bottom:4px">Idioma</div>
-              <p style="font-size:13px;color:var(--text-secondary)">Configuración de idioma del portal</p>
+        <!-- TAB: IDIOMA -->
+        <div id="tab-idioma" class="tab-panel">
+          <div style="margin-bottom:18px">
+            <div style="font-size:16px;font-weight:700;margin-bottom:4px">Idioma</div>
+            <p style="font-size:13px;color:var(--text-secondary)">Configuración de idioma del portal</p>
+          </div>
+
+          <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
+            <div class="card-body" style="padding:24px">
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+                <div class="lang-opt selected" onclick="pickLang(this,'es')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                  <span class="lang-flag">ES</span>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Español</div>
+                    <div class="lang-nat">Spanish</div>
+                  </div>
+                  <i class="fa-solid fa-check"
+                    style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
+                </div>
+                <div class="lang-opt" onclick="pickLang(this,'en')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                  <span class="lang-flag">EN</span>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Inglés</div>
+                    <div class="lang-nat">English</div>
+                  </div>
+                </div>
+                <div class="lang-opt" onclick="pickLang(this,'fr')"
+                  style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
+                  <span class="lang-flag">FR</span>
+                  <div>
+                    <div class="lang-nm" style="font-size:13px">Francés</div>
+                    <div class="lang-nat">French</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: ELIMINAR CUENTA -->
+        <div id="tab-eliminar-cuenta" class="tab-panel">
+          <div style="margin-bottom:18px">
+            <div
+              style="font-size:16px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;color:var(--red,#dc2626)">
+
             </div>
 
-            <div class="card" style="max-width:720px;border-radius:var(--r-xl)">
+            <div class="card"
+              style="max-width:720px;border-radius:var(--r-xl);border:1px solid rgba(220,38,38,0.25);background:rgba(220,38,38,0.02)">
               <div class="card-body" style="padding:24px">
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-                  <div class="lang-opt selected" onclick="pickLang(this,'es')"
-                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                    <span class="lang-flag">ES</span>
-                    <div>
-                      <div class="lang-nm" style="font-size:13px">Español</div>
-                      <div class="lang-nat">Spanish</div>
-                    </div>
-                    <i class="fa-solid fa-check"
-                      style="position:absolute;top:10px;right:10px;color:var(--brand-primary)"></i>
+                <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+                  <div
+                    style="width:48px;height:48px;border-radius:12px;background:rgba(220,38,38,0.1);color:var(--red,#dc2626);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+                    <i class="fa-solid fa-user-slash"></i>
                   </div>
-                  <div class="lang-opt" onclick="pickLang(this,'en')"
-                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                    <span class="lang-flag">EN</span>
-                    <div>
-                      <div class="lang-nm" style="font-size:13px">Inglés</div>
-                      <div class="lang-nat">English</div>
+                  <div>
+                    <h4 style="font-size:16px;font-weight:800;color:var(--text-primary);margin-bottom:6px">Eliminación
+                      definitiva de la cuenta</h4>
+                    <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
+                      Al confirmar esta acción, tu cuenta y toda la información vinculada serán removidas de forma
+                      definitiva. Ten en cuenta lo siguiente:
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  style="background:var(--bg-active,#f8fafc);border-radius:12px;padding:16px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px">
+                  <div style="font-size:12.5px;color:var(--text-primary);display:flex;align-items:center;gap:10px">
+                    <i class="fa-solid fa-circle-xmark" style="color:var(--red,#dc2626);font-size:14px"></i>
+                    <span><strong>El acceso a la cuenta se va a perder para siempre</strong> y no se podrá
+                      recuperar.</span>
+                  </div>
+                  <div style="font-size:12.5px;color:var(--text-primary);display:flex;align-items:center;gap:10px">
+                    <i class="fa-solid fa-circle-xmark" style="color:var(--red,#dc2626);font-size:14px"></i>
+                    <span>Se eliminarán todos los administradores, vehículos, tarjetas y permisos asociados.</span>
+                  </div>
+                  <div style="font-size:12.5px;color:var(--text-primary);display:flex;align-items:center;gap:10px">
+                    <i class="fa-solid fa-circle-xmark" style="color:var(--red,#dc2626);font-size:14px"></i>
+                    <span>El historial de movimientos y facturas quedará inhabilitado.</span>
+                  </div>
+                </div>
+
+                <div
+                  style="border-top:1px solid var(--border-medium);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px">
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--text-primary)" id="deleteAccLabelTarget">
+                      Cuenta
+                      a eliminar: Grupo Andino (AC-001)</div>
+                    <div style="font-size:12px;color:var(--text-muted)">Confirma que estás seguro antes de proceder.
                     </div>
                   </div>
-                  <div class="lang-opt" onclick="pickLang(this,'fr')"
-                    style="margin:0;padding:12px;flex-direction:column;align-items:flex-start;gap:6px;position:relative">
-                    <span class="lang-flag">FR</span>
-                    <div>
-                      <div class="lang-nm" style="font-size:13px">Francés</div>
-                      <div class="lang-nat">French</div>
-                    </div>
-                  </div>
+                  <button class="btn btn-danger" onclick="openDeleteAccountModal()"
+                    style="padding:10px 20px;border-radius:var(--r-md);font-weight:700;display:flex;align-items:center;gap:8px">
+                    <i class="fa-solid fa-trash-can"></i> Eliminar mi cuenta
+                  </button>
                 </div>
               </div>
             </div>
@@ -4549,7 +4689,7 @@
     }
 
     function showTab(btn, panelId) {
-      if ((panelId === 'tab-metodos' || panelId === 'tab-recargar' || panelId === 'tab-transferir') && !isAccountAndBillingComplete()) {
+      if ((panelId === 'tab-recargar' || panelId === 'tab-transferir') && !isAccountAndBillingComplete()) {
         showIncompleteDataModal();
         return;
       }
@@ -4562,6 +4702,12 @@
       if (p) p.classList.add('active');
       if (panelId === 'tab-transferir') {
         renderTransferTab();
+      }
+      if (panelId === 'tab-eliminar-cuenta') {
+        const acc = getCurrentAccount();
+        const name = acc ? acc.label : 'Grupo Andino';
+        const targetEl = document.getElementById('deleteAccLabelTarget');
+        if (targetEl) targetEl.textContent = `Cuenta a eliminar: ${name} (${S.currentAccountId || 'AC-001'})`;
       }
     }
 
@@ -4606,7 +4752,7 @@
       listContainer.innerHTML = Object.values(ACCOUNT_DATA).map(acc => {
         const isSelected = (acc.id === S.currentAccountId);
         const checkmarkHtml = isSelected
-          ? `<i class="fa-solid fa-check" style="color:var(--brand-pink);font-size:16px;flex-shrink:0;margin-right:2px"></i>`
+          ? `<i class="fa-solid fa-check" style="color:#0066eb;font-size:16px;flex-shrink:0;margin-right:2px"></i>`
           : `<div style="width:18px"></div>`;
 
         return `
@@ -4693,23 +4839,35 @@
       ACCOUNT_DATA[newId] = {
         id: newId,
         label: label,
-        profile: { nombre: label, tipoDocumento: 'RUC', documento: '1790011223001', email: newEmail, telefono: '0999999999', miembroDesde: 'Agosto 2026', plan: 'Plan Estándar', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. Principal 123' },
-        billing: { tipo: 'RUC', numero: '1790011223001', razon: label, direccion: 'Av. Principal 123', email: newEmail },
-        balance: 10.00,
+        profile: {
+          nombre: '',
+          tipoDocumento: 'Cédula',
+          documento: '',
+          email: '',
+          telefono: '',
+          miembroDesde: 'Agosto 2026',
+          plan: 'Plan Estándar',
+          pais: 'Ecuador',
+          provincia: '',
+          ciudad: '',
+          direccion: ''
+        },
+        billing: {
+          tipo: 'Cédula',
+          numero: '',
+          razon: '',
+          direccion: '',
+          email: ''
+        },
+        balance: 0.00,
         visitCount: 0,
         chartData: [0, 0, 0, 0, 0, 0, 0],
         promos: [],
-        movements: [
-          { id: Date.now(), type: 'recharge', title: 'Saldo Inicial de Bienvenida', date: '13-08-2026', detail: { ref: `Igor-INIT-${newId}`, estado: 'APPROVED' }, amount: 10.00, balance: 10.00 }
-        ],
+        movements: [],
         vehicles: [],
-        cards: [
-          { id: 'c-' + Date.now().toString().slice(-4), brand: 'Visa', number: '•••• 4242', last4: '4242', exp: '12/2028', holder: label, default: true }
-        ],
+        cards: [],
         admins: [
-          { id: 'adm-' + Date.now(), nombre: label, email: newEmail, role: 'SA' },
-          { id: 'adm-' + (Date.now() + 1), nombre: 'Stalin Pérez', email: 'stalin.perez@' + (slug || 'empresa') + '.ec', role: 'A' },
-          { id: 'adm-' + (Date.now() + 2), nombre: 'Carlos Mendoza', email: 'carlos.mendoza@' + (slug || 'empresa') + '.ec', role: 'A' }
+          { id: 'adm-' + Date.now(), nombre: label, email: newEmail, role: 'SA' }
         ]
       };
 
@@ -4717,7 +4875,8 @@
       S.currentAccountId = newId;
       fillAccountSelector(true);
       renderCurrentAccount();
-      showToast(`¡Cuenta "${label}" creada exitosamente!`, 'success');
+      showToast(`¡Cuenta "${label}" creada exitosamente! Por favor completa tus datos`, 'success');
+      goTo('perfil', document.getElementById('nav-perfil'));
     }
 
     function setBillingFieldState(disabled) {
@@ -4742,25 +4901,22 @@
       acc.cards = S.cards;
       acc.admins = S.admins;
       if (document.getElementById('perfil-nombre')) {
-        const newName = document.getElementById('perfil-nombre').value.trim();
-        if (newName) {
-          acc.profile.nombre = newName;
-        }
+        acc.profile.nombre = document.getElementById('perfil-nombre').value.trim();
         acc.profile.tipoDocumento = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
-        acc.profile.documento = document.getElementById('perfil-documento').value.trim() || acc.profile.documento;
-        acc.profile.email = document.getElementById('perfil-email').value.trim() || acc.profile.email;
-        acc.profile.telefono = document.getElementById('perfil-telefono').value.trim() || acc.profile.telefono;
+        acc.profile.documento = document.getElementById('perfil-documento').value.trim();
+        acc.profile.email = document.getElementById('perfil-email').value.trim();
+        acc.profile.telefono = document.getElementById('perfil-telefono').value.trim();
         acc.profile.pais = document.getElementById('perfil-pais')?.value || 'Ecuador';
         acc.profile.provincia = document.getElementById('perfil-provincia')?.value || '';
         acc.profile.ciudad = document.getElementById('perfil-ciudad')?.value || '';
         acc.profile.direccion = document.getElementById('perfil-direccion')?.value.trim() || '';
       }
       if (document.getElementById('fact-num')) {
-        acc.billing.tipo = document.getElementById('fact-tipo').value;
+        acc.billing.tipo = document.getElementById('fact-tipo')?.value || 'Cédula';
         acc.billing.numero = document.getElementById('fact-num').value.trim();
-        acc.billing.razon = document.getElementById('fact-razon').value.trim();
-        acc.billing.direccion = document.getElementById('fact-dir').value.trim();
-        acc.billing.email = document.getElementById('fact-email').value.trim();
+        acc.billing.razon = document.getElementById('fact-razon') ? document.getElementById('fact-razon').value.trim() : '';
+        acc.billing.direccion = document.getElementById('fact-dir') ? document.getElementById('fact-dir').value.trim() : '';
+        acc.billing.email = document.getElementById('fact-email') ? document.getElementById('fact-email').value.trim() : '';
       }
     }
 
@@ -4983,6 +5139,60 @@
       showToast(`Has salido de la cuenta ${acc ? acc.label : ''} correctamente`, 'info');
     }
 
+    function openDeleteAccountModal() {
+      const acc = getCurrentAccount();
+      const name = acc ? acc.label : 'Grupo Andino';
+      setSafeText('deleteAccountModalName', name);
+      const targetEl = document.getElementById('deleteAccLabelTarget');
+      if (targetEl) targetEl.textContent = `Cuenta a eliminar: ${name} (${S.currentAccountId || 'AC-001'})`;
+      const modal = document.getElementById('deleteAccountModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeDeleteAccountModal() {
+      const modal = document.getElementById('deleteAccountModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function confirmDeleteAccount() {
+      const acc = getCurrentAccount();
+      const accId = S.currentAccountId || 'AC-001';
+      const accName = acc ? acc.label : 'esta cuenta';
+
+      closeDeleteAccountModal();
+
+      // Delete account from ACCOUNT_DATA
+      delete ACCOUNT_DATA[accId];
+
+      showToast(`La cuenta ${accName} ha sido eliminada permanentemente. El acceso a la cuenta se ha perdido para siempre.`, 'error');
+
+      // Switch to another remaining account or create fallback
+      const remainingIds = Object.keys(ACCOUNT_DATA);
+      if (remainingIds.length > 0) {
+        switchAccount(remainingIds[0]);
+      } else {
+        // Fallback default if all accounts deleted
+        ACCOUNT_DATA['AC-001'] = {
+          id: 'AC-001',
+          label: 'Cuenta Nueva',
+          profile: { nombre: 'Usuario', tipoDocumento: 'CEDULA', documento: '0000000000', email: 'usuario@ejemplo.com', telefono: '', miembroDesde: 'Hoy', plan: 'Plan Estándar', pais: 'Ecuador', provincia: '', ciudad: '', direccion: '' },
+          billing: { tipo: 'CEDULA', numero: '0000000000', razon: 'Usuario', direccion: '', email: '' },
+          balance: 0,
+          visitCount: 0,
+          chartData: [0, 0, 0, 0, 0, 0, 0],
+          promos: [],
+          movements: [],
+          vehicles: [],
+          cards: [],
+          admins: [{ id: 'adm-001', nombre: 'Usuario', email: 'usuario@ejemplo.com', role: 'SA' }]
+        };
+        switchAccount('AC-001');
+      }
+
+      // Go back to ajustes
+      goTo('ajustes', document.getElementById('nav-ajustes'));
+    }
+
     function renderVehicleList() {
       const list = document.getElementById('vehicleList');
       if (!list) return;
@@ -5111,7 +5321,7 @@
         { id: 'adm-103', nombre: 'Carlos Mendoza', email: 'carlos.mendoza@grupoandino.ec', role: 'A' }
       ];
       acc.admins = S.admins;
-      S.cards = acc.cards || [
+      S.cards = acc.cards !== undefined ? acc.cards : [
         { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: acc.label, default: true }
       ];
       acc.cards = S.cards;
@@ -5126,18 +5336,18 @@
       setSafeText('profileSummaryMeta', `Miembro desde ${acc.profile?.miembroDesde || 'Enero 2025'} · ${acc.profile?.plan || 'Plan Estándar'}`);
 
       setSafeValue('inlineAccountNameInput', acc.label);
-      setSafeValue('perfil-nombre', acc.profile?.nombre || acc.label);
+      setSafeValue('perfil-nombre', acc.profile?.nombre !== undefined ? acc.profile.nombre : '');
       setSafeValue('perfil-tipo-doc', acc.profile?.tipoDocumento || 'Cédula');
       onTipoDocChange();
       setSafeValue('perfil-documento', acc.profile?.documento || '');
-      setSafeValue('perfil-email', acc.profile?.email);
-      setSafeValue('perfil-telefono', acc.profile?.telefono);
+      setSafeValue('perfil-email', acc.profile?.email || '');
+      setSafeValue('perfil-telefono', acc.profile?.telefono || '');
       setSafeValue('perfil-pais', acc.profile?.pais || 'Ecuador');
       setSafeValue('perfil-provincia', acc.profile?.provincia || '');
       onProvinceChange(acc.profile?.ciudad || '');
       setSafeValue('perfil-direccion', acc.profile?.direccion || '');
 
-      setSafeValue('fact-tipo', acc.billing?.tipo || 'RUC');
+      setSafeValue('fact-tipo', acc.billing?.tipo || 'Cédula');
       onFactTipoDocChange();
       setSafeValue('fact-num', acc.billing?.numero || '');
       setSafeValue('fact-razon', acc.billing?.razon || '');
@@ -5473,7 +5683,7 @@
             nombre = `${randFirst} ${randLast}`;
             const firstSlug = randFirst.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
             const lastSlug = randLast.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
-            email = `${firstSlug}.${lastSlug}${Math.floor(Math.random()*90 + 10)}@gmail.com`;
+            email = `${firstSlug}.${lastSlug}${Math.floor(Math.random() * 90 + 10)}@gmail.com`;
           }
 
           telefono = '09' + Math.floor(10000000 + Math.random() * 90000000);
@@ -5956,7 +6166,7 @@
       const container = document.getElementById('registeredCardsContainer');
       if (!container) return;
       if (!S.cards || S.cards.length === 0) {
-        container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-secondary);font-size:13.5px;grid-column:1/-1">No hay tarjetas registradas. Haz clic en <strong>+ Add payment method</strong> para agregar una.</div>';
+        container.innerHTML = '<div style="padding:28px 20px;text-align:center;color:var(--text-secondary);font-size:13.5px;grid-column:1/-1;background:var(--bg-input);border-radius:var(--r-lg);border:1.5px dashed var(--border-medium)"><i class="fa-regular fa-credit-card" style="font-size:26px;color:var(--text-muted);display:block;margin-bottom:8px"></i>No hay métodos de pago registrados en esta cuenta.</div>';
         return;
       }
       container.innerHTML = S.cards.map(card => {
@@ -5977,7 +6187,7 @@
             ${badgeHtml}
           </div>
           <div class="pcard-bottom-actions">
-            <button class="btn-delete-card" onclick="deletePaymentCard('${card.id}')">Delete</button>
+            <button class="btn-delete-card" onclick="deletePaymentCard('${card.id}')">Borrar</button>
           </div>
         </div>`;
       }).join('');
@@ -5996,10 +6206,6 @@
 
     function deletePaymentCard(cardId) {
       if (!S.cards) return;
-      if (S.cards.length <= 1) {
-        showToast('Debes mantener al menos una tarjeta registrada', 'warning');
-        return;
-      }
       const idx = S.cards.findIndex(c => c.id === cardId);
       if (idx !== -1) {
         const deleted = S.cards.splice(idx, 1)[0];
@@ -6019,10 +6225,10 @@
       if (!m) return;
 
       const now = new Date();
-      const ref = '1727263434_' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
+      const ref = (acc.profile?.documento || '1727263434') + '_' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
       const dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');
 
-      setSafeText('p2pUserEmail', acc.profile?.email || 'p1urbigor@gmail.com');
+      setSafeText('p2pUserEmail', acc.profile?.email || 'contacto@empresa.ec');
       setSafeText('p2pRefCode', ref);
       setSafeText('p2pDetailRef', ref);
       setSafeText('p2pDetailDate', dateStr);
@@ -6030,10 +6236,12 @@
       setSafeValue('p2pCardNum', '');
       setSafeValue('p2pCardExp', '');
       setSafeValue('p2pCardCvv', '');
-      setSafeValue('p2pFirstName', acc.profile?.nombre ? acc.profile.nombre.split(' ')[0] : 'DAYSI DAYSI');
-      setSafeValue('p2pLastName', acc.profile?.nombre ? acc.profile.nombre.split(' ').slice(1).join(' ') : 'ACHIG ACHIG');
+      const holder = acc.profile?.nombre || acc.label || 'TITULAR';
+      const parts = holder.trim().split(/\s+/);
+      setSafeValue('p2pFirstName', parts[0] || 'USUARIO');
+      setSafeValue('p2pLastName', parts.slice(1).join(' ') || 'IGOR');
       setSafeValue('p2pDocNum', acc.profile?.documento || '1727263434');
-      setSafeValue('p2pPhone', acc.profile?.telefono || '+593 99 751 1292');
+      setSafeValue('p2pPhone', acc.profile?.telefono || '0999999999');
 
       const btn = document.getElementById('p2pSubmitBtn');
       if (btn) {
@@ -6727,13 +6935,13 @@
     /* Validation functions for incomplete account and billing data */
     function isAccountAndBillingComplete() {
       const acc = getCurrentAccount();
-      if (!acc) return true;
+      if (!acc) return false;
 
       const p = acc.profile || {};
       const b = acc.billing || {};
 
-      const profileValid = Boolean(p.nombre && p.documento && p.email);
-      const billingValid = Boolean(b.numero && b.razon);
+      const profileValid = Boolean(p.nombre && p.nombre.trim() && p.documento && p.documento.trim());
+      const billingValid = Boolean(b.numero && b.numero.trim() && b.razon && b.razon.trim());
 
       return profileValid && billingValid;
     }
@@ -6747,6 +6955,17 @@
       const m = document.getElementById('incompleteDataModal');
       if (m) m.style.display = 'none';
       goTo('perfil', document.getElementById('nav-perfil'));
+      showToast('Por favor completa y guarda los datos de tu cuenta y facturación', 'info');
+    }
+
+    function handleDashboardRechargeClick() {
+      if (!isAccountAndBillingComplete()) {
+        showIncompleteDataModal();
+        return;
+      }
+      goTo('billetera', document.getElementById('nav-billetera'));
+      const recargarBtn = document.querySelector('.tab-bar button[onclick*="tab-recargar"]');
+      if (recargarBtn) recargarBtn.click();
     }
 
 
@@ -7046,20 +7265,21 @@
 
   <!-- Modal Datos Incompletos -->
   <div id="incompleteDataModal" class="modal-backdrop"
-    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.6);z-index:99999;align-items:center;justify-content:center;padding:20px">
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)">
     <div class="card"
-      style="max-width:380px;width:100%;border-radius:20px;padding:32px 24px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .2s ease">
+      style="max-width:420px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:0 24px 48px -12px rgba(15,23,42,0.25);animation:fadeUp .2s ease">
       <div
-        style="width:64px;height:64px;border-radius:50%;background:#FEF3C7;color:#F59E0B;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px auto">
+        style="width:64px;height:64px;border-radius:50%;background:rgba(245,158,11,0.12);color:#D97706;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px auto">
         <i class="fa-solid fa-triangle-exclamation"></i>
       </div>
-      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Datos incompletos</h3>
-      <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:24px">
-        Por favor ingresa todos los datos de la cuenta y facturación antes de continuar.
+      <h3 style="font-size:20px;font-weight:800;color:#0b1c33;margin-bottom:8px">Completar datos requeridos</h3>
+      <p style="font-size:13.5px;color:#64748b;line-height:1.5;margin-bottom:24px">
+        Para <strong>recargar</strong> o <strong>transferir saldo</strong>, primero debes registrar los datos de tu
+        cuenta y de facturación.
       </p>
       <button class="btn btn-primary" onclick="closeIncompleteDataModalAndRedirect()"
-        style="width:100%;padding:12px;font-size:14px;border-radius:10px;justify-content:center">
-        Entendido
+        style="width:100%;padding:13px;font-size:14px;font-weight:700;border-radius:12px;justify-content:center;background:#0066eb;color:white;box-shadow:0 4px 14px rgba(0,102,235,0.3)">
+        <i class="fa-solid fa-user-pen"></i> Completar datos ahora
       </button>
     </div>
   </div>
@@ -7432,77 +7652,145 @@
         </button>
       </div>
     </div>
-    <!-- Modal Crear Nueva Cuenta (Matches Image 2) -->
-    <div id="createAccountModal" class="modal-backdrop"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
-      <div class="card"
-        style="max-width:420px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
-        <div
-          style="width:56px;height:56px;border-radius:50%;background:rgba(232,0,90,0.1);color:var(--brand-pink);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
-          <i class="fa-solid fa-building"></i>
-        </div>
-        <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px">
-          Crear cuenta</h3>
-        <p style="font-size:13px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px">
-          Ingresa el nombre para tu nueva cuenta.
-        </p>
+  </div>
 
-        <div class="form-group" style="margin-bottom:18px">
-          <label class="form-label">Nombre de la cuenta</label>
-          <input class="form-input" id="newAccLabel" type="text" placeholder="Ej. STALIN 2"
-            style="font-size:14px;padding:11px 14px">
+  <!-- Modal Eliminar Cuenta -->
+  <div id="deleteAccountModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
+    onclick="if(event.target===this)closeDeleteAccountModal()">
+    <div class="card"
+      style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+      <div
+        style="width:56px;height:56px;border-radius:50%;background:rgba(220,38,38,0.12);color:var(--red,#dc2626);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px auto">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:8px">
+        ¿Eliminar la cuenta definitivamente?</h3>
+      <div
+        style="background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.2);border-radius:12px;padding:12px 14px;margin-bottom:18px;text-align:left">
+        <p
+          style="font-size:12.5px;color:var(--red,#dc2626);line-height:1.5;margin:0;font-weight:600;display:flex;gap:8px;align-items:flex-start">
+          <i class="fa-solid fa-triangle-exclamation" style="margin-top:2px;flex-shrink:0"></i>
+          <span><strong>Advertencia:</strong> Esta acción no se puede deshacer. <strong>El acceso a la cuenta se va a
+              perder para siempre</strong> y todos sus datos serán eliminados permanentemente.</span>
+        </p>
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px">
+        Estás por eliminar la cuenta <strong id="deleteAccountModalName" style="color:var(--text-primary)">Grupo
+          Andino</strong>.
+      </p>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-ghost" onclick="closeDeleteAccountModal()"
+          style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
+        <button class="btn btn-danger" onclick="confirmDeleteAccount()"
+          style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          <i class="fa-solid fa-trash-can"></i> Sí, eliminar cuenta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Crear Nueva Cuenta (Matches Screenshot) -->
+  <div id="createAccountModal" class="modal-backdrop"
+    style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.6);z-index:999999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
+    onclick="if(event.target===this)closeCreateAccountModal()">
+    <div style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:480px">
+      <!-- Logo IGOR superior -->
+      <div style="margin-bottom:16px;animation:fadeUp .2s ease">
+        <div
+          style="background:#00d5ff;color:#000000;font-weight:900;font-size:17px;padding:6px 20px;border-radius:10px;display:flex;align-items:center;gap:3px;box-shadow:0 4px 14px rgba(0,213,255,0.35);letter-spacing:-0.5px">
+          igor <span
+            style="display:inline-block;width:6px;height:6px;background:#000000;border-radius:50%;margin-left:1px"></span>
+        </div>
+      </div>
+
+      <div class="card"
+        style="position:relative;width:100%;border-radius:24px;padding:32px 30px;background:white;box-shadow:0 24px 48px -12px rgba(15,23,42,0.25);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+
+        <!-- Botón de Cerrar (X) -->
+        <button type="button" onclick="closeCreateAccountModal()"
+          style="position:absolute;top:22px;right:22px;background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:color var(--t)"
+          onmouseover="this.style.color='#0f172a'" onmouseout="this.style.color='#64748b'">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Encabezado con Icono Circular Azul y Textos -->
+        <div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:24px">
+          <div
+            style="width:52px;height:52px;min-width:52px;border-radius:50%;background:#0066eb;color:white;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(0,102,235,0.25)">
+            <i class="fa-solid fa-building"></i>
+          </div>
+          <div style="padding-right:20px">
+            <h3 style="font-size:20px;font-weight:800;color:#0b1c33;margin:0 0 6px 0;line-height:1.2">
+              Crear nueva cuenta
+            </h3>
+            <p style="font-size:13px;color:#64748b;line-height:1.45;margin:0">
+              Indica un nombre para la nueva cuenta. Quedarás como Super Administrador y podrás cambiar entre tus
+              cuentas cuando quieras.
+            </p>
+          </div>
+        </div>
+
+        <!-- Input Nombre de la Cuenta -->
+        <div class="form-group" style="margin-bottom:20px">
+          <label class="form-label" for="newAccLabel"
+            style="font-size:13px;font-weight:600;color:#475569;margin-bottom:6px">Nombre de la cuenta</label>
+          <input class="form-input" id="newAccLabel" type="text" placeholder="Ej. Oficina Quito"
+            onkeydown="if(event.key==='Enter'){event.preventDefault();createNewAccount();}"
+            style="font-size:14px;padding:12px 14px;border-radius:12px;background:#f8fafc;border:1.5px solid #e2e8f0;color:#0f172a">
         </div>
 
         <div id="createAccountError"
-          style="display:none;font-size:12px;color:var(--brand-pink);margin-bottom:14px;padding:8px 12px;background:rgba(232,0,90,0.06);border-radius:var(--r-md);border:1px solid rgba(232,0,90,0.15)">
+          style="display:none;font-size:12px;color:var(--color-danger);margin-bottom:16px;padding:8px 12px;background:rgba(239,68,68,0.08);border-radius:var(--r-md);border:1px solid rgba(239,68,68,0.2)">
           <i class="fa-solid fa-circle-exclamation"></i> Por favor ingresa un nombre para la cuenta.
         </div>
 
-        <div style="display:flex;gap:12px">
-          <button class="btn btn-ghost" onclick="closeCreateAccountModal()"
-            style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
-          <button class="btn btn-primary" onclick="createNewAccount()"
-            style="flex:1.4;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700;background:linear-gradient(135deg, var(--brand-pink), #C0004A)">
-            <i class="fa-solid fa-plus"></i> Crear cuenta
-          </button>
-        </div>
+        <!-- Botón Crear Cuenta Full Width -->
+        <button type="button" class="btn" onclick="createNewAccount()"
+          style="width:100%;justify-content:center;padding:14px;border-radius:12px;font-weight:700;font-size:14.5px;background:#0066eb;color:white;box-shadow:0 4px 14px rgba(0,102,235,0.3);transition:all var(--t)"
+          onmouseover="this.style.background='#0052bd';this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.background='#0066eb';this.style.transform='translateY(0)'">
+          Crear cuenta
+        </button>
       </div>
     </div>
-    <!-- Supabase JS Client Integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-      const SUPABASE_URL = "https://odtcvsmcgoqwjfoqklia.supabase.co";
-      const SUPABASE_KEY = "sb_publishable_0Kj8iEAVrB3zhGTp46P7ZQ_eXVcJWJ6";
+  </div>
+  <!-- Supabase JS Client Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://odtcvsmcgoqwjfoqklia.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_0Kj8iEAVrB3zhGTp46P7ZQ_eXVcJWJ6";
 
-      // Inicializar cliente global de Supabase
-      if (window.supabase) {
-        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        console.log("⚡ Supabase Client conectado exitosamente:", SUPABASE_URL);
-      } else {
-        console.error("❌ No se pudo cargar el SDK de Supabase.");
-      }
+    // Inicializar cliente global de Supabase
+    if (window.supabase) {
+      window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      console.log("⚡ Supabase Client conectado exitosamente:", SUPABASE_URL);
+    } else {
+      console.error("❌ No se pudo cargar el SDK de Supabase.");
+    }
 
-      // Función helper para probar o cargar datos desde Supabase
-      async function cargarProductos() {
-        if (!window.supabaseClient) return;
-        try {
-          const { data, error } = await window.supabaseClient
-            .from("productos")
-            .select("*");
+    // Función helper para probar o cargar datos desde Supabase
+    async function cargarProductos() {
+      if (!window.supabaseClient) return;
+      try {
+        const { data, error } = await window.supabaseClient
+          .from("productos")
+          .select("*");
 
-          if (error) {
-            console.warn("⚠️ Supabase (productos):", error.message || error);
-            return;
-          }
-
-          console.log("📦 Datos recibidos de Supabase (productos):", data);
-        } catch (err) {
-          console.error("❌ Error de red / conexión a Supabase:", err);
+        if (error) {
+          console.warn("⚠️ Supabase (productos):", error.message || error);
+          return;
         }
-      }
 
-      cargarProductos();
-    </script>
+        console.log("📦 Datos recibidos de Supabase (productos):", data);
+      } catch (err) {
+        console.error("❌ Error de red / conexión a Supabase:", err);
+      }
+    }
+
+    cargarProductos();
+  </script>
 </body>
 
 </html>
