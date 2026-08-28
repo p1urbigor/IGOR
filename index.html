@@ -8,7 +8,7 @@
   <meta name="description"
     content="Portal de movilidad IGOR - Gestiona tu billetera, accesos y movimientos en estacionamientos inteligentes.">
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -3048,15 +3048,319 @@
       animation: tour-pulse 1.5s ease infinite
     }
 
-    @keyframes tour-pulse {
+    /* ============================================================
+       AUTH & ACCOUNT SELECTOR FLOW
+    ============================================================ */
+    #authScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999999;
+      background: #F0F5F8;
+      overflow-y: auto;
+      font-family: 'Inter', sans-serif;
+    }
 
-      0%,
-      100% {
-        outline-color: var(--tour-color)
+    .auth-login-view {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      background: #F0F5F8;
+    }
+
+    .auth-hero-left {
+      width: 48%;
+      background: #E84889;
+      padding: 48px 56px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+      box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    }
+
+    .auth-hero-logo {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 24px;
+    }
+
+    .auth-hero-logo .eye-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .auth-hero-title {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin: 20px 0 32px 0;
+      max-width: 460px;
+    }
+
+    .auth-hero-features {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .auth-feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .auth-feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .auth-hero-app {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .auth-qr-box {
+      width: 76px;
+      height: 76px;
+      background: white;
+      padding: 6px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .auth-right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #F0F5F8;
+      padding: 32px 48px;
+    }
+
+    .auth-top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .auth-top-nav a {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #0A1629;
+      transition: color var(--t);
+    }
+
+    .auth-top-nav a:hover {
+      color: #E84889;
+    }
+
+    .btn-auth-top-pill {
+      background: #E84889;
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 12px rgba(232,72,137,0.25);
+    }
+
+    .auth-login-card-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      border-radius: 28px;
+      padding: 44px 38px;
+      box-shadow: 0 16px 40px rgba(10,22,41,0.06);
+      border: 1px solid #E2E8F0;
+      animation: fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .auth-card-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0A1629;
+      margin-bottom: 6px;
+    }
+
+    .auth-card-sub {
+      font-size: 13.5px;
+      color: #64748B;
+      margin-bottom: 32px;
+    }
+
+    .btn-google-login {
+      width: 100%;
+      padding: 14px 20px;
+      background: #E84889;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 6px 18px rgba(232,72,137,0.3);
+      transition: transform var(--t), background var(--t);
+    }
+
+    .btn-google-login:hover {
+      background: #D83B7A;
+      transform: translateY(-1px);
+    }
+
+    .btn-email-login {
+      width: 100%;
+      padding: 14px 20px;
+      background: white;
+      color: #0A1629;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 14px;
+      border: 1.5px solid #E2E8F0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: border-color var(--t), background var(--t);
+    }
+
+    .btn-email-login:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      margin: 22px 0;
+    }
+
+    .auth-divider-line {
+      flex: 1;
+      height: 1px;
+      background: #E2E8F0;
+    }
+
+    .auth-divider-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1.5px solid #94A3B8;
+      background: white;
+      margin: 0 12px;
+      flex-shrink: 0;
+    }
+
+    .account-select-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .account-select-item {
+      width: 100%;
+      padding: 16px 20px;
+      background: white;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--t);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .account-select-item:hover {
+      border-color: #E84889;
+      background: #FDF2F7;
+      transform: translateY(-1px);
+    }
+
+    .account-select-item-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0A1629;
+    }
+
+    .account-select-item-role {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .account-select-add-btn {
+      margin-top: 0;
+      background: none;
+      border: none;
+      color: #E84889;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: opacity var(--t);
+    }
+
+    .account-select-add-btn:hover {
+      opacity: 0.85;
+    }
+
+    #appShell {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .auth-hero-left {
+        display: none;
       }
-
-      50% {
-        outline-color: rgba(124, 58, 237, .4)
+      .auth-right-panel {
+        padding: 24px 20px;
       }
     }
   </style>
@@ -3064,12 +3368,209 @@
 
 <body>
 
-  <!-- �"?�"? MOBILE OVERLAY �"?�"? -->
+  <!-- ============================================================
+     AUTHENTICATION & ACCOUNT SELECTION SCREEN
+  ============================================================ -->
+  <div id="authScreen">
+    <div id="authLoginView" class="auth-login-view">
+      <!-- HERO LEFT (PINK BANNER WITH BRANDING) -->
+      <div class="auth-hero-left">
+        <!-- SPLASH DECORATIVE SHAPES -->
+        <div style="position:absolute;top:-40px;right:-40px;width:320px;height:320px;background:rgba(255,255,255,0.12);border-radius:40% 60% 70% 30%/40% 50% 60% 50%;pointer-events:none"></div>
+        <div style="position:absolute;bottom:-60px;left:-60px;width:360px;height:360px;background:rgba(255,255,255,0.08);border-radius:60% 40% 30% 70%/50% 60% 40% 50%;pointer-events:none"></div>
+
+        <div style="position:relative;z-index:2">
+          <!-- LOGO IGOR WITH EYES -->
+          <div style="margin-bottom:28px">
+            <svg viewBox="0 0 240 85" width="220" height="78" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- i -->
+              <rect x="6" y="26" width="17" height="44" rx="8.5" fill="#0A0B0D"/>
+              <circle cx="14.5" cy="10" r="8" fill="#0A0B0D"/>
+
+              <!-- g -->
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M48 26C36.402 26 27 35.402 27 47C27 58.598 36.402 68 48 68C54.88 68 60.914 64.67 64.652 59.54C64.463 66.618 59.065 72.2 52.2 72.2C48.8 72.2 45.8 70.8 43.6 68.6C42 67 39.4 67 37.8 68.6C36.2 70.2 36.2 72.8 37.8 74.4C41.5 78.1 46.6 80.2 52.2 80.2C63.4 80.2 72.6 71.1 72.6 59.8V26H58V32.5C55.2 28.5 50.6 26 48 26ZM49.8 34C43.1726 34 37.8 39.3726 37.8 46C37.8 52.6274 43.1726 58 49.8 58C56.4274 58 61.8 52.6274 61.8 46C61.8 39.3726 56.4274 34 49.8 34Z" fill="#0A0B0D"/>
+              <!-- g eye left -->
+              <path d="M42 41C42 36.5 47 36.5 47 41C47 44.5 42 44.5 42 41Z" fill="#FFFFFF"/>
+              <circle cx="44.5" cy="41" r="1.8" fill="#0A0B0D"/>
+              <!-- g eye right -->
+              <path d="M51 41C51 36.5 56 36.5 56 41C56 44.5 51 44.5 51 41Z" fill="#FFFFFF"/>
+              <circle cx="53.5" cy="41" r="1.8" fill="#0A0B0D"/>
+
+              <!-- o -->
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M104 26C92.402 26 83 35.402 83 47C83 58.598 92.402 68 104 68C115.598 68 125 58.598 125 47C125 35.402 115.598 26 104 26ZM104 34C97.3726 34 92 39.3726 92 46C92 52.6274 97.3726 58 104 58C110.627 58 116 52.6274 116 46C116 39.3726 110.627 34 104 34Z" fill="#0A0B0D"/>
+              <!-- o eye left -->
+              <path d="M97 41C97 36.5 102 36.5 102 41C102 44.5 97 44.5 97 41Z" fill="#FFFFFF"/>
+              <circle cx="99.5" cy="41" r="1.8" fill="#0A0B0D"/>
+              <!-- o eye right -->
+              <path d="M106 41C106 36.5 111 36.5 111 41C111 44.5 106 44.5 106 41Z" fill="#FFFFFF"/>
+              <circle cx="108.5" cy="41" r="1.8" fill="#0A0B0D"/>
+
+              <!-- r -->
+              <path d="M135 26H149V32.5C152 28.5 156.5 26 162 26C165 26 167 27 168 28L162 39C161 38 159.5 37.5 157 37.5C151.5 37.5 147 42 147 48.5V68H135V26Z" fill="#0A0B0D"/>
+            </svg>
+          </div>
+
+          <!-- HEADLINE -->
+          <h1 style="font-family:'Outfit','Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;line-height:1.16;color:white;margin-bottom:34px;letter-spacing:-0.5px">
+            La forma más comoda<br>de parquear:
+          </h1>
+
+          <!-- 3 BADGES ROW -->
+          <div style="display:flex;align-items:center;gap:22px;margin-bottom:44px">
+            <!-- BADGE 1: SIN FILAS -->
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+                <circle cx="15" cy="14" r="5" fill="#3B82F6"/>
+                <path d="M7 32C7 26.477 11.477 22 17 22C22.523 22 27 26.477 27 32V34H7V32Z" fill="#3B82F6"/>
+                <circle cx="25" cy="12" r="4.5" fill="#F59E0B"/>
+                <path d="M18 32C18 27.5 21.5 24 26 24C30.5 24 34 27.5 34 32V34H18V32Z" fill="#F59E0B"/>
+                <circle cx="33" cy="15" r="4" fill="#EF4444"/>
+                <path d="M27 32C27 28.5 29.8 26 33 26C36.2 26 39 28.5 39 32V34H27V32Z" fill="#EF4444"/>
+              </svg>
+              <div style="display:flex;flex-direction:column;font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;line-height:1.05;color:white">
+                <span>Sin</span>
+                <span>Filas</span>
+              </div>
+            </div>
+
+            <!-- BADGE 2: SIN TICKETS -->
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="transform:rotate(-15deg)">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+                  <rect x="2" y="8" width="34" height="22" rx="4" fill="#06B6D4" stroke="white" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <circle cx="2" cy="19" r="3" fill="#E84889"/>
+                  <circle cx="36" cy="19" r="3" fill="#E84889"/>
+                  <path d="M10 15H20M10 19H28M10 23H24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div style="display:flex;flex-direction:column;font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;line-height:1.05;color:white">
+                <span>Sin</span>
+                <span>Tickets</span>
+              </div>
+            </div>
+
+            <!-- BADGE 3: SIN EFECTIVO -->
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <ellipse cx="20" cy="12" rx="14" ry="4" fill="#F59E0B" stroke="#D97706" stroke-width="1.5"/>
+                <path d="M6 12V18C6 20.2 12.3 22 20 22C27.7 22 34 20.2 34 18V12" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                <path d="M6 18V24C6 26.2 12.3 28 20 28C27.7 28 34 26.2 34 24V18" fill="#F59E0B" stroke="#D97706" stroke-width="1.5"/>
+                <path d="M6 24V30C6 32.2 12.3 34 20 34C27.7 34 34 32.2 34 30V24" fill="#D97706" stroke="#B45309" stroke-width="1.5"/>
+              </svg>
+              <div style="display:flex;flex-direction:column;font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;line-height:1.05;color:white">
+                <span>Sin</span>
+                <span>Efectivo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO BOTTOM: QR AND DOWNLOAD -->
+        <div style="display:flex;align-items:center;gap:18px;position:relative;z-index:2;margin-top:auto">
+          <div style="position:relative">
+            <!-- BURST DASH ACCENTS -->
+            <div style="position:absolute;top:-8px;left:-8px;color:white;font-size:14px">
+              <i class="fa-solid fa-sparkles"></i>
+            </div>
+            <div style="width:84px;height:84px;background:white;border-radius:16px;padding:6px;box-shadow:0 10px 24px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center">
+              <img src="C:/Users/etaco/.gemini/antigravity-ide/brain/5e2122ea-515f-4892-8e36-6ac223a6e17b/igor_qr_code_1787954072328.jpg" alt="QR Code" style="width:100%;height:100%;object-fit:contain;border-radius:8px">
+            </div>
+          </div>
+
+          <div>
+            <h3 style="font-family:'Outfit','Plus Jakarta Sans',sans-serif;font-size:27px;font-weight:800;color:white;margin-bottom:8px;line-height:1.15">
+              Descarga en tu celular
+            </h3>
+            <div style="display:flex;gap:10px">
+              <a href="#" onclick="return false;" style="background:#000000;color:white;padding:7px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.2)">
+                <i class="fa-brands fa-apple" style="font-size:18px"></i>
+                <div style="display:flex;flex-direction:column;line-height:1">
+                  <span style="font-size:8.5px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.3px">Available on the</span>
+                  <span style="font-size:12px;font-weight:700;font-family:'Outfit',sans-serif">App Store</span>
+                </div>
+              </a>
+              <a href="#" onclick="return false;" style="background:#000000;color:white;padding:7px 14px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.2)">
+                <i class="fa-brands fa-google-play" style="font-size:16px;color:#38BDF8"></i>
+                <div style="display:flex;flex-direction:column;line-height:1">
+                  <span style="font-size:8.5px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.3px">GET IT ON</span>
+                  <span style="font-size:12px;font-weight:700;font-family:'Outfit',sans-serif">Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL RIGHT -->
+      <div class="auth-right-panel">
+        <div class="auth-top-nav">
+          <a href="#" onclick="return false;" style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:#0A1629">¿Como funciona?</a>
+          <a href="#" onclick="return false;" style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:#0A1629">Registrate</a>
+          <a href="#" onclick="showAccountSelectView();return false;" class="btn-auth-top-pill">Iniciar Sesión</a>
+        </div>
+
+        <div class="auth-login-card-wrap">
+          <!-- CARD 1: LOGIN -->
+          <div id="authCardLogin" class="auth-card">
+            <div class="auth-card-title">Iniciar sesión</div>
+            <div class="auth-card-sub">Elige como quieres iniciar sesión:</div>
+
+            <button type="button" class="btn-google-login" onclick="showAccountSelectView()">
+              Cuenta de Google
+            </button>
+
+            <div class="auth-divider">
+              <div class="auth-divider-line"></div>
+              <div class="auth-divider-dot"></div>
+              <div class="auth-divider-line"></div>
+            </div>
+
+            <button type="button" class="btn-email-login" onclick="showAccountSelectView()">
+              <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid #E84889;color:#E84889;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              Correo electrónico
+            </button>
+
+            <div style="text-align:center;margin-top:28px;font-size:14px;color:#64748B">
+              ¿Aún no tienes cuenta? <a href="#" onclick="showAccountSelectView();return false;" style="color:#E84889;font-weight:700;text-decoration:none">Registrate</a>
+            </div>
+          </div>
+
+          <!-- CARD 2: ACCOUNT SELECTION -->
+          <div id="authCardAccount" class="auth-card" style="display:none">
+            <div class="auth-card-title">Selecciona una cuenta</div>
+            <div class="auth-card-sub" style="margin-bottom:20px">
+              Elige con cuál cuenta quieres trabajar. Puedes cambiar más adelante sin cerrar sesión.
+            </div>
+
+            <div id="authAccountOptionsList" class="account-select-list">
+              <!-- Cuentas generadas dinámicamente -->
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
+              <button type="button" class="account-select-add-btn" onclick="openCreateAccountModal()">
+                <i class="fa-solid fa-plus"></i> Crear cuenta
+              </button>
+              <button type="button" onclick="showLoginView()" style="background:none;border:none;color:#64748B;font-size:13px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:6px">
+                <i class="fa-solid fa-arrow-left"></i> Volver
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP SHELL -->
+  <div id="appShell" style="display:none">
+
+  <!-- "?"? MOBILE OVERLAY "?"? -->
   <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 
-  <!-- �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�
+  <!-- ......................................................
      SIDEBAR
-�.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.� -->
+....................................................... -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark"><i class="fa-solid fa-car-side"></i></div>
@@ -4561,86 +5062,83 @@
     const ACCOUNT_DATA = {
       'AC-001': {
         id: 'AC-001',
-        label: 'Grupo Andino',
-        profile: { nombre: 'Daysi Achig', tipoDocumento: 'RUC', documento: '1790011223001', email: 'usuario@grupoandino.ec', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Estandar', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. 6 de Diciembre y Orellana' },
-        billing: { tipo: 'RUC', numero: '1790011223001', razon: 'Grupo Andino S.A.', direccion: 'Av. 6 de Diciembre y Orellana', email: 'facturacion@grupoandino.ec' },
-        balance: 13.50,
-        visitCount: 4,
+        label: 'STALIN 23',
+        profile: { nombre: 'Stalin Pérez (STALIN 23)', tipoDocumento: 'RUC', documento: '1790011223001', email: 'stalin23@igor.ec', telefono: '0999999999', miembroDesde: 'Enero 2025', plan: 'Plan Super Admin', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. 6 de Diciembre y Orellana' },
+        billing: { tipo: 'RUC', numero: '1790011223001', razon: 'STALIN 23 S.A.', direccion: 'Av. 6 de Diciembre y Orellana', email: 'facturacion@stalin23.ec' },
+        balance: 24.50,
+        visitCount: 6,
         chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
         promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
         movements: [
           { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-06-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
           { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', placa: 'PCD-9102', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h 30m 00s' }, amount: -3.50, balance: 13.50 },
-          { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089955', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
-          { id: 104, type: 'parking', title: 'Consumo Estadía Parqueo - Aeropuerto', date: '15-06-2026', detail: { ref: 'Igor-1506-00078120', estado: 'APPROVED', placa: 'MBR-4421', entrada: '15-06-2026 05:20', salida: '15-06-2026 07:05', duracion: '1h 45m 00s' }, amount: -4.00, balance: 7.00 },
-          { id: 105, type: 'promo', title: 'Código Promocional CORP10', date: '12-06-2026', detail: { ref: 'Igor-PROMO-1020', estado: 'APPROVED', code: 'CORP10' }, amount: 10.00, balance: 11.00 }
+          { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089955', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 }
         ],
         vehicles: [
-          { marca: 'Toyota', modelo: 'Hilux', color: 'Negro', placa: 'PCD-9102', icon: 'fa-truck-pickup', meta: 'Marca: Toyota · Camioneta corporativa', plateAccess: true },
-          { marca: 'Hyundai', modelo: 'Tucson', color: 'Azul', placa: 'MBR-4421', icon: 'fa-car-side', meta: 'Marca: Hyundai · SUV de gerencia', plateAccess: false }
+          { marca: 'Toyota', modelo: 'Hilux', color: 'Negro', placa: 'PCD-9102', icon: 'fa-truck-pickup', meta: 'Marca: Toyota · Camioneta corporativa', plateAccess: true }
         ],
         cards: [
-          { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: 'Grupo Andino', default: true },
-          { id: 'c-4242', brand: 'Visa', number: '•••• 4242', last4: '4242', exp: '12/2028', holder: 'Grupo Andino', default: false }
+          { id: 'c-1004', brand: 'Mastercard', number: '•••• 1004', last4: '1004', exp: '07/2027', holder: 'STALIN 23', default: true }
         ],
         admins: [
-          { id: 'adm-101', nombre: 'Daysi Achig', email: 'daysiachig1998@gmail.com', role: 'SA' },
-          { id: 'adm-102', nombre: 'Stalin Pérez', email: 'stalin.perez@grupoandino.ec', role: 'A' },
-          { id: 'adm-103', nombre: 'Carlos Mendoza', email: 'carlos.mendoza@grupoandino.ec', role: 'A' }
+          { id: 'adm-101', nombre: 'Stalin Pérez', email: 'stalin23@igor.ec', role: 'SA' }
         ]
       },
       'AC-315': {
         id: 'AC-315',
-        label: 'Edificio Mirador',
-        profile: { nombre: 'Edificio Mirador', tipoDocumento: 'RUC', documento: '1711122233', email: 'residentes@mirador.ec', telefono: '0977001122', miembroDesde: 'Julio 2023', plan: 'Plan Premium', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Calle de los Olivos Oe7-19' },
-        billing: { tipo: 'RUC', numero: '1711122233', razon: 'Edificio Mirador', direccion: 'Cumbaya, Calle de los Olivos Oe7-19', email: 'administracion@mirador.ec' },
-        balance: 5.75,
-        visitCount: 7,
+        label: 'prueba',
+        profile: { nombre: 'Cuenta prueba', tipoDocumento: 'RUC', documento: '1711122233', email: 'prueba@igor.ec', telefono: '0977001122', miembroDesde: 'Julio 2024', plan: 'Plan Demo', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Calle de Prueba 123' },
+        billing: { tipo: 'RUC', numero: '1711122233', razon: 'prueba', direccion: 'Quito, Calle de Prueba 123', email: 'facturas@prueba.ec' },
+        balance: 15.00,
+        visitCount: 3,
         chartData: [0, 1.00, 0, 0.75, 2.10, 0, 1.30],
         promos: [],
         movements: [
-          { id: 201, type: 'parking', title: 'Estadía Scala Shopping', date: '19-06-2026', detail: { ref: 'Igor-3150-00065410', estado: 'APPROVED', placa: 'PQA-7788', entrada: '19-06-2026 16:30', salida: '19-06-2026 18:05', duracion: '1h 35m 00s' }, amount: -1.00, balance: 5.75 },
-          { id: 202, type: 'parking', title: 'Estadía Hospital de los Valles', date: '16-06-2026', detail: { ref: 'Igor-3150-00065200', estado: 'APPROVED', placa: 'PQA-7788', entrada: '16-06-2026 09:00', salida: '16-06-2026 11:10', duracion: '2h 10m 00s' }, amount: -2.10, balance: 6.75 },
-          { id: 203, type: 'recharge', title: 'Recarga de Saldo', date: '12-06-2026', detail: { ref: 'Igor-4410-00010220', estado: 'APPROVED' }, amount: 8.00, balance: 8.85 }
+          { id: 201, type: 'parking', title: 'Estadía Quicentro Shopping', date: '19-06-2026', detail: { ref: 'Igor-3150-00065410', estado: 'APPROVED', placa: 'PQA-7788', entrada: '19-06-2026 16:30', salida: '19-06-2026 18:05', duracion: '1h 35m 00s' }, amount: -2.00, balance: 15.00 }
         ],
         vehicles: [
-          { marca: 'Mazda', modelo: 'CX-5', color: 'Rojo', placa: 'PQA-7788', icon: 'fa-car-side', meta: 'Marca: Mazda · SUV familiar', plateAccess: true }
-        ],
-        mifare: [
-          { nombre: 'Tarjeta Torre A', uid: '04:E1:22:4C:09:71', tipo: 'Mifare DESFire', estado: 'Activa' }
+          { marca: 'Mazda', modelo: 'CX-5', color: 'Rojo', placa: 'PQA-7788', icon: 'fa-car-side', meta: 'Marca: Mazda · SUV prueba', plateAccess: true }
         ],
         admins: [
-          { id: 'adm-301', nombre: 'Roberto Mirador', email: 'roberto@mirador.ec', role: 'SA' },
-          { id: 'adm-302', nombre: 'Ana Lucía Silva', email: 'ana.silva@mirador.ec', role: 'A' },
-          { id: 'adm-303', nombre: 'Fernando Vaca', email: 'fernando.vaca@mirador.ec', role: 'A' }
+          { id: 'adm-301', nombre: 'Usuario prueba', email: 'prueba@igor.ec', role: 'SA' }
         ]
       },
       'AC-502': {
         id: 'AC-502',
-        label: 'Plaza Comercial del Sol',
-        profile: { nombre: 'Plaza Comercial del Sol', tipoDocumento: 'RUC', documento: '1792837465001', email: 'administracion@plazasol.ec', telefono: '0984567890', miembroDesde: 'Marzo 2024', plan: 'Plan Corporativo', pais: 'Ecuador', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Av. de los Shyris y NNUU' },
-        billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Plaza Comercial del Sol S.A.', direccion: 'Av. de los Shyris y NNUU, Quito', email: 'facturas@plazasol.ec' },
+        label: 'Prueba2',
+        profile: { nombre: 'Cuenta Prueba2', tipoDocumento: 'RUC', documento: '1792837465001', email: 'prueba2@igor.ec', telefono: '0984567890', miembroDesde: 'Marzo 2024', plan: 'Plan Corporativo', pais: 'Ecuador', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Av. de los Shyris' },
+        billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Prueba2 S.A.', direccion: 'Guayaquil, Av. de los Shyris', email: 'facturas@prueba2.ec' },
         balance: 42.80,
         visitCount: 12,
         chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
         promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
         movements: [
-          { id: 301, type: 'recharge', title: 'Recarga Saldo Corporativo', date: '20-07-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 },
-          { id: 302, type: 'parking', title: 'Estadía Plaza las Américas', date: '19-07-2026', detail: { ref: 'Igor-5020-00091510', estado: 'APPROVED', placa: 'PBE-3390', entrada: '19-07-2026 10:15', salida: '19-07-2026 14:45', duracion: '4h 30m 00s' }, amount: -7.20, balance: -7.20 },
-          { id: 303, type: 'promo', title: 'Código Promocional IGOR50OFF', date: '15-07-2026', detail: { ref: 'Igor-PROMO-5020', estado: 'APPROVED', code: 'IGOR50OFF' }, amount: 5.00, balance: 0.00 }
+          { id: 301, type: 'recharge', title: 'Recarga Saldo', date: '20-07-2026', detail: { ref: 'Igor-5020-00091823', estado: 'APPROVED' }, amount: 50.00, balance: 42.80 }
         ],
         vehicles: [
-          { marca: 'Chevrolet', modelo: 'D-Max', color: 'Blanco', placa: 'PBE-3390', icon: 'fa-truck-pickup', meta: 'Marca: Chevrolet · Camioneta de operaciones', plateAccess: true },
-          { marca: 'Kia', modelo: 'Sportage', color: 'Gris', placa: 'PCD-8812', icon: 'fa-car-side', meta: 'Marca: Kia · SUV Administración', plateAccess: true }
-        ],
-        mifare: [
-          { nombre: 'Tarjeta Acceso Principal', uid: '04:F5:33:9A:88:12', tipo: 'Mifare Classic 4K', estado: 'Activa' },
-          { nombre: 'Tarjeta Proveedores', uid: '04:A2:99:11:00:55', tipo: 'NFC Pass', estado: 'Activa' }
+          { marca: 'Chevrolet', modelo: 'D-Max', color: 'Blanco', placa: 'PBE-3390', icon: 'fa-truck-pickup', meta: 'Marca: Chevrolet · Camioneta operaciones', plateAccess: true }
         ],
         admins: [
-          { id: 'adm-501', nombre: 'María Solís', email: 'msolis@plazasol.ec', role: 'SA' },
-          { id: 'adm-502', nombre: 'Javier Córdova', email: 'jcordova@plazasol.ec', role: 'A' },
-          { id: 'adm-503', nombre: 'Diego Andrade', email: 'dandrade@plazasol.ec', role: 'A' }
+          { id: 'adm-501', nombre: 'Administrador Prueba2', email: 'prueba2@igor.ec', role: 'SA' }
+        ]
+      },
+      'AC-701': {
+        id: 'AC-701',
+        label: 'DeppitoPerez',
+        profile: { nombre: 'Deppito Perez', tipoDocumento: 'RUC', documento: '1788899900001', email: 'deppito.perez@igor.ec', telefono: '0991122334', miembroDesde: 'Agosto 2025', plan: 'Plan Super Admin', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Cumbayá, Plaza Central' },
+        billing: { tipo: 'RUC', numero: '1788899900001', razon: 'DeppitoPerez Corp', direccion: 'Cumbayá, Plaza Central', email: 'facturas@deppito.ec' },
+        balance: 30.00,
+        visitCount: 5,
+        chartData: [1.0, 2.0, 1.5, 3.0, 2.2, 1.0, 2.5],
+        promos: [],
+        movements: [
+          { id: 401, type: 'recharge', title: 'Recarga Inicial', date: '25-08-2026', detail: { ref: 'Igor-7010-00012900', estado: 'APPROVED' }, amount: 30.00, balance: 30.00 }
+        ],
+        vehicles: [
+          { marca: 'Audi', modelo: 'Q5', color: 'Negro', placa: 'PBX-1234', icon: 'fa-car-side', meta: 'Marca: Audi · SUV Personal', plateAccess: true }
+        ],
+        admins: [
+          { id: 'adm-701', nombre: 'Deppito Perez', email: 'deppito.perez@igor.ec', role: 'SA' }
         ]
       }
     };
@@ -4663,6 +5161,76 @@
       promos: [],
       movements: []
     };
+
+    /* ============================================================
+       AUTHENTICATION & ACCOUNT SELECTION FLOW LOGIC
+    ============================================================ */
+    function showLoginView() {
+      const auth = document.getElementById('authScreen');
+      const shell = document.getElementById('appShell');
+      const loginCard = document.getElementById('authCardLogin');
+      const accountCard = document.getElementById('authCardAccount');
+
+      if (shell) shell.style.display = 'none';
+      if (auth) auth.style.display = 'block';
+      if (loginCard) loginCard.style.display = 'block';
+      if (accountCard) accountCard.style.display = 'none';
+    }
+
+    function showAccountSelectView() {
+      const auth = document.getElementById('authScreen');
+      const shell = document.getElementById('appShell');
+      const loginCard = document.getElementById('authCardLogin');
+      const accountCard = document.getElementById('authCardAccount');
+
+      if (shell) shell.style.display = 'none';
+      if (auth) auth.style.display = 'block';
+      if (loginCard) loginCard.style.display = 'none';
+      if (accountCard) {
+        accountCard.style.display = 'block';
+        renderAuthAccountList();
+      }
+    }
+
+    function renderAuthAccountList() {
+      const list = document.getElementById('authAccountOptionsList');
+      if (!list) return;
+
+      list.innerHTML = '';
+      Object.values(ACCOUNT_DATA).forEach(acc => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'account-select-item';
+        item.onclick = () => selectAccountAndEnter(acc.id);
+        item.innerHTML = `
+          <div class="account-select-item-name">${acc.label}</div>
+          <div class="account-select-item-role">Super administrador</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function selectAccountAndEnter(accountId) {
+      if (ACCOUNT_DATA[accountId]) {
+        S.currentAccountId = accountId;
+      } else {
+        S.currentAccountId = 'AC-001';
+      }
+
+      const auth = document.getElementById('authScreen');
+      const shell = document.getElementById('appShell');
+      if (auth) auth.style.display = 'none';
+      if (shell) shell.style.display = 'flex';
+
+      renderCurrentAccount();
+      goTo('dashboard', document.getElementById('nav-dashboard'));
+      showToast(`Has ingresado como ${getCurrentAccount().label}`, 'success');
+    }
+
+    function logoutAccount() {
+      showLoginView();
+      showToast('Sesión cerrada correctamente', 'info');
+    }
 
     /* ============================================================
        APPLICATION CORE LOGIC
@@ -7260,6 +7828,10 @@
       showToast(`¡Transferencia de $${amount.toFixed(2)} a ${destAcc.label} realizada con éxito!`, 'success');
     }
 
+    // Iniciar con la vista de Login por defecto
+    window.addEventListener('DOMContentLoaded', () => {
+      showLoginView();
+    });
   </script>
 
 
@@ -7754,8 +8326,8 @@
           Crear cuenta
         </button>
       </div>
-    </div>
-  </div>
+  </div><!-- /#appShell -->
+
   <!-- Supabase JS Client Integration -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
