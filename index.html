@@ -5104,169 +5104,169 @@ BILLETERA
           <!--Recargar Saldo-->
           <div id="tab-recargar" class="tab-panel">
             <div style="font-size:16px;font-weight:700;margin-bottom:16px;">Recargar Saldo</div>
-              <!--BannerAlertaSinTarjetaRegistrada-->
-              <div id="noCardRechargeBanner"
-                style="display:none;background:linear-gradient(135deg,#FEF2F2 0%,#FFF5F5 100%);border:1.5px solid #FECACA;border-radius:var(--r-lg);padding:16px 20px;margin-bottom:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:var(--shadow-xs)">
-                <div style="display:flex;align-items:center;gap:12px;color:#991B1B;font-size:13.5px;font-weight:600">
-                  <div
-                    style="width:42px;height:42px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;color:#DC2626;font-size:20px;flex-shrink:0">
-                    <i class="fa-solid fa-credit-card"></i>
-                  </div>
-                  <div>
-                    <div style="font-weight:800;color:#7F1D1D;font-size:14.5px;margin-bottom:2px">No tienes tarjetas
-                      registradas 💳</div>
-                    <div style="color:#991B1B;font-size:13px">Registra al menos una tarjeta válida para poder realizar
-                      recargas de saldo.</div>
-                  </div>
+            <!--BannerAlertaSinTarjetaRegistrada-->
+            <div id="noCardRechargeBanner"
+              style="display:none;background:linear-gradient(135deg,#FEF2F2 0%,#FFF5F5 100%);border:1.5px solid #FECACA;border-radius:var(--r-lg);padding:16px 20px;margin-bottom:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:var(--shadow-xs)">
+              <div style="display:flex;align-items:center;gap:12px;color:#991B1B;font-size:13.5px;font-weight:600">
+                <div
+                  style="width:42px;height:42px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;color:#DC2626;font-size:20px;flex-shrink:0">
+                  <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div>
+                  <div style="font-weight:800;color:#7F1D1D;font-size:14.5px;margin-bottom:2px">No tienes tarjetas
+                    registradas 💳</div>
+                  <div style="color:#991B1B;font-size:13px">Registra al menos una tarjeta válida para poder realizar
+                    recargas de saldo.</div>
                 </div>
               </div>
+            </div>
 
-              <div class="split-layout">
-                <!-- Columna izquierda: Selección de Tarjeta y Opciones de Recarga -->
-                <div>
-                  <div class="form-group" style="margin-bottom:18px">
-                    <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
-                      Seleccione la tarjeta desde la cual se hará la recarga
-                      <div class="help-wrap">
-                        <div class="help-icon">?</div>
-                        <div class="help-tip">
-                          <div class="ht">Método de recarga</div>Selecciona la tarjeta registrada con la cual se
-                          debitará
-                          la recarga de tu billetera IGOR.
-                        </div>
+            <div class="split-layout">
+              <!-- Columna izquierda: Selección de Tarjeta y Opciones de Recarga -->
+              <div>
+                <div class="form-group" style="margin-bottom:18px">
+                  <label class="form-label" style="font-weight:700;display:flex;align-items:center;gap:8px">
+                    Seleccione la tarjeta desde la cual se hará la recarga
+                    <div class="help-wrap">
+                      <div class="help-icon">?</div>
+                      <div class="help-tip">
+                        <div class="ht">Método de recarga</div>Selecciona la tarjeta registrada con la cual se
+                        debitará
+                        la recarga de tu billetera IGOR.
                       </div>
-                    </label>
-                    <div id="rechargeCardPicker" style="position:relative">
-                      <button type="button" id="rechargeCardPickerButton" class="form-input"
-                        onclick="toggleRechargeCardPicker(event)"
-                        style="height:48px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font-weight:600;cursor:pointer;background:var(--bg-card)">
-                        <span id="rechargeCardPickerValue"
-                          style="display:flex;align-items:center;gap:12px;min-width:0">Selecciona una tarjeta</span>
-                        <i class="fa-solid fa-chevron-down"
-                          style="font-size:12px;color:var(--text-secondary);flex-shrink:0"></i>
+                    </div>
+                  </label>
+                  <div id="rechargeCardPicker" style="position:relative">
+                    <button type="button" id="rechargeCardPickerButton" class="form-input"
+                      onclick="toggleRechargeCardPicker(event)"
+                      style="height:48px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font-weight:600;cursor:pointer;background:var(--bg-card)">
+                      <span id="rechargeCardPickerValue"
+                        style="display:flex;align-items:center;gap:12px;min-width:0">Selecciona una tarjeta</span>
+                      <i class="fa-solid fa-chevron-down"
+                        style="font-size:12px;color:var(--text-secondary);flex-shrink:0"></i>
+                    </button>
+                    <div id="rechargeCardPickerMenu"
+                      style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:100;background:var(--bg-card);border:1px solid var(--border-medium);border-radius:var(--r-md);box-shadow:var(--shadow-md);padding:6px">
+                    </div>
+                  </div>
+                  <select id="rechargeCardSelect" aria-hidden="true" tabindex="-1" style="display:none"></select>
+                </div>
+
+                <!--Auto-recarga(SecciónSeparada)-->
+                <div class="card"
+                  style="margin-top:20px;padding:18px 20px;border:1px solid var(--border-medium);border-radius:var(--r-md);background:var(--bg-card);box-shadow:var(--shadow-sm)">
+
+                  <div class="toggle on" id="autoToggle" style="display:none;"></div>
+
+                  <div style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;margin-left:4px;">
+                    Se recargará automáticamente cuando tu saldo baje de $5.00
+                  </div>
+
+                  <!--PaneldeSeleccióndeMonto(Siemprevisible)-->
+                  <div id="autoRechargeOptionsPanel"
+                    style="margin-top:0;padding-top:16px;border-top:1px dashed var(--border-medium)">
+                    <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:12px">
+                      Selecciona el monto de recarga:
+                    </div>
+
+                    <!--Botonespredeterminados10,15,25,50,100,Otro monto-->
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px"
+                      id="autoRecChipsGrid">
+                      <button type="button" class="btn auto-rec-chip selected" onclick="pickAmtChip(10,this)"
+                        style="border:1.5px solid var(--brand-primary);background:var(--bg-active);color:var(--brand-pink);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$10</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(15,this)"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$15</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(25,this)"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$25</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(50,this)"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$50</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(100,this)"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$100</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtCustomChip(this)"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">Otro
+                        monto</button>
+                    </div>
+
+                    <!--Inputdemontopersonalizado-->
+                    <div id="autoRecCustomInputWrap" style="display:none;margin-top:10px">
+                      <label class="form-label" style="font-size:11.5px;font-weight:600">Monto personalizado
+                        ($)</label>
+                      <input class="form-input" id="iCustom" type="number" min="0.01" step="0.01" placeholder="0.00"
+                        oninput="calcBd()"
+                        style="font-family:'JetBrainsMono',monospace;font-size:14px;font-weight:700;max-width:200px">
+                      <div id="err-custom" style="display:none;font-size:11px;color:var(--brand-pink);margin-top:4px">
+                        No hay valor mínimo</div>
+                    </div>
+
+                    <!--Leyenda de Auto-recarga (se muestra cuando Auto-recarga está activa)-->
+                    <div id="autoRecExtraNotice"
+                      style="display:none;margin-top:14px;padding:12px 16px;background:linear-gradient(135deg,rgba(232,72,137,0.08) 0%,rgba(232,72,137,0.03) 100%);border:1px solid rgba(232,72,137,0.25);border-radius:var(--r-md);font-size:12.5px;color:var(--text-primary);align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(232,72,137,0.06)">
+                      <div style="display:flex;align-items:center;gap:10px">
+                        <div
+                          style="width:28px;height:28px;border-radius:50%;background:rgba(232,72,137,0.15);display:flex;align-items:center;justify-content:center;color:var(--brand-pink);flex-shrink:0">
+                          <i class="fa-solid fa-bolt" style="font-size:13px"></i>
+                        </div>
+                        <span>Auto-recarga activa: Se recargará automáticamente <strong id="autoRecSummaryVal"
+                            style="color:var(--brand-primary);font-weight:800">$10.00</strong> cuando el saldo baje de
+                          $5.00.</span>
+                      </div>
+                      <button type="button" id="btnEditAutoRec" class="btn btn-ghost btn-sm"
+                        onclick="enableAutoRechargeEditing()"
+                        style="font-size:12px;font-weight:700;color:var(--brand-pink);background:white;border:1px solid rgba(232,72,137,0.3);padding:6px 12px;border-radius:var(--r-md);display:inline-flex;align-items:center;gap:6px;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:all .2s ease">
+                        <i class="fa-solid fa-pen-to-square"></i> Editar
                       </button>
-                      <div id="rechargeCardPickerMenu"
-                        style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:100;background:var(--bg-card);border:1px solid var(--border-medium);border-radius:var(--r-md);box-shadow:var(--shadow-md);padding:6px">
-                      </div>
+                      <button type="button" id="btnUpdateAutoRec" class="btn btn-primary btn-sm"
+                        onclick="updateAutoRechargeAmount()"
+                        style="font-size:12px;font-weight:700;padding:6px 12px;border-radius:var(--r-md);display:none;align-items:center;gap:6px">
+                        <i class="fa-solid fa-check"></i> Actualizar
+                      </button>
                     </div>
-                    <select id="rechargeCardSelect" aria-hidden="true" tabindex="-1" style="display:none"></select>
+                    <div id="autoRecMinNotice"
+                      style="display:none;margin-top:8px;font-size:11.5px;color:var(--text-secondary);line-height:1.4">
+                      <i class="fa-solid fa-circle-info" style="color:var(--brand-primary);margin-right:4px"></i>
+                      El valor mínimo de la autorecarga es de <strong>$10.00</strong>.
+                    </div>
+                  </div> <!-- Closes autoRechargeOptionsPanel -->
+                </div> <!-- Closes Auto-recarga card -->
+              </div> <!-- Closes Columna Izquierda -->
+
+              <!-- Columna Derecha: Resumen de Pago -->
+              <div class="sticky-breakdown">
+                <div
+                  style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">
+                  Resumen de Pago</div>
+                <div class="breakdown">
+                  <div class="bd-section-label">Recarga Igor</div>
+                  <div class="bd-row"><span class="bd-lbl">Subtotal</span><span class="bd-val" id="brs">$8.70</span>
                   </div>
-
-                  <!--Auto-recarga(SecciónSeparada)-->
-                  <div class="card"
-                    style="margin-top:20px;padding:18px 20px;border:1px solid var(--border-medium);border-radius:var(--r-md);background:var(--bg-card);box-shadow:var(--shadow-sm)">
-                    
-                    <div class="toggle on" id="autoToggle" style="display:none;"></div>
-                    
-                    <div style="font-size:13.5px;color:var(--text-secondary);margin-bottom:16px;margin-left:4px;">
-                      Se recargará automáticamente cuando tu saldo baje de $5.00
-                    </div>
-
-                    <!--PaneldeSeleccióndeMonto(Siemprevisible)-->
-                    <div id="autoRechargeOptionsPanel"
-                      style="margin-top:0;padding-top:16px;border-top:1px dashed var(--border-medium)">
-                      <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:12px">
-                        Selecciona el monto de recarga:
-                      </div>
-
-                      <!--Botonespredeterminados10,15,25,50,100,Otro monto-->
-                      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px"
-                        id="autoRecChipsGrid">
-                        <button type="button" class="btn auto-rec-chip selected" onclick="pickAmtChip(10,this)"
-                          style="border:1.5px solid var(--brand-primary);background:var(--bg-active);color:var(--brand-pink);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$10</button>
-                        <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(15,this)"
-                          style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$15</button>
-                        <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(25,this)"
-                          style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$25</button>
-                        <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(50,this)"
-                          style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$50</button>
-                        <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(100,this)"
-                          style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$100</button>
-                        <button type="button" class="btn auto-rec-chip" onclick="pickAmtCustomChip(this)"
-                          style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">Otro
-                          monto</button>
-                      </div>
-
-                      <!--Inputdemontopersonalizado-->
-                      <div id="autoRecCustomInputWrap" style="display:none;margin-top:10px">
-                        <label class="form-label" style="font-size:11.5px;font-weight:600">Monto personalizado
-                          ($)</label>
-                        <input class="form-input" id="iCustom" type="number" min="0.01" step="0.01" placeholder="0.00"
-                          oninput="calcBd()"
-                          style="font-family:'JetBrainsMono',monospace;font-size:14px;font-weight:700;max-width:200px">
-                        <div id="err-custom" style="display:none;font-size:11px;color:var(--brand-pink);margin-top:4px">
-                          No hay valor mínimo</div>
-                      </div>
-
-                      <!--Leyenda de Auto-recarga (se muestra cuando Auto-recarga está activa)-->
-                      <div id="autoRecExtraNotice"
-                        style="display:none;margin-top:14px;padding:12px 16px;background:linear-gradient(135deg,rgba(232,72,137,0.08) 0%,rgba(232,72,137,0.03) 100%);border:1px solid rgba(232,72,137,0.25);border-radius:var(--r-md);font-size:12.5px;color:var(--text-primary);align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(232,72,137,0.06)">
-                        <div style="display:flex;align-items:center;gap:10px">
-                          <div
-                            style="width:28px;height:28px;border-radius:50%;background:rgba(232,72,137,0.15);display:flex;align-items:center;justify-content:center;color:var(--brand-pink);flex-shrink:0">
-                            <i class="fa-solid fa-bolt" style="font-size:13px"></i>
-                          </div>
-                          <span>Auto-recarga activa: Se recargará automáticamente <strong id="autoRecSummaryVal"
-                              style="color:var(--brand-primary);font-weight:800">$10.00</strong> cuando el saldo baje de
-                            $5.00.</span>
-                        </div>
-                        <button type="button" id="btnEditAutoRec" class="btn btn-ghost btn-sm"
-                          onclick="enableAutoRechargeEditing()"
-                          style="font-size:12px;font-weight:700;color:var(--brand-pink);background:white;border:1px solid rgba(232,72,137,0.3);padding:6px 12px;border-radius:var(--r-md);display:inline-flex;align-items:center;gap:6px;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:all .2s ease">
-                          <i class="fa-solid fa-pen-to-square"></i> Editar
-                        </button>
-                        <button type="button" id="btnUpdateAutoRec" class="btn btn-primary btn-sm"
-                          onclick="updateAutoRechargeAmount()"
-                          style="font-size:12px;font-weight:700;padding:6px 12px;border-radius:var(--r-md);display:none;align-items:center;gap:6px">
-                          <i class="fa-solid fa-check"></i> Actualizar
-                        </button>
-                      </div>
-                      <div id="autoRecMinNotice"
-                        style="display:none;margin-top:8px;font-size:11.5px;color:var(--text-secondary);line-height:1.4">
-                        <i class="fa-solid fa-circle-info" style="color:var(--brand-primary);margin-right:4px"></i>
-                        El valor mínimo de la autorecarga es de <strong>$10.00</strong>.
-                      </div>
-                    </div> <!-- Closes autoRechargeOptionsPanel -->
-                  </div> <!-- Closes Auto-recarga card -->
-                </div> <!-- Closes Columna Izquierda -->
-
-                <!-- Columna Derecha: Resumen de Pago -->
-                <div class="sticky-breakdown">
-                  <div
-                    style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">
-                    Resumen de Pago</div>
-                  <div class="breakdown">
-                    <div class="bd-section-label">Recarga Igor</div>
-                    <div class="bd-row"><span class="bd-lbl">Subtotal</span><span class="bd-val" id="brs">$8.70</span>
-                    </div>
-                    <div class="bd-row"><span class="bd-lbl">IVA (15%)</span><span class="bd-val" id="bri">$1.30</span>
-                    </div>
-                    <div class="bd-row"><span class="bd-lbl">Total recarga</span><span class="bd-val"
-                        id="brt">$10.00</span>
-                    </div>
-                    <div class="bd-section-label">Servicio IGOR (10%)</div>
-                    <div class="bd-row"><span class="bd-lbl">Subtotal</span><span class="bd-val" id="bss">$0.87</span>
-                    </div>
-                    <div class="bd-row"><span class="bd-lbl">IVA (15%)</span><span class="bd-val" id="bsi">$0.13</span>
-                    </div>
-                    <div class="bd-row"><span class="bd-lbl">Total servicio</span><span class="bd-val"
-                        id="bst">$1.00</span>
-                    </div>
-                    <div class="bd-row total"><span class="bd-lbl">TOTAL A PAGAR</span><span class="bd-val"
-                        id="btot">$11.00</span></div>
+                  <div class="bd-row"><span class="bd-lbl">IVA (15%)</span><span class="bd-val" id="bri">$1.30</span>
                   </div>
-
-                  <!-- Botón Principal Recargar dentro del Resumen de Pago -->
-                  <button type="button" class="btn btn-primary btn-lg" id="btnRec" onclick="processRecharge()"
-                    style="width:100%;margin-top:16px;font-size:14px;font-weight:700;padding:12px 20px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-pink)">
-                    <i class="fa-solid fa-bolt"></i><span id="btnRecTxt">Recargar $10.00</span>
-                  </button>
-
-                  <div style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:12px">
-                    <i class="fa-solid fa-lock" style="font-size:10px"></i> Transacción segura · SSL 256-bit
+                  <div class="bd-row"><span class="bd-lbl">Total recarga</span><span class="bd-val"
+                      id="brt">$10.00</span>
                   </div>
-                </div> <!-- Closes sticky-breakdown -->
-              </div> <!-- Closes split-layout -->
+                  <div class="bd-section-label">Servicio IGOR (10%)</div>
+                  <div class="bd-row"><span class="bd-lbl">Subtotal</span><span class="bd-val" id="bss">$0.87</span>
+                  </div>
+                  <div class="bd-row"><span class="bd-lbl">IVA (15%)</span><span class="bd-val" id="bsi">$0.13</span>
+                  </div>
+                  <div class="bd-row"><span class="bd-lbl">Total servicio</span><span class="bd-val"
+                      id="bst">$1.00</span>
+                  </div>
+                  <div class="bd-row total"><span class="bd-lbl">TOTAL A PAGAR</span><span class="bd-val"
+                      id="btot">$11.00</span></div>
+                </div>
+
+                <!-- Botón Principal Recargar dentro del Resumen de Pago -->
+                <button type="button" class="btn btn-primary btn-lg" id="btnRec" onclick="processRecharge()"
+                  style="width:100%;margin-top:16px;font-size:14px;font-weight:700;padding:12px 20px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-pink)">
+                  <i class="fa-solid fa-bolt"></i><span id="btnRecTxt">Recargar $10.00</span>
+                </button>
+
+                <div style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:12px">
+                  <i class="fa-solid fa-lock" style="font-size:10px"></i> Transacción segura · SSL 256-bit
+                </div>
+              </div> <!-- Closes sticky-breakdown -->
+            </div> <!-- Closes split-layout -->
           </div> <!-- Closes tab-recargar -->
 
 
@@ -5766,7 +5766,7 @@ VEHÍCULOS
                     <div class="plate"
                       style="background:#0A1629;color:#FFFFFF;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;padding:6px 14px;border-radius:8px;letter-spacing:1.5px;border:1px solid rgba(255,255,255,0.12)">
                       PCD-9102</div>
-                    <button onclick="deleteVehicle(0)" title="Eliminar vehículo"
+                    <button onclick="promptDeleteVehicle(0)" title="Eliminar vehículo"
                       style="width:34px;height:34px;border-radius:50%;background:#FDF2F7;color:#E84889;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--t)">
                       <i class="fa-solid fa-trash-can" style="font-size:12px"></i>
                     </button>
@@ -7202,7 +7202,7 @@ ${actionButtonHtml}
             '<button onclick="editVehicle(' + idx + ')" title="Editar vehículo" style="width:34px;height:34px;border-radius:50%;background:#EFF6FF;color:#3B82F6;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--t)">' +
             '<i class="fa-solid fa-pen" style="font-size:12px"></i>' +
             '</button>' +
-            '<button onclick="deleteVehicle(' + idx + ')" title="Eliminar vehículo" style="width:34px;height:34px;border-radius:50%;background:#FDF2F7;color:#E84889;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--t)">' +
+            '<button onclick="promptDeleteVehicle(' + idx + ')" title="Eliminar vehículo" style="width:34px;height:34px;border-radius:50%;background:#FDF2F7;color:#E84889;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--t)">' +
             '<i class="fa-solid fa-trash-can" style="font-size:12px"></i>' +
             '</button>' +
             '</div>' +
@@ -7230,6 +7230,25 @@ ${actionButtonHtml}
         }
       }
 
+      function promptDeleteVehicle(index) {
+        S.pendingDeleteVehicleIndex = index;
+        const m = document.getElementById("deleteVehicleModal");
+        if (m) m.style.display = "flex";
+      }
+
+      function closeDeleteVehicleModal() {
+        S.pendingDeleteVehicleIndex = null;
+        const m = document.getElementById("deleteVehicleModal");
+        if (m) m.style.display = "none";
+      }
+
+      function confirmDeleteVehicle() {
+        if (S.pendingDeleteVehicleIndex !== undefined && S.pendingDeleteVehicleIndex !== null) {
+          deleteVehicle(S.pendingDeleteVehicleIndex);
+        }
+        closeDeleteVehicleModal();
+      }
+
       function openAddVehicleModal() {
         const m = document.getElementById("addVehicleModal");
         if (m) {
@@ -7248,8 +7267,6 @@ ${actionButtonHtml}
         setSafeValue("modalVehColor", "");
         const ocr = document.getElementById("modalVehOcrToggle");
         if (ocr) ocr.classList.add("on");
-        const diplo = document.getElementById("modalVehIsDiplomatic");
-        if (diplo) diplo.value = "false";
       }
 
       function editVehicle(index) {
@@ -7264,10 +7281,6 @@ ${actionButtonHtml}
         if (ocr) {
           if (veh.plateAccess) ocr.classList.add("on");
           else ocr.classList.remove("on");
-        }
-        const diplo = document.getElementById("modalVehIsDiplomatic");
-        if (diplo) {
-          diplo.value = veh.isDiplomatic ? "true" : "false";
         }
         openAddVehicleModal();
       }
@@ -7306,27 +7319,21 @@ ${actionButtonHtml}
         let placa = document.getElementById("modalVehPlaca")?.value.trim().toUpperCase();
         const color = document.getElementById("modalVehColor")?.value.trim();
         const plateAccess = document.getElementById("modalVehOcrToggle")?.classList.contains("on");
-        const isDiplomatic = document.getElementById("modalVehIsDiplomatic")?.value === 'true';
-
         if (!marca || !modelo || !placa || !color) {
           showToast("Completa marca, modelo, placa y color del vehículo", "error");
           return;
         }
 
         placa = placa.replace(/[^A-Z0-9]/g, '');
-        if (isDiplomatic) {
-          if (!/^[A-Z]{2}[0-9]{4}$/.test(placa)) {
-            showToast("La placa diplomática debe tener 2 letras y 4 números (ej. CC1234)", "error");
-            return;
-          }
-        } else {
-          if (/^[A-Z]{3}[0-9]{3}$/.test(placa)) {
-            placa = placa.substring(0, 3) + '0' + placa.substring(3);
-          }
-          if (!/^[A-Z]{3}[0-9]{4}$/.test(placa)) {
-            showToast("La placa debe tener 3 letras y 4 números (ej. PCD0102)", "error");
-            return;
-          }
+        let isDiplomatic = false;
+
+        if (/^[A-Z]{2}[0-9]{4}$/.test(placa)) {
+          isDiplomatic = true;
+        } else if (/^[A-Z]{3}[0-9]{3}$/.test(placa)) {
+          placa = placa.substring(0, 3) + '0' + placa.substring(3);
+        } else if (!/^[A-Z]{3}[0-9]{4}$/.test(placa)) {
+          showToast("Formato inválido. Usa 3 letras y 3/4 números, o 2 letras y 4 números (Diplomática)", "error");
+          return;
         }
 
         if (!S.vehicles) S.vehicles = [];
@@ -11957,7 +11964,8 @@ ${actionButtonHtml}
           <div class="bd-row total"
             style="display:flex;justify-content:space-between;border-top:1px dashed var(--border-medium);padding-top:12px;margin-top:12px">
             <span class="bd-lbl" style="font-size:14px;font-weight:800">TOTAL A PAGAR</span><span class="bd-val"
-              id="askRecSum_btot" style="font-size:16px;font-weight:900;color:var(--brand-primary)">$0.00</span></div>
+              id="askRecSum_btot" style="font-size:16px;font-weight:900;color:var(--brand-primary)">$0.00</span>
+          </div>
         </div>
 
         <div style="display:flex;gap:12px">
@@ -12085,16 +12093,8 @@ MODAL: AÑADIR VEHÍCULO
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px"
           onkeydown="if(event.key==='Enter') submitModalVehicle();">
           <div class="form-group" style="grid-column:1/-1;margin-bottom:0">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-              <label class="form-label" style="font-size:12.5px;font-weight:700;color:#334155;margin:0">Placa
-                (Matrícula)*</label>
-              <div style="display:flex;align-items:center;gap:8px">
-                <select id="modalVehIsDiplomatic" class="form-input" style="height:32px;padding:0 30px 0 10px;font-size:11.5px;font-weight:600;border-radius:8px;border:1px solid #CBD5E1;background-color:white;cursor:pointer">
-                  <option value="false">Placa General</option>
-                  <option value="true">Placa Diplomática</option>
-                </select>
-              </div>
-            </div>
+            <label class="form-label" style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Placa
+              (Matrícula)*</label>
             <div style="display:flex;gap:10px;">
               <input class="form-input" id="modalVehPlaca" type="text" placeholder="Ej. PCD9102" maxlength="7"
                 oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')"
@@ -12212,7 +12212,9 @@ MODAL: VEHÍCULO REGISTRADO (ÉXITO)
                 <div id="vs-placa"
                   style="background:#F8FAFC;border:1.5px solid #CBD5E1;padding:4px 14px;border-radius:8px;font-size:17px;font-family:'JetBrains Mono',monospace;font-weight:700;color:#334155;letter-spacing:1px;box-shadow:0 1px 2px rgba(0,0,0,0.02)">
                 </div>
-                <div id="vs-diplomatic-badge" style="display:none;background:#FEF2F2;color:#EF4444;font-size:11.5px;font-weight:600;padding:2.5px 9px;border-radius:6px;"><i class="fa-solid fa-flag" style="margin-right:4px"></i>Diplomático</div>
+                <div id="vs-diplomatic-badge"
+                  style="display:none;background:#FEF2F2;color:#EF4444;font-size:11.5px;font-weight:600;padding:2.5px 9px;border-radius:6px;">
+                  <i class="fa-solid fa-flag" style="margin-right:4px"></i>Diplomático</div>
               </div>
             </div>
 
@@ -12247,6 +12249,30 @@ MODAL: VEHÍCULO REGISTRADO (ÉXITO)
             onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
             Entendido
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal confirmación eliminar vehículo -->
+    <div id="deleteVehicleModal" class="modal-backdrop"
+      style="display:none;position:fixed;inset:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
+      onclick="if(event.target===this)closeDeleteVehicleModal()">
+      <div class="card modal-box"
+        style="position:relative;width:100%;max-width:400px;border-radius:20px;padding:32px;background:white;box-shadow:0 24px 60px rgba(10,22,41,0.25);text-align:center;animation:fadeUp .22s ease both">
+        <div
+          style="width:56px;height:56px;border-radius:50%;background:#FEE2E2;color:#EF4444;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 20px auto;box-shadow:0 4px 12px rgba(239,68,68,0.15)">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 style="font-size:20px;font-weight:800;color:#0A1629;margin:0 0 12px 0">¿Eliminar Vehículo?</h3>
+        <p style="font-size:14.5px;color:#475569;margin:0 0 24px 0;line-height:1.5">
+          Estás a punto de eliminar este vehículo de tu cuenta. No podrá ingresar automáticamente a nuestra red de
+          parqueaderos.<br><br>¿Deseas continuar?
+        </p>
+        <div style="display:flex;gap:12px">
+          <button type="button" class="btn btn-ghost" onclick="closeDeleteVehicleModal()"
+            style="flex:1;height:44px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid #E2E8F0;background:white;color:#334155;cursor:pointer">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="confirmDeleteVehicle()"
+            style="flex:1;height:44px;border-radius:10px;font-size:14px;font-weight:700;background:#EF4444;border:none;color:white;cursor:pointer;box-shadow:0 4px 14px rgba(239,68,68,0.25)">Eliminar</button>
         </div>
       </div>
     </div>
