@@ -7554,6 +7554,13 @@ ${actionButtonHtml}
       function doSwitchAccount(accountId) {
         persistCurrentAccount();
         S.currentAccountId = accountId;
+        
+        // Reset global temp variables for auto-recharge so they don't leak between accounts
+        S.tempAskRecurringValue = null;
+        S.tempRecurringValue = null;
+        S.autoRechargeAmt = null;
+        S.autoRechargeCustomAmt = null;
+
         renderCurrentAccount();
         showToast(`Cuenta activa cambiada a ${ACCOUNT_DATA[accountId].label}`, 'info');
       }
@@ -8650,6 +8657,17 @@ ${actionButtonHtml}
           showIncompleteDataModal();
           return;
         }
+
+        if (S.cards && S.cards.length > 0) {
+          openPlacetopayGateway();
+          return;
+        }
+
+        if (S.tempRecurringValue) {
+          openPlacetopayGateway();
+          return;
+        }
+
         const m = document.getElementById('askRecurringValueModal');
         if (m) {
           // Reset default to $10
@@ -12214,7 +12232,8 @@ MODAL: VEHÍCULO REGISTRADO (ÉXITO)
                 </div>
                 <div id="vs-diplomatic-badge"
                   style="display:none;background:#FEF2F2;color:#EF4444;font-size:11.5px;font-weight:600;padding:2.5px 9px;border-radius:6px;">
-                  <i class="fa-solid fa-flag" style="margin-right:4px"></i>Diplomático</div>
+                  <i class="fa-solid fa-flag" style="margin-right:4px"></i>Diplomático
+                </div>
               </div>
             </div>
 
@@ -12393,6 +12412,7 @@ MODAL: VEHÍCULO REGISTRADO (ÉXITO)
         ¡Recarga Exitosa!
       </h3>
       <p style="font-size:14px;color:var(--text-secondary);margin-bottom:24px">
+        Tu tarjeta ha sido aprobada.<br>
         Se ha realizado una recarga de <strong id="rechargeSuccessAmt" style="color:var(--brand-primary)">$0.00</strong>
         a tu saldo mediante la tarjeta registrada.
       </p>
