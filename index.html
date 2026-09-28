@@ -4664,7 +4664,7 @@ PERFIL
                       </div>
                     </div>
                   </label>
-                  <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999">
+                  <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
                 </div>
               </div>
 
@@ -5172,19 +5172,20 @@ BILLETERA
                     <!--Botonespredeterminados10,15,25,50,100,Otro monto-->
                     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px"
                       id="autoRecChipsGrid">
-                      <button type="button" class="btn auto-rec-chip selected" onclick="pickAmtChip(10,this)"
-                        style="border:1.5px solid var(--brand-primary);background:var(--bg-active);color:var(--brand-pink);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$10</button>
-                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(15,this)"
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(10,this)" data-amt="10"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$10</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(15,this)" data-amt="15"
                         style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$15</button>
-                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(25,this)"
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(20,this)" data-amt="20"
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$20</button>
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(25,this)" data-amt="25"
                         style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$25</button>
-                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(50,this)"
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(50,this)" data-amt="50"
                         style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$50</button>
-                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(100,this)"
+                      <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(100,this)" data-amt="100"
                         style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$100</button>
                       <button type="button" class="btn auto-rec-chip" onclick="pickAmtCustomChip(this)"
-                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">Otro
-                        monto</button>
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px;grid-column:span 3">Otro monto</button>
                     </div>
 
                     <!--Inputdemontopersonalizado-->
@@ -6106,6 +6107,8 @@ AJUSTES
           profile: { nombre: 'Stalin Pérez (STALIN 23)', tipoDocumento: 'RUC', documento: '1790011223001', email: 'stalin23@igor.ec', telefono: '0999999999', miembroDesde: 'Enero2025', plan: 'Plan SuperAdmin', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. 6 de Diciembre y Orellana' },
           billing: { tipo: 'RUC', numero: '1790011223001', razon: 'STALIN23S.A.', direccion: 'Av. 6 de Diciembre y Orellana', email: 'facturacion@stalin23.ec' },
           balance: 24.50,
+          autoRechargeAmt: 25.00,
+          autoRechargeEnabled: true,
           visitCount: 6,
           chartData: [1.2, 0.8, 2.4, 1.6, 0.9, 1.1, 1.7],
           promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
@@ -6137,6 +6140,8 @@ AJUSTES
           profile: { nombre: 'Cuentaprueba', tipoDocumento: 'RUC', documento: '1711122233', email: 'prueba@igor.ec', telefono: '0977001122', miembroDesde: 'Julio2024', plan: 'PlanDemo', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'CalledePrueba123' },
           billing: { tipo: 'RUC', numero: '1711122233', razon: 'prueba', direccion: 'Quito,CalledePrueba123', email: 'facturas@prueba.ec' },
           balance: 15.00,
+          autoRechargeAmt: 15.00,
+          autoRechargeEnabled: true,
           visitCount: 3,
           chartData: [0, 1.00, 0, 0.75, 2.10, 0, 1.30],
           promos: [],
@@ -6160,6 +6165,8 @@ AJUSTES
           profile: { nombre: 'CuentaPrueba2', tipoDocumento: 'RUC', documento: '1792837465001', email: 'prueba2@igor.ec', telefono: '0984567890', miembroDesde: 'Marzo2024', plan: 'PlanCorporativo', pais: 'Ecuador', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Av.delosShyris' },
           billing: { tipo: 'RUC', numero: '1792837465001', razon: 'Prueba2S.A.', direccion: 'Guayaquil,Av.delosShyris', email: 'facturas@prueba2.ec' },
           balance: 42.80,
+          autoRechargeAmt: 50.00,
+          autoRechargeEnabled: true,
           visitCount: 12,
           chartData: [2.5, 4.0, 1.8, 5.2, 3.1, 0, 6.4],
           promos: [{ code: 'IGOR50OFF', amount: 5, date: '2026-07-15' }],
@@ -6184,6 +6191,8 @@ AJUSTES
           profile: { nombre: 'DeppitoPerez', tipoDocumento: 'RUC', documento: '1788899900001', email: 'deppito.perez@igor.ec', telefono: '0991122334', miembroDesde: 'Agosto2025', plan: 'Plan SuperAdmin', pais: 'Ecuador', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Cumbayá,PlazaCentral' },
           billing: { tipo: 'RUC', numero: '1788899900001', razon: 'DeppitoPerezCorp', direccion: 'Cumbayá,PlazaCentral', email: 'facturas@deppito.ec' },
           balance: 30.00,
+          autoRechargeAmt: 20.00,
+          autoRechargeEnabled: true,
           visitCount: 5,
           chartData: [1.0, 2.0, 1.5, 3.0, 2.2, 1.0, 2.5],
           promos: [],
@@ -6730,6 +6739,12 @@ Superadministrador
         acc.mifare = S.mifare;
         acc.cards = S.cards;
         acc.admins = S.admins;
+        if (S.autoRechargeAmt !== undefined && S.autoRechargeAmt !== null) {
+          acc.autoRechargeAmt = S.autoRechargeAmt;
+        }
+        if (S.autoRechargeEnabled !== undefined && S.autoRechargeEnabled !== null) {
+          acc.autoRechargeEnabled = S.autoRechargeEnabled;
+        }
         if (document.getElementById('perfil-nombre')) {
           acc.profile.nombre = document.getElementById('perfil-nombre').value.trim();
           acc.profile.tipoDocumento = document.getElementById('perfil-tipo-doc')?.value || 'Cédula';
@@ -7457,6 +7472,85 @@ ${actionButtonHtml}
         if (el && val !== undefined && val !== null) el.value = val;
       }
 
+      function syncAutoRechargeUIFromAccount() {
+        const acc = getCurrentAccount();
+        if (!acc) return;
+        
+        const amt = (acc.autoRechargeAmt && parseFloat(acc.autoRechargeAmt) >= 10)
+          ? parseFloat(acc.autoRechargeAmt)
+          : 10.00;
+          
+        S.autoRechargeAmt = amt;
+        S.autoRechargeCustomAmt = amt;
+        S.autoRechargeEnabled = acc.autoRechargeEnabled !== undefined ? Boolean(acc.autoRechargeEnabled) : true;
+        
+        const autoToggle = document.getElementById('autoToggle');
+        if (autoToggle) {
+          if (S.autoRechargeEnabled) {
+            autoToggle.classList.add('on');
+          } else {
+            autoToggle.classList.remove('on');
+          }
+        }
+
+        const summaryVal = document.getElementById('autoRecSummaryVal');
+        if (summaryVal) {
+          summaryVal.textContent = '$' + amt.toFixed(2);
+        }
+        setSafeText('autoRecDescVal', '$' + amt.toFixed(2));
+
+        let matchedChip = false;
+        const grid = document.getElementById('autoRecChipsGrid');
+        if (grid) {
+          const chips = Array.from(grid.querySelectorAll('.auto-rec-chip'));
+          
+          chips.forEach(b => {
+            const rawText = b.textContent.trim().replace('$', '');
+            const chipVal = parseFloat(b.getAttribute('data-amt') || rawText);
+            
+            if (!isNaN(chipVal) && Math.abs(chipVal - amt) < 0.01) {
+              b.style.borderColor = 'var(--brand-primary)';
+              b.style.background = 'var(--bg-active)';
+              b.style.color = 'var(--brand-pink)';
+              b.style.borderWidth = '1.5px';
+              b.classList.add('selected');
+              matchedChip = true;
+            } else {
+              b.style.borderColor = 'var(--border-medium)';
+              b.style.background = 'var(--bg-card)';
+              b.style.color = 'var(--text-primary)';
+              b.style.borderWidth = '1px';
+              b.classList.remove('selected');
+            }
+          });
+
+          const customWrap = document.getElementById('autoRecCustomInputWrap');
+          const customChip = chips.find(c => c.textContent.includes('Otro'));
+          if (!matchedChip && customChip) {
+            customChip.style.borderColor = 'var(--brand-primary)';
+            customChip.style.background = 'var(--bg-active)';
+            customChip.style.color = 'var(--brand-pink)';
+            customChip.style.borderWidth = '1.5px';
+            customChip.classList.add('selected');
+            if (customWrap) {
+              customWrap.style.display = 'block';
+              const customInput = document.getElementById('iCustom');
+              if (customInput) customInput.value = amt.toFixed(2);
+            }
+          } else if (customWrap) {
+            customWrap.style.display = 'none';
+          }
+        }
+
+        if (typeof selectRechargeAmt === 'function') {
+          selectRechargeAmt(amt, !matchedChip);
+        }
+
+        if (typeof updateAutoRecSummary === 'function') {
+          updateAutoRecSummary();
+        }
+      }
+
       function renderCurrentAccount() {
         const acc = getCurrentAccount();
         if (!acc) return;
@@ -7538,6 +7632,7 @@ ${actionButtonHtml}
         renderTransferTab();
         renderPromosList();
         initFormBaselines();
+        syncAutoRechargeUIFromAccount();
       }
 
       function switchAccount(accountId) {
@@ -7555,14 +7650,24 @@ ${actionButtonHtml}
         persistCurrentAccount();
         S.currentAccountId = accountId;
         
-        // Reset global temp variables for auto-recharge so they don't leak between accounts
+        // Reset global temp variables for auto-recharge
         S.tempAskRecurringValue = null;
         S.tempRecurringValue = null;
-        S.autoRechargeAmt = null;
-        S.autoRechargeCustomAmt = null;
 
         renderCurrentAccount();
         showToast(`Cuenta activa cambiada a ${ACCOUNT_DATA[accountId].label}`, 'info');
+
+        if (!isAccountAndBillingComplete(accountId)) {
+          const recPanel = document.getElementById('tab-recargar');
+          const transPanel = document.getElementById('tab-transferir');
+          if ((recPanel && recPanel.classList.contains('active')) || (transPanel && transPanel.classList.contains('active'))) {
+            const metodosBtn = document.querySelector('.tab-bar button[onclick*="tab-metodos"]') || document.querySelector('.tab-btn[onclick*="tab-metodos"]');
+            if (metodosBtn) {
+              doShowTab(metodosBtn, 'tab-metodos', metodosBtn.closest('.tab-bar')?.parentElement);
+            }
+          }
+          showIncompleteDataModal();
+        }
       }
 
       function saveProfileData() {
@@ -9041,56 +9146,21 @@ ${actionButtonHtml}
         const card = pendingNewCard;
 
         if (addBoth) {
-          const allAccIds = Object.keys(ACCOUNT_DATA);
-          const addedAccNames = [];
-          const skippedAccNames = [];
-
-          allAccIds.forEach(accId => {
-            const acc = ACCOUNT_DATA[accId];
-            if (!isAccountAndBillingComplete(accId)) {
-              skippedAccNames.push(acc.label || accId);
-              return;
-            }
-
-            if (!acc.cards) acc.cards = [];
-            let existingCard = acc.cards.find(c => c.id === card.id || (c.last4 === card.last4 && (c.brand || '').toLowerCase() === (card.brand || '').toLowerCase()));
-            if (!existingCard) {
-              const isFirst = (acc.cards.length === 0);
-              acc.cards.push({
-                id: 'c-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 100),
-                brand: card.brand,
-                number: card.number,
-                last4: card.last4,
-                exp: card.exp,
-                holder: card.holder,
-                default: card.default || isFirst
-              });
-            }
-            addedAccNames.push(acc.label || accId);
-          });
-
-          S.cards = ACCOUNT_DATA[S.currentAccountId].cards;
-          persistCurrentAccount();
-          renderPaymentCards();
-          syncRechargeCardOptions();
           closeAddCardMultiAccountModal();
-
-          if (skippedAccNames.length > 0) {
-            showToast(`No se pudo colocar la tarjeta en "${skippedAccNames.join(',')}" porque los datos de la cuenta o de facturación no están completos.`, 'error');
-            setTimeout(() => {
-              showToast(`Tarjeta (${card.brand} ${card.last4}) registrada exitosamente en ${addedAccNames.length} cuenta(s) con datos completos.`, 'success');
-            }, 2000);
-          } else {
-            showToast(`¡Tarjeta (${card.brand} ${card.last4}) registrada con éxito en todas las cuentas que administras (${addedAccNames.length} cuentas)!`, 'success');
-          }
-          processInitialRechargeAfterCardAdd(card);
+          openMultiAccountSelectionModal(card);
         } else {
           if (!S.cards) S.cards = [];
-          const isFirst = (S.cards.length === 0);
-          S.cards.push({
-            ...card,
-            default: card.default || isFirst
-          });
+          S.cards.forEach(c => c.default = false);
+
+          let existingInCurrent = S.cards.find(c => c.id === card.id || (c.last4 === card.last4 && (c.brand || '').toLowerCase() === (card.brand || '').toLowerCase()));
+          if (existingInCurrent) {
+            existingInCurrent.default = true;
+          } else {
+            S.cards.push({
+              ...card,
+              default: true
+            });
+          }
 
           persistCurrentAccount();
           renderPaymentCards();
@@ -9100,6 +9170,245 @@ ${actionButtonHtml}
           showToast(`¡Tarjeta (${card.brand} ${card.last4}) registrada con éxito únicamente en esta cuenta!`, 'success');
           processInitialRechargeAfterCardAdd(card);
         }
+      }
+
+      function openMultiAccountSelectionModal(card) {
+        pendingNewCard = card;
+        const container = document.getElementById('multiAccountListContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        
+        const allAccIds = Object.keys(ACCOUNT_DATA);
+        
+        allAccIds.forEach(accId => {
+          if (accId === S.currentAccountId) return;
+
+          const acc = ACCOUNT_DATA[accId];
+          const isComplete = isAccountAndBillingComplete(accId);
+          const balanceFormatted = (acc.balance !== undefined ? parseFloat(acc.balance).toFixed(2) : '0.00');
+          
+          const existingAmt = (acc.autoRechargeAmt && parseFloat(acc.autoRechargeAmt) >= 10)
+            ? parseFloat(acc.autoRechargeAmt)
+            : ((acc.recurringAmount && parseFloat(acc.recurringAmount) >= 10)
+              ? parseFloat(acc.recurringAmount)
+              : 10.00);
+          
+          const amtStr = existingAmt.toFixed(2);
+          const presetValues = ['10.00', '15.00', '20.00', '25.00', '50.00', '100.00'];
+          const isPreset = presetValues.includes(amtStr);
+          const selectedOption = isPreset ? amtStr : 'custom';
+
+          const div = document.createElement('div');
+          div.style.cssText = `
+            display:flex; flex-direction:column; gap:8px;
+            padding:12px; background:#f8fafc; border:1px solid var(--border-light); border-radius:12px;
+            opacity: ${isComplete ? '1' : '0.6'}; transition: all 0.2s ease;
+          `;
+          div.innerHTML = `
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%;">
+              <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:0;">
+                <input type="checkbox" class="multi-acc-chk" data-accid="${accId}" ${isComplete ? '' : 'disabled'} onchange="toggleAccountSelection('${accId}', this.checked)" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;">
+                <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:2px;">
+                  <span style="font-weight:700; font-size:13.5px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    ${acc.label || accId}
+                  </span>
+                  <div style="display:flex; align-items:center; gap:8px; font-size:11.5px;">
+                    <span style="color:var(--text-secondary);">Saldo actual: <strong style="color:var(--brand-primary, #00c853); font-weight:700;">$${balanceFormatted}</strong></span>
+                    ${!isComplete ? '<span style="color:var(--red); font-weight:600;">• Datos incompletos</span>' : ''}
+                  </div>
+                </div>
+              </div>
+              ${isComplete ? `
+                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0;">
+                  <select id="multi-acc-sel-${accId}" disabled onchange="handleAccPresetChange('${accId}')" class="form-input" style="height:34px; padding:0 8px; font-size:12px; border-radius:8px; cursor:pointer; background:white; font-weight:600; min-width:115px;">
+                    <option value="10.00" ${selectedOption === '10.00' ? 'selected' : ''}>$10.00</option>
+                    <option value="15.00" ${selectedOption === '15.00' ? 'selected' : ''}>$15.00</option>
+                    <option value="20.00" ${selectedOption === '20.00' ? 'selected' : ''}>$20.00</option>
+                    <option value="25.00" ${selectedOption === '25.00' ? 'selected' : ''}>$25.00</option>
+                    <option value="50.00" ${selectedOption === '50.00' ? 'selected' : ''}>$50.00</option>
+                    <option value="100.00" ${selectedOption === '100.00' ? 'selected' : ''}>$100.00</option>
+                    <option value="custom" ${selectedOption === 'custom' ? 'selected' : ''}>Otro monto</option>
+                  </select>
+                  <input type="number" id="multi-acc-amt-${accId}" class="form-input" placeholder="Monto (mín. $10)" disabled min="10" step="0.01" value="${amtStr}" style="display:none; height:32px; width:115px; padding:0 8px; font-size:12px; text-align:right; border-radius:8px; border:1px solid #cbd5e1;">
+                </div>
+              ` : `
+                <div style="flex-shrink:0; padding:4px 8px;">
+                  <span style="font-size:12px; color:var(--text-secondary); opacity:0.7; font-weight:500;">No disponible</span>
+                </div>
+              `}
+            </div>
+            <div id="multi-acc-msg-${accId}" style="display:none; font-size:11.5px; color:#d81b60; font-weight:600; background:#fce4ec; padding:6px 10px; border-radius:6px; margin-top:2px;">
+              <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> Selecciona el valor recurrente
+            </div>
+          `;
+          container.appendChild(div);
+        });
+
+        const chkAll = document.getElementById('selectAllAccountsChk');
+        if(chkAll) chkAll.checked = false;
+        
+        const modal = document.getElementById('multiAccountSelectionModal');
+        if (modal) modal.style.display = 'flex';
+      }
+
+      function closeMultiAccountSelectionModal() {
+        const modal = document.getElementById('multiAccountSelectionModal');
+        if (modal) modal.style.display = 'none';
+        pendingNewCard = null;
+      }
+
+      function toggleAllAccountsSelection(chk) {
+        const isChecked = chk.checked;
+        document.querySelectorAll('.multi-acc-chk:not([disabled])').forEach(el => {
+          el.checked = isChecked;
+          toggleAccountSelection(el.getAttribute('data-accid'), isChecked);
+        });
+      }
+
+      function handleAccPresetChange(accId) {
+        const sel = document.getElementById('multi-acc-sel-' + accId);
+        const amtInput = document.getElementById('multi-acc-amt-' + accId);
+        if (!sel || !amtInput) return;
+        
+        if (sel.value === 'custom') {
+          amtInput.style.display = 'inline-block';
+          amtInput.disabled = false;
+          amtInput.style.borderColor = '#cbd5e1';
+          amtInput.focus();
+          if (!amtInput.value || parseFloat(amtInput.value) < 10) {
+            amtInput.value = '10.00';
+          }
+        } else {
+          amtInput.style.display = 'none';
+          amtInput.value = sel.value;
+        }
+      }
+
+      function toggleAccountSelection(accId, isChecked) {
+        const sel = document.getElementById('multi-acc-sel-' + accId);
+        const amtInput = document.getElementById('multi-acc-amt-' + accId);
+        const msgEl = document.getElementById('multi-acc-msg-' + accId);
+        
+        if (sel) {
+          sel.disabled = !isChecked;
+        }
+        if (msgEl) {
+          msgEl.style.display = isChecked ? 'block' : 'none';
+        }
+        if (amtInput) {
+          amtInput.disabled = !isChecked;
+          if (isChecked) {
+            handleAccPresetChange(accId);
+          } else {
+            amtInput.style.display = 'none';
+          }
+        }
+      }
+
+      function applyMultiAccountSelection() {
+        if (!pendingNewCard) {
+          closeMultiAccountSelectionModal();
+          return;
+        }
+
+        const card = pendingNewCard;
+        const chks = document.querySelectorAll('.multi-acc-chk:checked');
+        const addedAccNames = [];
+        
+        // Validation: verify all selected accounts have recurring amount >= 10
+        for (let i = 0; i < chks.length; i++) {
+          const chk = chks[i];
+          const accId = chk.getAttribute('data-accid');
+          const acc = ACCOUNT_DATA[accId];
+          const sel = document.getElementById('multi-acc-sel-' + accId);
+          const amtInput = document.getElementById('multi-acc-amt-' + accId);
+          
+          let valStr = '';
+          if (sel && sel.value === 'custom') {
+            valStr = amtInput ? amtInput.value : '';
+          } else if (sel) {
+            valStr = sel.value;
+          } else if (amtInput) {
+            valStr = amtInput.value;
+          }
+          
+          const amt = parseFloat(valStr);
+          if (isNaN(amt) || amt < 10) {
+            showToast(`El valor recurrente para ${acc ? acc.label : 'la cuenta'} debe ser igual o mayor a $10.00`, 'error');
+            if (amtInput && sel && sel.value === 'custom') {
+              amtInput.style.display = 'inline-block';
+              amtInput.style.borderColor = '#ef4444';
+              amtInput.focus();
+            }
+            return;
+          }
+        }
+
+        if (!S.cards) S.cards = [];
+        S.cards.forEach(c => c.default = false);
+        let existingInCurrent = S.cards.find(c => c.id === card.id || (c.last4 === card.last4 && (c.brand || '').toLowerCase() === (card.brand || '').toLowerCase()));
+        if (!existingInCurrent) {
+          existingInCurrent = {
+            ...card,
+            default: true
+          };
+          S.cards.push(existingInCurrent);
+        } else {
+          existingInCurrent.default = true;
+        }
+        persistCurrentAccount();
+
+        chks.forEach(chk => {
+          const accId = chk.getAttribute('data-accid');
+          const acc = ACCOUNT_DATA[accId];
+          if (!acc) return;
+          
+          if (!acc.cards) acc.cards = [];
+          acc.cards.forEach(c => c.default = false);
+          let existingCard = acc.cards.find(c => c.id === card.id || (c.last4 === card.last4 && (c.brand || '').toLowerCase() === (card.brand || '').toLowerCase()));
+          if (!existingCard) {
+            existingCard = {
+              id: 'c-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 100),
+              brand: card.brand,
+              number: card.number,
+              last4: card.last4,
+              exp: card.exp,
+              holder: card.holder,
+              default: true
+            };
+            acc.cards.push(existingCard);
+          } else {
+            existingCard.default = true;
+          }
+          
+          const sel = document.getElementById('multi-acc-sel-' + accId);
+          const amtInput = document.getElementById('multi-acc-amt-' + accId);
+          let finalVal = 10.00;
+          if (sel && sel.value === 'custom') {
+            finalVal = amtInput ? parseFloat(amtInput.value) : 10.00;
+          } else if (sel) {
+            finalVal = parseFloat(sel.value);
+          } else if (amtInput) {
+            finalVal = parseFloat(amtInput.value);
+          }
+          
+          if (!isNaN(finalVal) && finalVal >= 10) {
+            acc.autoRechargeAmt = finalVal;
+            acc.autoRechargeEnabled = true;
+          }
+          addedAccNames.push(acc.label || accId);
+        });
+
+        renderPaymentCards();
+        syncRechargeCardOptions();
+        closeMultiAccountSelectionModal();
+
+        if (addedAccNames.length > 0) {
+          showToast(`¡Tarjeta registrada con éxito en esta cuenta y en ${addedAccNames.length} cuenta(s) adicional(es)!`, 'success');
+        } else {
+          showToast(`¡Tarjeta (${card.brand} ${card.last4}) registrada con éxito únicamente en esta cuenta!`, 'success');
+        }
+        processInitialRechargeAfterCardAdd(card);
       }
 
       function scrollToCardForm() {
@@ -9155,14 +9464,12 @@ ${actionButtonHtml}
           last4: last4,
           exp: exp.includes('/') ? `07/20${exp.split('/')[1]}` : exp,
           holder: holder.toUpperCase(),
-          default: isFirst
+          default: true
         };
 
         if (!S.cards) S.cards = [];
+        S.cards.forEach(c => c.default = false);
         S.cards.push(newCard);
-        if (isFirst) {
-          S.cards.forEach(c => c.default = (c.id === newCard.id));
-        }
 
         if (numInput) numInput.value = '';
         if (holderInput) holderInput.value = '';
@@ -9178,71 +9485,6 @@ ${actionButtonHtml}
       //State&HelperFunctionsforAuto-recarga
       if (typeof S.autoRechargeMode === 'undefined') S.autoRechargeMode = 'same';
       if (typeof S.autoRechargeEditing === 'undefined') S.autoRechargeEditing = false;
-      if (typeof S.autoRechargeCustomAmt === 'undefined') S.autoRechargeCustomAmt = 10.00;
-
-      const autoToggle = document.getElementById('autoToggle');
-      const isOn = autoToggle?.classList.contains('on');
-
-
-
-      const extraNotice = document.getElementById('autoRecExtraNotice');
-      if (extraNotice) {
-        extraNotice.style.display = isOn ? 'flex' : 'none';
-      }
-      const minNotice = document.getElementById('autoRecMinNotice');
-      if (minNotice) {
-        minNotice.style.display = isOn ? 'block' : 'none';
-      }
-
-      const btnEdit = document.getElementById('btnEditAutoRec');
-      if (btnEdit) {
-        btnEdit.style.display = isOn ? 'inline-flex' : 'none';
-      }
-      const btnUpdate = document.getElementById('btnUpdateAutoRec');
-      if (btnUpdate) {
-        btnUpdate.style.setProperty('display', isOn && S.autoRechargeEditing ? 'inline-flex' : 'none', 'important');
-      }
-      if (btnEdit) {
-        btnEdit.disabled = Boolean(S.autoRechargeEditing);
-        btnEdit.style.opacity = S.autoRechargeEditing ? '0.55' : '1';
-        btnEdit.style.pointerEvents = S.autoRechargeEditing ? 'none' : 'auto';
-      }
-
-      const chipsGrid = document.getElementById('autoRecChipsGrid');
-      const customWrap = document.getElementById('autoRecCustomInputWrap');
-      const controlsEnabled = !isOn || S.autoRechargeEditing;
-      if (chipsGrid) {
-        if (!controlsEnabled) {
-          chipsGrid.style.pointerEvents = 'none';
-          chipsGrid.style.opacity = '0.55';
-          chipsGrid.style.filter = 'grayscale(0.8)';
-        } else {
-          chipsGrid.style.pointerEvents = 'auto';
-          chipsGrid.style.opacity = '1';
-          chipsGrid.style.filter = 'none';
-        }
-      }
-      if (customWrap) {
-        if (!controlsEnabled) {
-          customWrap.style.pointerEvents = 'none';
-          customWrap.style.opacity = '0.55';
-        } else {
-          customWrap.style.pointerEvents = 'auto';
-          customWrap.style.opacity = '1';
-        }
-      }
-
-      const currentAutoAmt = (S.autoRechargeAmt && S.autoRechargeAmt > 0) ? S.autoRechargeAmt : (S.autoRechargeCustomAmt || 10.00);
-      S.autoRechargeAmt = currentAutoAmt;
-
-      const summaryVal = document.getElementById('autoRecSummaryVal');
-      if (summaryVal) {
-        summaryVal.textContent = '$' + currentAutoAmt.toFixed(2);
-      }
-      setSafeText('autoRecDescVal', '$' + currentAutoAmt.toFixed(2));
-      //==========================================
-      //ALWAYSVISIBLEAMOUNTSELECTOR&AUTO-RECARGAJS
-      //==========================================
       if (typeof S.autoRechargeCustomAmt === 'undefined') S.autoRechargeCustomAmt = 10.00;
       let pendingAutoRecAmtToGenerate = 0;
       let pendingAutoSimulationAmt = 0;
@@ -9318,6 +9560,10 @@ ${actionButtonHtml}
         }
         setSafeText('autoRecDescVal', '$' + currentAutoAmt.toFixed(2));
         setSafeText('autoRecHelpVal', '$' + currentAutoAmt.toFixed(2));
+
+        if (typeof selectRechargeAmt === 'function' && currentAutoAmt > 0) {
+          selectRechargeAmt(currentAutoAmt);
+        }
       }
 
       function toggleAutoRecharge(el) {
@@ -9431,6 +9677,8 @@ ${actionButtonHtml}
         S.autoRechargeAmt = currentAmt;
         S.autoRechargeCustomAmt = currentAmt;
         S.autoRechargeEditing = false;
+        const acc = getCurrentAccount();
+        if (acc) acc.autoRechargeAmt = currentAmt;
         updateAutoRecSummary();
 
         showToast('Auto-recarga guardada. Se ejecutará automáticamente cuando tu saldo sea menor a $5.00.', 'info');
@@ -9458,7 +9706,7 @@ ${actionButtonHtml}
           setSafeText('btot', '$0.00');
           return;
         }
-        if (btnRec) btnRec.disabled = autoRechargeActive;
+        if (btnRec) btnRec.disabled = false;
         setSafeText('btnRecTxt', 'Recargar $' + amt.toFixed(2));
 
         // Recarga: IVA 15% incluido
@@ -9498,6 +9746,8 @@ ${actionButtonHtml}
           if (document.getElementById('autoToggle')?.classList.contains('on')) {
             S.autoRechargeAmt = val;
             S.autoRechargeCustomAmt = val;
+            const acc = getCurrentAccount();
+            if (acc) acc.autoRechargeAmt = val;
           }
           selectRechargeAmt(val, true);
         }
@@ -9528,6 +9778,8 @@ ${actionButtonHtml}
         selectRechargeAmt(amt, false);
         S.autoRechargeAmt = amt;
         S.autoRechargeCustomAmt = amt;
+        const acc = getCurrentAccount();
+        if (acc) acc.autoRechargeAmt = amt;
         updateAutoRecSummary();
       }
 
@@ -9872,10 +10124,7 @@ ${actionButtonHtml}
         }
 
         renderRechargeCardPicker();
-        updateAutoRecSummary();
-        if (!S.rechargeAmt || S.rechargeAmt === 0) {
-          selectRechargeAmt(10);
-        }
+        syncAutoRechargeUIFromAccount();
       }
 
       let pendingRechargeData = null;
@@ -12070,6 +12319,49 @@ ${actionButtonHtml}
           <button type="button" class="btn btn-primary" onclick="confirmAddCardMultiAccount(true)"
             style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700;background:var(--brand-gradient)">
             <i class="fa-solid fa-layer-group" style="margin-right:6px"></i> Sí, añadir a todas
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Seleccion de Cuentas y Valores Recurrentes -->
+    <div id="multiAccountSelectionModal" class="modal-backdrop"
+      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
+      onclick="if(event.target===this)closeMultiAccountSelectionModal()">
+      <div class="card"
+        style="max-width:500px;width:100%;border-radius:24px;padding:32px 28px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp.22s cubic-bezier(0.16,1,0.3,1);position:relative;max-height:85vh;display:flex;flex-direction:column">
+
+        <button type="button" onclick="closeMultiAccountSelectionModal()"
+          style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-secondary);font-size:18px;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:color var(--t)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px;flex-shrink:0;">
+          Seleccionar Cuentas
+        </h3>
+        <p style="font-size:13.5px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px;flex-shrink:0;">
+          Elige a qué cuentas deseas replicar la tarjeta y establece el valor recurrente para cada una.
+        </p>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 4px;flex-shrink:0;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;">
+            <input type="checkbox" id="selectAllAccountsChk" onchange="toggleAllAccountsSelection(this)" style="width:16px;height:16px;cursor:pointer;">
+            Seleccionar Todas
+          </label>
+        </div>
+
+        <div id="multiAccountListContainer" style="overflow-y:auto;padding-right:4px;display:flex;flex-direction:column;gap:12px;margin-bottom:20px;flex-grow:1;border-top:1px solid var(--border-light);padding-top:10px;">
+          <!-- Items inserted via JS -->
+        </div>
+
+        <div style="display:flex;gap:12px;flex-shrink:0;">
+          <button type="button" class="btn btn-ghost" onclick="closeMultiAccountSelectionModal()"
+            style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:600">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary" onclick="applyMultiAccountSelection()"
+            style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700;background:var(--brand-gradient)">
+            Confirmar
           </button>
         </div>
       </div>
