@@ -3970,9 +3970,9 @@ SIDEBAR
             <div class="user-name" id="sidebarUserName">GrupoAndino</div>
             <div class="user-email" id="sidebarUserEmail">usuario@ejemplo.com</div>
           </div>
-          <button type="button" class="logout-btn" onclick="event.stopPropagation();openCreateAccountModal()"
-            title="Crear nueva cuenta">
-            <i class="fa-solid fa-plus" style="font-size:13px"></i>
+          <button type="button" class="logout-btn" onclick="event.stopPropagation();logoutAccount()"
+            title="Cerrar sesión">
+            <i class="fa-solid fa-right-from-bracket" style="font-size:13px"></i>
           </button>
         </div>
       </div>
@@ -4664,7 +4664,8 @@ PERFIL
                       </div>
                     </div>
                   </label>
-                  <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                  <input class="form-input" id="perfil-telefono" type="tel" value="0999999999" placeholder="0999999999"
+                    maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
                 </div>
               </div>
 
@@ -5185,7 +5186,8 @@ BILLETERA
                       <button type="button" class="btn auto-rec-chip" onclick="pickAmtChip(100,this)" data-amt="100"
                         style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:13.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px">$100</button>
                       <button type="button" class="btn auto-rec-chip" onclick="pickAmtCustomChip(this)"
-                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px;grid-column:span 3">Otro monto</button>
+                        style="border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-primary);font-weight:700;font-size:12.5px;padding:10px;border-radius:var(--r-md);white-space:nowrap;display:flex;align-items:center;justify-content:center;min-height:42px;grid-column:span 3">Otro
+                        monto</button>
                     </div>
 
                     <!--Inputdemontopersonalizado-->
@@ -6114,7 +6116,7 @@ AJUSTES
           promos: [{ code: 'CORP10', amount: 10, date: '2026-06-03' }],
           movements: [
             { id: 101, type: 'recharge', title: 'Recarga de Saldo', date: '18-06-2026', detail: { ref: 'Igor-3011-00090124', estado: 'APPROVED' }, amount: 25.00, balance: 38.50 },
-            { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', placa: 'PCD9102', entrada: '17-06-202608:02', salida: '17-06-202611:32', duracion: '3h30m00s' }, amount: -3.50, balance: 13.50 },
+            { id: 102, type: 'parking', title: 'Consumo Estadía Parqueo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089981', estado: 'APPROVED', placa: 'PCD9102', entrada: '17-06-2026 08:02', salida: '17-06-2026 11:32', duracion: '3h30m00s' }, amount: -3.50, balance: 13.50 },
             { id: 103, type: 'recharge', title: 'Recarga de Saldo', date: '17-06-2026', detail: { ref: 'Igor-2911-00089955', estado: 'APPROVED' }, amount: 10.00, balance: 17.00 },
             { id: 104, type: 'autorecharge', title: 'Autorecarga de Saldo', date: '16-06-2026', detail: { ref: 'Igor-2811-00087777', estado: 'APPROVED' }, amount: 20.00, balance: 7.00 },
             { id: 105, type: 'carwash', title: 'Lavado de Vehículo', date: '16-06-2026', detail: { ref: 'Igor-CW-0001', estado: 'APPROVED', placa: 'PCD9102', local: 'Carwash Center' }, amount: -8.50, balance: -13.00 },
@@ -7124,7 +7126,8 @@ ${actionButtonHtml}
       function logoutAccount() {
         const acc = getCurrentAccount();
         closeLogoutAccountModal();
-        showToast(`Hassalidodelacuenta${acc ? acc.label : ''}correctamente`, 'info');
+        showLoginView();
+        showToast(`Has salido de  la cuenta${acc ? acc.label : ''}correctamente`, 'info');
       }
 
       function openDeleteAccountModal() {
@@ -7475,15 +7478,15 @@ ${actionButtonHtml}
       function syncAutoRechargeUIFromAccount() {
         const acc = getCurrentAccount();
         if (!acc) return;
-        
+
         const amt = (acc.autoRechargeAmt && parseFloat(acc.autoRechargeAmt) >= 10)
           ? parseFloat(acc.autoRechargeAmt)
           : 10.00;
-          
+
         S.autoRechargeAmt = amt;
         S.autoRechargeCustomAmt = amt;
         S.autoRechargeEnabled = acc.autoRechargeEnabled !== undefined ? Boolean(acc.autoRechargeEnabled) : true;
-        
+
         const autoToggle = document.getElementById('autoToggle');
         if (autoToggle) {
           if (S.autoRechargeEnabled) {
@@ -7503,11 +7506,11 @@ ${actionButtonHtml}
         const grid = document.getElementById('autoRecChipsGrid');
         if (grid) {
           const chips = Array.from(grid.querySelectorAll('.auto-rec-chip'));
-          
+
           chips.forEach(b => {
             const rawText = b.textContent.trim().replace('$', '');
             const chipVal = parseFloat(b.getAttribute('data-amt') || rawText);
-            
+
             if (!isNaN(chipVal) && Math.abs(chipVal - amt) < 0.01) {
               b.style.borderColor = 'var(--brand-primary)';
               b.style.background = 'var(--bg-active)';
@@ -7649,7 +7652,7 @@ ${actionButtonHtml}
       function doSwitchAccount(accountId) {
         persistCurrentAccount();
         S.currentAccountId = accountId;
-        
+
         // Reset global temp variables for auto-recharge
         S.tempAskRecurringValue = null;
         S.tempRecurringValue = null;
@@ -9175,24 +9178,24 @@ ${actionButtonHtml}
       function openMultiAccountSelectionModal(card) {
         pendingNewCard = card;
         const container = document.getElementById('multiAccountListContainer');
-        if(!container) return;
+        if (!container) return;
         container.innerHTML = '';
-        
+
         const allAccIds = Object.keys(ACCOUNT_DATA);
-        
+
         allAccIds.forEach(accId => {
           if (accId === S.currentAccountId) return;
 
           const acc = ACCOUNT_DATA[accId];
           const isComplete = isAccountAndBillingComplete(accId);
           const balanceFormatted = (acc.balance !== undefined ? parseFloat(acc.balance).toFixed(2) : '0.00');
-          
+
           const existingAmt = (acc.autoRechargeAmt && parseFloat(acc.autoRechargeAmt) >= 10)
             ? parseFloat(acc.autoRechargeAmt)
             : ((acc.recurringAmount && parseFloat(acc.recurringAmount) >= 10)
               ? parseFloat(acc.recurringAmount)
               : 10.00);
-          
+
           const amtStr = existingAmt.toFixed(2);
           const presetValues = ['10.00', '15.00', '20.00', '25.00', '50.00', '100.00'];
           const isPreset = presetValues.includes(amtStr);
@@ -9245,8 +9248,8 @@ ${actionButtonHtml}
         });
 
         const chkAll = document.getElementById('selectAllAccountsChk');
-        if(chkAll) chkAll.checked = false;
-        
+        if (chkAll) chkAll.checked = false;
+
         const modal = document.getElementById('multiAccountSelectionModal');
         if (modal) modal.style.display = 'flex';
       }
@@ -9269,7 +9272,7 @@ ${actionButtonHtml}
         const sel = document.getElementById('multi-acc-sel-' + accId);
         const amtInput = document.getElementById('multi-acc-amt-' + accId);
         if (!sel || !amtInput) return;
-        
+
         if (sel.value === 'custom') {
           amtInput.style.display = 'inline-block';
           amtInput.disabled = false;
@@ -9288,7 +9291,7 @@ ${actionButtonHtml}
         const sel = document.getElementById('multi-acc-sel-' + accId);
         const amtInput = document.getElementById('multi-acc-amt-' + accId);
         const msgEl = document.getElementById('multi-acc-msg-' + accId);
-        
+
         if (sel) {
           sel.disabled = !isChecked;
         }
@@ -9314,7 +9317,7 @@ ${actionButtonHtml}
         const card = pendingNewCard;
         const chks = document.querySelectorAll('.multi-acc-chk:checked');
         const addedAccNames = [];
-        
+
         // Validation: verify all selected accounts have recurring amount >= 10
         for (let i = 0; i < chks.length; i++) {
           const chk = chks[i];
@@ -9322,7 +9325,7 @@ ${actionButtonHtml}
           const acc = ACCOUNT_DATA[accId];
           const sel = document.getElementById('multi-acc-sel-' + accId);
           const amtInput = document.getElementById('multi-acc-amt-' + accId);
-          
+
           let valStr = '';
           if (sel && sel.value === 'custom') {
             valStr = amtInput ? amtInput.value : '';
@@ -9331,7 +9334,7 @@ ${actionButtonHtml}
           } else if (amtInput) {
             valStr = amtInput.value;
           }
-          
+
           const amt = parseFloat(valStr);
           if (isNaN(amt) || amt < 10) {
             showToast(`El valor recurrente para ${acc ? acc.label : 'la cuenta'} debe ser igual o mayor a $10.00`, 'error');
@@ -9362,7 +9365,7 @@ ${actionButtonHtml}
           const accId = chk.getAttribute('data-accid');
           const acc = ACCOUNT_DATA[accId];
           if (!acc) return;
-          
+
           if (!acc.cards) acc.cards = [];
           acc.cards.forEach(c => c.default = false);
           let existingCard = acc.cards.find(c => c.id === card.id || (c.last4 === card.last4 && (c.brand || '').toLowerCase() === (card.brand || '').toLowerCase()));
@@ -9380,7 +9383,7 @@ ${actionButtonHtml}
           } else {
             existingCard.default = true;
           }
-          
+
           const sel = document.getElementById('multi-acc-sel-' + accId);
           const amtInput = document.getElementById('multi-acc-amt-' + accId);
           let finalVal = 10.00;
@@ -9391,7 +9394,7 @@ ${actionButtonHtml}
           } else if (amtInput) {
             finalVal = parseFloat(amtInput.value);
           }
-          
+
           if (!isNaN(finalVal) && finalVal >= 10) {
             acc.autoRechargeAmt = finalVal;
             acc.autoRechargeEnabled = true;
@@ -12336,21 +12339,27 @@ ${actionButtonHtml}
           <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px;flex-shrink:0;">
+        <h3
+          style="font-size:20px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:6px;flex-shrink:0;">
           Seleccionar Cuentas
         </h3>
-        <p style="font-size:13.5px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px;flex-shrink:0;">
+        <p
+          style="font-size:13.5px;color:var(--text-secondary);text-align:center;line-height:1.5;margin-bottom:20px;flex-shrink:0;">
           Elige a qué cuentas deseas replicar la tarjeta y establece el valor recurrente para cada una.
         </p>
 
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 4px;flex-shrink:0;">
-          <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;">
-            <input type="checkbox" id="selectAllAccountsChk" onchange="toggleAllAccountsSelection(this)" style="width:16px;height:16px;cursor:pointer;">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 4px;flex-shrink:0;">
+          <label
+            style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;">
+            <input type="checkbox" id="selectAllAccountsChk" onchange="toggleAllAccountsSelection(this)"
+              style="width:16px;height:16px;cursor:pointer;">
             Seleccionar Todas
           </label>
         </div>
 
-        <div id="multiAccountListContainer" style="overflow-y:auto;padding-right:4px;display:flex;flex-direction:column;gap:12px;margin-bottom:20px;flex-grow:1;border-top:1px solid var(--border-light);padding-top:10px;">
+        <div id="multiAccountListContainer"
+          style="overflow-y:auto;padding-right:4px;display:flex;flex-direction:column;gap:12px;margin-bottom:20px;flex-grow:1;border-top:1px solid var(--border-light);padding-top:10px;">
           <!-- Items inserted via JS -->
         </div>
 
