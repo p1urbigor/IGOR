@@ -3724,6 +3724,73 @@
       box-shadow: 0 20px 60px rgba(10, 22, 41, 0.2) !important;
       border: 1px solid rgba(226, 232, 240, 0.8) !important;
     }
+    /* Dashboard: resumen por cuenta, avisos y accesos secundarios. */
+    #sec-dashboard .dash-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:18px; }
+    #sec-dashboard #tour-wallet, #sec-dashboard #tour-visits,
+    #sec-dashboard #tour-sim, #sec-dashboard #tour-qr, #sec-dashboard #tour-activity { grid-column:auto; grid-row:auto; min-width:0; }
+    #sec-dashboard #tour-wallet, #sec-dashboard #tour-visits { grid-column:span 3; }
+    #sec-dashboard .dash-summary { grid-column:span 2; }
+    #sec-dashboard #tour-activity, #sec-dashboard #tour-sim, #sec-dashboard #tour-qr,
+    .dash-alerts, .dash-quick-actions { grid-column:1 / -1; }
+    #sec-dashboard .dash-header { align-items:flex-start; gap:20px; flex-wrap:wrap; }
+    #sec-dashboard h2 { font-size:24px; margin-bottom:6px; }
+    #sec-dashboard h3 { font-size:14px; font-weight:700; line-height:1.4; margin:0; }
+    #sec-dashboard .dash-header p { color:var(--text-secondary); font-size:14px; }
+    .dash-account-meta { display:flex; gap:14px; align-items:center; flex-wrap:wrap; font-size:12px; color:var(--text-secondary); margin-top:8px; }
+    .dash-header-actions { display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
+    #sec-dashboard .wallet-card { padding:24px; min-height:218px; }
+    #sec-dashboard .wc-bal-amount { font-size:38px; margin:6px 0 12px; }
+    .dash-wallet-payment { font-size:13px; line-height:1.5; opacity:.95; }
+    .dash-wallet-link { border:1px solid rgba(255,255,255,.45); border-radius:8px; padding:6px 10px; color:white; background:rgba(255,255,255,.12); cursor:pointer; font:inherit; font-size:12px; }
+    .dash-card-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+    .dash-kpi { min-height:218px; }
+    .dash-kpi-number { font-size:36px; line-height:1.2; font-weight:800; color:var(--text-primary); margin-bottom:12px; font-variant-numeric:tabular-nums; }
+    .dash-status { font-size:12px; font-weight:600; padding:4px 8px; border-radius:6px; background:var(--bg-active); color:var(--brand-primary); }
+    .dash-muted, .dash-summary-copy { font-size:13px; line-height:1.6; color:var(--text-secondary); }
+    .dash-muted { margin:4px 0 10px; }
+    .dash-text-link { padding:0; border:0; background:none; color:var(--brand-primary); font:inherit; font-size:13px; font-weight:600; cursor:pointer; text-align:left; }
+    .dash-text-link:hover { text-decoration:underline; }
+    #sec-dashboard button:focus-visible, #sec-dashboard summary:focus-visible, #sec-dashboard select:focus-visible { outline:3px solid var(--brand-primary); outline-offset:3px; }
+    .dash-alerts[hidden] { display:none; }
+    .dash-alerts { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+    .dash-alert { display:flex; flex-direction:column; gap:7px; align-items:flex-start; padding:16px; background:#FFF9EB; border:1px solid #EBD8A6; border-left:3px solid #B7780C; border-radius:12px; color:#73500F; }
+    .dash-alert strong { font-size:14px; }
+    .dash-alert p { font-size:13px; line-height:1.5; margin:0; }
+    .dash-alert.urgent { background:#FFF4F4; border-color:#EBC4C4; border-left-color:#C23636; color:#952D2D; }
+    .dash-alert .dash-text-link { margin-top:auto; padding-top:4px; }
+    .dash-summary { display:flex; flex-direction:column; gap:4px; }
+    .dash-summary-copy { margin-bottom:12px; flex:1; overflow-wrap:anywhere; }
+    .dash-summary-links { display:flex; gap:16px; flex-wrap:wrap; }
+    .dash-summary > .dash-text-link { margin-top:auto; }
+    .dash-quick-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .dash-movement-header, .dash-movement { display:grid; grid-template-columns:110px minmax(0,1fr) 120px 115px; align-items:center; gap:16px; padding:14px 0; }
+    .dash-movement-header { color:var(--text-secondary); font-size:12px; border-bottom:1px solid var(--border-light); padding-top:0; }
+    .dash-movement { border-bottom:1px solid var(--border-light); font-size:13px; }
+    .dash-movement:last-child { border-bottom:0; padding-bottom:0; }
+    .dash-movement-title { font-weight:600; color:var(--text-primary); overflow-wrap:anywhere; }
+    .dash-movement-meta { color:var(--text-secondary); font-size:12px; margin-top:4px; overflow-wrap:anywhere; }
+    .dash-movement-amount { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+    .dash-movement-state { text-align:right; font-size:12px; color:var(--text-secondary); }
+    .dash-movement-state.ok { color:var(--green); }
+    .dash-tool summary { padding:18px 24px; cursor:pointer; font-size:14px; font-weight:700; color:var(--text-primary); }
+    .dash-tool summary span { font-size:12px; color:var(--text-secondary); font-weight:400; margin-left:12px; }
+    .dash-tool[open] summary { border-bottom:1px solid var(--border-light); }
+    .dash-qr-content { display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; padding:24px; }
+    #sec-dashboard .sim-header { padding-top:20px; }
+    @media(max-width:1100px) { #sec-dashboard .dash-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } #sec-dashboard #tour-wallet, #sec-dashboard #tour-visits, #sec-dashboard .dash-summary { grid-column:auto; } #sec-dashboard .dash-summary:last-of-type { grid-column:1 / -1; } }
+    @media(max-width:700px) {
+      #sec-dashboard .dash-grid { grid-template-columns:minmax(0,1fr) !important; }
+      #sec-dashboard .dash-grid > * { grid-column:1 / -1 !important; grid-row:auto !important; }
+      .dash-header-actions { width:100%; }
+      #sec-dashboard .card-body, #sec-dashboard .wallet-card { padding:20px; }
+      .dash-movement-header { display:none; }
+      .dash-movement { grid-template-columns:minmax(0,1fr) 95px; gap:6px 12px; }
+      .dash-movement-date { grid-column:1; grid-row:auto; color:var(--text-secondary); font-size:12px; }
+      .dash-movement-description { grid-column:1; } .dash-movement-amount { grid-column:2; grid-row:span 2; }
+      .dash-movement-state { grid-column:1 / -1; text-align:left; }
+      .dash-tool summary span { display:block; margin:6px 0 0; }
+      #sec-dashboard .lot-grid { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 
@@ -4073,88 +4140,55 @@ MAIN
 DASHBOARD
 �.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.��.�-->
         <section id="sec-dashboard" class="section active">
-
-          <div class="sec-header">
+          <div class="sec-header dash-header">
             <div>
-              <h2>Bienvenido de vuelta
-                <span class="demo-chip"><i class="fa-solid fa-circle-play"></i> DEMO ACTIVO</span>
-              </h2>
-              <p><span id="dashboardAccountLabel">Resumen de STALIN 23</span>·<span
-                  style="color:var(--brand-primary);font-weight:600">Agosto 2026</span></p>
+              <h2>Resumen de la cuenta <span class="demo-chip">DEMO</span></h2>
+              <p id="dashboardAccountLabel">Resumen de STALIN23</p>
+              <div class="dash-account-meta"><span id="dashboardAccountId"></span><button type="button" class="dash-text-link" onclick="dashboardOpenTab('ajustes','tab-admins')" id="dashboardAdmins"></button></div>
             </div>
-            <div style="display:flex;gap:9px;align-items:center">
-              <button class="btn btn-tour" onclick="startTour()">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Tour Guiado
-              </button>
-              <button class="btn btn-primary" onclick="handleDashboardRechargeClick()">
-                <i class="fa-solid fa-plus"></i> Recargar saldo
-              </button>
+            <div class="dash-header-actions">
+              <button type="button" class="btn btn-primary" onclick="handleDashboardRechargeClick()">Recargar saldo</button>
             </div>
           </div>
-
           <div class="dash-grid">
-
-            <!--Wallet-->
             <div class="wallet-card" id="tour-wallet">
-              <div class="wc-header">
-                <div class="wc-title">Billetera Digital</div>
-                <div class="wc-logo">IGOR</div>
-              </div>
-              <div class="wc-chip"></div>
+              <div class="wc-header"><div class="wc-title">Billetera digital</div><div class="wc-logo">IGOR</div></div>
               <div class="wc-bal-label">Saldo disponible</div>
-              <div class="wc-bal-amount" id="dashBalance">$10.00</div>
-              <div class="wc-footer">
-                <div class="wc-user" id="dashWalletUser">GRUPOANDINO</div>
-                <i class="fa-solid fa-car-side" style="opacity:.35;font-size:22px"></i>
-              </div>
+              <div class="wc-bal-amount" id="dashBalance">$0.00</div>
+              <div class="dash-wallet-payment" id="dashboardPaymentCard"></div>
+              <div class="wc-footer"><div class="wc-user" id="dashWalletUser">STALIN23</div><button type="button" class="dash-wallet-link" onclick="dashboardOpenTab('billetera','tab-metodos')">Ver tarjetas</button></div>
             </div>
-
-            <!--Stattiempo-->
-            <div class="card" id="tour-stat">
-              <div class="stat-card-inner">
-                <div class="sc-top">
-                  <div class="sc-icon pink"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                  <div style="display:flex;align-items:center;gap:6px">
-                    <span class="sc-badge down" id="statParkLabel">Libre</span>
-                    <div class="help-wrap right">
-                      <div class="help-icon">?</div>
-                      <div class="help-tip">
-                        <div class="ht">⏱ Tiempo activo</div>
-                        Muestra el tiempo transcurrido de tu estadía actual en el estacionamiento. Se actualiza en
-                        tiempo real desde el <strong>Simulador de Estacionamiento</strong>.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="sc-value" id="statTime">--:--</div>
-                <div class="sc-label">Tiempo en estacionamiento activo</div>
-              </div>
+            <div class="card card-body dash-kpi" id="tour-visits">
+              <div class="dash-card-heading"><h3>Consumo del período</h3><span class="dash-status" id="dashboardConsumptionPeriod"></span></div>
+              <div class="dash-kpi-number" id="dashboardConsumption">$0.00</div>
+              <p class="dash-muted"><strong id="visitCount">0</strong> visitas a parqueaderos · <span id="dashboardServiceCount">0</span> otros servicios</p>
+              <div class="dash-summary-links"><button type="button" class="dash-text-link" onclick="dashboardOpenPeriodMovements('billetera')">Ver parqueaderos</button><button type="button" class="dash-text-link" onclick="dashboardOpenPeriodMovements('servicios')">Ver otros servicios</button></div>
             </div>
-
-            <!--Statvisitas-->
-            <div class="card" id="tour-visits">
-              <div class="stat-card-inner">
-                <div class="sc-top">
-                  <div class="sc-icon blue"><i class="fa-solid fa-car-side"></i></div>
-                  <div style="display:flex;align-items:center;gap:6px">
-                    <span class="sc-badge up">+2 hoy</span>
-                    <div class="help-wrap right">
-                      <div class="help-icon">?</div>
-                      <div class="help-tip">
-                        <div class="ht">Visitas del mes</div>
-                        Total de entradas registradas en parqueaderos IGOR durante el mes actual. Cada vez que usas el
-                        Simulador y registras una salida, este contador se actualiza.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="sc-value" id="visitCount">6</div>
-                <div class="sc-label">Visitas registradas este mes</div>
-              </div>
+            <div id="dashboardAlerts" class="dash-alerts" aria-label="Avisos importantes" aria-live="polite" hidden></div>
+            <div class="card card-body" id="tour-activity">
+              <div class="dash-card-heading"><div><h3>Últimos movimientos</h3><p class="dash-muted">Las cinco operaciones más recientes de esta cuenta</p></div><button type="button" class="btn btn-ghost btn-sm" onclick="dashboardOpenAllMovements()">Ver todos</button></div>
+              <div id="dashMov"></div>
             </div>
-
+            <div class="card card-body dash-summary">
+              <div class="dash-card-heading"><h3>Autorecarga automática</h3><span class="dash-status" id="dashboardAutoState"></span></div>
+              <div id="dashboardAutoSummary" class="dash-summary-copy"></div>
+              <button type="button" class="dash-text-link" onclick="dashboardOpenTab('billetera','tab-recargar')">Configurar autorecarga</button>
+            </div>
+            <div class="card card-body dash-summary">
+              <div class="dash-card-heading"><h3>Vehículos registrados</h3><span class="dash-status" id="dashboardVehicleCount">0</span></div>
+              <div id="dashboardVehicleSummary" class="dash-summary-copy"></div>
+              <button type="button" class="dash-text-link" onclick="goTo('accesos',document.getElementById('nav-accesos'))">Gestionar vehículos</button>
+            </div>
+            <div class="card card-body dash-summary">
+              <div class="dash-card-heading"><h3>Facturas y promociones</h3></div>
+              <div id="dashboardInvoiceSummary" class="dash-summary-copy"></div>
+              <p id="dashboardPromoSummary" class="dash-muted"></p>
+              <div class="dash-summary-links"><button type="button" class="dash-text-link" onclick="dashboardOpenTab('billetera','tab-facturas')">Ver facturas</button><button type="button" class="dash-text-link" onclick="dashboardOpenTab('billetera','tab-promo')">Canjear código</button></div>
+            </div>
+            <div class="dash-quick-actions"><button type="button" class="btn btn-ghost btn-sm" onclick="dashboardOpenTab('billetera','tab-transferir')">Transferir saldo</button><button type="button" class="btn btn-ghost btn-sm" onclick="openHelp()">Centro de ayuda</button><button type="button" class="btn btn-ghost btn-sm" onclick="startTour()">Tour guiado</button></div>
             <!--Simulator-->
-            <div class="card g-span2" style="padding:0;overflow:visible" id="tour-sim">
+            <details class="card dash-tool" id="tour-sim">
+              <summary>Estimar costo de estacionamiento <span>Selecciona el parqueadero y el tiempo previsto</span></summary>
               <div class="sim-header">
                 <div>
                   <h3>
@@ -4179,28 +4213,28 @@ DASHBOARD
               </div>
               <div class="sim-body">
                 <div class="lot-grid" id="tour-lots">
-                  <div class="lot-btn selected" onclick="pickLot(this,{name:'Quicentro Sur',pricing:'flat',amount:1})">
+                  <div role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" class="lot-btn selected" onclick="dashboardPickLot(this,{name:'Quicentro Sur',pricing:'flat',amount:1})">
                     <span class="li"><i class="fa-solid fa-building"></i></span>
                     <div>
                       <div class="ln">Quicentro Sur</div>
                       <div class="lr">$1.00 todo el día</div>
                     </div>
                   </div>
-                  <div class="lot-btn" onclick="pickLot(this,{name:'Aeropuerto',pricing:'hourlyCap',rate:2,cap:11})">
+                  <div role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" class="lot-btn" onclick="dashboardPickLot(this,{name:'Aeropuerto',pricing:'hourlyCap',rate:2,cap:11})">
                     <span class="li"><i class="fa-solid fa-plane-departure"></i></span>
                     <div>
                       <div class="ln">Aeropuerto</div>
                       <div class="lr">$2.00/hora o fracción · máximo $11.00</div>
                     </div>
                   </div>
-                  <div class="lot-btn" onclick="pickLot(this,{name:'Hotel Colon',pricing:'hourlyFraction',rate:1.5})">
+                  <div role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" class="lot-btn" onclick="dashboardPickLot(this,{name:'Hotel Colon',pricing:'hourlyFraction',rate:1.5})">
                     <span class="li"><i class="fa-solid fa-hotel"></i></span>
                     <div>
                       <div class="ln">Hotel Colon</div>
                       <div class="lr">$1.50/hora o fracción</div>
                     </div>
                   </div>
-                  <div class="lot-btn" onclick="pickLot(this,{name:'Scala Shopping',pricing:'flat',amount:1})">
+                  <div role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" class="lot-btn" onclick="dashboardPickLot(this,{name:'Scala Shopping',pricing:'flat',amount:1})">
                     <span class="li"><i class="fa-solid fa-cart-shopping"></i></span>
                     <div>
                       <div class="ln">Scala Shopping</div>
@@ -4223,83 +4257,23 @@ DASHBOARD
                 </div>
 
                 <div class="sim-note" id="simRule">
-                  Tarifa actual: Quicentro Sur cobra $1.00 por todo el día.
+                  Tarifa de referencia: Quicentro Sur cobra $1.00 por todo el día.
                 </div>
 
                 <div class="sim-btns">
-                  <button class="btn btn-primary" id="btnCalcular" onclick="simCalcular()" style="flex:1">
+                  <button class="btn btn-primary" id="btnCalcular" onclick="dashboardCalculateEstimate()" style="flex:1">
                     <i class="fa-solid fa-calculator"></i> Calcular estimado
                   </button>
                 </div>
 
                 <div class="sim-cost">
-                  <span class="sim-cost-label">Costo estimado en curso</span>
+                  <span class="sim-cost-label">Costo estimado</span>
                   <span class="sim-cost-val" id="simCost">$0.00</span>
                 </div>
               </div>
-            </div>
-
-            <!--Chart-->
-            <div class="card g-span3 card-body" id="tour-chart">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-                <div>
-                  <div style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px">
-                    Consumo de los últimos 7 días
-                    <div class="help-wrap">
-                      <div class="help-icon">?</div>
-                      <div class="help-tip">
-                        <div class="ht">Gráfica de consumo</div>
-                        Muestra el monto cobrado por estadías de los últimos 7 días. Cada punto representa un día. El
-                        simulador de arriba sirve para estimar nuevos costos sin afectar este historial.
-                      </div>
-                    </div>
-                  </div>
-                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Estadías registradas en
-                    estacionamientos IGOR</div>
-                </div>
-                <div
-                  style="font-family:'JetBrainsMono',monospace;font-size:22px;font-weight:800;color:var(--brand-primary)"
-                  id="chartTotal">$9.10</div>
-              </div>
-              <svg class="chart-svg" id="chartSvg" viewBox="0 0 700 110" preserveAspectRatio="none"></svg>
-              <div style="display:flex;justify-content:space-between;margin-top:6px;padding:0 2px">
-                <span style="font-size:11px;color:var(--text-muted)">5Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">6Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">7Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">8Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">9Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">10Jun</span>
-                <span style="font-size:11px;color:var(--text-muted)">Hoy</span>
-              </div>
-            </div>
-
-            <!--Recentactivity-->
-            <div class="card g-span2 card-body" id="tour-activity">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px">
-                  Actividad Reciente
-                  <div class="help-wrap">
-                    <div class="help-icon">?</div>
-                    <div class="help-tip">
-                      <div class="ht">Actividad reciente</div>
-                      Muestra las últimas 4 transacciones de tu cuenta: estadías pagadas (en<span
-                        style="color:var(--brand-pink);font-weight:700">rojo</span>) y recargas de saldo (en<span
-                        style="color:#4ADE80;font-weight:700">verde</span>). Haz clic en "Ver historial completo" para
-                      filtrar por fechas.
-                    </div>
-                  </div>
-                </div>
-                <button class="btn btn-ghost btn-sm"
-                  onclick="goTo('movimientos',document.getElementById('nav-movimientos'))">Ver historial
-                  completo</button>
-              </div>
-              <div id="dashMov"></div>
-            </div>
-
+            </details>
             <!--QR-->
-            <div class="card card-body"
-              style="display:flex;flex-direction:column;align-items:center;gap:16px;justify-content:center;text-align:center"
-              id="tour-qr">
+            <details class="card dash-tool" id="tour-qr"><summary>Mi código QR <span>Mostrar código de acceso</span></summary><div class="dash-qr-content">
               <div style="font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px">
                 Mi Código QR
                 <div class="help-wrap right">
@@ -4325,13 +4299,13 @@ DASHBOARD
                   <i class="fa-solid fa-download"></i> Descargar QR
                 </button>
               </div>
-            </div>
-          </div> <!-- Closes .dash-grid -->
+            </div></details>
+          </div>
 
           <!--LucidBotWebchatWidget-->
           <script src="https://panel.lucidbot.co/webchat/plugin.js?v=6"></script>
           <script>
-            ktt10.setup({ id: "8j5RKHORFN6h41pMGu2t", accountId: "1108782", color: "#006dff" });
+            if (window.ktt10) ktt10.setup({ id: "8j5RKHORFN6h41pMGu2t", accountId: "1108782", color: "#006dff" });
           </script>
         </section>
 
@@ -5372,7 +5346,10 @@ BILLETERA
                         style="font-size:11px;font-weight:800;color:var(--brand-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">
                         Cuenta Origen</div>
                       <div id="transferOriginNameDisplay"
-                        style="font-size:17px;font-weight:800;color:var(--text-primary)">GrupoAndino</div>
+                        style="font-size:22px;font-weight:800;color:var(--text-primary)">GrupoAndino</div>
+                      <div id="transferOriginFullNameDisplay"
+                        style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-top:2px;">Nombre de la
+                        cuenta</div>
                       <div id="transferOriginIdDisplay"
                         style="font-size:12px;color:var(--text-muted);font-family:'JetBrainsMono',monospace;margin-top:4px">
                         1b12659f-10be-4320-a619-2b36d5149b68</div>
@@ -5431,8 +5408,11 @@ BILLETERA
                         style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg, rgba(0,102,235,0.1) 0%, rgba(0,194,255,0.15) 100%);color:var(--brand-primary);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px">
                         EM</div>
                       <div>
-                        <div id="transferDestName" style="font-size:15px;font-weight:800;color:var(--text-primary)">
+                        <div id="transferDestName" style="font-size:22px;font-weight:800;color:var(--text-primary)">
                           EdificioMirador</div>
+                        <div id="transferDestFullName"
+                          style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-top:2px;">
+                          Nombre de la cuenta</div>
                         <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
                           <span id="transferDestIdBadge"
                             style="font-size:11.5px;font-family:'JetBrainsMono',monospace;color:var(--text-secondary);background:white;border:1px solid #e2e8f0;padding:2px 8px;border-radius:6px">AC-315</span>
@@ -5444,7 +5424,7 @@ BILLETERA
                     <div style="text-align:right">
                       <div
                         style="font-size:11px;color:var(--text-muted);text-transform:uppercase;font-weight:700;letter-spacing:0.5px">
-                        Titular / RUC</div>
+                        Documento</div>
                       <div id="transferDestDoc"
                         style="font-size:13px;font-weight:700;color:var(--text-secondary);margin-top:4px;">
                         1711122233</div>
@@ -6182,7 +6162,9 @@ AJUSTES
           ],
           cards: [
             { id: 'c-1004', brand: 'Mastercard', number: '1004', last4: '1004', exp: '07/2027', holder: 'STALIN23', default: true, status: 'active' },
-            { id: 'c-1006', brand: 'DinersClub', number: '3608', last4: '3608', exp: '01/2025', holder: 'STALIN23', default: false, status: 'expired' }
+            { id: 'c-1006', brand: 'DinersClub', number: '3608', last4: '3608', exp: '01/2025', holder: 'STALIN23', default: false, status: 'expired' },
+            { id: 'c-1007', brand: 'Visa', number: '4111', last4: '4111', exp: '12/2029', holder: 'STALIN23', default: false, status: 'PENDING' },
+            { id: 'c-1008', brand: 'Visa', number: '8821', last4: '8821', exp: '10/2026', holder: 'STALIN23', default: false, status: 'expiring' }
           ],
           admins: [
             { id: 'adm-101', nombre: 'Stalin Pérez', email: 'stalin23@igor.ec', role: 'SA' }
@@ -6560,6 +6542,7 @@ AJUSTES
         const tBread = document.getElementById('tbBread'); if (tBread) tBread.textContent = 'IGOR/' + (titles[name] || name);
         const mArea = document.getElementById('mainArea'); if (mArea) mArea.scrollTo(0, 0);
         closeSidebar();
+        if (name === 'dashboard') renderDashboardOverview();
       }
 
       function showTab(btn, panelId) {
@@ -6610,6 +6593,13 @@ AJUSTES
         }
         if (panelId === 'tab-metodos') {
           renderPaymentCards();
+          if (S.cards) {
+            const expiringCard = S.cards.find(c => getCardStatus(c) === 'expiring');
+            if (expiringCard && !S.expiringModalShown) {
+              openExpiringCardModal(expiringCard);
+              S.expiringModalShown = true;
+            }
+          }
         }
         if (panelId === 'tab-transferir') {
           renderTransferTab();
@@ -6620,6 +6610,24 @@ AJUSTES
           const targetEl = document.getElementById('deleteAccLabelTarget');
           if (targetEl) targetEl.textContent = `Cuenta a eliminar: ${name}(${S.currentAccountId || 'AC-001'})`;
         }
+      }
+
+      function openExpiringCardModal(card) {
+        const modal = document.getElementById('expiringCardModal');
+        if (modal) {
+          const brandEl = document.getElementById('expiringCardBrand');
+          const last4El = document.getElementById('expiringCardLast4');
+          const expEl = document.getElementById('expiringCardExp');
+          if (brandEl) brandEl.textContent = card.brand;
+          if (last4El) last4El.textContent = card.last4;
+          if (expEl) expEl.textContent = card.exp;
+          modal.style.display = 'flex';
+        }
+      }
+
+      function closeExpiringCardModal() {
+        const modal = document.getElementById('expiringCardModal');
+        if (modal) modal.style.display = 'none';
       }
 
       function toggleSidebar() {
@@ -7528,7 +7536,7 @@ ${actionButtonHtml}
         if (document.getElementById('err-code')) document.getElementById('err-code').style.display = 'none';
         if (document.getElementById('codeHint')) document.getElementById('codeHint').textContent = '';
         if (document.getElementById('otpInputs')) document.querySelectorAll('#otpInputs.otp-input').forEach(el => { el.value = ''; el.classList.remove('filled'); });
-        refreshSteps();
+        if (typeof refreshSteps === 'function') refreshSteps();
       }
 
       function setSafeText(id, text) {
@@ -7702,6 +7710,7 @@ ${actionButtonHtml}
         renderPromosList();
         initFormBaselines();
         syncAutoRechargeUIFromAccount();
+        renderDashboardOverview();
       }
 
       function switchAccount(accountId) {
@@ -7722,6 +7731,9 @@ ${actionButtonHtml}
         // Reset global temp variables for auto-recharge
         S.tempAskRecurringValue = null;
         S.tempRecurringValue = null;
+
+        // Reset transfer form values
+        resetTransferForm();
 
         renderCurrentAccount();
         showToast(`Cuenta activa cambiada a ${ACCOUNT_DATA[accountId].label}`, 'info');
@@ -8223,6 +8235,7 @@ ${actionButtonHtml}
         const dashB = document.getElementById('dashBalance'); if (dashB) dashB.textContent = f;
         const trfB = document.getElementById('transferOriginBalanceDisplay'); if (trfB) trfB.textContent = f;
         updateTransferBreakdown();
+        renderDashboardOverview();
       }
 
       function showToast(msg, type = 'success') {
@@ -10513,15 +10526,194 @@ ${actionButtonHtml}
         list.innerHTML = html;
       }
 
-      function renderDashMov() {
+      /* Resumen del dashboard. Las métricas usan los registros de la cuenta activa. */
+      function dashboardMoney(value) {
+        return '$' + (Number.isFinite(Number(value)) ? Number(value) : 0).toFixed(2);
+      }
+
+      function dashboardDate(value) {
+        if (!value) return null;
+        const raw = String(value).trim();
+        let match = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        let year, month, day;
+        if (match) [, year, month, day] = match;
+        else {
+          match = raw.match(/^(\d{2})[-/](\d{2})[-/](\d{4})/);
+          if (!match) return null;
+          [, day, month, year] = match;
+        }
+        const stamp = Date.UTC(Number(year), Number(month) - 1, Number(day));
+        const date = new Date(stamp);
+        if (date.getUTCFullYear() !== Number(year) || date.getUTCMonth() + 1 !== Number(month) || date.getUTCDate() !== Number(day)) return null;
+        const iso = `${year}-${month}-${day}`;
+        return { iso, period: iso.slice(0, 7), stamp, label: `${day}/${month}/${year}` };
+      }
+
+      function dashboardCurrentPeriod() {
+        const parts = new Intl.DateTimeFormat('en', { timeZone: 'America/Guayaquil', year: 'numeric', month: '2-digit' }).formatToParts(new Date());
+        return parts.find(p => p.type === 'year').value + '-' + parts.find(p => p.type === 'month').value;
+      }
+
+      function dashboardPeriodLabel(period) {
+        const [year, month] = period.split('-').map(Number);
+        return new Intl.DateTimeFormat('es-EC', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, 1)));
+      }
+
+      function dashboardStatus(movement) {
+        const raw = String(movement.detail?.estado || movement.status || '').trim().toUpperCase();
+        const labels = { APPROVED: 'Aprobado', APROBADO: 'Aprobado', VALIDATED: 'Validado', VALIDADO: 'Validado', PENDING: 'Pendiente', PENDIENTE: 'Pendiente', REJECTED: 'Rechazado', RECHAZADO: 'Rechazado', DECLINED: 'Rechazado', CANCELLED: 'Anulado', CANCELED: 'Anulado', ANULADO: 'Anulado', FAILED: 'Fallido', REFUNDED: 'Reembolsado' };
+        return { raw, label: labels[raw] || (raw ? movement.detail?.estado || movement.status : 'Registrado'), completed: !raw || ['APPROVED', 'APROBADO', 'VALIDATED', 'VALIDADO'].includes(raw) };
+      }
+
+      function dashboardMovements() {
+        const seen = new Set();
+        return (S.movements || []).filter(m => {
+          const key = m.detail?.ref ? `${m.type}:${m.detail.ref}` : m.id !== undefined ? `${m.type}:${m.id}` : `${m.type}:${m.date}:${m.amount}:${m.detail?.placa || ''}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        }).slice().sort((a, b) => (dashboardDate(b.date)?.stamp || 0) - (dashboardDate(a.date)?.stamp || 0));
+      }
+
+      function dashboardPaymentLabel(movement) {
+        const explicit = movement.paymentMethod || movement.detail?.formaPago || movement.detail?.forma_pago;
+        if (explicit) return String(explicit);
+        if (movement.type === 'parking') return 'Monedero';
+        if (['carwash', 'toll', 'bluezone'].includes(movement.type)) return 'Forma de pago no indicada';
+        if (['recharge', 'autorecharge'].includes(movement.type)) return movement.detail?.tarjeta || 'Recarga de billetera';
+        if (movement.type === 'transfer') return 'Transferencia de saldo';
+        if (movement.type === 'promo') return 'Beneficio promocional';
+        return 'Movimiento de billetera';
+      }
+
+      function renderDashboardMovements(movements) {
         const list = document.getElementById('dashMov');
         if (!list) return;
-        const movements = (S.movements || []).slice(0, 3);
-        list.innerHTML = movements.length ? movements.map(m => `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--border-light)">
-          <div style="min-width:0"><div style="font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.title || movementLabel(m)}</div><div style="font-size:11px;color:var(--text-secondary)">${formatMovementDate(m.date)}</div></div>
-          <strong style="font-size:13px;color:${Number(m.amount || 0) >= 0 ? 'var(--green)' : 'var(--red)'};white-space:nowrap">${Number(m.amount || 0) >= 0 ? '+' : '-'}$${Math.abs(Number(m.amount || 0)).toFixed(2)}</strong>
-        </div>`).join('') : '<div class="empty-state">No hay movimientos registrados.</div>';
+        const recent = movements.slice(0, 5);
+        if (!recent.length) { list.innerHTML = '<div class="empty-state">No hay movimientos registrados en esta cuenta.</div>'; return; }
+        list.innerHTML = '<div class="dash-movement-header"><span>Fecha</span><span>Movimiento</span><span style="text-align:right">Monto</span><span style="text-align:right">Estado</span></div>' + recent.map(m => {
+          const amount = Number(m.amount || 0);
+          const status = dashboardStatus(m);
+          const detail = [m.detail?.placa, dashboardPaymentLabel(m)].filter(Boolean).map(escapeMovementHtml).join(' · ');
+          const signed = amount === 0 ? '$0.00' : `${amount > 0 ? '+' : '−'}${dashboardMoney(Math.abs(amount))}`;
+          return `<div class="dash-movement"><span class="dash-movement-date">${escapeMovementHtml(dashboardDate(m.date)?.label || m.date || 'Sin fecha')}</span><div class="dash-movement-description"><div class="dash-movement-title">${escapeMovementHtml(m.title || movementLabel(m))}</div><div class="dash-movement-meta">${detail}</div></div><strong class="dash-movement-amount" style="color:${amount === 0 ? 'var(--text-secondary)' : amount > 0 ? 'var(--green)' : 'var(--red)'}">${signed}</strong><span class="dash-movement-state ${status.completed ? 'ok' : ''}">${escapeMovementHtml(status.label)}</span></div>`;
+        }).join('');
       }
+
+      function renderDashboardOverview() {
+        const account = getCurrentAccount();
+        if (!account) return;
+        const movements = dashboardMovements();
+        const current = dashboardCurrentPeriod();
+        const recorded = movements.map(m => dashboardDate(m.date)?.period).filter(p => p && p <= current);
+        const periods = [...new Set([current, ...recorded])].sort().reverse();
+        // La demo usa datos históricos: abrir el mes más reciente con registros, sin cambiar sus fechas.
+        if (!account.dashboardPeriod || !periods.includes(account.dashboardPeriod)) account.dashboardPeriod = recorded.slice().sort().pop() || current;
+        const period = account.dashboardPeriod;
+        setSafeText('dashboardAccountId', 'ID de cuenta: ' + account.id);
+        const adminCount = (account.admins || []).length;
+        setSafeText('dashboardAdmins', `${adminCount} ${adminCount === 1 ? 'administrador' : 'administradores'}`);
+        setSafeText('dashboardConsumptionPeriod', dashboardPeriodLabel(period));
+
+        const periodMovements = movements.filter(m => dashboardDate(m.date)?.period === period && dashboardStatus(m).completed);
+        const serviceTypes = ['parking', 'carwash', 'toll', 'bluezone'];
+        const services = periodMovements.filter(m => serviceTypes.includes(m.type));
+        const consumption = services.reduce((total, m) => total + Math.max(0, -(Number(m.amount) || 0)), 0);
+        setSafeText('dashboardConsumption', dashboardMoney(consumption));
+        setSafeText('visitCount', services.filter(m => m.type === 'parking').length);
+        setSafeText('dashboardServiceCount', services.filter(m => m.type !== 'parking').length);
+
+        const cards = S.cards || [];
+        const defaultCard = cards.find(card => card.default);
+        const cardLabel = defaultCard ? `${defaultCard.brand || 'Tarjeta'} ···· ${String(defaultCard.last4 || defaultCard.number || '').slice(-4)}` : cards.length ? 'Sin tarjeta predeterminada' : 'Sin tarjetas registradas';
+        setSafeText('dashboardPaymentCard', cardLabel + (defaultCard && getCardStatus(defaultCard) === 'expired' ? ' · Vencida' : ''));
+        const autoOn = account.autoRechargeEnabled !== undefined ? Boolean(account.autoRechargeEnabled) : true;
+        setSafeText('dashboardAutoState', autoOn ? 'Activada' : 'Desactivada');
+        setSafeText('dashboardAutoSummary', autoOn ? `Recarga de ${dashboardMoney(account.autoRechargeAmt || 10)} cuando el saldo baje de $5.00.` : 'La cuenta no tiene una autorecarga activada.');
+
+        const vehicles = S.vehicles || [];
+        setSafeText('dashboardVehicleCount', vehicles.length);
+        setSafeText('dashboardVehicleSummary', vehicles.length ? vehicles.map(v => v.placa).filter(Boolean).join(' · ') : 'Aún no hay vehículos registrados.');
+        const invoices = Array.isArray(account.invoices) ? account.invoices.slice().sort((a, b) => (dashboardDate(b.date)?.stamp || 0) - (dashboardDate(a.date)?.stamp || 0)) : [];
+        const invoice = invoices[0];
+        // No utilizar las facturas estáticas de otra razón social como datos de esta cuenta.
+        setSafeText('dashboardInvoiceSummary', invoice ? `Última factura: ${invoice.number || ''} · ${dashboardDate(invoice.date)?.label || 'Sin fecha'} · ${dashboardMoney(invoice.total)}` : 'Consulta y descarga tus comprobantes en Historial Facturas.');
+        const promos = (S.promos || []).slice().sort((a, b) => (dashboardDate(b.date)?.stamp || 0) - (dashboardDate(a.date)?.stamp || 0));
+        setSafeText('dashboardPromoSummary', promos.length ? `Último código canjeado: ${promos[0].code} · ${dashboardDate(promos[0].date)?.label || 'Sin fecha'}` : 'Sin códigos promocionales canjeados.');
+
+        const alerts = [];
+        if (Number(S.balance) < 5) alerts.push({ title: 'Saldo bajo', message: `Tienes ${dashboardMoney(S.balance)} disponibles. Recarga para tus próximos consumos.`, action: 'Recargar saldo', section: 'billetera', panel: 'tab-recargar' });
+        if (!isAccountAndBillingComplete(account)) alerts.push({ title: 'Datos incompletos', message: 'Completa y guarda los datos de la cuenta y de facturación.', action: 'Completar datos', section: 'perfil', panel: 'tab-datos' });
+        const expired = cards.filter(card => getCardStatus(card) === 'expired');
+        const expiring = cards.filter(card => getCardStatus(card) === 'expiring');
+        if (expired.length || expiring.length) alerts.push({ title: 'Revisa tus tarjetas', message: [expired.length ? `${expired.length} ${expired.length === 1 ? 'tarjeta vencida' : 'tarjetas vencidas'}` : '', expiring.length ? `${expiring.length} ${expiring.length === 1 ? 'tarjeta próxima a vencer' : 'tarjetas próximas a vencer'}` : ''].filter(Boolean).join(' y ') + '.', action: 'Gestionar tarjetas', section: 'billetera', panel: 'tab-metodos', urgent: Boolean(defaultCard && getCardStatus(defaultCard) === 'expired') });
+        if (autoOn && !cards.some(card => ['active', 'expiring'].includes(getCardStatus(card)))) alerts.push({ title: 'Autorecarga sin tarjeta disponible', message: 'Revisa tus métodos de pago para que la autorecarga pueda realizarse.', action: 'Ver tarjetas', section: 'billetera', panel: 'tab-metodos', urgent: true });
+        const promoDates = promos.map(p => ({ promo: p, expires: dashboardDate(p.expires || p.expirationDate) })).filter(p => p.expires);
+        const today = new Date();
+        const todayParts = new Intl.DateTimeFormat('en', { timeZone:'America/Guayaquil', year:'numeric', month:'2-digit', day:'2-digit' }).formatToParts(today);
+        const todayStamp = Date.UTC(Number(todayParts.find(p => p.type === 'year').value), Number(todayParts.find(p => p.type === 'month').value)-1, Number(todayParts.find(p => p.type === 'day').value));
+        promoDates.filter(p => p.expires.stamp >= todayStamp && p.expires.stamp - todayStamp <= 7 * 86400000 && p.promo.used === false).forEach(p => alerts.push({ title: 'Beneficio próximo a vencer', message: `${p.promo.code} vence el ${p.expires.label}.`, action: 'Ver promociones', section: 'billetera', panel: 'tab-hist-promo' }));
+        const alertList = document.getElementById('dashboardAlerts');
+        if (alertList) {
+          alertList.hidden = !alerts.length;
+          alertList.innerHTML = alerts.map(a => `<div class="dash-alert${a.urgent ? ' urgent' : ''}"><strong>${escapeMovementHtml(a.title)}</strong><p>${escapeMovementHtml(a.message)}</p><button type="button" class="dash-text-link" onclick="dashboardOpenTab('${a.section}','${a.panel}')">${escapeMovementHtml(a.action)}</button></div>`).join('');
+        }
+        renderDashboardMovements(movements);
+      }
+
+      function renderDashMov() { renderDashboardOverview(); }
+
+      function dashboardSetPeriod(period) {
+        const account = getCurrentAccount();
+        if (account && /^\d{4}-\d{2}$/.test(period)) { account.dashboardPeriod = period; renderDashboardOverview(); }
+      }
+
+      function dashboardOpenTab(section, panel) {
+        if (panel === 'tab-recargar') { handleDashboardRechargeClick(); return; }
+        goTo(section, document.getElementById('nav-' + section));
+        const root = document.getElementById('sec-' + section);
+        const button = root?.querySelector(`.tab-btn[onclick*="'${panel}'"]`);
+        if (button) button.click();
+      }
+
+      function dashboardOpenAllMovements() {
+        goTo('movimientos', document.getElementById('nav-movimientos'));
+        switchTxTab('billetera', document.getElementById('txTabBilletera'));
+        clearFilter();
+      }
+
+      function dashboardOpenPeriodMovements(tab = 'billetera') {
+        const period = getCurrentAccount()?.dashboardPeriod || dashboardCurrentPeriod();
+        dashboardOpenAllMovements();
+        if (tab === 'servicios') switchTxTab('servicios', document.getElementById('txTabServicios'));
+        else setTxCategory('parking');
+        const [year, month] = period.split('-').map(Number);
+        setSafeValue('fDesde', period + '-01');
+        const last = new Date(Date.UTC(year, month, 0)).getUTCDate();
+        setSafeValue('fHasta', period + '-' + String(last).padStart(2, '0'));
+        filterMov();
+      }
+
+      function dashboardPickLot(element, lot) {
+        document.querySelectorAll('#tour-sim .lot-btn').forEach(button => button.classList.remove('selected'));
+        element.classList.add('selected');
+        S.lot = lot;
+        setSafeText('simRule', `Tarifa de referencia: ${element.querySelector('.lr')?.textContent || ''}.`);
+        setSafeText('simCost', '$0.00');
+      }
+
+      function dashboardCalculateEstimate() {
+        const hours = Number(document.getElementById('simHours')?.value);
+        const minutes = Number(document.getElementById('simMinutes')?.value);
+        if (!Number.isInteger(hours) || !Number.isInteger(minutes) || hours < 0 || hours > 24 || minutes < 0 || minutes > 59 || (hours === 24 && minutes > 0) || hours * 60 + minutes <= 0) { showToast('Ingresa un tiempo entre 1 minuto y 24 horas.', 'warning'); return; }
+        const totalHours = (hours * 60 + minutes) / 60;
+        const lot = S.lot || {};
+        let cost = lot.pricing === 'flat' ? Number(lot.amount || 1) : Math.ceil(totalHours) * Number(lot.rate || 1.5);
+        if (lot.pricing === 'hourlyCap') cost = Math.min(cost, Number(lot.cap || 11));
+        setSafeText('simCost', dashboardMoney(cost));
+        setSafeText('simTimer', `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`);
+      }
+
 
       function renderTransactionFilters() {
         const pills = document.getElementById('txSubFilterPills');
@@ -10787,8 +10979,8 @@ ${actionButtonHtml}
       const TOUR_STEPS = [
         { target: 'accountSelect', title: '1.SeleccióndeCuenta', desc: 'Permitealternarentretuscuentasactivas(ej.GrupoAndino,EdificioMiradoroPlazaComercialdelSol).' },
         { target: 'topBalance', title: '2.BilleteraySaldo', desc: 'Muestratusaldodisponibleactualizadoentiemporeal.' },
-        { target: 'sec-dashboard', title: '3.DashboardPrincipal', desc: 'Vistaunificadaconsimuladordeestacionamientoymovimientosrecientes.' },
-        { target: 'btnEntrar', title: '4.Simulador de Estacionamiento', desc: 'Simulaelingresoysalidaaparqueaderosparacalcularcostosdeestadía.' },
+        { target: 'sec-dashboard', title: '3. Resumen de la cuenta', desc: 'Consulta saldo, consumo, avisos y los cinco últimos movimientos.' },
+        { target: 'tour-visits', title: '4. Consumo del período', desc: 'Consulta los consumos y visitas del período indicado y accede a su detalle.' },
         { target: 'notifBtn', title: '5.Notificaciones', desc: 'Recibealertassobretucuenta,recargaseingresos.' }
       ];
       let currentTourIndex = 0;
@@ -10945,7 +11137,7 @@ ${actionButtonHtml}
           return;
         }
         goTo('billetera', document.getElementById('nav-billetera'));
-        const recargarBtn = document.querySelector('.tab-barbutton[onclick*="tab-recargar"]');
+        const recargarBtn = document.querySelector('.tab-bar button[onclick*="tab-recargar"]');
         if (recargarBtn) recargarBtn.click();
       }
 
@@ -11007,6 +11199,7 @@ ${actionButtonHtml}
             helpMsg.style.color = 'var(--green)';
           }
           setSafeText('transferDestName', destAcc.label);
+          setSafeText('transferDestFullName', destAcc.profile?.nombre || destAcc.label);
           setSafeText('transferDestAvatar', (destAcc.label || 'C').substring(0, 2).toUpperCase());
           setSafeText('transferDestIdBadge', destAcc.id);
           setSafeText('transferDestDoc', destAcc.profile?.documento || destAcc.billing?.numero || 'RUCVerificado');
@@ -11080,6 +11273,7 @@ ${actionButtonHtml}
         setSafeValue('transferOriginId', originId);
         setSafeValue('transferOriginName', acc.label);
         setSafeText('transferOriginNameDisplay', acc.label);
+        setSafeText('transferOriginFullNameDisplay', acc.profile?.nombre || acc.label);
         setSafeText('transferOriginIdDisplay', originId);
         setSafeText('transferOriginBalanceDisplay', '$' + S.balance.toFixed(2));
 
@@ -11090,6 +11284,12 @@ ${actionButtonHtml}
       function openTransferConfirmModal() {
         if (!isAccountAndBillingComplete()) {
           showIncompleteDataModal();
+          return;
+        }
+
+        if (S.balance <= 0) {
+          const noBalModal = document.getElementById('noBalanceTransferModal');
+          if (noBalModal) noBalModal.style.display = 'flex';
           return;
         }
 
@@ -11264,9 +11464,52 @@ ${actionButtonHtml}
           icon.setAttribute('aria-label', 'Mostrar información');
         });
         showLoginView();
+        setInterval(() => {
+          if (document.getElementById('sec-dashboard')?.classList.contains('active') && document.getElementById('appShell')?.style.display !== 'none') renderDashboardOverview();
+        }, 60000);
       });
     </script>
+    <!--Modal Tarjeta Proxima a Expirar-->
+    <div id="expiringCardModal" class="modal-backdrop"
+      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)">
+      <div class="card"
+        style="max-width:420px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:0 24px 48px -12px rgba(15,23,42,0.25);animation:fadeUp.2s ease;position:relative">
+        <button onclick="closeExpiringCardModal()"
+          style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;color:#64748b;cursor:pointer"><i
+            class="fa-solid fa-xmark"></i></button>
+        <div
+          style="width:64px;height:64px;border-radius:50%;background:rgba(245,158,11,0.12);color:#D97706;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px auto">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 style="font-size:20px;font-weight:800;color:#0b1c33;margin-bottom:8px">Tarjeta Próxima a Expirar</h3>
+        <p style="font-size:13.5px;color:#64748b;line-height:1.5;margin-bottom:16px">
+          Tu tarjeta está próxima a expirar. Actualiza tu tarjeta para seguir disfrutando de nuestros servicios sin
+          interrupciones.
+        </p>
 
+        <div
+          style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:24px;text-align:left;display:flex;align-items:center;gap:12px;">
+          <div style="font-size:24px;color:#334155"><i class="fa-regular fa-credit-card"></i></div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:#1E293B"><span id="expiringCardBrand">Visa</span> terminada
+              en <span id="expiringCardLast4">1234</span></div>
+            <div style="font-size:12px;color:#64748b;margin-top:2px">Expira en: <span id="expiringCardExp"
+                style="font-weight:600;color:#D97706">10/2026</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;">
+          <button class="btn" onclick="closeExpiringCardModal()"
+            style="flex:1;padding:12px;font-size:14px;font-weight:600;border-radius:12px;justify-content:center;background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" onclick="openPlacetopayGateway(); closeExpiringCardModal();"
+            style="flex:1;padding:12px;font-size:14px;font-weight:700;border-radius:12px;justify-content:center;background:#0066eb;color:white;box-shadow:0 4px 14px rgba(0,102,235,0.3)">
+            <i class="fa-solid fa-rotate-right"></i> Actualizar ahora
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!--ModalDatosIncompletos-->
     <div id="incompleteDataModal" class="modal-backdrop"
@@ -11290,6 +11533,28 @@ ${actionButtonHtml}
     </div>
 
     <!--ModalConfirmarTransferencia-->
+    <!--Modal Sin Saldo-->
+    <div id="noBalanceTransferModal" class="modal-backdrop"
+      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
+      <div class="card"
+        style="max-width:400px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp .22s cubic-bezier(0.16, 1, 0.3, 1)">
+        <div
+          style="width:56px;height:56px;border-radius:50%;background:rgba(220,38,38,0.1);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px auto">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+        <h3 style="font-size:20px;font-weight:800;color:var(--text-primary);margin-bottom:8px">Sin Saldo Disponible</h3>
+        <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:24px">
+          Tu cuenta actual no cuenta con saldo para realizar transferencias. Por favor, recarga tu saldo e inténtalo de
+          nuevo.
+        </p>
+        <button class="btn btn-primary"
+          onclick="document.getElementById('noBalanceTransferModal').style.display='none';"
+          style="width:100%;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          Entendido
+        </button>
+      </div>
+    </div>
+
     <div id="transferConfirmModal" class="modal-backdrop"
       style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px">
       <div class="card"
