@@ -7388,7 +7388,22 @@ ${actionButtonHtml}
         showToast(`Has salido de  la cuenta${acc ? acc.label : ''}correctamente`, 'info');
       }
 
+      function updateDeleteAccountConfirmation() {
+        const input = document.getElementById('deleteAccountConfirmation');
+        const button = document.getElementById('deleteAccountConfirmButton');
+        const confirmed = !!input && input.value === 'Eliminar la cuenta';
+        if (button) button.disabled = !confirmed;
+        return confirmed;
+      }
+
+      function resetDeleteAccountConfirmation() {
+        const input = document.getElementById('deleteAccountConfirmation');
+        if (input) input.value = '';
+        updateDeleteAccountConfirmation();
+      }
+
       function openDeleteAccountModal() {
+        resetDeleteAccountConfirmation();
         const acc = getCurrentAccount();
         const name = acc ? acc.label : 'GrupoAndino';
         setSafeText('deleteAccountModalName', name);
@@ -7403,11 +7418,17 @@ ${actionButtonHtml}
       }
 
       function closeDeleteAccountModal() {
+        resetDeleteAccountConfirmation();
         const modal = document.getElementById('deleteAccountModal');
         if (modal) modal.style.display = 'none';
       }
 
       function confirmDeleteAccount() {
+        if (!updateDeleteAccountConfirmation()) {
+          const input = document.getElementById('deleteAccountConfirmation');
+          if (input) input.focus();
+          return;
+        }
         if (!requireActiveAccount()) return;
         const acc = getCurrentAccount();
         const accId = S.currentAccountId || 'AC-001';
@@ -12108,7 +12129,7 @@ ${actionButtonHtml}
       style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
       onclick="if(event.target===this)closeDeleteAccountModal()">
       <div class="card"
-        style="max-width:440px;width:100%;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp.22s cubic-bezier(0.16,1,0.3,1)">
+        style="max-width:440px;width:100%;max-height:calc(100vh - 40px);overflow-y:auto;border-radius:24px;padding:32px 28px;text-align:center;background:white;box-shadow:var(--shadow-xl);animation:fadeUp.22s cubic-bezier(0.16,1,0.3,1)">
         <div
           style="width:56px;height:56px;border-radius:50%;background:rgba(220,38,38,0.12);color:var(--red,#dc2626);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px auto">
           <i class="fa-solid fa-triangle-exclamation"></i>
@@ -12135,10 +12156,19 @@ ${actionButtonHtml}
           Saldo actual: <strong id="deleteAccountModalBalance" style="color:var(--brand-primary)">$0.00</strong>
         </p>
 
+        <div class="form-group" style="text-align:left;margin-bottom:20px">
+          <label class="form-label" for="deleteAccountConfirmation" style="display:block;line-height:1.5">
+            Para confirmar, escribe <strong>Eliminar la cuenta</strong>
+          </label>
+          <input id="deleteAccountConfirmation" class="form-input" type="text" value=""
+            placeholder="Eliminar la cuenta" autocomplete="off" spellcheck="false"
+            oninput="updateDeleteAccountConfirmation()" onchange="updateDeleteAccountConfirmation()">
+        </div>
+
         <div style="display:flex;gap:12px">
           <button class="btn btn-ghost" onclick="closeDeleteAccountModal()"
             style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md)">Cancelar</button>
-          <button class="btn btn-danger" onclick="confirmDeleteAccount()"
+          <button id="deleteAccountConfirmButton" class="btn btn-danger" onclick="confirmDeleteAccount()" disabled
             style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
             <i class="fa-solid fa-trash-can"></i> Sí, eliminar cuenta
           </button>
