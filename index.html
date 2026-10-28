@@ -9131,27 +9131,56 @@ ${actionButtonHtml}
         }
       }
 
+      let cardRegistrationConsentAccepted = false;
+      let cardRegistrationConsentAccountId = null;
+      let cardRegistrationTimer = null;
+      let cardRegistrationBusy = false;
+
+      function hasCardRegistrationConsents() {
+        return Boolean(document.getElementById('cardRegistrationAcceptTerms')?.checked &&
+          document.getElementById('cardRegistrationAcceptData')?.checked);
+      }
+
+      function updateCardRegistrationConsentState() {
+        const btn = document.getElementById('cardRegistrationSummaryContinue');
+        if (!btn) return;
+        btn.disabled = !hasCardRegistrationConsents();
+        btn.style.opacity = btn.disabled ? '0.5' : '1';
+        btn.style.cursor = btn.disabled ? 'not-allowed' : 'pointer';
+      }
+
+      function resetCardRegistrationConsents() {
+        cardRegistrationConsentAccepted = false;
+        cardRegistrationConsentAccountId = null;
+        ['cardRegistrationAcceptTerms', 'cardRegistrationAcceptData'].forEach(id => {
+          const checkbox = document.getElementById(id);
+          if (checkbox) checkbox.checked = false;
+        });
+        updateCardRegistrationConsentState();
+      }
+
       function openAskRecurringValueModal() {
         if (!isAccountAndBillingComplete()) {
           showIncompleteDataModal();
           return;
         }
 
-        if (S.cards && S.cards.length > 0) {
-          openPlacetopayGateway();
-          return;
-        }
-
-        if (S.tempRecurringValue) {
-          openPlacetopayGateway();
-          return;
-        }
-
+        // Cada tarjeta requiere revisar el resumen y aceptar ambas condiciones.
+        resetCardRegistrationConsents();
         const m = document.getElementById('askRecurringValueModal');
         if (m) {
-          // Reset default to $10
-          const defaultBtn = document.getElementById('askRecChip10');
-          if (defaultBtn) pickAskRecAmtChip(10, defaultBtn);
+          // Conservar el importe recurrente configurado al agregar otra tarjeta.
+          const configured = Number(S.autoRechargeAmt);
+          const minimum = Number(CONFIG.autoRechargeMinimum);
+          const amount = Number.isFinite(configured) && configured >= minimum ? configured : minimum;
+          const chips = Array.from(document.getElementById('askRecChipsGrid')?.querySelectorAll('.auto-rec-chip') || []);
+          const matched = chips.find(chip => chip.textContent.trim() === '$' + amount);
+          if (matched) {
+            pickAskRecAmtChip(amount, matched);
+          } else {
+            pickAskRecCustomChip(null);
+            setSafeValue('askRecurringValueInput', String(amount));
+          }
           m.style.display = 'flex';
         }
       }
@@ -9229,6 +9258,10 @@ ${actionButtonHtml}
         }
 
         val = Number(val);
+        if (!Number.isFinite(val) || val < Number(CONFIG.autoRechargeMinimum)) {
+          showToast(`El valor recurrente debe ser igual o mayor a $${Number(CONFIG.autoRechargeMinimum).toFixed(2)}.`, 'error');
+          return;
+        }
         S.tempRecurringValue = val;
 
         // Calculate breakdown for summary modal
@@ -9248,18 +9281,48 @@ ${actionButtonHtml}
         setSafeText('askRecSum_btot', '$' + totalPagar.toFixed(2));
 
         closeAskRecurringValueModal();
+        resetCardRegistrationConsents();
+        updateCardRegistrationBalanceNotice();
         const sm = document.getElementById('askRecurringValueSummaryModal');
         if (sm) sm.style.display = 'flex';
+      }
+
+      function updateCardRegistrationBalanceNotice() {
+        const notice = document.getElementById('cardRegistrationBalanceNotice');
+        if (!notice) return;
+        const threshold = moneyCents(CONFIG.autoRechargeThreshold);
+        const balance = moneyCents(S.balance);
+        const hasBalanceAboveThreshold = Number.isFinite(balance) && Number.isFinite(threshold) && balance > threshold;
+        notice.style.display = hasBalanceAboveThreshold ? 'block' : 'none';
+        notice.textContent = hasBalanceAboveThreshold
+          ? `Actualmente tienes saldo disponible. Cuando tu saldo sea igual o menor a $${(threshold / 100).toFixed(2)}, se realizará la autorrecarga con los valores indicados en este resumen, siempre que esté habilitada.`
+          : '';
       }
 
       function closeAskRecurringValueSummaryModal() {
         const sm = document.getElementById('askRecurringValueSummaryModal');
         if (sm) sm.style.display = 'none';
+        resetCardRegistrationConsents();
+      }
+
+      function backFromCardRegistrationSummary() {
+        closeAskRecurringValueSummaryModal();
+        openAskRecurringValueModal();
       }
 
       function confirmAskRecurringValueSummary() {
         if (!requireActiveAccount()) return;
+        if (!hasCardRegistrationConsents()) {
+          updateCardRegistrationConsentState();
+          showToast('Debes aceptar los términos y condiciones y la política de protección de datos personales para continuar.', 'error');
+          const missing = ['cardRegistrationAcceptTerms', 'cardRegistrationAcceptData']
+            .map(id => document.getElementById(id)).find(checkbox => checkbox && !checkbox.checked);
+          if (missing) missing.focus();
+          return;
+        }
         closeAskRecurringValueSummaryModal();
+        cardRegistrationConsentAccepted = true;
+        cardRegistrationConsentAccountId = S.currentAccountId;
         const val = S.tempRecurringValue;
 
         // Sync with recargar saldo tab
@@ -9304,6 +9367,10 @@ ${actionButtonHtml}
       }
 
       function openPlacetopayGateway() {
+        if (!cardRegistrationConsentAccepted || cardRegistrationConsentAccountId !== S.currentAccountId) {
+          openAskRecurringValueModal();
+          return;
+        }
         if (!isAccountAndBillingComplete()) {
           showIncompleteDataModal();
           return;
@@ -9347,8 +9414,12 @@ ${actionButtonHtml}
       }
 
       function closePlacetopayGateway() {
+        if (cardRegistrationTimer !== null) clearTimeout(cardRegistrationTimer);
+        cardRegistrationTimer = null;
+        cardRegistrationBusy = false;
         const m = document.getElementById('placetopayGatewayModal');
         if (m) m.style.display = 'none';
+        resetCardRegistrationConsents();
       }
 
       function fmtP2pCardNum(input) {
@@ -9358,7 +9429,11 @@ ${actionButtonHtml}
       }
 
       function processPlacetopayTokenization() {
-        if (!requireActiveAccount()) return;
+        if (cardRegistrationBusy || !requireActiveAccount()) return;
+        if (!cardRegistrationConsentAccepted || cardRegistrationConsentAccountId !== S.currentAccountId) {
+          showToast('Acepta ambas condiciones en el Resumen de Recarga antes de registrar una tarjeta.', 'error');
+          return;
+        }
         const numInput = document.getElementById('p2pCardNum');
         const expInput = document.getElementById('p2pCardExp');
         const btn = document.getElementById('p2pSubmitBtn');
@@ -9384,11 +9459,16 @@ ${actionButtonHtml}
           btn.innerHTML = '<i class="fa-solid fa-circle-notchfa-spin"></i> ConsultandorespuestaPlacetoPay...';
         }
 
-        setTimeout(() => {
+        cardRegistrationBusy = true;
+        const registrationAccountId = S.currentAccountId;
+        cardRegistrationTimer = setTimeout(() => {
+          cardRegistrationTimer = null;
+          cardRegistrationBusy = false;
           if (btn) {
             btn.disabled = false;
             btn.innerHTML = 'Continuar';
           }
+          if (!cardRegistrationConsentAccepted || registrationAccountId !== S.currentAccountId) return;
 
           //MockPlacetoPayAPIresponsepayloadstructure
           const ptpResponses = {
@@ -9491,6 +9571,16 @@ ${actionButtonHtml}
 
       function processInitialRechargeAfterCardAdd(card) {
         if (!requireActiveAccount()) return;
+        const balance = moneyCents(S.balance);
+        const threshold = moneyCents(CONFIG.autoRechargeThreshold);
+        if (S.autoRechargeEnabled !== true) {
+          showToast('Tarjeta registrada. No se generó una recarga: la autorrecarga está deshabilitada.', 'info');
+          return;
+        }
+        if (!Number.isFinite(balance) || !Number.isFinite(threshold) || balance > threshold) {
+          showToast('Tarjeta registrada. No se realizó una recarga porque tu saldo supera el umbral configurado.', 'info');
+          return;
+        }
         const amt = S.tempRecurringValue || S.autoRechargeAmt || 10.00;
         S.balance += amt;
         syncBalance();
@@ -12800,10 +12890,10 @@ ${actionButtonHtml}
 
     <!--Modal Resumen de Valor Recurrente-->
     <div id="askRecurringValueSummaryModal" class="modal-backdrop"
-      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)"
+      style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,22,41,0.65);z-index:99999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);overflow-y:auto"
       onclick="if(event.target===this)closeAskRecurringValueSummaryModal()">
       <div class="card"
-        style="max-width:400px;width:100%;border-radius:24px;padding:30px 26px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp.22s cubic-bezier(0.16,1,0.3,1);position:relative">
+        style="max-width:400px;width:100%;border-radius:24px;padding:30px 26px;background:white;box-shadow:var(--shadow-xl);animation:fadeUp.22s cubic-bezier(0.16,1,0.3,1);position:relative;max-height:calc(100vh - 40px);overflow-y:auto">
 
         <button type="button" onclick="closeAskRecurringValueSummaryModal()"
           style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-secondary);font-size:18px;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:color var(--t)"
@@ -12849,13 +12939,32 @@ ${actionButtonHtml}
           </div>
         </div>
 
+        <p id="cardRegistrationBalanceNotice" role="status" aria-live="polite"
+          style="display:none;margin:0 0 16px;font-size:12px;line-height:1.5;color:#b42318;font-weight:600"></p>
+
+        <fieldset style="margin:0 0 20px;padding:14px;border:1px solid var(--border-medium);border-radius:12px;background:var(--bg-input)">
+          <legend style="padding:0 5px;font-size:12px;font-weight:700;color:var(--text-primary)">Antes de registrar tu tarjeta</legend>
+          <label for="cardRegistrationAcceptTerms" style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;color:var(--text-primary);cursor:pointer;margin-bottom:12px">
+            <input id="cardRegistrationAcceptTerms" type="checkbox" required onchange="updateCardRegistrationConsentState()" aria-describedby="cardRegistrationConsentHelp"
+              style="width:18px;height:18px;flex:0 0 18px;margin:0;accent-color:var(--brand-primary)">
+            <span>Acepto los <strong>términos y condiciones</strong>.</span>
+          </label>
+          <label for="cardRegistrationAcceptData" style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;color:var(--text-primary);cursor:pointer">
+            <input id="cardRegistrationAcceptData" type="checkbox" required onchange="updateCardRegistrationConsentState()" aria-describedby="cardRegistrationConsentHelp"
+              style="width:18px;height:18px;flex:0 0 18px;margin:0;accent-color:var(--brand-primary)">
+            <span>Acepto la <strong>política de protección de datos personales</strong>.</span>
+          </label>
+          <p id="cardRegistrationConsentHelp" style="margin:12px 0 0;font-size:11px;line-height:1.4;color:var(--text-secondary)">Marca ambas casillas para confirmar y continuar.</p>
+          <!--Configurar los enlaces a los documentos legales cuando se disponga de sus URL oficiales.-->
+        </fieldset>
+
         <div style="display:flex;gap:12px">
-          <button type="button" class="btn btn-ghost" onclick="closeAskRecurringValueSummaryModal()"
+          <button type="button" class="btn btn-ghost" onclick="backFromCardRegistrationSummary()"
             style="flex:1;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:600">
             Atrás
           </button>
-          <button type="button" class="btn btn-primary" onclick="confirmAskRecurringValueSummary()"
-            style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700">
+          <button id="cardRegistrationSummaryContinue" type="button" class="btn btn-primary" disabled onclick="confirmAskRecurringValueSummary()"
+            style="flex:1.5;justify-content:center;padding:12px;border-radius:var(--r-md);font-weight:700;opacity:0.5;cursor:not-allowed">
             Confirmar y Continuar
           </button>
         </div>
